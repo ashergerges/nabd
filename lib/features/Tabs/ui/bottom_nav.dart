@@ -1,0 +1,130 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/utils/common_widgets/custom_marquee_widget.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/core/utils/constants/app_colors.dart';
+import 'package:nawy/core/utils/constants/app_text_them.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
+
+import '../../../gen/assets.gen.dart';
+
+class NavigationBarItems extends StatelessWidget {
+  final int activeScreen;
+  final Function(int) onTap;
+
+  const NavigationBarItems({super.key, required this.activeScreen, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewPadding.bottom > 0
+            ? MediaQuery.of(context).padding.bottom
+            : 10.h,
+      ),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.bottomBarColor,
+            // ARGB: 0x1A (alpha ~10%) + 0x18A31A (RGB)        offset: Offset(0, -4),     // x: 0, y: -4
+            blurRadius: 20,
+            spreadRadius: 0,
+          ),
+        ],
+        color: AppColors.white,
+      ),
+      child: SizedBox(
+        height: 60.h,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              child: OnTap(
+                onTap: () => onTap(0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 2,
+                  children: [
+                    Assets.svg.egypt.svg(
+                      height: 24.w,
+                      colorFilter: ColorFilter.mode(
+                        activeScreen == 0 ? AppColors.primary : AppColors.neutral400,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    CustomMarquee(
+                      child: Text(
+                        LocaleKeys.invest.tr(),
+                        style: AppTextTheme.bodyXSmall(context).copyWith(
+                          fontWeight: activeScreen == 0 ? FontWeight.w500 : null,
+                          color: activeScreen == 0 ? AppColors.primary : AppColors.neutral400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: OnTap(
+                onTap: () => onTap(1),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 2,
+                  children: [
+                    Assets.svg.egypt.svg(
+                      height: 24.w,
+                      colorFilter: ColorFilter.mode(
+                        activeScreen == 1 ? AppColors.primary : AppColors.neutral400,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    CustomMarquee(
+                      child: Text(
+                        LocaleKeys.portfolio.tr(),
+                        style: AppTextTheme.bodyXSmall(context).copyWith(
+                          fontWeight: activeScreen == 1 ? FontWeight.w500 : null,
+                          color: activeScreen == 1 ? AppColors.primary : AppColors.neutral400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: OnTap(
+                onTap: () => onTap(2),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 2,
+                  children: [
+                    Assets.svg.egypt.svg(
+                      height: 24.w,
+                      colorFilter: ColorFilter.mode(
+                        activeScreen == 2
+                            ? AppColors.primary
+                            : AppColors.neutral400,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    CustomMarquee(
+                      child: Text(
+                        LocaleKeys.more.tr(),
+                        style: AppTextTheme.bodyXSmall(context).copyWith(
+                          fontWeight: activeScreen == 2 ? FontWeight.w500 : null,
+                          color: activeScreen == 2 ? AppColors.primary : AppColors.neutral400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
