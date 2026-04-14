@@ -153,6 +153,12 @@ class $AssetsSvgGen {
   /// File path: assets/svg/share.svg
   SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
 
+  /// File path: assets/svg/star_empty.svg
+  SvgGenImage get starEmpty => const SvgGenImage('assets/svg/star_empty.svg');
+
+  /// File path: assets/svg/star_half.svg
+  SvgGenImage get starHalf => const SvgGenImage('assets/svg/star_half.svg');
+
   /// File path: assets/svg/success.svg
   SvgGenImage get success => const SvgGenImage('assets/svg/success.svg');
 
@@ -194,6 +200,8 @@ class $AssetsSvgGen {
     notFound,
     people,
     share,
+    starEmpty,
+    starHalf,
     success,
     successCheck,
     successSnackbar,
