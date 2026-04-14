@@ -277,3 +277,56 @@ class SplashRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [VendorDetailsScreen]
+class VendorDetailsRoute extends PageRouteInfo<VendorDetailsRouteArgs> {
+  VendorDetailsRoute({
+    Key? key,
+    required int vendorDetailsId,
+    List<PageRouteInfo>? children,
+  }) : super(
+         VendorDetailsRoute.name,
+         args: VendorDetailsRouteArgs(
+           key: key,
+           vendorDetailsId: vendorDetailsId,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'VendorDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<VendorDetailsRouteArgs>();
+      return VendorDetailsScreen(
+        key: args.key,
+        vendorDetailsId: args.vendorDetailsId,
+      );
+    },
+  );
+}
+
+class VendorDetailsRouteArgs {
+  const VendorDetailsRouteArgs({this.key, required this.vendorDetailsId});
+
+  final Key? key;
+
+  final int vendorDetailsId;
+
+  @override
+  String toString() {
+    return 'VendorDetailsRouteArgs{key: $key, vendorDetailsId: $vendorDetailsId}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VendorDetailsRouteArgs) return false;
+    return key == other.key && vendorDetailsId == other.vendorDetailsId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ vendorDetailsId.hashCode;
+}

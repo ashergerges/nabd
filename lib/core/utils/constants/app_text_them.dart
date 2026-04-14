@@ -8,7 +8,7 @@ class AppTextTheme {
     return TextStyle(
       fontSize: ResponsiveScreen.getResponsiveFontSize(context: context, fontSize: fontSize),
       fontWeight: fontWeight,
-      color: underline ? AppColors.primary : AppColors.neutral900,
+      color: underline ? AppColors.primary : AppColors.textColor,
       fontFamily: FontFamily.inter,
       decoration: underline ? TextDecoration.underline : null,
       decorationColor: underline ? AppColors.primary : null,

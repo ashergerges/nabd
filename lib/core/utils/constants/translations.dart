@@ -5,7 +5,7 @@ class Translations {
   const Translations();
   String get localeAr => 'ar';
   String get localeEN => 'en';
-  String get localeDefault => localeEN;
+  String get localeDefault => localeAr;
 }
 
 extension LocaleContext on BuildContext {

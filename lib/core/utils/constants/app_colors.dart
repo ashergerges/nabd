@@ -8,13 +8,15 @@ class AppColors {
   static const Color black = Colors.black;
   static const Color shadow = Color(0x1A0018A3);
 
-  static const Color backgroundColor = Color(0xffFCFCFC);
+  static const Color backgroundColor = Color(0xffE7EBF2);
+  static const Color textColor = Color(0xff333333);
 
   static const Color bottomBarColor = Color(0x1A18A31A);
+  static const Color circleBackgroundColor = Color(0x1A340773);
 
   /// primary
   static const Color primary50 = Color(0xffe6e8f6);
-  static const Color primary100 = Color(0xffb0b7e2);
+  static const Color primary100 = Color(0xffB5C0D5);
   static const Color primary200 = Color(0xff8a95d5);
   static const Color primary300 = Color(0xff5464c1);
   static const Color primary400 = Color(0xff3346b5);
@@ -28,34 +30,19 @@ class AppColors {
     Color(0xff001277),
     Color(0xff0223E3),
   ];
-  static const List<Color> linearGradientQuickGain = [
-    Color(0xffF4EBDA),
-    Color(0xffF8C86B),
-  ];
-  static const List<Color> linearGradientSteadyGrowth = [
-    Color(0xffE4FFEE),
-    Color(0xff38ED7D),
-  ];
-  static const List<Color> decreaseInvestment = [
-    Color(0xffF6E6E6),
-    Color(0xffED3838),
-  ];
-  static List<Color> linearGradientQuickGainWithOpacity = [
-    Color(0xffF4EBDA),
-    Color(0xffF8C86B).withOpacity(0.6),
-  ];
+
 
   ///investment history
   static const Color investmentHistory = Color(0xff006E74);
   static const Color investmentHistory700 = Color(0xff004E52);
 
   /// Accent
-  static const Color secondary50 = Color(0xffe6f6ec);
-  static const Color secondary100 = Color(0xffb0e3c4);
+  static const Color secondary50 = Color(0xffE8F6ED);
+  static const Color secondary100 = Color(0xffB7E2C7);
   static const Color secondary200 = Color(0xff8ad6a7);
   static const Color secondary300 = Color(0xff54c37f);
   static const Color secondary400 = Color(0xff33b866);
-  static const Color secondary = Color(0xff00a640);
+  static const Color secondary = Color(0xff16A34A);
   static const Color secondary600 = Color(0xff00973a);
   static const Color secondary700 = Color(0xff00762d);
   static const Color secondary800 = Color(0xff005b23);

@@ -98,6 +98,12 @@ class $AssetsSvgGen {
   /// File path: assets/svg/Logout.svg
   SvgGenImage get logout => const SvgGenImage('assets/svg/Logout.svg');
 
+  /// File path: assets/svg/arrow_left.svg
+  SvgGenImage get arrowLeft => const SvgGenImage('assets/svg/arrow_left.svg');
+
+  /// File path: assets/svg/checkmark.svg
+  SvgGenImage get checkmark => const SvgGenImage('assets/svg/checkmark.svg');
+
   /// File path: assets/svg/egypt.svg
   SvgGenImage get egypt => const SvgGenImage('assets/svg/egypt.svg');
 
@@ -120,11 +126,32 @@ class $AssetsSvgGen {
   /// File path: assets/svg/failedIcon.svg
   SvgGenImage get failedIcon => const SvgGenImage('assets/svg/failedIcon.svg');
 
+  /// File path: assets/svg/favourite_circle.svg
+  SvgGenImage get favouriteCircle =>
+      const SvgGenImage('assets/svg/favourite_circle.svg');
+
+  /// File path: assets/svg/favourite_package.svg
+  SvgGenImage get favouritePackage =>
+      const SvgGenImage('assets/svg/favourite_package.svg');
+
+  /// File path: assets/svg/favourite_rate.svg
+  SvgGenImage get favouriteRate =>
+      const SvgGenImage('assets/svg/favourite_rate.svg');
+
+  /// File path: assets/svg/location.svg
+  SvgGenImage get location => const SvgGenImage('assets/svg/location.svg');
+
   /// File path: assets/svg/logo.svg
   SvgGenImage get logo => const SvgGenImage('assets/svg/logo.svg');
 
   /// File path: assets/svg/not_found.svg
   SvgGenImage get notFound => const SvgGenImage('assets/svg/not_found.svg');
+
+  /// File path: assets/svg/people.svg
+  SvgGenImage get people => const SvgGenImage('assets/svg/people.svg');
+
+  /// File path: assets/svg/share.svg
+  SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
 
   /// File path: assets/svg/success.svg
   SvgGenImage get success => const SvgGenImage('assets/svg/success.svg');
@@ -150,6 +177,8 @@ class $AssetsSvgGen {
   /// List of all assets
   List<SvgGenImage> get values => [
     logout,
+    arrowLeft,
+    checkmark,
     egypt,
     english,
     error,
@@ -157,8 +186,14 @@ class $AssetsSvgGen {
     eye,
     eyeClose,
     failedIcon,
+    favouriteCircle,
+    favouritePackage,
+    favouriteRate,
+    location,
     logo,
     notFound,
+    people,
+    share,
     success,
     successCheck,
     successSnackbar,

@@ -18,8 +18,17 @@ extension CustomDoubleExtensions on num {
   Widget get sizedHeight => SizedBox(height: toDouble());
 
   Widget get sizedWidth => SizedBox(width: toDouble());
+  EdgeInsetsGeometry get padStart =>
+      EdgeInsetsDirectional.only(start: toDouble());
+
+  EdgeInsetsGeometry get padEnd => EdgeInsetsDirectional.only(end: toDouble());
 }
 
+extension EdgeInsetsGeometryX on EdgeInsetsGeometry {
+  EdgeInsetsGeometry operator +(EdgeInsetsGeometry other) {
+    return this.add(other);
+  }
+}
 extension PaddingList on List<Widget> {
   List<Widget> paddingDirectional({
     double top = 0,
