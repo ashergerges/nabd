@@ -208,7 +208,7 @@ class ApplicationsTab extends StatelessWidget {
           ReviewCard(
             name: 'سارة',
             date: '20 مارس 2024',
-              rating: 4,
+              rating: 3.5,
             comment: 'قاعة رائعة وفريق عمل محترف للغاية. كان البوفيه مذهلاً!',
             imageUrl: AppStrings.kTestNetworkImage, // or null for placeholder
           ),
