@@ -330,3 +330,19 @@ class VendorDetailsRouteArgs {
   @override
   int get hashCode => key.hashCode ^ vendorDetailsId.hashCode;
 }
+
+/// generated route for
+/// [VendorPackageDetailsScreen]
+class VendorPackageDetailsRoute extends PageRouteInfo<void> {
+  const VendorPackageDetailsRoute({List<PageRouteInfo>? children})
+    : super(VendorPackageDetailsRoute.name, initialChildren: children);
+
+  static const String name = 'VendorPackageDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const VendorPackageDetailsScreen();
+    },
+  );
+}

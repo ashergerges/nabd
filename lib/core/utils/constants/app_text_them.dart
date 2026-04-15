@@ -34,6 +34,7 @@ class AppTextTheme {
   static TextStyle bodySmall(BuildContext context) => _textStyle(context, 14, FontWeight.w400);
 
   static TextStyle bodyXSmall(BuildContext context) => _textStyle(context, 12, FontWeight.w400);
+  static TextStyle bodyXXSmall(BuildContext context) => _textStyle(context, 10, FontWeight.w400);
 
   // Medium Body Texts
   static TextStyle bodyLargeMediumWeight(BuildContext context) => _textStyle(context, 18, FontWeight.w500);

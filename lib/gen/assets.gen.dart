@@ -150,6 +150,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/people.svg
   SvgGenImage get people => const SvgGenImage('assets/svg/people.svg');
 
+  /// File path: assets/svg/riyal.svg
+  SvgGenImage get riyal => const SvgGenImage('assets/svg/riyal.svg');
+
   /// File path: assets/svg/share.svg
   SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
 
@@ -199,6 +202,7 @@ class $AssetsSvgGen {
     logo,
     notFound,
     people,
+    riyal,
     share,
     starEmpty,
     starHalf,

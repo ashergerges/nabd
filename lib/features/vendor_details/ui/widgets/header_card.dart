@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
@@ -6,6 +7,7 @@ import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/gen/assets.gen.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 class HeaderCard extends StatelessWidget {
   const HeaderCard({super.key});
@@ -58,7 +60,7 @@ class HeaderCard extends StatelessWidget {
                             2.horizontalSpace,
                             Flexible(
                               child: Text(
-                                ' حتى 500 ضيف',
+                                LocaleKeys.upTo500Guests.tr(args: ['500']),
                                 style: AppTextTheme.bodyXSmall(context),
                               ),
                             ),
@@ -107,7 +109,7 @@ class HeaderCard extends StatelessWidget {
                     Assets.svg.checkmark.svg(height: 24.h),
                     8.horizontalSpace,
                     Text(
-                      'متوفر الآن',
+                      LocaleKeys.availableNow.tr(),
                       style: AppTextTheme.bodySmall(
                         context,
                       ).copyWith(color: AppColors.secondary),

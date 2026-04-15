@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/features/common/ui/widgets/circular_icon_button.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
@@ -84,7 +86,11 @@ class CustomTopBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _circleButton(Icon(Icons.arrow_back,color: AppColors.primary,size: 28.h,)),
+            OnTap(
+                onTap: (){
+                context.maybePop();
+                },
+                child: _circleButton(Icon(Icons.arrow_back,color: AppColors.primary,size: 28.h,))),
             Row(
               children: [
                 _circleButton(Assets.svg.share.svg(height: 26.h,)),

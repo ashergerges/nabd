@@ -170,41 +170,4 @@ class Validator {
     return null;
   }
 
-  static String? validateEmailOrEgyptianPhone(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return LocaleKeys.fieldIsRequired.tr();
-    }
-
-    final input = value.trim();
-
-    final emailPattern =
-        r'^[a-zA-Z0-9][a-zA-Z0-9\+\.\_\%\-\+]{0,255}\@[a-zA-Z][a-zA-Z0-9\-]{0,63}\.[a-zA-Z]{2,}$';
-    final emailRegex = RegExp(emailPattern);
-
-    if (emailRegex.hasMatch(input)) {
-      return null;
-    }
-
-    String mobile = input.replaceAll(RegExp(r'[\s\-()]'), '');
-
-    if (mobile.startsWith('+')) {
-      if (!mobile.startsWith('+20')) {
-        return LocaleKeys.phoneNumberIsIncorrect.tr();
-      }
-      mobile = mobile.substring(3);
-    }
-
-    if (mobile.startsWith('0')) {
-      mobile = mobile.substring(1);
-    }
-
-    final digitsOnly = RegExp(r'^[0-9]+$');
-    final egyptMobileNsFormat = RegExp(r'^1[0125][0-9]{8}$');
-
-    if (digitsOnly.hasMatch(mobile) && egyptMobileNsFormat.hasMatch(mobile)) {
-      return null;
-    }
-
-    return LocaleKeys.enterCorrectEmailOrPhone.tr();
-  }
 }

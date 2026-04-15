@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:nawy/core/utils/common_widgets/app_button.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 class VendorBottomNavigationBar extends StatelessWidget {
   const VendorBottomNavigationBar({super.key});
 
@@ -20,7 +22,7 @@ class VendorBottomNavigationBar extends StatelessWidget {
         ],
       ),
       child: AppButton(
-        text: 'تواصل مع مقدم الخدمة',
+        text: LocaleKeys.contactServiceProvider.tr(),
       ),
     );
   }
