@@ -8,6 +8,7 @@ import 'package:nawy/features/Tabs/ui/home_bottom_tabs_screen.dart';
 import 'package:nawy/features/splash/ui/splash_screen.dart';
 import 'package:nawy/features/vendor_details/ui/vendor_details_screen.dart';
 import 'package:nawy/features/vendor_details/ui/vendor_package_details_screen.dart';
+import 'package:nawy/features/venues/ui/venues_screen.dart';
 import '../../features/auth/ui/login_screen.dart';
 import '../services/ui/not_found_screen.dart';
 import '../utils/common_widgets/image_viewer_screen.dart';
@@ -40,5 +41,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(path: '*', page: NotFoundRoute.page), // this must be last route
     AutoRoute( page: VendorDetailsRoute.page), // this must be last route
     AutoRoute( page: VendorPackageDetailsRoute.page), // this must be last route
+    AutoRoute( page: VenuesRoute.page), // this must be last route
   ];
 }

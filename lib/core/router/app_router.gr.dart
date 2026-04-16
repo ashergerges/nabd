@@ -346,3 +346,19 @@ class VendorPackageDetailsRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [VenuesScreen]
+class VenuesRoute extends PageRouteInfo<void> {
+  const VenuesRoute({List<PageRouteInfo>? children})
+    : super(VenuesRoute.name, initialChildren: children);
+
+  static const String name = 'VenuesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const VenuesScreen();
+    },
+  );
+}

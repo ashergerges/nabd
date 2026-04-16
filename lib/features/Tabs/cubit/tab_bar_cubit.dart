@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/features/categories/ui/categories_screen.dart';
+import 'package:nawy/features/my_booking/ui/my_booking_screen.dart';
 import 'package:nawy/main_common.dart';
 
 part 'tab_bar_state.dart';
@@ -28,8 +30,8 @@ class TabBarCubit extends Cubit<TabBarState> {
         ],
       ),
     ),
-    Container(),
-    Container(),
+    CategoriesScreen(),
+    MyBookingScreen(),
     Container(),
     Container(),
   ];

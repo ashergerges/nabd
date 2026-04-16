@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/features/common/ui/widgets/circular_icon_button.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
@@ -16,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.title = '',
     this.isHaveBackButton = true,
-    this.isCenterText = true,
+    this.isCenterText = false,
     this.backgroundColor,
     this.iconColor,
     this.onBackPressed,
@@ -46,18 +47,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         statusBarBrightness: Brightness.light,
         systemStatusBarContrastEnforced: false,
       ),
-      title: Text(title, style: textStyle ?? AppTextTheme.bodyLargeMediumWeight(context)),
+      title: Text(title, style: textStyle ?? AppTextTheme.headingSmall(context).copyWith(fontWeight: FontWeight.w600)),
       actions: actions,
       automaticallyImplyLeading: isHaveBackButton,
       leading: isHaveBackButton
-          ? CircularIconButton(
-              margin: context.isArabic ? 15.padRight : 15.padLeft,
-              isWithBorder: true,
-              onTap: () {
-                onBackPressed != null ? onBackPressed!() : Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_forward_ios_rounded)
-            )
+          ? OnTap(
+        onTap: () {
+          onBackPressed != null ? onBackPressed!() : Navigator.pop(context);
+        },
+        child: Center(
+          child: Transform.flip(
+            flipX: context.isEnglish,
+            child: SvgPicture.asset(
+              Assets.svg.arrowLeft.path,
+              width: 32.h,
+              height: 32.h,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      )
           : null,
     );
   }
@@ -68,8 +77,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class CustomTopBar extends StatelessWidget {
-  const CustomTopBar({super.key});
-
+  const CustomTopBar({super.key, this.child});
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,7 +92,7 @@ class CustomTopBar extends StatelessWidget {
         border: Border.all(color: AppColors.primary100)
       ),
       child: SafeArea(
-        child: Row(
+        child: child??Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             OnTap(

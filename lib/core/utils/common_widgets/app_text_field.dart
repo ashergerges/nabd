@@ -159,16 +159,16 @@ class _AppTextFieldState extends State<AppTextField> {
           fillColor: widget.fillColor ?? AppColors.white,
           hintText: widget.label,
           errorStyle: AppTextTheme.bodyXSmall(context).copyWith(color: AppColors.error),
-          hintStyle: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral400),
+          hintStyle: AppTextTheme.bodySmall(context),
           prefixIcon: widget.iconPre != null || widget.imagePre != null
               ? widget.iconPre != null
                     ? Icon(widget.iconPre, size: 25.h)
                     : Padding(
-                        padding: 17.padHorizontal,
+                        padding: 17.padStart,
                         child: SvgPicture.asset(
                           widget.imagePre.toString(),
                           height: ResponsiveScreen.iconSize(context: context, sizeMobile: 17.h),
-                          colorFilter: const ColorFilter.mode(AppColors.neutral200, BlendMode.srcIn),
+                          // colorFilter: const ColorFilter.mode(AppColors.neutral200, BlendMode.srcIn),
                           fit: BoxFit.contain,
                         ),
                       )
@@ -177,6 +177,7 @@ class _AppTextFieldState extends State<AppTextField> {
               widget.contentPadding ??
               (ResponsiveScreen.isTablet(context: context) ? 30.padVertical : 0.padVertical) + (15.padHorizontal),
           suffixText: widget.suffixText,
+          suffix: widget.suffixItem ,
           suffixStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral200, height: 0.05.w),
           suffixIcon: widget.suffixItem != null
               ? OnTap(
@@ -228,12 +229,12 @@ class _AppTextFieldState extends State<AppTextField> {
                       )
                     : null),
           border: OutlineInputBorder(
-            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.neutral100),
+            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.primary100),
             borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           ),
 
           disabledBorder: OutlineInputBorder(
-            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.neutral100),
+            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.primary100),
             borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           ),
           focusedBorder: OutlineInputBorder(
@@ -241,7 +242,7 @@ class _AppTextFieldState extends State<AppTextField> {
             borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.neutral100),
+            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.primary100),
             borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           ),
         ),

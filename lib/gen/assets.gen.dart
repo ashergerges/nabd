@@ -104,6 +104,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/checkmark.svg
   SvgGenImage get checkmark => const SvgGenImage('assets/svg/checkmark.svg');
 
+  /// File path: assets/svg/dateTime.svg
+  SvgGenImage get dateTime => const SvgGenImage('assets/svg/dateTime.svg');
+
   /// File path: assets/svg/egypt.svg
   SvgGenImage get egypt => const SvgGenImage('assets/svg/egypt.svg');
 
@@ -144,6 +147,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/logo.svg
   SvgGenImage get logo => const SvgGenImage('assets/svg/logo.svg');
 
+  /// File path: assets/svg/logo_name.svg
+  SvgGenImage get logoName => const SvgGenImage('assets/svg/logo_name.svg');
+
   /// File path: assets/svg/not_found.svg
   SvgGenImage get notFound => const SvgGenImage('assets/svg/not_found.svg');
 
@@ -152,6 +158,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/riyal.svg
   SvgGenImage get riyal => const SvgGenImage('assets/svg/riyal.svg');
+
+  /// File path: assets/svg/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/svg/search.svg');
 
   /// File path: assets/svg/share.svg
   SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
@@ -188,6 +197,7 @@ class $AssetsSvgGen {
     logout,
     arrowLeft,
     checkmark,
+    dateTime,
     egypt,
     english,
     error,
@@ -200,9 +210,11 @@ class $AssetsSvgGen {
     favouriteRate,
     location,
     logo,
+    logoName,
     notFound,
     people,
     riyal,
+    search,
     share,
     starEmpty,
     starHalf,
