@@ -79,7 +79,7 @@ class AppColors {
   static const Color error200 = Color(0xffd68a8a);
   static const Color error300 = Color(0xffc35454);
   static const Color error400 = Color(0xffb83333);
-  static const Color error = Color(0xffa60000);
+  static const Color error = Color(0xffDC2626);
   static const Color error600 = Color(0xff970000);
   static const Color error700 = Color(0xff760000);
   static const Color error800 = Color(0xff5b0000);

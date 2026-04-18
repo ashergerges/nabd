@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [FavScreen]
+class FavRoute extends PageRouteInfo<void> {
+  const FavRoute({List<PageRouteInfo>? children})
+    : super(FavRoute.name, initialChildren: children);
+
+  static const String name = 'FavRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FavScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [HomeBottomTabsScreen]
 class HomeBottomTabsRoute extends PageRouteInfo<HomeBottomTabsRouteArgs> {
   HomeBottomTabsRoute({
@@ -115,6 +131,54 @@ class ImageViewerRouteArgs {
 
   @override
   int get hashCode => key.hashCode ^ imageUrl.hashCode;
+}
+
+/// generated route for
+/// [InvitationTrackingScreen]
+class InvitationTrackingRoute extends PageRouteInfo<void> {
+  const InvitationTrackingRoute({List<PageRouteInfo>? children})
+    : super(InvitationTrackingRoute.name, initialChildren: children);
+
+  static const String name = 'InvitationTrackingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const InvitationTrackingScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [LanguageScreen]
+class LanguageRoute extends PageRouteInfo<void> {
+  const LanguageRoute({List<PageRouteInfo>? children})
+    : super(LanguageRoute.name, initialChildren: children);
+
+  static const String name = 'LanguageRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LanguageScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [LocationScreen]
+class LocationRoute extends PageRouteInfo<void> {
+  const LocationRoute({List<PageRouteInfo>? children})
+    : super(LocationRoute.name, initialChildren: children);
+
+  static const String name = 'LocationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LocationScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -274,6 +338,38 @@ class SplashRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SplashScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SupportScreen]
+class SupportRoute extends PageRouteInfo<void> {
+  const SupportRoute({List<PageRouteInfo>? children})
+    : super(SupportRoute.name, initialChildren: children);
+
+  static const String name = 'SupportRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SupportScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [UpdateProfileScreen]
+class UpdateProfileRoute extends PageRouteInfo<void> {
+  const UpdateProfileRoute({List<PageRouteInfo>? children})
+    : super(UpdateProfileRoute.name, initialChildren: children);
+
+  static const String name = 'UpdateProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const UpdateProfileScreen();
     },
   );
 }

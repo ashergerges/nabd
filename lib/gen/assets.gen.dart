@@ -95,8 +95,9 @@ class $AssetsImagesGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
-  /// File path: assets/svg/Logout.svg
-  SvgGenImage get logout => const SvgGenImage('assets/svg/Logout.svg');
+  /// File path: assets/svg/Invitation_tracker.svg
+  SvgGenImage get invitationTracker =>
+      const SvgGenImage('assets/svg/Invitation_tracker.svg');
 
   /// File path: assets/svg/arrow_left.svg
   SvgGenImage get arrowLeft => const SvgGenImage('assets/svg/arrow_left.svg');
@@ -106,6 +107,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/dateTime.svg
   SvgGenImage get dateTime => const SvgGenImage('assets/svg/dateTime.svg');
+
+  /// File path: assets/svg/edit.svg
+  SvgGenImage get edit => const SvgGenImage('assets/svg/edit.svg');
 
   /// File path: assets/svg/egypt.svg
   SvgGenImage get egypt => const SvgGenImage('assets/svg/egypt.svg');
@@ -141,6 +145,13 @@ class $AssetsSvgGen {
   SvgGenImage get favouriteRate =>
       const SvgGenImage('assets/svg/favourite_rate.svg');
 
+  /// File path: assets/svg/favourite_square.svg
+  SvgGenImage get favouriteSquare =>
+      const SvgGenImage('assets/svg/favourite_square.svg');
+
+  /// File path: assets/svg/language.svg
+  SvgGenImage get language => const SvgGenImage('assets/svg/language.svg');
+
   /// File path: assets/svg/location.svg
   SvgGenImage get location => const SvgGenImage('assets/svg/location.svg');
 
@@ -150,11 +161,17 @@ class $AssetsSvgGen {
   /// File path: assets/svg/logo_name.svg
   SvgGenImage get logoName => const SvgGenImage('assets/svg/logo_name.svg');
 
+  /// File path: assets/svg/logout.svg
+  SvgGenImage get logout => const SvgGenImage('assets/svg/logout.svg');
+
   /// File path: assets/svg/not_found.svg
   SvgGenImage get notFound => const SvgGenImage('assets/svg/not_found.svg');
 
   /// File path: assets/svg/people.svg
   SvgGenImage get people => const SvgGenImage('assets/svg/people.svg');
+
+  /// File path: assets/svg/phone.svg
+  SvgGenImage get phone => const SvgGenImage('assets/svg/phone.svg');
 
   /// File path: assets/svg/riyal.svg
   SvgGenImage get riyal => const SvgGenImage('assets/svg/riyal.svg');
@@ -182,6 +199,9 @@ class $AssetsSvgGen {
   SvgGenImage get successSnackbar =>
       const SvgGenImage('assets/svg/success_snackbar.svg');
 
+  /// File path: assets/svg/support.svg
+  SvgGenImage get support => const SvgGenImage('assets/svg/support.svg');
+
   /// File path: assets/svg/trash.svg
   SvgGenImage get trash => const SvgGenImage('assets/svg/trash.svg');
 
@@ -194,10 +214,11 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-    logout,
+    invitationTracker,
     arrowLeft,
     checkmark,
     dateTime,
+    edit,
     egypt,
     english,
     error,
@@ -208,11 +229,15 @@ class $AssetsSvgGen {
     favouriteCircle,
     favouritePackage,
     favouriteRate,
+    favouriteSquare,
+    language,
     location,
     logo,
     logoName,
+    logout,
     notFound,
     people,
+    phone,
     riyal,
     search,
     share,
@@ -221,6 +246,7 @@ class $AssetsSvgGen {
     success,
     successCheck,
     successSnackbar,
+    support,
     trash,
     warningSnackbar,
     wrongIcon,
