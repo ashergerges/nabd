@@ -73,5 +73,9 @@ abstract class  LocaleKeys {
   static const services = 'services';
   static const sar = 'sar';
   static const riyal = 'riyal';
+  static const checkYourPhone = 'checkYourPhone';
+  static const codeSent = 'codeSent';
+  static const confirm = 'confirm';
+  static const resendCode = 'resendCode';
 
 }

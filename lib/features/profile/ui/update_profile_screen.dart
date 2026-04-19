@@ -17,6 +17,10 @@ class UpdateProfileScreen extends StatelessWidget {
 
           Text( "الاسم"),
           TextFormField(
+            onChanged: (value){},
+            onTapOutside: (v) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
             decoration: InputDecoration(
               hintText: "سارة هاني",
               hintStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral300),

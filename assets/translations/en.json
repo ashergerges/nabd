@@ -70,5 +70,9 @@
   "priceStartsFrom": "Price starts from",
   "services": "Services",
   "sar": "SAR",
-  "riyal": "Riyal"
+  "riyal": "Riyal",
+  "checkYourPhone": "Check your phone",
+  "codeSent": "We’ve sent a code to {}, enter it here.",
+  "confirm": "Confirm",
+  "resendCode": "Resend Code"
 }

@@ -28,6 +28,12 @@ class TabBarCubit extends Cubit<TabBarState> {
                 getIt<AppRouter>().push(VendorDetailsRoute(vendorDetailsId: 11));
               },
               child: Text("VEndor"))),
+          30.verticalSpace,
+          Center(child: OnTap(
+              onTap: (){
+                getIt<AppRouter>().push(LoginRoute());
+              },
+              child: Text("LOGIN"))),
         ],
       ),
     ),

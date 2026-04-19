@@ -458,3 +458,50 @@ class VenuesRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [VerificationScreen]
+class VerificationRoute extends PageRouteInfo<VerificationRouteArgs> {
+  VerificationRoute({
+    Key? key,
+    required String phone,
+    List<PageRouteInfo>? children,
+  }) : super(
+         VerificationRoute.name,
+         args: VerificationRouteArgs(key: key, phone: phone),
+         initialChildren: children,
+       );
+
+  static const String name = 'VerificationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<VerificationRouteArgs>();
+      return VerificationScreen(key: args.key, phone: args.phone);
+    },
+  );
+}
+
+class VerificationRouteArgs {
+  const VerificationRouteArgs({this.key, required this.phone});
+
+  final Key? key;
+
+  final String phone;
+
+  @override
+  String toString() {
+    return 'VerificationRouteArgs{key: $key, phone: $phone}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VerificationRouteArgs) return false;
+    return key == other.key && phone == other.phone;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ phone.hashCode;
+}

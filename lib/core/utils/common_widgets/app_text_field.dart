@@ -356,3 +356,74 @@ class AppTextFieldWithTitle extends StatelessWidget {
     );
   }
 }
+class CustomTextField extends StatelessWidget {
+  final String hint;
+  final bool isPhone;
+  final TextInputType? keyboardType;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
+
+  const CustomTextField({
+    super.key,
+    required this.hint,
+    this.isPhone = false,
+    this.keyboardType,
+    this.onChanged,
+    this.validator,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+        keyboardType: isPhone ? TextInputType.phone : keyboardType,
+        onChanged: onChanged,
+        onTapOutside: (_) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: AppTextTheme.bodyMedium(context)
+              .copyWith(color: AppColors.neutral300),
+
+          // 👇 Phone prefix
+          prefixIcon: isPhone
+              ? IntrinsicWidth(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(width: 12),
+                Text(
+                  "+996",
+                  style: AppTextTheme.bodyLarge(context)
+                      .copyWith(color: AppColors.primary),
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  width: 1,
+                  height: 20,
+                  color: Colors.grey.shade300,
+                ),
+                const SizedBox(width: 8),
+              ],
+            ),
+          )
+              : null,
+
+          border: InputBorder.none,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade300),
+          ),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.blue),
+          ),
+          errorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+          ),
+          focusedErrorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+          ),
+        ),
+        validator: validator
+    );
+  }
+}

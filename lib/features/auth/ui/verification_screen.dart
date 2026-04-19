@@ -1,27 +1,31 @@
+import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/app_button.dart';
-import 'package:nawy/core/utils/common_widgets/app_text_field.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
-import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/translations.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/auth/ui/widgets/resend_button_widget.dart';
+import 'package:nawy/features/auth/ui/widgets/verification_code_input.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
+import '../../../core/utils/common_widgets/on_tap.dart';
 import '../../../gen/assets.gen.dart';
-
 @RoutePage()
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
+class VerificationScreen extends StatelessWidget {
+  const VerificationScreen({super.key, required this.phone});
+  final String phone;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 20.h,
         children: [
           CustomTopBar(
             child:  Row(
@@ -29,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                 OnTap(
                   onTap: (){
                     context.maybePop();
-                    },
+                  },
                   child: Container(
                     padding: 5.padAll,
                     decoration: const BoxDecoration(
@@ -44,16 +48,16 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(child: LoginBody()),
+          Expanded(child: VerificationBody(phone:phone)),
 
         ],
       ),
     );
   }
 }
-class LoginBody extends StatelessWidget {
-  const LoginBody({super.key});
-
+class VerificationBody extends StatelessWidget {
+  const VerificationBody({super.key, required this.phone});
+ final String phone;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -61,24 +65,30 @@ class LoginBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("مرحباً!",style: AppTextTheme.headingSmall(context),),
-          8.verticalSpace,
-          Text("أدخل رقمك للمتابعة",style: AppTextTheme.bodyMedium(context).copyWith(fontWeight: FontWeight.w600),),
-          70.verticalSpace,
-          CustomTextField(
-            isPhone: true,
-            hint: "رقم التليفون",
+          Text(
+            LocaleKeys.checkYourPhone.tr(),
+            style: AppTextTheme.headingMedium(context),
           ),
-          50.verticalSpace,
+          Text(
+            LocaleKeys.codeSent.tr(args: [phone]),
+            style: AppTextTheme.bodyMedium(context).copyWith(
+              color: AppColors.neutral400,
+            ),
+          ),
+          VerificationCodeInput(),
+          ResendButtonWidget(phone: phone),
+
           AppButton(
-            onTap: (){
-              VerificationRoute(phone: "01221167185").push(context);
+            // background: state.oTPCode.length != 4
+            //     ? AppColors.neutral100
+            //     : null,
+            onTap: () {
+
             },
-            text: "المتابعة",
-          ),
+            text: LocaleKeys.confirm.tr(),
+          )
         ],
       ),
     );
   }
 }
-

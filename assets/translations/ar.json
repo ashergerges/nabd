@@ -71,5 +71,9 @@
   "priceStartsFrom": "يبدأ السعر من",
   "services": "الخدمات",
   "sar": "ر.س",
-  "riyal": "ريال"
+  "riyal": "ريال",
+  "checkYourPhone": "تحقق من جوالك",
+  "codeSent": "أرسلنا لك كود على {} ،دخّله هنا.",
+  "confirm": "تأكيد",
+  "resendCode": "إعادة إرسال الكود"
 }

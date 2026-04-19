@@ -39,8 +39,7 @@ class VendorDetailsBody extends StatefulWidget {
   State<VendorDetailsBody> createState() => _VendorDetailsBodyState();
 }
 
-class _VendorDetailsBodyState extends State<VendorDetailsBody>
-    with SingleTickerProviderStateMixin {
+class _VendorDetailsBodyState extends State<VendorDetailsBody> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
