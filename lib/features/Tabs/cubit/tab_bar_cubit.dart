@@ -34,6 +34,12 @@ class TabBarCubit extends Cubit<TabBarState> {
                 getIt<AppRouter>().push(LoginRoute());
               },
               child: Text("LOGIN"))),
+          30.verticalSpace,
+          Center(child: OnTap(
+              onTap: (){
+                getIt<AppRouter>().push(BookRoute());
+              },
+              child: Text("Book"))),
         ],
       ),
     ),

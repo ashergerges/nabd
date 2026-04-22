@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [BookScreen]
+class BookRoute extends PageRouteInfo<void> {
+  const BookRoute({List<PageRouteInfo>? children})
+    : super(BookRoute.name, initialChildren: children);
+
+  static const String name = 'BookRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BookScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [FavScreen]
 class FavRoute extends PageRouteInfo<void> {
   const FavRoute({List<PageRouteInfo>? children})

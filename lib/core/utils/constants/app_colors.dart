@@ -19,7 +19,7 @@ class AppColors {
   static const Color primary100 = Color(0xffB5C0D5);
   static const Color primary200 = Color(0xff8a95d5);
   static const Color primary300 = Color(0xff5464c1);
-  static const Color primary400 = Color(0xff3346b5);
+  static const Color primary400 = Color(0xff8597B9);
   static const Color primary = Color(0xff113478);
   static const Color primary600 = Color(0xff001694);
   static const Color primary700 = Color(0xff001174);
@@ -62,7 +62,7 @@ class AppColors {
   static const Color neutral900 = Color(0xff1a1d28);
 
   /// Warning
-  static const Color warning50 = Color(0xfff7f6e6);
+  static const Color warning50 = Color(0xffB0B8C8);
   static const Color warning100 = Color(0xffe7e2b0);
   static const Color warning200 = Color(0xffdbd48a);
   static const Color warning300 = Color(0xffcac054);
