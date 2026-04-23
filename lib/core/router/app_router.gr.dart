@@ -12,16 +12,60 @@ part of 'app_router.dart';
 
 /// generated route for
 /// [BookScreen]
-class BookRoute extends PageRouteInfo<void> {
-  const BookRoute({List<PageRouteInfo>? children})
-    : super(BookRoute.name, initialChildren: children);
+class BookRoute extends PageRouteInfo<BookRouteArgs> {
+  BookRoute({Key? key, List<PageRouteInfo>? children})
+    : super(
+        BookRoute.name,
+        args: BookRouteArgs(key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'BookRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const BookScreen();
+      final args = data.argsAs<BookRouteArgs>(
+        orElse: () => const BookRouteArgs(),
+      );
+      return BookScreen(key: args.key);
+    },
+  );
+}
+
+class BookRouteArgs {
+  const BookRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'BookRouteArgs{key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! BookRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
+}
+
+/// generated route for
+/// [BookingConfirmationScreen]
+class BookingConfirmationRoute extends PageRouteInfo<void> {
+  const BookingConfirmationRoute({List<PageRouteInfo>? children})
+    : super(BookingConfirmationRoute.name, initialChildren: children);
+
+  static const String name = 'BookingConfirmationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BookingConfirmationScreen();
     },
   );
 }
@@ -520,4 +564,20 @@ class VerificationRouteArgs {
 
   @override
   int get hashCode => key.hashCode ^ phone.hashCode;
+}
+
+/// generated route for
+/// [ViewBookingDetailsScreen]
+class ViewBookingDetailsRoute extends PageRouteInfo<void> {
+  const ViewBookingDetailsRoute({List<PageRouteInfo>? children})
+    : super(ViewBookingDetailsRoute.name, initialChildren: children);
+
+  static const String name = 'ViewBookingDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ViewBookingDetailsScreen();
+    },
+  );
 }

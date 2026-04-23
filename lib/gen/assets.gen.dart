@@ -102,6 +102,12 @@ class $AssetsSvgGen {
   /// File path: assets/svg/arrow_left.svg
   SvgGenImage get arrowLeft => const SvgGenImage('assets/svg/arrow_left.svg');
 
+  /// File path: assets/svg/categ.svg
+  SvgGenImage get categ => const SvgGenImage('assets/svg/categ.svg');
+
+  /// File path: assets/svg/categ_acive.svg
+  SvgGenImage get categAcive => const SvgGenImage('assets/svg/categ_acive.svg');
+
   /// File path: assets/svg/checkmark.svg
   SvgGenImage get checkmark => const SvgGenImage('assets/svg/checkmark.svg');
 
@@ -149,6 +155,12 @@ class $AssetsSvgGen {
   SvgGenImage get favouriteSquare =>
       const SvgGenImage('assets/svg/favourite_square.svg');
 
+  /// File path: assets/svg/home.svg
+  SvgGenImage get home => const SvgGenImage('assets/svg/home.svg');
+
+  /// File path: assets/svg/home_active.svg
+  SvgGenImage get homeActive => const SvgGenImage('assets/svg/home_active.svg');
+
   /// File path: assets/svg/language.svg
   SvgGenImage get language => const SvgGenImage('assets/svg/language.svg');
 
@@ -173,6 +185,13 @@ class $AssetsSvgGen {
   /// File path: assets/svg/phone.svg
   SvgGenImage get phone => const SvgGenImage('assets/svg/phone.svg');
 
+  /// File path: assets/svg/profile.svg
+  SvgGenImage get profile => const SvgGenImage('assets/svg/profile.svg');
+
+  /// File path: assets/svg/profile_active.svg
+  SvgGenImage get profileActive =>
+      const SvgGenImage('assets/svg/profile_active.svg');
+
   /// File path: assets/svg/riyal.svg
   SvgGenImage get riyal => const SvgGenImage('assets/svg/riyal.svg');
 
@@ -181,6 +200,13 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/share.svg
   SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
+
+  /// File path: assets/svg/shopping.svg
+  SvgGenImage get shopping => const SvgGenImage('assets/svg/shopping.svg');
+
+  /// File path: assets/svg/shopping_active.svg
+  SvgGenImage get shoppingActive =>
+      const SvgGenImage('assets/svg/shopping_active.svg');
 
   /// File path: assets/svg/star_empty.svg
   SvgGenImage get starEmpty => const SvgGenImage('assets/svg/star_empty.svg');
@@ -216,6 +242,8 @@ class $AssetsSvgGen {
   List<SvgGenImage> get values => [
     invitationTracker,
     arrowLeft,
+    categ,
+    categAcive,
     checkmark,
     dateTime,
     edit,
@@ -230,6 +258,8 @@ class $AssetsSvgGen {
     favouritePackage,
     favouriteRate,
     favouriteSquare,
+    home,
+    homeActive,
     language,
     location,
     logo,
@@ -238,9 +268,13 @@ class $AssetsSvgGen {
     notFound,
     people,
     phone,
+    profile,
+    profileActive,
     riyal,
     search,
     share,
+    shopping,
+    shoppingActive,
     starEmpty,
     starHalf,
     success,

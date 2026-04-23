@@ -5,6 +5,7 @@ import 'package:nawy/core/utils/common_widgets/custom_marquee_widget.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
+import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -22,12 +23,12 @@ class NavigationBarItems extends StatelessWidget {
         bottom: MediaQuery.of(context).viewPadding.bottom > 0
             ? MediaQuery.of(context).padding.bottom
             : 10.h,
+        top: 8.h,
       ),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: AppColors.bottomBarColor,
-            // ARGB: 0x1A (alpha ~10%) + 0x18A31A (RGB)        offset: Offset(0, -4),     // x: 0, y: -4
             blurRadius: 20,
             spreadRadius: 0,
           ),
@@ -39,90 +40,84 @@ class NavigationBarItems extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Expanded(
-              child: OnTap(
-                onTap: () => onTap(0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 2,
-                  children: [
-                    Assets.svg.egypt.svg(
-                      height: 24.w,
-                      colorFilter: ColorFilter.mode(
-                        activeScreen == 0 ? AppColors.primary : AppColors.neutral400,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    CustomMarquee(
-                      child: Text(
-                        LocaleKeys.invest.tr(),
-                        style: AppTextTheme.bodyXSmall(context).copyWith(
-                          fontWeight: activeScreen == 0 ? FontWeight.w500 : null,
-                          color: activeScreen == 0 ? AppColors.primary : AppColors.neutral400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            _buildNavItem(
+              context: context,
+              index: 0,
+              activeIcon: Assets.svg.homeActive.svg(height: 24.w),
+              inactiveIcon: Assets.svg.home.svg(height: 24.w),
+              label: "الرئيسية",
             ),
-            Expanded(
-              child: OnTap(
-                onTap: () => onTap(1),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 2,
-                  children: [
-                    Assets.svg.egypt.svg(
-                      height: 24.w,
-                      colorFilter: ColorFilter.mode(
-                        activeScreen == 1 ? AppColors.primary : AppColors.neutral400,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    CustomMarquee(
-                      child: Text(
-                        LocaleKeys.portfolio.tr(),
-                        style: AppTextTheme.bodyXSmall(context).copyWith(
-                          fontWeight: activeScreen == 1 ? FontWeight.w500 : null,
-                          color: activeScreen == 1 ? AppColors.primary : AppColors.neutral400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            _buildNavItem(
+              context: context,
+              index: 1,
+              activeIcon: Assets.svg.categAcive.svg(height: 24.w),
+              inactiveIcon: Assets.svg.categ.svg(height: 24.w),
+              label: "الفئات",
             ),
-            Expanded(
-              child: OnTap(
-                onTap: () => onTap(2),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 2,
-                  children: [
-                    Assets.svg.egypt.svg(
-                      height: 24.w,
-                      colorFilter: ColorFilter.mode(
-                        activeScreen == 2
-                            ? AppColors.primary
-                            : AppColors.neutral400,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    CustomMarquee(
-                      child: Text(
-                        LocaleKeys.more.tr(),
-                        style: AppTextTheme.bodyXSmall(context).copyWith(
-                          fontWeight: activeScreen == 2 ? FontWeight.w500 : null,
-                          color: activeScreen == 2 ? AppColors.primary : AppColors.neutral400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            _buildNavItem(
+              context: context,
+              index: 2,
+              activeIcon: Assets.svg.shoppingActive.svg(height: 24.w),
+              inactiveIcon: Assets.svg.shopping.svg(height: 24.w),
+              label: "حجوزاتي",
+            ),
+            _buildNavItem(
+              context: context,
+              index: 3,
+              activeIcon: Assets.svg.profileActive.svg(height: 24.w),
+              inactiveIcon: Assets.svg.profile.svg(height: 24.w),
+              label: "حسابي",
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem({
+    required BuildContext context,
+    required int index,
+    required Widget activeIcon,
+    required Widget inactiveIcon,
+    required String label,
+  }) {
+    final isActive = activeScreen == index;
+
+    return Flexible(
+      flex: isActive ? 3 : 1,
+      child: OnTap(
+        onTap: () => onTap(index),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          padding: isActive
+              ? 24.padHorizontal+8.padVertical
+              : 8.padAll,
+          decoration: BoxDecoration(
+            color: isActive ? AppColors.backgroundColor : Colors.transparent,
+            borderRadius: BorderRadius.circular(100.r),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              isActive ? activeIcon : inactiveIcon,
+              if (isActive) ...[
+                6.horizontalSpace,
+                Flexible(
+                  child: CustomMarquee(
+                    child: Text(
+                      label,
+                      style: AppTextTheme.bodyXSmall(context).copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
         ),
       ),
     );

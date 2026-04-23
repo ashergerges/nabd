@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/features/categories/ui/categories_screen.dart';
+import 'package:nawy/features/home/ui/home_screen.dart';
 import 'package:nawy/features/my_booking/ui/my_booking_screen.dart';
 import 'package:nawy/features/profile/ui/profile_screen.dart';
 import 'package:nawy/main_common.dart';
@@ -19,34 +20,10 @@ class TabBarCubit extends Cubit<TabBarState> {
   String? selectedSportId;
 
   List get navScreens => [
-    Container(
-      child: Column(
-        children: [
-          200.verticalSpace,
-          Center(child: OnTap(
-              onTap: (){
-                getIt<AppRouter>().push(VendorDetailsRoute(vendorDetailsId: 11));
-              },
-              child: Text("VEndor"))),
-          30.verticalSpace,
-          Center(child: OnTap(
-              onTap: (){
-                getIt<AppRouter>().push(LoginRoute());
-              },
-              child: Text("LOGIN"))),
-          30.verticalSpace,
-          Center(child: OnTap(
-              onTap: (){
-                getIt<AppRouter>().push(BookRoute());
-              },
-              child: Text("Book"))),
-        ],
-      ),
-    ),
+    HomeScreen(),
     CategoriesScreen(),
-    // MyBookingScreen(),
+    MyBookingScreen(),
     ProfileScreen(),
-    Container(),
   ];
 
   void selectScreen({required int index, String? sportId}) {

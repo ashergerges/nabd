@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nawy/features/auth/ui/verification_screen.dart';
 import 'package:nawy/features/book/ui/book_screen.dart';
+import 'package:nawy/features/book/ui/booking_confirmation_screen.dart';
+import 'package:nawy/features/book/ui/view_booking_details_screen.dart';
 import 'package:nawy/features/profile/ui/fav_screen.dart';
 import 'package:nawy/features/profile/ui/invitation_tracking_screen.dart';
 import 'package:nawy/features/profile/ui/language_screen.dart';
@@ -57,6 +59,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute( page: SupportRoute.page),
     AutoRoute( page: VerificationRoute.page),
     AutoRoute( page: BookRoute.page),
+    AutoRoute( page: BookingConfirmationRoute.page),
+    AutoRoute( page: ViewBookingDetailsRoute.page),
     AutoRoute(path: '*', page: NotFoundRoute.page), // this must be last route
 
   ];
