@@ -176,6 +176,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/logout.svg
   SvgGenImage get logout => const SvgGenImage('assets/svg/logout.svg');
 
+  /// File path: assets/svg/mi_location.svg
+  SvgGenImage get miLocation => const SvgGenImage('assets/svg/mi_location.svg');
+
   /// File path: assets/svg/not_found.svg
   SvgGenImage get notFound => const SvgGenImage('assets/svg/not_found.svg');
 
@@ -231,6 +234,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/trash.svg
   SvgGenImage get trash => const SvgGenImage('assets/svg/trash.svg');
 
+  /// File path: assets/svg/uil_arrow.svg
+  SvgGenImage get uilArrow => const SvgGenImage('assets/svg/uil_arrow.svg');
+
   /// File path: assets/svg/warning_snackbar.svg
   SvgGenImage get warningSnackbar =>
       const SvgGenImage('assets/svg/warning_snackbar.svg');
@@ -265,6 +271,7 @@ class $AssetsSvgGen {
     logo,
     logoName,
     logout,
+    miLocation,
     notFound,
     people,
     phone,
@@ -282,6 +289,7 @@ class $AssetsSvgGen {
     successSnackbar,
     support,
     trash,
+    uilArrow,
     warningSnackbar,
     wrongIcon,
   ];

@@ -87,6 +87,7 @@ class CustomNetworkImageCached extends StatelessWidget {
   final String imageUrl;
   final bool withBorder;
   final Color borderColor;
+  final BoxFit? fit;
   final BorderRadiusGeometry? borderRadius;
   final Widget Function(BuildContext, String)? placeholder;
   final Widget Function(BuildContext, String, Object)? errorWidget;
@@ -95,6 +96,7 @@ class CustomNetworkImageCached extends StatelessWidget {
       {super.key,
       this.height,
       this.width,
+      this.fit,
       this.radius = 0,
       required this.imageUrl,
       this.withBorder = false,
@@ -111,7 +113,7 @@ class CustomNetworkImageCached extends StatelessWidget {
         height: height,
         width: width,
         imageUrl: imageUrl,
-        fit: BoxFit.fill,
+        fit:fit?? BoxFit.fill,
         placeholder: placeholder ?? (context, url) => Assets.images.logo.image(),
         errorWidget: errorWidget ??
             (context, url, error) => Assets.images.logo.image(),
