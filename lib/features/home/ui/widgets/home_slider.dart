@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 
@@ -94,6 +95,58 @@ class _HomeSliderState extends State<HomeSlider> {
                   decoration: BoxDecoration(
                     color: isActive ? AppColors.white : AppColors.primary100,
                     borderRadius: BorderRadius.circular(4),
+                  ),
+                );
+              }),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeSliderShimmer extends StatelessWidget {
+  const HomeSliderShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(24),
+      child: Stack(
+        children: [
+          /// Background shimmer (image area)
+          ShimmerWidget.rectangular(
+            width: double.infinity,
+            height: 250,
+            shapeBorder: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+          ),
+
+          /// Optional dark overlay (to match real UI feel)
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withOpacity(0.1),
+            ),
+          ),
+
+          /// Fake indicators
+          Positioned(
+            bottom: 16,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(3, (index) {
+                return Padding(
+                  padding: 4.padHorizontal,
+                  child: ShimmerWidget.rectangular(
+                    width: index == 0 ? 20 : 7,
+                    height: 3,
+                    shapeBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                   ),
                 );
               }),

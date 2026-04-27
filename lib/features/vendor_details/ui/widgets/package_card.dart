@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -17,7 +18,7 @@ class PackageCard extends StatelessWidget {
   final double rating;
   final double price;
   final String imageUrl;
-  final int discountPercent;
+  final double discountPercent;
   final bool isFavorite;
   final VoidCallback? onFavoriteTap;
   final VoidCallback? onTap;
@@ -220,6 +221,164 @@ class PackageCard extends StatelessWidget {
 
           ],
         ),
+      ),
+    );
+  }
+}
+
+
+class PackageCardShimmer extends StatelessWidget {
+  const PackageCardShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.backgroundColor,
+        border: Border.all(color: AppColors.primary100),
+        borderRadius: BorderRadius.circular(16.r),
+      ),
+      padding: 12.padVertical + 16.padHorizontal,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          /// ───────── Image Section ─────────
+          SizedBox(
+            width: 130,
+            height: 140,
+            child: Stack(
+              children: [
+                /// Image placeholder
+                ShimmerWidget.rectangular(
+                  width: 130,
+                  height: 140,
+                  shapeBorder: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+
+                /// Discount badge placeholder
+                Positioned(
+                  top: 8,
+                  left: 8,
+                  child: ShimmerWidget.rectangular(
+                    width: 35,
+                    height: 28,
+                    shapeBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                  ),
+                ),
+
+                /// Favorite icon placeholder
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: ShimmerWidget.circular(
+                    width: 32,
+                    height: 32,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          16.horizontalSpace,
+
+          /// ───────── Content Section ─────────
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// Title
+                ShimmerWidget.rectangular(
+                  width: double.infinity,
+                  height: 14,
+                ),
+
+                8.verticalSpace,
+
+                /// Capacity row
+                Row(
+                  children: [
+                    ShimmerWidget.circular(width: 16, height: 16),
+                    4.horizontalSpace,
+                    ShimmerWidget.rectangular(width: 120, height: 10),
+                  ],
+                ),
+
+                6.verticalSpace,
+
+                /// Location + Rating row
+                Row(
+                  children: [
+                    /// Location
+                    Row(
+                      children: [
+                        ShimmerWidget.circular(width: 16, height: 16),
+                        4.horizontalSpace,
+                        ShimmerWidget.rectangular(width: 80, height: 10),
+                      ],
+                    ),
+
+                    Container(
+                      margin: 10.padHorizontal,
+                      width: 1,
+                      height: 14,
+                      color: AppColors.primary100,
+                    ),
+
+                    /// Rating
+                    Row(
+                      children: [
+                        ShimmerWidget.circular(width: 16, height: 16),
+                        4.horizontalSpace,
+                        ShimmerWidget.rectangular(width: 30, height: 10),
+                      ],
+                    ),
+                  ],
+                ),
+
+                8.verticalSpace,
+
+                /// Divider
+                const Divider(
+                  color: AppColors.primary100,
+                  thickness: 0.8,
+                  endIndent: 50,
+                ),
+
+                /// Price + arrow
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    /// Price section
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ShimmerWidget.rectangular(
+                          width: 90,
+                          height: 10,
+                        ),
+                        4.verticalSpace,
+                        ShimmerWidget.rectangular(
+                          width: 70,
+                          height: 12,
+                        ),
+                      ],
+                    ),
+
+                    /// Arrow button
+                    ShimmerWidget.circular(
+                      width: 34,
+                      height: 34,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

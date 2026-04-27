@@ -36,7 +36,7 @@ class OtpInput extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.white,
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(color: AppColors.primary, width: 1.5),
           ),
@@ -59,7 +59,7 @@ class OtpInput extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.backgroundColor,
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(color: AppColors.neutral100, width: 1.5),
           ),

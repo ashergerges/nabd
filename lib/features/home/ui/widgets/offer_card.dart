@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -145,6 +146,124 @@ class OfferCard extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+class OfferCardShimmer extends StatelessWidget {
+  const OfferCardShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 160,
+      height: 220,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary100,
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Stack(
+          children: [
+            /// Background shimmer (image placeholder)
+            Positioned.fill(
+              child: ShimmerWidget.rectangular(
+                width: double.infinity,
+                height: double.infinity,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+            ),
+
+            /// Dark overlay (same as original for realism)
+            Positioned.fill(
+              child: Container(
+                color: Colors.black.withOpacity(0.2),
+              ),
+            ),
+
+            /// Discount shimmer
+            Positioned(
+              top: 8,
+              left: 8,
+              child: ShimmerWidget.rectangular(
+                width: 35,
+                height: 30,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+              ),
+            ),
+
+            /// Content
+            Padding(
+              padding: 12.padAll,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Spacer(),
+
+                  /// Package name (2 lines)
+                  ShimmerWidget.rectangular(
+                    width: double.infinity,
+                    height: 12,
+                  ),
+                  6.verticalSpace,
+                  ShimmerWidget.rectangular(
+                    width: 100,
+                    height: 12,
+                  ),
+
+                  8.verticalSpace,
+
+                  /// Divider
+                  ShimmerWidget.rectangular(
+                    width: 80,
+                    height: 1,
+                  ),
+
+                  8.verticalSpace,
+
+                  /// Job title
+                  ShimmerWidget.rectangular(
+                    width: 70,
+                    height: 10,
+                  ),
+
+                  10.verticalSpace,
+
+                  /// Person row
+                  Row(
+                    children: [
+                      /// Avatar
+                      ShimmerWidget.circular(
+                        width: 25,
+                        height: 25,
+                      ),
+
+                      6.horizontalSpace,
+
+                      /// Name
+                      Expanded(
+                        child: ShimmerWidget.rectangular(
+                          height: 10,
+                        ),
                       ),
                     ],
                   ),

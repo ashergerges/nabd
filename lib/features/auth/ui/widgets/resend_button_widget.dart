@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
+import 'package:nawy/features/auth/cubit/auth_cubit.dart';
 import 'package:nawy/features/auth/ui/widgets/resend_timer.dart' show ResendCodeTimer;
 import 'package:nawy/gen/locale_keys.g.dart';
 
@@ -12,23 +13,28 @@ class ResendButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      // visible: !resendCode,
-      replacement: TextButton(
-        onPressed: () {
-          // context.read<AuthenticationCubit>().reSendOtp(phone:phone );
-          // cubit.resendCode(widget.phone);
-        },
-        child: Text(
-          LocaleKeys.resendCode.tr(),
-          style: TextStyle(fontSize: 16.sp, color: AppColors.primary),
-        ),
-      ),
-      child: ResendCodeTimer(
-        maxSeconds: 60,
-        onTimeUp: () {
-        },
-      ),
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        return Visibility(
+          visible: !state.resendCode,
+          replacement: TextButton(
+            onPressed: () {
+              context.read<AuthCubit>().reSendOtp(phone:phone );
+              // cubit.resendCode(widget.phone);
+            },
+            child: Text(
+              LocaleKeys.resendCode.tr(),
+              style: TextStyle(fontSize: 16.sp, color: AppColors.primary),
+            ),
+          ),
+          child: ResendCodeTimer(
+            maxSeconds: 60,
+            onTimeUp: () {
+              context.read<AuthCubit>().setResendCode(true);
+            },
+          ),
+        );
+      },
     );
   }
 }

@@ -537,18 +537,49 @@ class VendorPackageDetailsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [VenuesScreen]
-class VenuesRoute extends PageRouteInfo<void> {
-  const VenuesRoute({List<PageRouteInfo>? children})
-    : super(VenuesRoute.name, initialChildren: children);
+class VenuesRoute extends PageRouteInfo<VenuesRouteArgs> {
+  VenuesRoute({
+    Key? key,
+    required ServiceCategory category,
+    List<PageRouteInfo>? children,
+  }) : super(
+         VenuesRoute.name,
+         args: VenuesRouteArgs(key: key, category: category),
+         initialChildren: children,
+       );
 
   static const String name = 'VenuesRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const VenuesScreen();
+      final args = data.argsAs<VenuesRouteArgs>();
+      return VenuesScreen(key: args.key, category: args.category);
     },
   );
+}
+
+class VenuesRouteArgs {
+  const VenuesRouteArgs({this.key, required this.category});
+
+  final Key? key;
+
+  final ServiceCategory category;
+
+  @override
+  String toString() {
+    return 'VenuesRouteArgs{key: $key, category: $category}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VenuesRouteArgs) return false;
+    return key == other.key && category == other.category;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ category.hashCode;
 }
 
 /// generated route for

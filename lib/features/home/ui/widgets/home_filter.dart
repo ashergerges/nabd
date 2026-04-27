@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -75,3 +76,34 @@ class _FilterChipBarState extends State<FilterChipBar> {
   }
 }
 
+class FilterChipBarShimmer extends StatelessWidget {
+  const FilterChipBarShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: 0.padHorizontal,
+      child: Row(
+        children: List.generate(6, (index) {
+          return Padding(
+            padding: 8.padStart,
+            child: ShimmerWidget.rectangular(
+              width: _getRandomWidth(index),
+              height: 32,
+              shapeBorder: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  double _getRandomWidth(int index) {
+    // Different widths to simulate text length
+    const widths = [70.0, 90.0, 60.0, 110.0, 80.0, 95.0];
+    return widths[index % widths.length];
+  }
+}

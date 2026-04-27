@@ -63,7 +63,7 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OnTap(
       hoverColor: hoverColor,
-      onTap: isLoading ? null : onTap,
+      onTap: (isLoading||isDisable) ? null : onTap,
       child: Container(
         width: width ?? double.infinity,
         height: height,

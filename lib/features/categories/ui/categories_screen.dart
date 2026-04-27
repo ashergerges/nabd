@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/categories/cubit/categories_cubit.dart';
 import 'package:nawy/features/categories/data/models/service_category_model.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -34,44 +37,29 @@ class CategoriesScreen extends StatelessWidget {
           ),
 
           Expanded(
-            child: ServiceCategoryGridEnhanced(
-              categories: [
-                ServiceCategory(
-                  title: 'يسيشيموم',
-                  imagePath: 'https://i.pravatar.cc/150?img=12',
-                ),
-                ServiceCategory(
-                  title: 'يسيشيموم',
-                  imagePath: 'https://i.pravatar.cc/150?img=12',
-                ),
-                ServiceCategory(
-                  title: 'يسيشيموم',
-                  imagePath: 'https://i.pravatar.cc/150?img=12',
-                ),
-                ServiceCategory(
-                  title: 'يسيشيموم',
-                  imagePath: 'https://i.pravatar.cc/150?img=12',
-                ),
-                ServiceCategory(
-                  title: 'يسيشيموم',
-                  imagePath: 'https://i.pravatar.cc/150?img=12',
-                ),
-                ServiceCategory(
-                  title: 'يسيشيموم',
-                  imagePath: 'https://i.pravatar.cc/150?img=12',
-                ),
-                ServiceCategory(
-                  title: 'يسيشيموم',
-                  imagePath: 'https://i.pravatar.cc/150?img=12',
-                ),
-                ServiceCategory(
-                  title: 'يسيشيموم',
-                  imagePath: 'https://i.pravatar.cc/150?img=12',
-                ),
-              ],
-              onCategoryTap: (category){
-                VenuesRoute().push(context);
-              },
+            child: BlocProvider(
+              create: (context) => CategoriesCubit()..categories(),
+              child: BlocBuilder<CategoriesCubit, CategoriesState>(
+                builder: (context, state) {
+                  if (state.currState is Loading) {
+                    return ServiceCategoryGridShimmer();
+                  }
+                  return ServiceCategoryGridEnhanced(
+                    categories: state.categoriesList
+                        .map(
+                          (e) => ServiceCategory(
+                            title: e.nameAr ?? "",
+                            imagePath: e.image ?? "",
+                            id: e.id ?? 0,
+                          ),
+                        )
+                        .toList(),
+                    onCategoryTap: (category) {
+                      VenuesRoute(category: category).push(context);
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ],
@@ -98,13 +86,13 @@ class ServiceCategoryGridEnhanced extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
-      padding: 16.padHorizontal+24.padTop,
+      padding: 16.padHorizontal + 24.padTop,
       physics: const BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: spacing,
         mainAxisSpacing: spacing,
-        childAspectRatio: 0.85,
+        childAspectRatio: 0.8,
       ),
       itemCount: categories.length,
       itemBuilder: (context, index) {
@@ -113,6 +101,39 @@ class ServiceCategoryGridEnhanced extends StatelessWidget {
           index: index,
           onTap: () => onCategoryTap?.call(categories[index]),
         );
+      },
+    );
+  }
+}
+
+class ServiceCategoryGridShimmer extends StatelessWidget {
+  final int crossAxisCount;
+  final double spacing;
+  final int itemCount;
+
+  const ServiceCategoryGridShimmer({
+    super.key,
+    this.crossAxisCount = 2,
+    this.spacing = 16.0,
+    this.itemCount = 6, // fixed during loading
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      padding: 16.padHorizontal + 24.padTop,
+      physics: const NeverScrollableScrollPhysics(),
+      // important for skeleton
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        crossAxisSpacing: spacing,
+        mainAxisSpacing: spacing,
+        childAspectRatio: 0.85,
+      ),
+      itemCount: itemCount,
+      itemBuilder: (context, index) {
+        return const AnimatedServiceCardShimmer();
       },
     );
   }
@@ -236,6 +257,57 @@ class _AnimatedServiceCardState extends State<AnimatedServiceCard>
           ),
         );
       },
+    );
+  }
+}
+
+class AnimatedServiceCardShimmer extends StatelessWidget {
+  const AnimatedServiceCardShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary100.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          /// Image placeholder
+          Expanded(
+            flex: 7,
+            child: Container(
+              padding: 16.padAll,
+              decoration: BoxDecoration(
+                color: AppColors.backgroundColor,
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: ShimmerWidget.rectangular(
+                width: double.infinity,
+                height: double.infinity,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+          ),
+
+          12.verticalSpace,
+
+          /// Title placeholder
+          Expanded(
+            flex: 1,
+            child: ShimmerWidget.rectangular(width: 60, height: 12),
+          ),
+        ],
+      ),
     );
   }
 }

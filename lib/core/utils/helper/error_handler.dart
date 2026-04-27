@@ -15,7 +15,7 @@ class ErrorHandler {
       if (kDebugMode) print(error.response.toString());
       return LocaleKeys.yourSessionHasExpiredPleaseSignInAgainToContinue.tr();
     } else if (error.response != null && error.response?.statusCode != HttpStatus.notFound) {
-      String errorMsg = error.response?.data.toString() ?? "";
+      String errorMsg = error.response?.data['message'].toString() ?? "";
       return errorMsg;
     } else if (error.response?.statusCode == HttpStatus.serviceUnavailable) {
       return LocaleKeys.youAreOffline.tr();

@@ -7,6 +7,7 @@ import 'package:nawy/features/auth/ui/verification_screen.dart';
 import 'package:nawy/features/book/ui/book_screen.dart';
 import 'package:nawy/features/book/ui/booking_confirmation_screen.dart';
 import 'package:nawy/features/book/ui/view_booking_details_screen.dart';
+import 'package:nawy/features/categories/data/models/service_category_model.dart';
 import 'package:nawy/features/create_invitation/ui/create_invitation_screen.dart';
 import 'package:nawy/features/notification/ui/notification_screen.dart';
 import 'package:nawy/features/profile/ui/fav_screen.dart';

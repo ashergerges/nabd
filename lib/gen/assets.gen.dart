@@ -185,6 +185,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/not_found.svg
   SvgGenImage get notFound => const SvgGenImage('assets/svg/not_found.svg');
 
+  /// File path: assets/svg/notification.svg
+  SvgGenImage get notification =>
+      const SvgGenImage('assets/svg/notification.svg');
+
   /// File path: assets/svg/people.svg
   SvgGenImage get people => const SvgGenImage('assets/svg/people.svg');
 
@@ -284,6 +288,7 @@ class $AssetsSvgGen {
     logout,
     miLocation,
     notFound,
+    notification,
     people,
     phone,
     profile,

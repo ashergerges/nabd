@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 
 class ResendCodeTimer extends StatefulWidget {
@@ -65,7 +66,7 @@ class _ResendCodeTimerState extends State<ResendCodeTimer> {
   Widget build(BuildContext context) {
     return Text(
       formatTime(secondsRemaining),
-      style: AppTextTheme.bodySmall(context).copyWith(color: Colors.white),
+      style: AppTextTheme.bodySmall(context).copyWith( color: AppColors.primary),
     );
   }
 }

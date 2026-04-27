@@ -29,6 +29,10 @@ import 'core/utils/helper/error_handler.dart' as _i785;
 import 'features/auth/data/repositories/interfaces/i_login_repository.dart'
     as _i377;
 import 'features/auth/data/repositories/remote/login_repository.dart' as _i286;
+import 'features/categories/data/repositories/interfaces/i_categories_repository.dart'
+    as _i443;
+import 'features/categories/data/repositories/remote/categories_repository.dart'
+    as _i279;
 import 'features/common/data/local/data_sources/local_storage.dart' as _i656;
 import 'features/common/data/local/repositories/token_local_repository.dart'
     as _i784;
@@ -36,6 +40,9 @@ import 'features/common/data/local/repositories/token_repository.dart' as _i723;
 import 'features/common/data/repositories/interfaces/i_main_repository.dart'
     as _i967;
 import 'features/common/data/repositories/remote/main_repository.dart' as _i210;
+import 'features/home/data/repositories/interfaces/i_home_repository.dart'
+    as _i185;
+import 'features/home/data/repositories/remote/home_repository.dart' as _i975;
 import 'features/notifications/data/repositories/interfaces/i_notifications_repository.dart'
     as _i97;
 import 'features/notifications/data/repositories/remote/notifications_repository.dart'
@@ -45,6 +52,14 @@ import 'features/splash/data/repositories/interfaces/i_splash_repository.dart'
     as _i561;
 import 'features/splash/data/repositories/remote/splash_repository.dart'
     as _i120;
+import 'features/vendor_details/data/repositories/interfaces/i_vendor_details_repository.dart'
+    as _i283;
+import 'features/vendor_details/data/repositories/remote/vendor_details_repository.dart'
+    as _i1037;
+import 'features/venues/data/repositories/interfaces/i_venues_repository.dart'
+    as _i302;
+import 'features/venues/data/repositories/remote/venues_repository.dart'
+    as _i665;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i174.GetIt $initGetIt(
@@ -90,16 +105,31 @@ _i174.GetIt $initGetIt(
   gh.factory<_i561.ISplashRepository>(
     () => _i120.SplashRepository(networkService: gh<_i969.NetworkService>()),
   );
+  gh.factory<_i283.IVendorDetailsRepository>(
+    () => _i1037.VendorDetailsRepository(
+      networkService: gh<_i969.NetworkService>(),
+    ),
+  );
   gh.factory<_i97.INotificationsRepository>(
     () => _i192.NotificationsRepository(
       networkService: gh<_i969.NetworkService>(),
     ),
+  );
+  gh.factory<_i302.IVenuesRepository>(
+    () => _i665.VenuesRepository(networkService: gh<_i969.NetworkService>()),
+  );
+  gh.factory<_i443.ICategoriesRepository>(
+    () =>
+        _i279.CategoriesRepository(networkService: gh<_i969.NetworkService>()),
   );
   gh.singleton<_i402.NotificationService>(
     () => _i402.NotificationService(
       notificationsRepository: gh<_i97.INotificationsRepository>(),
       localePreference: gh<_i865.ILocalPreference>(),
     ),
+  );
+  gh.factory<_i185.IHomeRepository>(
+    () => _i975.HomeRepository(networkService: gh<_i969.NetworkService>()),
   );
   gh.factory<_i377.ILoginRepository>(
     () => _i286.LoginRepository(networkService: gh<_i969.NetworkService>()),

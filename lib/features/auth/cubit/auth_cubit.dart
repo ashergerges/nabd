@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nawy/core/interfaces/i_local_preference.dart';
+import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/services/dialogs/message_service.dart';
 import 'package:nawy/features/auth/data/repositories/interfaces/i_login_repository.dart';
 import 'package:nawy/main_common.dart';
@@ -74,13 +76,19 @@ class AuthCubit extends Cubit<AuthState> {
       emit(state.copyWith(currState: Error()));
       return false;
     }
+    getIt<ILocalPreference>().saveAppUser(
+      validateOtp.asValue?.value.user?.copyWith(
+        token: validateOtp.asValue?.value.token,
+      ),
+    );
+    log("validateOtp.asValue?.value.token::${validateOtp.asValue?.value.token}");
+    log("appUser::${getIt<ILocalPreference>().appUser.value?.token}");
     emit(state.copyWith(currState: Success()));
-    // localPreference.saveAppUser(
-    //   validateOtp.asValue?.value.user?.copyWith(
-    //     token: validateOtp.asValue?.value.token,
-    //   ),
-    // );
 
+
+    getIt<AppRouter>().replaceAll([
+      HomeBottomTabsRoute(),
+    ], updateExistingRoutes: false);
 
 
     return true;

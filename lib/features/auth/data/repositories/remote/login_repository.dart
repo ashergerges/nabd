@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nawy/core/services/network/network_service.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
+import 'package:nawy/features/auth/data/models/login_response_body.dart';
 
 import '../interfaces/i_login_repository.dart';
 
@@ -40,7 +41,7 @@ class LoginRepository implements ILoginRepository {
   }
 
   @override
-  Future<Result<String>> validateOtp({
+  Future<Result<LoginResponseBody>> validateOtp({
     required String phone,
     required String otp,
   }) async {
@@ -55,9 +56,9 @@ class LoginRepository implements ILoginRepository {
     );
     if (response.isError) return Result.error(response.asError!.error);
 
-    log("registerAsync.asValue?.value22${response.asValue?.value.data}");
+    log("registerAsync.asValue?.value22${response.asValue?.value.data['data']}");
     return Result.value(
-      "LoginResponseBody.fromJson(response.asValue?.value.data)",
+      LoginResponseBody.fromJson(response.asValue?.value.data['data']),
     );
   }
 

@@ -5,62 +5,45 @@ part 'app_user.g.dart';
 
 @JsonSerializable()
 class AppUser {
-  @JsonKey(name: "userId", defaultValue: "")
-  final String id;
-  @JsonKey(name: "userName", defaultValue: "")
-  final String userName;
-  @JsonKey(name: "fullName", defaultValue: "")
-  final String fullName;
-  @JsonKey(name: "email", defaultValue: "")
-  final String email;
-  @JsonKey(name: "phone", defaultValue: "")
-  final String phoneNumber;
-  @JsonKey(name: "roles", defaultValue: [])
-  final List<String> roles;
-  @JsonKey(name: "accessToken", defaultValue: "")
-  final String token;
-  @JsonKey(name: "refreshToken", defaultValue: "")
-  final String refreshToken;
-  @JsonKey(name: "requiresEmail", defaultValue: false)
-  final bool requiresEmail;
-  @JsonKey(name: "hasPin", defaultValue: false)
-  final bool hasPin;
+  final int id;
+  final String? name;
+  final String? email;
+  final String? phone;
+  final String? address;
+  final String? image;
+  final int? status;
+  final String? token;
+  final String? refreshToken;
 
-  AppUser({
+
+  AppUser( {
     required this.id,
-    required this.email,
-    required this.phoneNumber,
-    required this.roles,
-    required this.token,
-    required this.refreshToken,
-    required this.userName,
-    required this.fullName,
-    required this.requiresEmail,
-    required this.hasPin,
+     this.email,
+     this.name,  this.phone,  this.address,  this.image,  this.status,
+     this.token,
+     this.refreshToken,
   });
 
   AppUser copyWith({
-    String? id,
+    int? id,
     String? email,
-    String? fullName,
-    String? userName,
-    String? phoneNumber,
-    List<String>? roles,
+    String? name,
+    String? phone,
     String? token,
+    String? image,
+    String? address,
     String? refreshToken,
-    bool? hasPin,
-    bool? requiresEmail,
+    int? status,
   }) => AppUser(
     id: id ?? this.id,
     email: email ?? this.email,
-    phoneNumber: phoneNumber ?? this.phoneNumber,
-    roles: roles ?? this.roles,
+    name: name ?? this.name,
+    phone: phone ?? this.phone,
+    image: image ?? this.image,
+    address: address ?? this.address,
+      status: status ?? this.status,
     token: token ?? this.token,
     refreshToken: refreshToken ?? this.refreshToken,
-    fullName: fullName ?? this.fullName,
-    hasPin: hasPin ?? this.hasPin,
-    requiresEmail: requiresEmail ?? this.requiresEmail,
-    userName: userName ?? this.userName,
   );
 
   factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);

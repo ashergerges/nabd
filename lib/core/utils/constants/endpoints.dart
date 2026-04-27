@@ -10,6 +10,14 @@ class Endpoints {
   String get loginUrl => r'api/app/auth/login';
   String get reSendOTPUrl => r'api/app/auth/resend-otp';
   String get validateOTPUrl => r'api/app/auth/verify-otp';
+  //home
+  String get homeUrl => r'api/app/home';
+  //categories
+  String get categoriesUrl => r'api/app/categories';
+  //venues
+  String get venuesUrl => r'api/app/products/by-category';
+  //vendor details
+  String get vendorDetailsUrl => r'api/app/products/by-category';
 
 
 }

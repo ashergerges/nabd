@@ -1,10 +1,12 @@
 import 'package:auto_route/annotations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/vendor_details/cubit/vendor_details_cubit.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/reviews_tap.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/bottom_navigation_bar.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/header_card.dart';
@@ -20,14 +22,17 @@ class VendorDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          CustomTopBar(),
-          Expanded(child: VendorDetailsBody()),
-        ],
+    return BlocProvider(
+      create: (context) => VendorDetailsCubit()..vendorDetails(vendorDetailsId),
+      child: Scaffold(
+        body: Column(
+          children: [
+            CustomTopBar(),
+            Expanded(child: VendorDetailsBody()),
+          ],
+        ),
+        bottomNavigationBar: VendorBottomNavigationBar(),
       ),
-      bottomNavigationBar:VendorBottomNavigationBar() ,
     );
   }
 }
@@ -39,7 +44,8 @@ class VendorDetailsBody extends StatefulWidget {
   State<VendorDetailsBody> createState() => _VendorDetailsBodyState();
 }
 
-class _VendorDetailsBodyState extends State<VendorDetailsBody> with SingleTickerProviderStateMixin {
+class _VendorDetailsBodyState extends State<VendorDetailsBody>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -64,23 +70,24 @@ class _VendorDetailsBodyState extends State<VendorDetailsBody> with SingleTicker
           SliverPersistentHeader(
             pinned: true,
             delegate: _StickyTabBarDelegate(
-                TabBar(
-                  controller: _tabController,
-                  labelStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.primary,fontWeight: FontWeight.w700),
-                  unselectedLabelStyle: AppTextTheme.bodyMedium(context),
-                  indicatorColor:  AppColors.primary,
-                  indicatorWeight: 3,
-                  dividerColor: AppColors.primary100,
-                  labelPadding: 0.padHorizontal,
+              TabBar(
+                controller: _tabController,
+                labelStyle: AppTextTheme.bodyMedium(context).copyWith(
+                    color: AppColors.primary, fontWeight: FontWeight.w700),
+                unselectedLabelStyle: AppTextTheme.bodyMedium(context),
+                indicatorColor: AppColors.primary,
+                indicatorWeight: 3,
+                dividerColor: AppColors.primary100,
+                labelPadding: 0.padHorizontal,
 
-                  tabs:  [
-                    Tab(text: LocaleKeys.photos.tr(),),
-                    Tab(text: LocaleKeys.servicesAndPackages.tr(),),
-                    Tab(text: LocaleKeys.reviews.tr(),),
+                tabs: [
+                  Tab(text: LocaleKeys.photos.tr(),),
+                  Tab(text: LocaleKeys.servicesAndPackages.tr(),),
+                  Tab(text: LocaleKeys.reviews.tr(),),
 
 
-                  ],
-                ),
+                ],
+              ),
             ),
           ),
         ];
@@ -89,7 +96,7 @@ class _VendorDetailsBodyState extends State<VendorDetailsBody> with SingleTicker
       // Tab Views
       body: TabBarView(
         controller: _tabController,
-        children: [ PhotosTab(),ServicesTab() ,ReviewsTap(),],
+        children: [ PhotosTab(), ServicesTab(), ReviewsTap(),],
       ),
     );
   }
@@ -107,11 +114,9 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => tabBar.preferredSize.height;
 
   @override
-  Widget build(
-      BuildContext context,
+  Widget build(BuildContext context,
       double shrinkOffset,
-      bool overlapsContent,
-      ) {
+      bool overlapsContent,) {
     return Container(color: Colors.white, child: tabBar);
   }
 

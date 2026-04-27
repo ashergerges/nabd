@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -148,6 +149,129 @@ class VendorsCard extends StatelessWidget {
 
                     ],
                   ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+class VendorsCardShimmer extends StatelessWidget {
+  final double? width;
+
+  const VendorsCardShimmer({super.key, this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 140,
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary100,
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Stack(
+          children: [
+            /// Background shimmer (image placeholder)
+            Positioned.fill(
+              child: ShimmerWidget.rectangular(
+                width: double.infinity,
+                height: double.infinity,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+            ),
+
+            /// Dark overlay like original
+            Positioned.fill(
+              child: Container(
+                color: Colors.black.withOpacity(0.2),
+              ),
+            ),
+
+            /// Content
+            Padding(
+              padding: 12.padAll,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Spacer(),
+
+                  /// Vendor name (2 lines)
+                  ShimmerWidget.rectangular(
+                    width: double.infinity,
+                    height: 12,
+                  ),
+                  6.verticalSpace,
+                  ShimmerWidget.rectangular(
+                    width: 120,
+                    height: 12,
+                  ),
+
+                  8.verticalSpace,
+
+                  /// Divider
+                  ShimmerWidget.rectangular(
+                    width: 80,
+                    height: 1,
+                  ),
+
+                  8.verticalSpace,
+
+                  /// Location + Rating row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      /// Location section
+                      Row(
+                        children: [
+                          /// Icon placeholder
+                          ShimmerWidget.circular(
+                            width: 12,
+                            height: 12,
+                          ),
+                          6.horizontalSpace,
+
+                          /// Location text
+                          ShimmerWidget.rectangular(
+                            width: 80,
+                            height: 10,
+                          ),
+                        ],
+                      ),
+
+                      /// Rating section
+                      Row(
+                        children: [
+                          /// Rate number
+                          ShimmerWidget.rectangular(
+                            width: 20,
+                            height: 10,
+                          ),
+                          4.horizontalSpace,
+
+                          /// Star icon
+                          ShimmerWidget.circular(
+                            width: 12,
+                            height: 12,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  10.verticalSpace,
                 ],
               ),
             ),

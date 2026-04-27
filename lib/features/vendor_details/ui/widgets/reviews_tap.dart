@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart'as dir;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/vendor_details/cubit/vendor_details_cubit.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/review_card.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
 
@@ -40,13 +42,17 @@ class TotalRateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
+  builder: (context, state) {
     return Column(
       children: [
-        Text("4.9/5",style: AppTextTheme.headingMedium(context).copyWith(fontWeight: FontWeight.w700,color: AppColors.primary),),
+        Text("${state.vendorDetails?.avgRating??0}/5",style: AppTextTheme.headingMedium(context).copyWith(fontWeight: FontWeight.w700,color: AppColors.primary),),
         _StarRating(rating: 3.5,),
-        Text(LocaleKeys.moreThan120Reviews.tr(args: ["300"]),style: AppTextTheme.bodyXSmall(context).copyWith(color: AppColors.primary),),
+        Text(LocaleKeys.moreThan120Reviews.tr(args: [state.vendorDetails?.guestCount?.toString()??"0"]),style: AppTextTheme.bodyXSmall(context).copyWith(color: AppColors.primary),),
       ],
     );
+  },
+);
   }
 }
 class _StarRating extends StatelessWidget {
