@@ -1,10 +1,10 @@
 import 'package:flutter/services.dart';
 
 class BaseUrl {
-  static const devBaseURL = 'https://test/';
-  static const prodBaseURL = 'https://test/';
-  static const uatBaseURL = 'https://test/';
-  static const qcBaseURL = 'https://test/';
+  static const devBaseURL = 'https://api-nawy.sanam-ksa.com/';
+  static const prodBaseURL ='https://api-nawy.sanam-ksa.com/';
+  static const uatBaseURL = 'https://api-nawy.sanam-ksa.com/';
+  static const qcBaseURL = 'https://api-nawy.sanam-ksa.com/';
 
   // Static method to get the BaseUrl based on appFlavor
   static String get url {

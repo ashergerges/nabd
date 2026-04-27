@@ -26,6 +26,9 @@ import 'core/services/network/token_service.dart' as _i797;
 import 'core/services/notification/notifications_service.dart' as _i402;
 import 'core/services/upgrader/upgrader_service.dart' as _i289;
 import 'core/utils/helper/error_handler.dart' as _i785;
+import 'features/auth/data/repositories/interfaces/i_login_repository.dart'
+    as _i377;
+import 'features/auth/data/repositories/remote/login_repository.dart' as _i286;
 import 'features/common/data/local/data_sources/local_storage.dart' as _i656;
 import 'features/common/data/local/repositories/token_local_repository.dart'
     as _i784;
@@ -97,6 +100,9 @@ _i174.GetIt $initGetIt(
       notificationsRepository: gh<_i97.INotificationsRepository>(),
       localePreference: gh<_i865.ILocalPreference>(),
     ),
+  );
+  gh.factory<_i377.ILoginRepository>(
+    () => _i286.LoginRepository(networkService: gh<_i969.NetworkService>()),
   );
   return getIt;
 }

@@ -10,6 +10,8 @@ class AppColors {
 
   static const Color backgroundColor = Color(0xffE7EBF2);
   static const Color textColor = Color(0xff333333);
+  static const Color pink = Color(0xFFFF71EE);
+  static const Color blue = Color(0xFF0038FF);
 
   static const Color bottomBarColor = Color(0x1A18A31A);
   static const Color circleBackgroundColor = Color(0x1A340773);
@@ -37,6 +39,8 @@ class AppColors {
   static const Color investmentHistory700 = Color(0xff004E52);
 
   /// Accent
+  static const Color secondary15 = Color(0xFFE8F5F0);
+  static const Color secondary30 = Color(0xFF2E7D6B);
   static const Color secondary50 = Color(0xffE8F6ED);
   static const Color secondary100 = Color(0xffB7E2C7);
   static const Color secondary200 = Color(0xff8ad6a7);

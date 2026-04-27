@@ -111,6 +111,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/checkmark.svg
   SvgGenImage get checkmark => const SvgGenImage('assets/svg/checkmark.svg');
 
+  /// File path: assets/svg/coming_soon.svg
+  SvgGenImage get comingSoon => const SvgGenImage('assets/svg/coming_soon.svg');
+
   /// File path: assets/svg/dateTime.svg
   SvgGenImage get dateTime => const SvgGenImage('assets/svg/dateTime.svg');
 
@@ -198,6 +201,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/riyal.svg
   SvgGenImage get riyal => const SvgGenImage('assets/svg/riyal.svg');
 
+  /// File path: assets/svg/rounded.svg
+  SvgGenImage get rounded => const SvgGenImage('assets/svg/rounded.svg');
+
   /// File path: assets/svg/search.svg
   SvgGenImage get search => const SvgGenImage('assets/svg/search.svg');
 
@@ -237,6 +243,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/uil_arrow.svg
   SvgGenImage get uilArrow => const SvgGenImage('assets/svg/uil_arrow.svg');
 
+  /// File path: assets/svg/unavailable.svg
+  SvgGenImage get unavailable =>
+      const SvgGenImage('assets/svg/unavailable.svg');
+
   /// File path: assets/svg/warning_snackbar.svg
   SvgGenImage get warningSnackbar =>
       const SvgGenImage('assets/svg/warning_snackbar.svg');
@@ -251,6 +261,7 @@ class $AssetsSvgGen {
     categ,
     categAcive,
     checkmark,
+    comingSoon,
     dateTime,
     edit,
     egypt,
@@ -278,6 +289,7 @@ class $AssetsSvgGen {
     profile,
     profileActive,
     riyal,
+    rounded,
     search,
     share,
     shopping,
@@ -290,6 +302,7 @@ class $AssetsSvgGen {
     support,
     trash,
     uilArrow,
+    unavailable,
     warningSnackbar,
     wrongIcon,
   ];

@@ -173,6 +173,7 @@ dependencies:
 
   sliver_tools: ^0.2.12
   device_info_plus: ^12.3.0
+  flutter_contacts: ^1.1.9+2      # read phone contacts
 
 dev_dependencies:
   flutter_test:

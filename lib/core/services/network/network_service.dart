@@ -206,7 +206,7 @@ class NetworkService {
   }
 
   String _errorMessageHandler(Map<String, dynamic> decodedResponse) {
-    if (decodedResponse['isError'] == false) return '';
+    if (decodedResponse['status'] == true) return '';
     if (decodedResponse['result'] != null &&
         decodedResponse['result'] is Map &&
         decodedResponse['result']['message'] != null) {

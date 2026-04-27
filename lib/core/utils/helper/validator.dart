@@ -169,5 +169,18 @@ class Validator {
 
     return null;
   }
-
+  static String? validateSaudiMobile(String? value) {
+    String pattern = r'^[0-9]{9,9}$';
+    RegExp regExp = RegExp(pattern);
+    if (value==null||value.isEmpty) {
+      return "LocaleKeys.mobileNumberIsRequired.tr()";
+    }
+    else if(!value.trim().startsWith('05')){
+      return "LocaleKeys.phoneMustStartWith05.tr()";
+    }
+    else if (value.length != 10) {
+      return "LocaleKeys.mobileNumberMustBe10Digits.tr()";
+    }
+    return null;
+  }
 }

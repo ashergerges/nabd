@@ -71,6 +71,22 @@ class BookingConfirmationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CreateInvitationScreen]
+class CreateInvitationRoute extends PageRouteInfo<void> {
+  const CreateInvitationRoute({List<PageRouteInfo>? children})
+    : super(CreateInvitationRoute.name, initialChildren: children);
+
+  static const String name = 'CreateInvitationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CreateInvitationScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [FavScreen]
 class FavRoute extends PageRouteInfo<void> {
   const FavRoute({List<PageRouteInfo>? children})
@@ -285,6 +301,22 @@ class NotFoundRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const NotFoundScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [NotificationScreen]
+class NotificationRoute extends PageRouteInfo<void> {
+  const NotificationRoute({List<PageRouteInfo>? children})
+    : super(NotificationRoute.name, initialChildren: children);
+
+  static const String name = 'NotificationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const NotificationScreen();
     },
   );
 }

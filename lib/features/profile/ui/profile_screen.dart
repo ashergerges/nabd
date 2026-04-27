@@ -97,7 +97,9 @@ class ProfileScreen extends StatelessWidget {
           Padding(
             padding: 24.padHorizontal+24.padBottom,
             child: OnTap(
-              // onTap: onTap,
+              onTap: (){
+                LoginRoute().push(context);
+              },
               child: Row(
                 children: [
                   SvgPicture.asset(Assets.svg.logout.path, height: 32.h),

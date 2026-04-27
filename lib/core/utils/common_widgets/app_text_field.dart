@@ -91,7 +91,8 @@ class _AppTextFieldState extends State<AppTextField> {
     super.didUpdateWidget(oldWidget);
 
     // Check if the currentDate has changed and update the controller
-    if (oldWidget.initialValue != widget.initialValue && widget.initialValue != null) {
+    if (oldWidget.initialValue != widget.initialValue &&
+        widget.initialValue != null) {
       setState(() {
         initialValue = widget.initialValue;
       });
@@ -128,37 +129,59 @@ class _AppTextFieldState extends State<AppTextField> {
               ? AdaptiveTextSelectionToolbar.buttonItems(
                   anchors: editableTextState.contextMenuAnchors,
                   buttonItems: [
-                    const ContextMenuButtonItem(onPressed: null, type: ContextMenuButtonType.copy),
-                    const ContextMenuButtonItem(onPressed: null, type: ContextMenuButtonType.cut),
+                    const ContextMenuButtonItem(
+                      onPressed: null,
+                      type: ContextMenuButtonType.copy,
+                    ),
+                    const ContextMenuButtonItem(
+                      onPressed: null,
+                      type: ContextMenuButtonType.cut,
+                    ),
                     ContextMenuButtonItem(
-                      onPressed: () => editableTextState.pasteText(SelectionChangedCause.keyboard),
+                      onPressed: () => editableTextState.pasteText(
+                        SelectionChangedCause.keyboard,
+                      ),
                       type: ContextMenuButtonType.paste,
                     ),
-                    const ContextMenuButtonItem(onPressed: null, type: ContextMenuButtonType.selectAll),
+                    const ContextMenuButtonItem(
+                      onPressed: null,
+                      type: ContextMenuButtonType.selectAll,
+                    ),
                   ],
                 )
-              : AdaptiveTextSelectionToolbar.editableText(editableTextState: editableTextState);
+              : AdaptiveTextSelectionToolbar.editableText(
+                  editableTextState: editableTextState,
+                );
         },
         autovalidateMode: AutovalidateMode.onUserInteraction,
         obscureText: isObscure,
         controller: widget.fileInputController,
         inputFormatters: [
-          if (widget.denySpaces) FilteringTextInputFormatter.deny(RegExp(r'\s')),
+          if (widget.denySpaces)
+            FilteringTextInputFormatter.deny(RegExp(r'\s')),
           ...?widget.textInputFormatter,
           if (widget.isPassword)
-            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9!@#\$&*~()\-_+={}[\]:;<>,.?/\\|`^% ]')),
+            FilteringTextInputFormatter.allow(
+              RegExp(r'[a-zA-Z0-9!@#\$&*~()\-_+={}[\]:;<>,.?/\\|`^% ]'),
+            ),
         ],
-        style: AppTextTheme.bodyMedium(context).copyWith(color: widget.textColor),
+        style: AppTextTheme.bodyMedium(
+          context,
+        ).copyWith(color: widget.textColor),
         onTap: widget.onTap,
         decoration: InputDecoration(
           prefixText: widget.prefixText,
-          prefixStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),
+          prefixStyle: AppTextTheme.bodyMedium(
+            context,
+          ).copyWith(color: AppColors.neutral400),
           alignLabelWithHint: true,
           filled: true,
 
           fillColor: widget.fillColor ?? AppColors.white,
           hintText: widget.label,
-          errorStyle: AppTextTheme.bodyXSmall(context).copyWith(color: AppColors.error),
+          errorStyle: AppTextTheme.bodyXSmall(
+            context,
+          ).copyWith(color: AppColors.error),
           hintStyle: AppTextTheme.bodySmall(context),
           prefixIcon: widget.iconPre != null || widget.imagePre != null
               ? widget.iconPre != null
@@ -167,7 +190,10 @@ class _AppTextFieldState extends State<AppTextField> {
                         padding: 17.padStart,
                         child: SvgPicture.asset(
                           widget.imagePre.toString(),
-                          height: ResponsiveScreen.iconSize(context: context, sizeMobile: 17.h),
+                          height: ResponsiveScreen.iconSize(
+                            context: context,
+                            sizeMobile: 17.h,
+                          ),
                           // colorFilter: const ColorFilter.mode(AppColors.neutral200, BlendMode.srcIn),
                           fit: BoxFit.contain,
                         ),
@@ -175,10 +201,15 @@ class _AppTextFieldState extends State<AppTextField> {
               : null,
           contentPadding:
               widget.contentPadding ??
-              (ResponsiveScreen.isTablet(context: context) ? 30.padVertical : 0.padVertical) + (15.padHorizontal),
+              (ResponsiveScreen.isTablet(context: context)
+                      ? 30.padVertical
+                      : 0.padVertical) +
+                  (15.padHorizontal),
           suffixText: widget.suffixText,
-          suffix: widget.suffixItem ,
-          suffixStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral200, height: 0.05.w),
+          suffix: widget.suffixItem,
+          suffixStyle: AppTextTheme.bodyMedium(
+            context,
+          ).copyWith(color: AppColors.neutral200, height: 0.05.w),
           suffixIcon: widget.suffixItem != null
               ? OnTap(
                   onTap: () {
@@ -197,52 +228,84 @@ class _AppTextFieldState extends State<AppTextField> {
                           widget.suffixPressed?.call();
                         },
                         icon: widget.icon != null
-                            ? Icon(widget.icon, size: 25.h, color: AppColors.neutral200)
+                            ? Icon(
+                                widget.icon,
+                                size: 25.h,
+                                color: AppColors.neutral200,
+                              )
                             : Padding(
                                 padding: 17.padHorizontal,
                                 child: SvgPicture.asset(
                                   widget.image.toString(),
-                                  height: ResponsiveScreen.iconSize(context: context, sizeMobile: 20.h),
-                                  colorFilter: const ColorFilter.mode(AppColors.neutral200, BlendMode.srcIn),
+                                  height: ResponsiveScreen.iconSize(
+                                    context: context,
+                                    sizeMobile: 20.h,
+                                  ),
+                                  colorFilter: const ColorFilter.mode(
+                                    AppColors.neutral200,
+                                    BlendMode.srcIn,
+                                  ),
                                   fit: BoxFit.cover,
                                 ),
                               ),
                       )
                     : (widget.isPassword)
                     ? Padding(
-                        padding: ResponsiveScreen.isTablet(context: context) ? 20.padHorizontal : 6.padHorizontal,
+                        padding: ResponsiveScreen.isTablet(context: context)
+                            ? 20.padHorizontal
+                            : 6.padHorizontal,
                         child: IconButton(
                           splashColor: Colors.transparent,
-                          onPressed: () => setState(() => isObscure = !isObscure),
+                          onPressed: () =>
+                              setState(() => isObscure = !isObscure),
                           icon: (isObscure)
                               ? Assets.svg.eyeClose.svg(
-                                  height: ResponsiveScreen.iconSize(context: context, sizeMobile: 17.h),
-                                  colorFilter: const ColorFilter.mode(AppColors.neutral200, BlendMode.srcIn),
+                                  height: ResponsiveScreen.iconSize(
+                                    context: context,
+                                    sizeMobile: 17.h,
+                                  ),
+                                  colorFilter: const ColorFilter.mode(
+                                    AppColors.neutral200,
+                                    BlendMode.srcIn,
+                                  ),
                                   fit: BoxFit.cover,
                                 )
                               : Assets.svg.eye.svg(
-                                  height: ResponsiveScreen.iconSize(context: context, sizeMobile: 17.h),
-                                  colorFilter: const ColorFilter.mode(AppColors.neutral200, BlendMode.srcIn),
+                                  height: ResponsiveScreen.iconSize(
+                                    context: context,
+                                    sizeMobile: 17.h,
+                                  ),
+                                  colorFilter: const ColorFilter.mode(
+                                    AppColors.neutral200,
+                                    BlendMode.srcIn,
+                                  ),
                                   fit: BoxFit.cover,
                                 ),
                         ),
                       )
                     : null),
           border: OutlineInputBorder(
-            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.primary100),
+            borderSide:
+                widget.borderSide ??
+                const BorderSide(color: AppColors.primary100),
             borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           ),
 
           disabledBorder: OutlineInputBorder(
-            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.primary100),
+            borderSide:
+                widget.borderSide ??
+                const BorderSide(color: AppColors.primary100),
             borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.primary),
+            borderSide:
+                widget.borderSide ?? const BorderSide(color: AppColors.primary),
             borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: widget.borderSide ?? const BorderSide(color: AppColors.primary100),
+            borderSide:
+                widget.borderSide ??
+                const BorderSide(color: AppColors.primary100),
             borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           ),
         ),
@@ -320,7 +383,10 @@ class AppTextFieldWithTitle extends StatelessWidget {
       children: [
         Padding(
           padding: 16.padHorizontal,
-          child: Text(title, style: AppTextTheme.bodyMediumMediumWeight(context)),
+          child: Text(
+            title,
+            style: AppTextTheme.bodyMediumMediumWeight(context),
+          ),
         ),
         8.verticalSpace,
         AppTextField(
@@ -356,12 +422,15 @@ class AppTextFieldWithTitle extends StatelessWidget {
     );
   }
 }
+
 class CustomTextField extends StatelessWidget {
   final String hint;
   final bool isPhone;
+  final int? maxLength;
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
+  final List<TextInputFormatter>? textInputFormatter;
 
   const CustomTextField({
     super.key,
@@ -370,60 +439,67 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType,
     this.onChanged,
     this.validator,
+    this.maxLength,
+    this.textInputFormatter,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        keyboardType: isPhone ? TextInputType.phone : keyboardType,
-        onChanged: onChanged,
-        onTapOutside: (_) {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        decoration: InputDecoration(
-          hintText: hint,
-          hintStyle: AppTextTheme.bodyMedium(context)
-              .copyWith(color: AppColors.neutral300),
+      keyboardType: isPhone ? TextInputType.phone : keyboardType,
+      onChanged: onChanged,
+      onTapOutside: (_) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      maxLength: maxLength,
+      inputFormatters: textInputFormatter,
+      decoration: InputDecoration(
+        hintText: hint,
+        hintStyle: AppTextTheme.bodyMedium(
+          context,
+        ).copyWith(color: AppColors.neutral300),
 
-          // 👇 Phone prefix
-          prefixIcon: isPhone
-              ? IntrinsicWidth(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(width: 12),
-                Text(
-                  "+996",
-                  style: AppTextTheme.bodyLarge(context)
-                      .copyWith(color: AppColors.primary),
+        // 👇 Phone prefix
+        prefixIcon: isPhone
+            ? IntrinsicWidth(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(width: 12),
+                    Text(
+                      "+996",
+                      style: AppTextTheme.bodyLarge(
+                        context,
+                      ).copyWith(color: AppColors.primary),
+                    ),
+                    const SizedBox(width: 8),
+                    Container(
+                      width: 1,
+                      height: 20,
+                      color: Colors.grey.shade300,
+                    ),
+                    const SizedBox(width: 8),
+                  ],
                 ),
-                const SizedBox(width: 8),
-                Container(
-                  width: 1,
-                  height: 20,
-                  color: Colors.grey.shade300,
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-          )
-              : null,
+              )
+            : null,
 
-          border: InputBorder.none,
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade300),
-          ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.blue),
-          ),
-          errorBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.red),
-          ),
-          focusedErrorBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.red),
-          ),
+        border: InputBorder.none,
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade300),
         ),
-        validator: validator
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.blue),
+        ),
+        errorBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.red),
+        ),
+      ),
+      validator: validator,
     );
   }
 }

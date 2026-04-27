@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -33,7 +35,16 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Assets.svg.logoName.svg(height: 30.h),
-                Assets.svg.search.svg(height: 24.h),
+                Row(
+                  children: [
+                    OnTap(
+                    onTap: (){
+                      CreateInvitationRoute().push(context);
+                    },child: Assets.svg.search.svg(height: 24.h)),
+                    24.horizontalSpace,
+                    Assets.svg.search.svg(height: 24.h),
+                  ],
+                ),
               ],
             ),
           ),
