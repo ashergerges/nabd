@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:nawy/features/categories/data/models/category_model.dart';
+import 'package:nawy/features/home/data/models/city_model.dart';
 import 'package:nawy/features/venues/data/models/product_model.dart';
 
 part 'home_response.g.dart';
@@ -7,21 +7,23 @@ part 'home_response.g.dart';
 @JsonSerializable()
 class HomeResponse {
   final List<SliderModel>? sliders;
-  final List<CategoryModel>? categories;
+  final List<HomeCategoryModel>? categories;
 
   @JsonKey(name: 'top_rated_vendors')
-  final List<ProductModel>? topRatedVendors;
+  final List<HomeVendorModel>? topRatedVendors;
 
-  final List<dynamic>? offers;
+  final List<HomeOfferModel>? offers;
+  final List<CityModel>? cities;
 
   @JsonKey(name: 'wedding_venues')
-  final List<ProductModel>? weddingVenues;
+  final List<HomeVendorModel>? weddingVenues;
 
   HomeResponse({
     this.sliders,
     this.categories,
     this.topRatedVendors,
     this.offers,
+    this.cities,
     this.weddingVenues,
   });
 
@@ -71,4 +73,78 @@ class SliderModel {
       _$SliderModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SliderModelToJson(this);
+}
+
+@JsonSerializable()
+class HomeCategoryModel {
+  final int? id;
+  final String? name;
+
+  HomeCategoryModel({
+    this.id,
+    this.name,
+  });
+
+  factory HomeCategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$HomeCategoryModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeCategoryModelToJson(this);
+}
+@JsonSerializable()
+class HomeVendorModel {
+  final String? name;
+  final String? image;
+  final String? address;
+
+  @JsonKey(name: 'avg_rating')
+  final double? avgRating;
+
+  @JsonKey(name: 'is_favorite')
+  final bool? isFavorite;
+
+  HomeVendorModel({
+    this.name,
+    this.image,
+    this.address,
+    this.avgRating,
+    this.isFavorite,
+  });
+
+  factory HomeVendorModel.fromJson(Map<String, dynamic> json) =>
+      _$HomeVendorModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeVendorModelToJson(this);
+}
+@JsonSerializable()
+class HomeOfferModel {
+  final int? id;
+  final String? name;
+  final String? image;
+  final String? discount;
+
+  @JsonKey(name: 'discount_percentage')
+  final String? discountPercentage;
+
+  @JsonKey(name: 'product_name')
+  final String? productName;
+  @JsonKey(name: 'vendor_name')
+  final String? vendorName;
+  @JsonKey(name: 'vendor_image')
+  final String? vendorImage;
+
+  HomeOfferModel({
+    this.id,
+    this.name,
+    this.image,
+    this.discount,
+    this.discountPercentage,
+    this.productName,
+    this.vendorName,
+    this.vendorImage,
+  });
+
+  factory HomeOfferModel.fromJson(Map<String, dynamic> json) =>
+      _$HomeOfferModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeOfferModelToJson(this);
 }

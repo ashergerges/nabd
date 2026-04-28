@@ -19,6 +19,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeState {
   HomeStateStatus get currState => throw _privateConstructorUsedError;
   HomeResponse? get homeData => throw _privateConstructorUsedError;
+  CityModel? get citySelected => throw _privateConstructorUsedError;
+  FilterChipModel? get categorySelected => throw _privateConstructorUsedError;
+  String? get searchTerm => throw _privateConstructorUsedError;
+  bool get showSearch => throw _privateConstructorUsedError;
+  RefreshController get refreshController => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +37,15 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({HomeStateStatus currState, HomeResponse? homeData});
+  $Res call({
+    HomeStateStatus currState,
+    HomeResponse? homeData,
+    CityModel? citySelected,
+    FilterChipModel? categorySelected,
+    String? searchTerm,
+    bool showSearch,
+    RefreshController refreshController,
+  });
 
   $HomeStateStatusCopyWith<$Res> get currState;
 }
@@ -51,7 +64,15 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? currState = null, Object? homeData = freezed}) {
+  $Res call({
+    Object? currState = null,
+    Object? homeData = freezed,
+    Object? citySelected = freezed,
+    Object? categorySelected = freezed,
+    Object? searchTerm = freezed,
+    Object? showSearch = null,
+    Object? refreshController = null,
+  }) {
     return _then(
       _value.copyWith(
             currState: null == currState
@@ -62,6 +83,26 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                 ? _value.homeData
                 : homeData // ignore: cast_nullable_to_non_nullable
                       as HomeResponse?,
+            citySelected: freezed == citySelected
+                ? _value.citySelected
+                : citySelected // ignore: cast_nullable_to_non_nullable
+                      as CityModel?,
+            categorySelected: freezed == categorySelected
+                ? _value.categorySelected
+                : categorySelected // ignore: cast_nullable_to_non_nullable
+                      as FilterChipModel?,
+            searchTerm: freezed == searchTerm
+                ? _value.searchTerm
+                : searchTerm // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            showSearch: null == showSearch
+                ? _value.showSearch
+                : showSearch // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            refreshController: null == refreshController
+                ? _value.refreshController
+                : refreshController // ignore: cast_nullable_to_non_nullable
+                      as RefreshController,
           )
           as $Val,
     );
@@ -87,7 +128,15 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   ) = __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({HomeStateStatus currState, HomeResponse? homeData});
+  $Res call({
+    HomeStateStatus currState,
+    HomeResponse? homeData,
+    CityModel? citySelected,
+    FilterChipModel? categorySelected,
+    String? searchTerm,
+    bool showSearch,
+    RefreshController refreshController,
+  });
 
   @override
   $HomeStateStatusCopyWith<$Res> get currState;
@@ -106,7 +155,15 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? currState = null, Object? homeData = freezed}) {
+  $Res call({
+    Object? currState = null,
+    Object? homeData = freezed,
+    Object? citySelected = freezed,
+    Object? categorySelected = freezed,
+    Object? searchTerm = freezed,
+    Object? showSearch = null,
+    Object? refreshController = null,
+  }) {
     return _then(
       _$HomeStateImpl(
         currState: null == currState
@@ -117,6 +174,26 @@ class __$$HomeStateImplCopyWithImpl<$Res>
             ? _value.homeData
             : homeData // ignore: cast_nullable_to_non_nullable
                   as HomeResponse?,
+        citySelected: freezed == citySelected
+            ? _value.citySelected
+            : citySelected // ignore: cast_nullable_to_non_nullable
+                  as CityModel?,
+        categorySelected: freezed == categorySelected
+            ? _value.categorySelected
+            : categorySelected // ignore: cast_nullable_to_non_nullable
+                  as FilterChipModel?,
+        searchTerm: freezed == searchTerm
+            ? _value.searchTerm
+            : searchTerm // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        showSearch: null == showSearch
+            ? _value.showSearch
+            : showSearch // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        refreshController: null == refreshController
+            ? _value.refreshController
+            : refreshController // ignore: cast_nullable_to_non_nullable
+                  as RefreshController,
       ),
     );
   }
@@ -128,6 +205,11 @@ class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl({
     this.currState = const HomeStateStatus.initial(),
     this.homeData,
+    this.citySelected,
+    this.categorySelected,
+    this.searchTerm,
+    this.showSearch = false,
+    required this.refreshController,
   });
 
   @override
@@ -135,10 +217,21 @@ class _$HomeStateImpl implements _HomeState {
   final HomeStateStatus currState;
   @override
   final HomeResponse? homeData;
+  @override
+  final CityModel? citySelected;
+  @override
+  final FilterChipModel? categorySelected;
+  @override
+  final String? searchTerm;
+  @override
+  @JsonKey()
+  final bool showSearch;
+  @override
+  final RefreshController refreshController;
 
   @override
   String toString() {
-    return 'HomeState(currState: $currState, homeData: $homeData)';
+    return 'HomeState(currState: $currState, homeData: $homeData, citySelected: $citySelected, categorySelected: $categorySelected, searchTerm: $searchTerm, showSearch: $showSearch, refreshController: $refreshController)';
   }
 
   @override
@@ -149,11 +242,30 @@ class _$HomeStateImpl implements _HomeState {
             (identical(other.currState, currState) ||
                 other.currState == currState) &&
             (identical(other.homeData, homeData) ||
-                other.homeData == homeData));
+                other.homeData == homeData) &&
+            (identical(other.citySelected, citySelected) ||
+                other.citySelected == citySelected) &&
+            (identical(other.categorySelected, categorySelected) ||
+                other.categorySelected == categorySelected) &&
+            (identical(other.searchTerm, searchTerm) ||
+                other.searchTerm == searchTerm) &&
+            (identical(other.showSearch, showSearch) ||
+                other.showSearch == showSearch) &&
+            (identical(other.refreshController, refreshController) ||
+                other.refreshController == refreshController));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currState, homeData);
+  int get hashCode => Object.hash(
+    runtimeType,
+    currState,
+    homeData,
+    citySelected,
+    categorySelected,
+    searchTerm,
+    showSearch,
+    refreshController,
+  );
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -168,12 +280,27 @@ abstract class _HomeState implements HomeState {
   const factory _HomeState({
     final HomeStateStatus currState,
     final HomeResponse? homeData,
+    final CityModel? citySelected,
+    final FilterChipModel? categorySelected,
+    final String? searchTerm,
+    final bool showSearch,
+    required final RefreshController refreshController,
   }) = _$HomeStateImpl;
 
   @override
   HomeStateStatus get currState;
   @override
   HomeResponse? get homeData;
+  @override
+  CityModel? get citySelected;
+  @override
+  FilterChipModel? get categorySelected;
+  @override
+  String? get searchTerm;
+  @override
+  bool get showSearch;
+  @override
+  RefreshController get refreshController;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

@@ -5,6 +5,12 @@ class HomeState with _$HomeState {
   const factory HomeState({
     @Default(HomeStateStatus.initial()) HomeStateStatus currState,
     HomeResponse? homeData,
+    CityModel? citySelected,
+    FilterChipModel? categorySelected,
+    String? searchTerm,
+    @Default(false) bool showSearch,
+
+    required RefreshController refreshController,
 }) = _HomeState;
 }
 @freezed

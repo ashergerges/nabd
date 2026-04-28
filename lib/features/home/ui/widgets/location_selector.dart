@@ -1,22 +1,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
-import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
-import 'package:nawy/features/home/ui/widgets/home_slider.dart';
-import 'package:nawy/features/home/ui/widgets/offer_card.dart';
-import 'package:nawy/features/home/ui/widgets/vendors_card.dart';
-
+import 'package:nawy/features/home/data/models/city_model.dart';
 import '../../../../gen/assets.gen.dart';
 
 class LocationSelector extends StatefulWidget {
-  final String initialLocation;
-  final List<String> locations;
-  final ValueChanged<String>? onLocationChanged;
+  final CityModel? initialLocation;
+  final List<CityModel> locations;
+  final ValueChanged<CityModel>? onLocationChanged;
 
   const LocationSelector({
     super.key,
@@ -30,27 +25,24 @@ class LocationSelector extends StatefulWidget {
 }
 
 class _LocationSelectorState extends State<LocationSelector> {
-  late String _selectedLocation;
 
   @override
   void initState() {
     super.initState();
-    _selectedLocation = widget.initialLocation;
   }
 
   void _showLocationPicker() async {
-    final result = await showDialog<String>(
+    final result = await showDialog<CityModel>(
       context: context,
       useSafeArea: true,
       barrierColor: AppColors.black.withOpacity(0.5),
       builder: (context) => _LocationPickerDialog(
-        currentLocation: _selectedLocation,
+        currentLocation: widget.initialLocation,
         locations: widget.locations,
       ),
     );
 
     if (result != null) {
-      setState(() => _selectedLocation = result);
       widget.onLocationChanged?.call(result);
     }
   }
@@ -71,7 +63,7 @@ class _LocationSelectorState extends State<LocationSelector> {
             Assets.svg.uilArrow.svg(height: 24.h),
             6.horizontalSpace,
             Text(
-              _selectedLocation,
+              widget.initialLocation?.name??"الكل",
               style: AppTextTheme.bodyMedium(context),
             ),
             6.horizontalSpace,
@@ -85,8 +77,8 @@ class _LocationSelectorState extends State<LocationSelector> {
 }
 
 class _LocationPickerDialog extends StatefulWidget {
-  final String currentLocation;
-  final List<String> locations;
+  final CityModel? currentLocation;
+  final List<CityModel> locations;
 
   const _LocationPickerDialog({
     required this.currentLocation,
@@ -102,7 +94,7 @@ class _LocationPickerDialogState extends State<_LocationPickerDialog>
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _fadeAnimation;
-  String? _selectedLocation;
+  CityModel? _selectedLocation;
 
   @override
   void initState() {
@@ -128,7 +120,7 @@ class _LocationPickerDialogState extends State<_LocationPickerDialog>
   }
 
 
-  void _selectLocation(String location) async {
+  void _selectLocation(CityModel location) async {
     setState(() => _selectedLocation = location);
     await Future.delayed(const Duration(milliseconds: 150));
     await _controller.reverse();
@@ -193,7 +185,7 @@ class _LocationPickerDialogState extends State<_LocationPickerDialog>
                         children: [
                           Expanded(
                             child: Text(
-                                location,
+                                location.name??"",
                                 style:AppTextTheme.bodyMedium(context)),
                           ),
                           if (isSelected)
@@ -223,46 +215,18 @@ class _LocationPickerDialogState extends State<_LocationPickerDialog>
 }
 
 
-class LocationSelectorWidget extends StatefulWidget {
-  const LocationSelectorWidget({super.key});
-
-  @override
-  State<LocationSelectorWidget> createState() => _LocationSelectorWidgetState();
-}
-
-class _LocationSelectorWidgetState extends State<LocationSelectorWidget> {
-  final List<String> locations = [
-    'الرياض',
-    'جدة',
-    'مكة',
-    'المدينة',
-    'الدمام',
-    'الخبر',
-    'الظهران',
-    'الطائف',
-    'تبوك',
-    'أبها',
-    'خميس مشيط',
-    'حائل',
-    'بريدة',
-    'جازان',
-    'نجران',
-    'الجبيل',
-    'ينبع',
-    'القصيم',
-    'الأحساء',
-    'الباحة',
-  ];
-
-  String selectedLocation = 'الرياض';
-
+class LocationSelectorWidget extends StatelessWidget {
+  const LocationSelectorWidget({super.key, required this.onChange, required this.locations, required this.selectedLocation});
+  final Function(CityModel) onChange;
+  final List<CityModel> locations;
+  final CityModel? selectedLocation;
   @override
   Widget build(BuildContext context) {
     return  LocationSelector(
       initialLocation: selectedLocation,
       locations: locations,
       onLocationChanged: (location) {
-        setState(() => selectedLocation = location);
+        onChange(location);
         print('Selected: $location');
       },
     );

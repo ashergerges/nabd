@@ -34,10 +34,11 @@ class VendorsCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: AppColors.primary100,
-            blurRadius: 12,
+            blurRadius: 5,
             offset: const Offset(0, 4),
           ),
         ],
+
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
@@ -70,8 +71,8 @@ class VendorsCard extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black.withOpacity(0.3),
-                      Colors.black.withOpacity(0.5),
+                      AppColors.black.withOpacity(0.1),
+                      AppColors.black.withOpacity(0.2),
                     ],
                   ),
                 ),
@@ -173,7 +174,7 @@ class VendorsCardShimmer extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: AppColors.primary100,
-            blurRadius: 12,
+            blurRadius: 5,
             offset: const Offset(0, 4),
           ),
         ],

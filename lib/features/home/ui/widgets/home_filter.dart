@@ -4,35 +4,23 @@ import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/home/data/models/city_model.dart';
 import 'package:nawy/features/home/data/models/filter_chip_model.dart';
 import 'package:nawy/features/home/ui/widgets/location_selector.dart';
 
-class FilterChipBar extends StatefulWidget {
+class FilterChipBar extends StatelessWidget {
   final List<FilterChipModel> items;
-  final int? initialId; // null or 0 = "All" selected
-  final ValueChanged<int> onSelected; // returns 0 for "All"
-
+  final FilterChipModel? initial; // null or 0 = "All" selected
+  final ValueChanged<FilterChipModel> onSelected; // returns 0 for "All"
+  final Function(CityModel) onChangeLocation;
+  final List<CityModel> locations;
+  final CityModel? selectedLocation;
   const FilterChipBar({
     super.key,
     required this.items,
     required this.onSelected,
-    this.initialId,
+    this.initial, required this.onChangeLocation, required this.locations, required this.selectedLocation,
   });
-
-  @override
-  State<FilterChipBar> createState() => _FilterChipBarState();
-}
-
-class _FilterChipBarState extends State<FilterChipBar> {
-  late int _selectedId;
-
-  @override
-  void initState() {
-    super.initState();
-    // If initialId is null, 0, or not found in items → select "All"
-    final exists = widget.items.any((e) => e.id == widget.initialId);
-    _selectedId = (widget.initialId != null && exists) ? widget.initialId! : 0;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +29,22 @@ class _FilterChipBarState extends State<FilterChipBar> {
       padding: 0.padHorizontal,
       child: Row(
         children: [
-          LocationSelectorWidget(),
-          _buildChip(id: 0, name: 'عرض الكل'),
-          ...widget.items.map((item) => _buildChip(id: item.id, name: item.name)),
+          LocationSelectorWidget(
+            onChange:onChangeLocation ,
+            locations:locations ,
+            selectedLocation:selectedLocation ,
+          ),
+          _buildChip(item: FilterChipModel(id: 0, name: 'عرض الكل'),context:context,isSelected: initial?.id==null?false:(0==(initial?.id))),
+          ...items.map((item) => _buildChip(context:context ,item: item, isSelected: initial?.id==null?false:(item.id==(initial?.id)))),
         ],
       ),
     );
   }
 
-  Widget _buildChip({required int id, required String name}) {
-    final isSelected = _selectedId == id;
+  Widget _buildChip({required BuildContext context,required bool isSelected,required FilterChipModel item}) {
     return OnTap(
       onTap: () {
-        setState(() => _selectedId = id);
-        widget.onSelected(id);
+        onSelected(item);
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
@@ -65,7 +55,7 @@ class _FilterChipBarState extends State<FilterChipBar> {
           borderRadius: BorderRadius.circular(32),
         ),
         child: Text(
-          name,
+            item.name,
           style: AppTextTheme.bodyMedium(context).copyWith(
             color: isSelected ? AppColors.white :null,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,

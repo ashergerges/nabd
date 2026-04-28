@@ -12,6 +12,7 @@ class OfferCard extends StatelessWidget {
   final String jobTitle;
   final String personName;
   final String personImageUrl;
+  final String discountPercentage;
 
   const OfferCard({
     Key? key,
@@ -20,6 +21,7 @@ class OfferCard extends StatelessWidget {
     required this.jobTitle,
     required this.personName,
     required this.personImageUrl,
+    required this.discountPercentage,
   }) : super(key: key);
 
   @override
@@ -79,7 +81,7 @@ class OfferCard extends StatelessWidget {
               top: 8,
               left: 8,
               child: Text(
-                '30%\nOFF',
+                '$discountPercentage\nOFF',
                 textAlign: TextAlign.center,
                 style: AppTextTheme.bodyXSmall(context).copyWith(
                   color: AppColors.white,

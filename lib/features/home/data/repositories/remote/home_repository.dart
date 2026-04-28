@@ -18,9 +18,14 @@ class HomeRepository implements IHomeRepository {
   HomeRepository({required this.networkService});
 
   @override
-  Future<Result<HomeResponse>> homeData() async {
+  Future<Result<HomeResponse>> homeData({ int? categoryId, int? cityId,String? search ,}) async {
     var response = await networkService.getAsync(
       url: AppStrings.urls.homeUrl,
+      queryParameters: {
+        if(categoryId!=null&&categoryId!=0)"category_id":categoryId,
+        if(cityId!=null&&cityId!=0)"city_id":cityId,
+        if(search!=null) "search":search,
+      }
     );
     if (response.isError) return Result.error(response.asError!.error);
 
