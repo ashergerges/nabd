@@ -18,8 +18,14 @@ class FavScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FavCubit()..getWishlistVendor(),
-      child: Container()
+      create: (context) {
+        print('🔵 Creating FavCubit');
+        return FavCubit()..getWishlistVendor();
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(title: "المفضلة"),
+        body: FAVBody(),
+      ),
     );
   }
 }
@@ -38,22 +44,25 @@ class _FAVBodyState extends State<FAVBody>
   @override
   void initState() {
     super.initState();
+    print('🟢 initState called');
     _tabController = TabController(length: 2, vsync: this);
-
-    // Listen to tab changes
     _tabController.addListener(_handleTabChange);
   }
 
   void _handleTabChange() {
+    print('🟡 Tab change detected - indexIsChanging: ${_tabController.indexIsChanging}, current index: ${_tabController.index}');
     if (!_tabController.indexIsChanging) {
       _onTabChanged(_tabController.index);
     }
   }
 
   void _onTabChanged(int index) {
+    print('🟠 _onTabChanged called with index: $index');
     if (index == 0) {
+      print('📞 Calling getWishlistVendor');
       context.read<FavCubit>().getWishlistVendor();
     } else if (index == 1) {
+      print('📞 Calling getWishlistPackage');
       context.read<FavCubit>().getWishlistPackage();
     }
   }
@@ -67,6 +76,7 @@ class _FAVBodyState extends State<FAVBody>
 
   @override
   Widget build(BuildContext context) {
+    print('🔴 Building FAVBody');
     return Column(
       children: [
         TabBar(
