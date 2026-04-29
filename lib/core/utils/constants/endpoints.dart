@@ -17,7 +17,9 @@ class Endpoints {
   //venues
   String get venuesUrl => r'api/app/products/by-category';
   //vendor details
-  String get vendorDetailsUrl => r'api/app/products/by-category';
+  String get vendorDetailsUrl => r'api/app/products/details';
+  String get wishlistToggleUrl => r'api/app/user/wishlist/toggle';
+  String get wishlistTypeUrl => r'api/app/user/wishlist';
 
 
 }

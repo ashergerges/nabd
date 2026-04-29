@@ -29,10 +29,28 @@ class VendorDetailsRepository implements IVendorDetailsRepository {
     );
     if (response.isError) return Result.error(response.asError!.error);
 
-    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']['products']}");
+    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']['product']}");
 
     return Result.value(
-      VendorDetailsModel.fromJson(response.asValue?.value.data['data']),
+      VendorDetailsModel.fromJson(response.asValue?.value.data['data']['product']),
+
+    );
+  }
+  @override
+  Future<Result<VendorDetailsModel>> wishlistVendor({required int id})async {
+    var response = await networkService.postAsync(
+      url: AppStrings.urls.wishlistToggleUrl,
+      queryParameters: {
+        "id":id,
+        "type":1,
+      }
+    );
+    if (response.isError) return Result.error(response.asError!.error);
+
+    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']['product']}");
+
+    return Result.value(
+      VendorDetailsModel.fromJson(response.asValue?.value.data['data']['product']),
 
     );
   }

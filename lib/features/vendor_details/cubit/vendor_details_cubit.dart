@@ -31,5 +31,21 @@ class VendorDetailsCubit extends Cubit<VendorDetailsState> {
     emit(state.copyWith( currState: Success(),vendorDetails:vendorDetails.asValue?.value));
     return;
   }
+  Future<void> wishlistVendor(int id) async {
+    emit(state.copyWith(currState: Loading()));
+
+    var wishlistVendor = await _repository.wishlistVendor(id: id);
+    if (wishlistVendor.isError) {
+      MessageService.showToast(
+        msg: wishlistVendor.asError?.error.toString() ?? "",
+        state: ToastStates.error,
+      );
+      emit(state.copyWith(currState: Error()));
+
+      return;
+    }
+    emit(state.copyWith( currState: Success(),vendorDetails:wishlistVendor.asValue?.value));
+    return;
+  }
 
 }

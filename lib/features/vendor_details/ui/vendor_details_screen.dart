@@ -1,8 +1,11 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -13,6 +16,8 @@ import 'package:nawy/features/vendor_details/ui/widgets/header_card.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/photos_tap.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/services_tap.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
+
+import '../../../gen/assets.gen.dart';
 
 @RoutePage()
 class VendorDetailsScreen extends StatelessWidget {
@@ -27,12 +32,58 @@ class VendorDetailsScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            CustomTopBar(),
+            CustomTopBar(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  OnTap(
+                    onTap: () {
+                      context.maybePop();
+                    },
+                    child: _circleButton(
+                      Icon(
+                        Icons.arrow_back,
+                        color: AppColors.primary,
+                        size: 28.h,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      _circleButton(Assets.svg.share.svg(height: 26.h)),
+                      16.horizontalSpace,
+                      BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
+                        builder: (context, state) {
+                          return OnTap(
+                            onTap: () {
+                              context.read<VendorDetailsCubit>().wishlistVendor(vendorDetailsId);
+                            },
+                            child: _circleButton(
+                              (state.vendorDetails?.isFavorite??false)?Assets.svg.favouriteCircle.svg(height: 28.h):Assets.svg.favouritePackage.svg(height: 28.h),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             Expanded(child: VendorDetailsBody()),
           ],
         ),
         bottomNavigationBar: VendorBottomNavigationBar(),
       ),
+    );
+  }
+  Widget _circleButton(Widget child) {
+    return Container(
+        padding: 5.padAll,
+        decoration: const BoxDecoration(
+          color: AppColors.white,
+          shape: BoxShape.circle,
+        ),
+        child: child
     );
   }
 }

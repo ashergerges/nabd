@@ -47,6 +47,9 @@ import 'features/notifications/data/repositories/interfaces/i_notifications_repo
     as _i97;
 import 'features/notifications/data/repositories/remote/notifications_repository.dart'
     as _i192;
+import 'features/profile/data/repositories/interfaces/i_fav_repository.dart'
+    as _i814;
+import 'features/profile/data/repositories/remote/fav_repository.dart' as _i280;
 import 'features/splash/cubits/splash_cubit/splash_cubit.dart' as _i331;
 import 'features/splash/data/repositories/interfaces/i_splash_repository.dart'
     as _i561;
@@ -130,6 +133,9 @@ _i174.GetIt $initGetIt(
   );
   gh.factory<_i185.IHomeRepository>(
     () => _i975.HomeRepository(networkService: gh<_i969.NetworkService>()),
+  );
+  gh.factory<_i814.IFavRepository>(
+    () => _i280.FavRepository(networkService: gh<_i969.NetworkService>()),
   );
   gh.factory<_i377.ILoginRepository>(
     () => _i286.LoginRepository(networkService: gh<_i969.NetworkService>()),
