@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/vendor_details/cubit/vendor_details_cubit.dart';
 import '../../../../gen/assets.gen.dart';
 
 class VenueImageSlider extends StatefulWidget {
@@ -156,8 +159,16 @@ class _VenueTopBar extends StatelessWidget {
                     onTap: onShare,
                     child: _circleButton(Assets.svg.share.svg(height: 26.h,))),
                 16.horizontalSpace,
-                OnTap(
-                    onTap: onFavoriteTap,child: _circleButton(Assets.svg.favouriteCircle.svg(height: 28.h,))),
+                BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
+                  builder: (context, state) {
+                    return state.currState is Loading?ShimmerWidget.circular(height: 35,width: 35,): OnTap(
+                      onTap: onFavoriteTap,
+                      child: _circleButton(
+                        (state.packageDetails?.isFavorite??false)?Assets.svg.favouriteCircle.svg(height: 28.h):Assets.svg.favouritePackage.svg(height: 28.h),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ],
@@ -179,3 +190,87 @@ class _VenueTopBar extends StatelessWidget {
 }
 
 
+class VenueImageSliderShimmer extends StatelessWidget {
+  const VenueImageSliderShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(24),
+        bottomRight: Radius.circular(24),
+      ),
+      child: Stack(
+        children: [
+          // 🔥 Full image shimmer
+          ShimmerWidget.rectangular(
+            width: double.infinity,
+            height: double.infinity,
+            shapeBorder: const RoundedRectangleBorder(),
+          ),
+
+          // 🔥 Dots indicator shimmer
+          Positioned(
+            bottom: 16,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(4, (index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: ShimmerWidget.rectangular(
+                    width: index == 0 ? 20.w : 7.w,
+                    height: 3.h,
+                    shapeBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                );
+              }),
+            ),
+          ),
+
+          // 🔥 Top bar shimmer
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: Padding(
+                padding: 16.padHorizontal + 12.padVertical,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Back button
+                    ShimmerWidget.circular(
+                      width: 40.w,
+                      height: 40.w,
+                    ),
+
+                    Row(
+                      children: [
+                        // Share
+                        ShimmerWidget.circular(
+                          width: 40.w,
+                          height: 40.w,
+                        ),
+                        16.horizontalSpace,
+
+                        // Favorite
+                        ShimmerWidget.circular(
+                          width: 40.w,
+                          height: 40.w,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

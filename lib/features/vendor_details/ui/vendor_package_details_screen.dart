@@ -3,11 +3,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as dir;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/translations.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/vendor_details/cubit/vendor_details_cubit.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/tip_card.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/vendor_package_details_bottom_navigation_bar.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/venue_image_slider.dart';
@@ -17,16 +20,15 @@ import '../../../core/utils/constants/app_colors.dart';
 import '../../../gen/assets.gen.dart';
 @RoutePage()
 class VendorPackageDetailsScreen extends StatelessWidget {
-  const VendorPackageDetailsScreen({super.key});
-  static const _images = [
-    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800',
-    'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800',
-    'https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800',
-    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800',
-  ];
+  final int vendorPackageId;
+  const VendorPackageDetailsScreen({super.key, required this.vendorPackageId});
   @override
   Widget build(BuildContext context) {
 
+    return BlocProvider(
+  create: (context) => VendorDetailsCubit()..packageDetails(vendorPackageId),
+  child: BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
+  builder: (context, state) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -34,28 +36,31 @@ class VendorPackageDetailsScreen extends StatelessWidget {
           children: [
             SizedBox(
               height: 380.h,
-              child: VenueImageSlider(
-                imageUrls: _images,
-
+              child:(state.vendorDetails?.gallery?.isEmpty??false)?VenueImageSliderShimmer(): VenueImageSlider(
+                imageUrls: state.packageDetails?.galleries?.map((e)=>e.image??"").toList()??[],
+                isFavorite:state.packageDetails?.isFavorite??false ,
+                onFavoriteTap: (){
+                  context.read<VendorDetailsCubit>().wishlistPackage(vendorPackageId);
+                },
                 onShare: () {},
                 onBack: () => context.maybePop(),
               ),
             ),
             24.verticalSpace,
-            Padding(
+            state.packageDetails == null? PackageDetailsShimmer():Padding(
               padding:16.padHorizontal,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("الباقة الملكية",style: AppTextTheme.headingSmall(context).copyWith(fontWeight: FontWeight.w600),),
+                  Text(state.packageDetails?.title??"",style: AppTextTheme.headingSmall(context).copyWith(fontWeight: FontWeight.w600),),
                   8.verticalSpace,
                   Row(
                     children: [
                       Assets.svg.location.svg(height: 24.h),
                       4.horizontalSpace,
                       Text(
-                        "الرياض، الملقا",
+                        state.packageDetails?.address??"",
                         style: AppTextTheme.bodySmall(context).copyWith(
                           decoration: TextDecoration.underline,
                           decorationColor: AppColors.textColor,
@@ -64,7 +69,7 @@ class VendorPackageDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   24.verticalSpace,
-                  LastBookingPeople(),
+                  LastBookingPeople(users: [],),
                   24.verticalSpace,
                   Wrap(
                     spacing: 8,
@@ -79,7 +84,7 @@ class VendorPackageDetailsScreen extends StatelessWidget {
                   24.verticalSpace,
                   Text("وصف",style: AppTextTheme.bodyLarge(context).copyWith(fontWeight: FontWeight.w600),),
                   8.verticalSpace,
-                 Text("الضيافة: بوفيه مفتوح، مشروبات ترحيبية.\nالتجهيزات: مسرح فاخر، إضاءة سينمائية.\nمساحة خاصة: إمكانية الوصول إلى جناح العروس.",
+                 Text(state.packageDetails?.description??"",
                  style: AppTextTheme.bodyMedium(context),),
 
                 ],
@@ -90,25 +95,124 @@ class VendorPackageDetailsScreen extends StatelessWidget {
       ),
       bottomNavigationBar:VendorPackageDetailsBottomNavigationBar() ,
     );
+  },
+),
+);
   }
 }
 
 
 
+class PackageDetailsShimmer extends StatelessWidget {
+  const PackageDetailsShimmer({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: 16.padHorizontal,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 🔥 Title
+          ShimmerWidget.rectangular(
+            width: 180.w,
+            height: 18.h,
+          ),
+
+          8.verticalSpace,
+
+          // 🔥 Address
+          Row(
+            children: [
+              ShimmerWidget.circular(width: 24.w, height: 24.w),
+              4.horizontalSpace,
+              ShimmerWidget.rectangular(
+                width: 140.w,
+                height: 12.h,
+              ),
+            ],
+          ),
+
+          24.verticalSpace,
+
+          // 🔥 Last booking avatars (fake stack)
+          Row(
+            children: [
+              SizedBox(
+                height: 40,
+                width: 160,
+                child: Stack(
+                  children: List.generate(4, (i) {
+                    return Positioned(
+                      left: i * 28.0,
+                      child: ShimmerWidget.circular(
+                        width: 40.w,
+                        height: 40.w,
+                      ),
+                    );
+                  }),
+                ),
+              ),
+
+              8.horizontalSpace,
+
+              ShimmerWidget.rectangular(
+                width: 100.w,
+                height: 12.h,
+              ),
+            ],
+          ),
+
+          24.verticalSpace,
+
+          // 🔥 Tip cards
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: List.generate(4, (i) {
+              return ShimmerWidget.rectangular(
+                width: 100.w,
+                height: 34.h,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              );
+            }),
+          ),
+
+          24.verticalSpace,
+
+          // 🔥 Description title
+          ShimmerWidget.rectangular(
+            width: 80.w,
+            height: 14.h,
+          ),
+
+          8.verticalSpace,
+
+          ShimmerWidget.rectangular(
+            width: double.infinity,
+            height: 12.h,
+          ),
+          6.verticalSpace,
+          ShimmerWidget.rectangular(
+            width: double.infinity,
+            height: 12.h,
+          ),
+          6.verticalSpace,
+          ShimmerWidget.rectangular(
+            width: 200.w,
+            height: 12.h,
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class LastBookingPeople extends StatelessWidget {
-  LastBookingPeople({super.key});
-
-
-  final List< String> users = [
-     "https://i.pravatar.cc/150?img=12",
-    "https://i.pravatar.cc/150?img=5",
-    "https://i.pravatar.cc/150?img=8",
-    "https://i.pravatar.cc/150?img=4",
-    "https://i.pravatar.cc/150?img=39",
-    "https://i.pravatar.cc/150?img=44",
-  ];
+  LastBookingPeople({super.key, required this.users});
+  final List<String>users;
 
   @override
   Widget build(BuildContext context) {

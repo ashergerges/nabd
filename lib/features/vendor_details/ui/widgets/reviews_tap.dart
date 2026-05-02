@@ -4,6 +4,7 @@ import 'package:flutter/material.dart'as dir;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
@@ -19,18 +20,62 @@ class ReviewsTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
+  builder: (context, state) {
+
+    final reviews = state.vendorDetails?.reviews;
+
+    // 🔥 Loading
+    if (reviews == null) {
+      return const ReviewsTapShimmer();
+    }
     return Padding(
       padding: 16.padAll,
       child: Column(
         children: [
           TotalRateCard(),
           24.verticalSpace,
-          ReviewCard(
-            name: 'سارة',
-            date: '20 مارس 2024',
-            rating: 3.5,
-            comment: 'قاعة رائعة وفريق عمل محترف للغاية. كان البوفيه مذهلاً!',
-            imageUrl: AppStrings.kTestNetworkImage, // or null for placeholder
+        ListView.separated(
+          physics: BouncingScrollPhysics(),
+          itemCount: state.vendorDetails?.reviews?.length??0,
+          padding: 16.padTop + 16.padHorizontal,
+          itemBuilder: (BuildContext c, int index) {
+            return  ReviewCard(
+              name: state.vendorDetails?.reviews?[index].userName??'سارة',
+              date: state.vendorDetails?.reviews?[index].createdAt??'20 مارس 2024',
+              rating: state.vendorDetails?.reviews?[index].rating??0,
+              comment: state.vendorDetails?.reviews?[index].comment??'',
+              imageUrl:  state.vendorDetails?.reviews?[index].userImage??AppStrings.kTestNetworkImage, // or null for placeholder
+            );
+          },
+          separatorBuilder: (BuildContext c, int i) => 12.verticalSpace,
+        )
+         
+        ],
+      ),
+    );
+  },
+);
+  }
+}
+class ReviewsTapShimmer extends StatelessWidget {
+  const ReviewsTapShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: 16.padAll,
+      child: Column(
+        children: [
+          const TotalRateCardShimmer(),
+          24.verticalSpace,
+
+          Expanded(
+            child: ListView.separated(
+              itemCount: 5,
+              itemBuilder: (_, __) => const ReviewCardShimmer(),
+              separatorBuilder: (_, __) => 12.verticalSpace,
+            ),
           ),
         ],
       ),
@@ -53,6 +98,22 @@ class TotalRateCard extends StatelessWidget {
     );
   },
 );
+  }
+}
+class TotalRateCardShimmer extends StatelessWidget {
+  const TotalRateCardShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ShimmerWidget.rectangular(width: 60.w, height: 20.h),
+        8.verticalSpace,
+        ShimmerWidget.rectangular(width: 120.w, height: 16.h),
+        8.verticalSpace,
+        ShimmerWidget.rectangular(width: 140.w, height: 12.h),
+      ],
+    );
   }
 }
 class _StarRating extends StatelessWidget {

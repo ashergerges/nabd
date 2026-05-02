@@ -20,6 +20,7 @@ class Endpoints {
   String get vendorDetailsUrl => r'api/app/products/details';
   String get wishlistToggleUrl => r'api/app/user/wishlist/toggle';
   String get wishlistTypeUrl => r'api/app/user/wishlist';
+  String get packageDetailsUrl => r'api/app/package/details';
 
 
 }

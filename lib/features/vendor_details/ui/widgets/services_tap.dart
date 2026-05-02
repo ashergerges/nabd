@@ -47,7 +47,7 @@ class ServicesTab extends StatelessWidget {
               itemBuilder: (BuildContext c, int i) {
                 return  PackageCard(
                   onTap: (){
-                    VendorPackageDetailsRoute().push(context);
+                    VendorPackageDetailsRoute(vendorPackageId: 0).push(context);
 
                   },
                   title: 'قاعة كريستال',

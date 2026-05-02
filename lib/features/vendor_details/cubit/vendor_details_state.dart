@@ -4,6 +4,7 @@ part of 'vendor_details_cubit.dart';
 class VendorDetailsState with _$VendorDetailsState {
   const factory VendorDetailsState({
     VendorDetailsModel? vendorDetails,
+    PackageDetailsModel? packageDetails,
   @Default(VendorDetailsStateStatus.initial()) VendorDetailsStateStatus currState,
 
 }) = _VendorDetailsState;

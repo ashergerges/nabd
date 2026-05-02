@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$VendorDetailsState {
   VendorDetailsModel? get vendorDetails => throw _privateConstructorUsedError;
+  PackageDetailsModel? get packageDetails => throw _privateConstructorUsedError;
   VendorDetailsStateStatus get currState => throw _privateConstructorUsedError;
 
   /// Create a copy of VendorDetailsState
@@ -36,6 +37,7 @@ abstract class $VendorDetailsStateCopyWith<$Res> {
   @useResult
   $Res call({
     VendorDetailsModel? vendorDetails,
+    PackageDetailsModel? packageDetails,
     VendorDetailsStateStatus currState,
   });
 
@@ -56,13 +58,21 @@ class _$VendorDetailsStateCopyWithImpl<$Res, $Val extends VendorDetailsState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? vendorDetails = freezed, Object? currState = null}) {
+  $Res call({
+    Object? vendorDetails = freezed,
+    Object? packageDetails = freezed,
+    Object? currState = null,
+  }) {
     return _then(
       _value.copyWith(
             vendorDetails: freezed == vendorDetails
                 ? _value.vendorDetails
                 : vendorDetails // ignore: cast_nullable_to_non_nullable
                       as VendorDetailsModel?,
+            packageDetails: freezed == packageDetails
+                ? _value.packageDetails
+                : packageDetails // ignore: cast_nullable_to_non_nullable
+                      as PackageDetailsModel?,
             currState: null == currState
                 ? _value.currState
                 : currState // ignore: cast_nullable_to_non_nullable
@@ -94,6 +104,7 @@ abstract class _$$VendorDetailsStateImplCopyWith<$Res>
   @useResult
   $Res call({
     VendorDetailsModel? vendorDetails,
+    PackageDetailsModel? packageDetails,
     VendorDetailsStateStatus currState,
   });
 
@@ -114,13 +125,21 @@ class __$$VendorDetailsStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? vendorDetails = freezed, Object? currState = null}) {
+  $Res call({
+    Object? vendorDetails = freezed,
+    Object? packageDetails = freezed,
+    Object? currState = null,
+  }) {
     return _then(
       _$VendorDetailsStateImpl(
         vendorDetails: freezed == vendorDetails
             ? _value.vendorDetails
             : vendorDetails // ignore: cast_nullable_to_non_nullable
                   as VendorDetailsModel?,
+        packageDetails: freezed == packageDetails
+            ? _value.packageDetails
+            : packageDetails // ignore: cast_nullable_to_non_nullable
+                  as PackageDetailsModel?,
         currState: null == currState
             ? _value.currState
             : currState // ignore: cast_nullable_to_non_nullable
@@ -135,18 +154,21 @@ class __$$VendorDetailsStateImplCopyWithImpl<$Res>
 class _$VendorDetailsStateImpl implements _VendorDetailsState {
   const _$VendorDetailsStateImpl({
     this.vendorDetails,
+    this.packageDetails,
     this.currState = const VendorDetailsStateStatus.initial(),
   });
 
   @override
   final VendorDetailsModel? vendorDetails;
   @override
+  final PackageDetailsModel? packageDetails;
+  @override
   @JsonKey()
   final VendorDetailsStateStatus currState;
 
   @override
   String toString() {
-    return 'VendorDetailsState(vendorDetails: $vendorDetails, currState: $currState)';
+    return 'VendorDetailsState(vendorDetails: $vendorDetails, packageDetails: $packageDetails, currState: $currState)';
   }
 
   @override
@@ -156,12 +178,15 @@ class _$VendorDetailsStateImpl implements _VendorDetailsState {
             other is _$VendorDetailsStateImpl &&
             (identical(other.vendorDetails, vendorDetails) ||
                 other.vendorDetails == vendorDetails) &&
+            (identical(other.packageDetails, packageDetails) ||
+                other.packageDetails == packageDetails) &&
             (identical(other.currState, currState) ||
                 other.currState == currState));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, vendorDetails, currState);
+  int get hashCode =>
+      Object.hash(runtimeType, vendorDetails, packageDetails, currState);
 
   /// Create a copy of VendorDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -178,11 +203,14 @@ class _$VendorDetailsStateImpl implements _VendorDetailsState {
 abstract class _VendorDetailsState implements VendorDetailsState {
   const factory _VendorDetailsState({
     final VendorDetailsModel? vendorDetails,
+    final PackageDetailsModel? packageDetails,
     final VendorDetailsStateStatus currState,
   }) = _$VendorDetailsStateImpl;
 
   @override
   VendorDetailsModel? get vendorDetails;
+  @override
+  PackageDetailsModel? get packageDetails;
   @override
   VendorDetailsStateStatus get currState;
 

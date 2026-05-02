@@ -18,7 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$FavState {
   FavStateStatus get currState => throw _privateConstructorUsedError;
-  RefreshController get refreshController => throw _privateConstructorUsedError;
+  RefreshController get refreshPackageController =>
+      throw _privateConstructorUsedError;
+  RefreshController get refreshVendorController =>
+      throw _privateConstructorUsedError;
+  List<FavVendorModel> get favVendors => throw _privateConstructorUsedError;
+  List<FavPackageModel> get favPackages => throw _privateConstructorUsedError;
 
   /// Create a copy of FavState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +37,13 @@ abstract class $FavStateCopyWith<$Res> {
   factory $FavStateCopyWith(FavState value, $Res Function(FavState) then) =
       _$FavStateCopyWithImpl<$Res, FavState>;
   @useResult
-  $Res call({FavStateStatus currState, RefreshController refreshController});
+  $Res call({
+    FavStateStatus currState,
+    RefreshController refreshPackageController,
+    RefreshController refreshVendorController,
+    List<FavVendorModel> favVendors,
+    List<FavPackageModel> favPackages,
+  });
 
   $FavStateStatusCopyWith<$Res> get currState;
 }
@@ -51,17 +62,35 @@ class _$FavStateCopyWithImpl<$Res, $Val extends FavState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? currState = null, Object? refreshController = null}) {
+  $Res call({
+    Object? currState = null,
+    Object? refreshPackageController = null,
+    Object? refreshVendorController = null,
+    Object? favVendors = null,
+    Object? favPackages = null,
+  }) {
     return _then(
       _value.copyWith(
             currState: null == currState
                 ? _value.currState
                 : currState // ignore: cast_nullable_to_non_nullable
                       as FavStateStatus,
-            refreshController: null == refreshController
-                ? _value.refreshController
-                : refreshController // ignore: cast_nullable_to_non_nullable
+            refreshPackageController: null == refreshPackageController
+                ? _value.refreshPackageController
+                : refreshPackageController // ignore: cast_nullable_to_non_nullable
                       as RefreshController,
+            refreshVendorController: null == refreshVendorController
+                ? _value.refreshVendorController
+                : refreshVendorController // ignore: cast_nullable_to_non_nullable
+                      as RefreshController,
+            favVendors: null == favVendors
+                ? _value.favVendors
+                : favVendors // ignore: cast_nullable_to_non_nullable
+                      as List<FavVendorModel>,
+            favPackages: null == favPackages
+                ? _value.favPackages
+                : favPackages // ignore: cast_nullable_to_non_nullable
+                      as List<FavPackageModel>,
           )
           as $Val,
     );
@@ -87,7 +116,13 @@ abstract class _$$FavStateImplCopyWith<$Res>
   ) = __$$FavStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FavStateStatus currState, RefreshController refreshController});
+  $Res call({
+    FavStateStatus currState,
+    RefreshController refreshPackageController,
+    RefreshController refreshVendorController,
+    List<FavVendorModel> favVendors,
+    List<FavPackageModel> favPackages,
+  });
 
   @override
   $FavStateStatusCopyWith<$Res> get currState;
@@ -106,17 +141,35 @@ class __$$FavStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? currState = null, Object? refreshController = null}) {
+  $Res call({
+    Object? currState = null,
+    Object? refreshPackageController = null,
+    Object? refreshVendorController = null,
+    Object? favVendors = null,
+    Object? favPackages = null,
+  }) {
     return _then(
       _$FavStateImpl(
         currState: null == currState
             ? _value.currState
             : currState // ignore: cast_nullable_to_non_nullable
                   as FavStateStatus,
-        refreshController: null == refreshController
-            ? _value.refreshController
-            : refreshController // ignore: cast_nullable_to_non_nullable
+        refreshPackageController: null == refreshPackageController
+            ? _value.refreshPackageController
+            : refreshPackageController // ignore: cast_nullable_to_non_nullable
                   as RefreshController,
+        refreshVendorController: null == refreshVendorController
+            ? _value.refreshVendorController
+            : refreshVendorController // ignore: cast_nullable_to_non_nullable
+                  as RefreshController,
+        favVendors: null == favVendors
+            ? _value._favVendors
+            : favVendors // ignore: cast_nullable_to_non_nullable
+                  as List<FavVendorModel>,
+        favPackages: null == favPackages
+            ? _value._favPackages
+            : favPackages // ignore: cast_nullable_to_non_nullable
+                  as List<FavPackageModel>,
       ),
     );
   }
@@ -127,18 +180,41 @@ class __$$FavStateImplCopyWithImpl<$Res>
 class _$FavStateImpl implements _FavState {
   const _$FavStateImpl({
     this.currState = const FavStateStatus.initial(),
-    required this.refreshController,
-  });
+    required this.refreshPackageController,
+    required this.refreshVendorController,
+    final List<FavVendorModel> favVendors = const [],
+    final List<FavPackageModel> favPackages = const [],
+  }) : _favVendors = favVendors,
+       _favPackages = favPackages;
 
   @override
   @JsonKey()
   final FavStateStatus currState;
   @override
-  final RefreshController refreshController;
+  final RefreshController refreshPackageController;
+  @override
+  final RefreshController refreshVendorController;
+  final List<FavVendorModel> _favVendors;
+  @override
+  @JsonKey()
+  List<FavVendorModel> get favVendors {
+    if (_favVendors is EqualUnmodifiableListView) return _favVendors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favVendors);
+  }
+
+  final List<FavPackageModel> _favPackages;
+  @override
+  @JsonKey()
+  List<FavPackageModel> get favPackages {
+    if (_favPackages is EqualUnmodifiableListView) return _favPackages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favPackages);
+  }
 
   @override
   String toString() {
-    return 'FavState(currState: $currState, refreshController: $refreshController)';
+    return 'FavState(currState: $currState, refreshPackageController: $refreshPackageController, refreshVendorController: $refreshVendorController, favVendors: $favVendors, favPackages: $favPackages)';
   }
 
   @override
@@ -148,12 +224,35 @@ class _$FavStateImpl implements _FavState {
             other is _$FavStateImpl &&
             (identical(other.currState, currState) ||
                 other.currState == currState) &&
-            (identical(other.refreshController, refreshController) ||
-                other.refreshController == refreshController));
+            (identical(
+                  other.refreshPackageController,
+                  refreshPackageController,
+                ) ||
+                other.refreshPackageController == refreshPackageController) &&
+            (identical(
+                  other.refreshVendorController,
+                  refreshVendorController,
+                ) ||
+                other.refreshVendorController == refreshVendorController) &&
+            const DeepCollectionEquality().equals(
+              other._favVendors,
+              _favVendors,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._favPackages,
+              _favPackages,
+            ));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currState, refreshController);
+  int get hashCode => Object.hash(
+    runtimeType,
+    currState,
+    refreshPackageController,
+    refreshVendorController,
+    const DeepCollectionEquality().hash(_favVendors),
+    const DeepCollectionEquality().hash(_favPackages),
+  );
 
   /// Create a copy of FavState
   /// with the given fields replaced by the non-null parameter values.
@@ -167,13 +266,22 @@ class _$FavStateImpl implements _FavState {
 abstract class _FavState implements FavState {
   const factory _FavState({
     final FavStateStatus currState,
-    required final RefreshController refreshController,
+    required final RefreshController refreshPackageController,
+    required final RefreshController refreshVendorController,
+    final List<FavVendorModel> favVendors,
+    final List<FavPackageModel> favPackages,
   }) = _$FavStateImpl;
 
   @override
   FavStateStatus get currState;
   @override
-  RefreshController get refreshController;
+  RefreshController get refreshPackageController;
+  @override
+  RefreshController get refreshVendorController;
+  @override
+  List<FavVendorModel> get favVendors;
+  @override
+  List<FavPackageModel> get favPackages;
 
   /// Create a copy of FavState
   /// with the given fields replaced by the non-null parameter values.

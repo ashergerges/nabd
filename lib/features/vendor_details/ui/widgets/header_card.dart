@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
@@ -18,6 +19,10 @@ class HeaderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
       builder: (context, state) {
+
+        if (state.vendorDetails == null) {
+          return const HeaderCardShimmer();
+        }
         return Column(
           children: [
             Container(
@@ -41,7 +46,7 @@ class HeaderCard extends StatelessWidget {
                           ],
                         ),
                         child: CircleImage(
-                          imageUrl: AppStrings.kTestNetworkImage,
+                          imageUrl: state.vendorDetails?.image??AppStrings.kTestNetworkImage,
                           size: 80.h,
                         ),
                       ),
@@ -52,7 +57,7 @@ class HeaderCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              state.vendorDetails?.nameAr??"",
+                              state.vendorDetails?.name??"",
                               style: AppTextTheme.headingSmall(
                                 context,
                               ).copyWith(fontWeight: FontWeight.w700),
@@ -85,7 +90,7 @@ class HeaderCard extends StatelessWidget {
                       Assets.svg.location.svg(height: 16.h),
                       4.horizontalSpace,
                       Text(
-                        state.vendorDetails?.city?.nameAr??"",
+                        state.vendorDetails?.address??"",
                         style: AppTextTheme.bodyXSmall(context).copyWith(
                           decoration: TextDecoration.underline,
                           decorationColor: AppColors.textColor,
@@ -95,7 +100,7 @@ class HeaderCard extends StatelessWidget {
                   ),
                   8.verticalSpace,
                   Text(
-                  state.vendorDetails?.descriptionAr??"0",
+                  state.vendorDetails?.description??"0",
                     style: AppTextTheme.bodySmall(
                       context,
                     ).copyWith(color: AppColors.neutral400),
@@ -114,7 +119,7 @@ class HeaderCard extends StatelessWidget {
                         Assets.svg.checkmark.svg(height: 24.h),
                         8.horizontalSpace,
                         Text(
-                          LocaleKeys.availableNow.tr(),
+                          state.vendorDetails?.statusText??"0",
                           style: AppTextTheme.bodySmall(
                             context,
                           ).copyWith(color: AppColors.secondary),
@@ -129,6 +134,77 @@ class HeaderCard extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+}
+class HeaderCardShimmer extends StatelessWidget {
+  const HeaderCardShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          color: Colors.white,
+          padding: 12.padVertical.add(48.padStart),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  // Circle Image shimmer
+                  ShimmerWidget.circular(
+                    width: 80.w,
+                    height: 80.w,
+                  ),
+                  12.horizontalSpace,
+
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Name
+                        ShimmerWidget.rectangular(width: 120.w, height: 14.h),
+                        8.verticalSpace,
+
+                        Row(
+                          children: [
+                            ShimmerWidget.rectangular(width: 80.w, height: 12.h),
+                            8.horizontalSpace,
+                            ShimmerWidget.rectangular(width: 40.w, height: 12.h),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              8.verticalSpace,
+
+              // Location
+              ShimmerWidget.rectangular(width: 100.w, height: 12.h),
+
+              8.verticalSpace,
+
+              // Description
+              ShimmerWidget.rectangular(width: 220.w, height: 12.h),
+              6.verticalSpace,
+              ShimmerWidget.rectangular(width: 180.w, height: 12.h),
+              6.verticalSpace,
+              ShimmerWidget.rectangular(width: 200.w, height: 12.h),
+
+              12.verticalSpace,
+
+              // Available badge
+              ShimmerWidget.rectangular(width: 120.w, height: 32.h, shapeBorder: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100.0),
+              ) ,),
+            ],
+          ),
+        ),
+        Divider(color: AppColors.primary100),
+      ],
     );
   }
 }

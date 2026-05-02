@@ -75,6 +75,7 @@ Map<String, dynamic> _$HomeCategoryModelToJson(HomeCategoryModel instance) =>
 
 HomeVendorModel _$HomeVendorModelFromJson(Map<String, dynamic> json) =>
     HomeVendorModel(
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       image: json['image'] as String?,
       address: json['address'] as String?,
@@ -84,6 +85,7 @@ HomeVendorModel _$HomeVendorModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$HomeVendorModelToJson(HomeVendorModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'image': instance.image,
       'address': instance.address,

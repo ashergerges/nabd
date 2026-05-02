@@ -8,6 +8,7 @@ import 'package:nawy/core/services/network/network_service.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/features/auth/data/models/login_response_body.dart';
 import 'package:nawy/features/home/data/models/home_response.dart';
+import 'package:nawy/features/vendor_details/data/models/package_details_model.dart';
 import 'package:nawy/features/vendor_details/data/models/vendor_details_model.dart';
 import 'package:nawy/features/venues/data/models/product_model.dart';
 
@@ -37,7 +38,24 @@ class VendorDetailsRepository implements IVendorDetailsRepository {
     );
   }
   @override
-  Future<Result<VendorDetailsModel>> wishlistVendor({required int id})async {
+  Future<Result<PackageDetailsModel>> packageDetails({required int id})async {
+    var response = await networkService.getAsync(
+      url: AppStrings.urls.packageDetailsUrl,
+      queryParameters: {
+        "package_id":id
+      }
+    );
+    if (response.isError) return Result.error(response.asError!.error);
+
+    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']['package']}");
+
+    return Result.value(
+      PackageDetailsModel.fromJson(response.asValue?.value.data['data']['package']),
+
+    );
+  }
+  @override
+  Future<Result<bool>> wishlistVendor({required int id})async {
     var response = await networkService.postAsync(
       url: AppStrings.urls.wishlistToggleUrl,
       queryParameters: {
@@ -49,9 +67,21 @@ class VendorDetailsRepository implements IVendorDetailsRepository {
 
     log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']['product']}");
 
-    return Result.value(
-      VendorDetailsModel.fromJson(response.asValue?.value.data['data']['product']),
-
+    return Result.value(true);
+  }
+  @override
+  Future<Result<PackageDetailsModel>> wishlistPackage({required int id})async {
+    var response = await networkService.postAsync(
+      url: AppStrings.urls.wishlistToggleUrl,
+      queryParameters: {
+        "id":id,
+        "type":2,
+      }
     );
+    if (response.isError) return Result.error(response.asError!.error);
+
+    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']['wishlist']['package']}");
+
+    return Result.value(PackageDetailsModel.fromJson(response.asValue?.value.data['data']['wishlist']['package']));
   }
 }

@@ -4,7 +4,10 @@ part of 'fav_cubit.dart';
 class FavState with _$FavState {
   const factory FavState({
     @Default(FavStateStatus.initial()) FavStateStatus currState,
-    required RefreshController refreshController,
+    required RefreshController refreshPackageController,
+    required RefreshController refreshVendorController,
+    @Default([]) List<FavVendorModel> favVendors,
+    @Default([]) List<FavPackageModel> favPackages,
 
   }) = _FavState;
 }

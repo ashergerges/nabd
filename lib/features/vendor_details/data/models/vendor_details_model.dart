@@ -6,6 +6,8 @@ part 'vendor_details_model.g.dart';
 class VendorDetailsModel {
   final int? id;
 
+  final String? name;
+
   @JsonKey(name: 'name_ar')
   final String? nameAr;
 
@@ -14,11 +16,15 @@ class VendorDetailsModel {
 
   final String? image;
 
+  final String? description;
+
   @JsonKey(name: 'description_ar')
   final String? descriptionAr;
 
   @JsonKey(name: 'description_en')
   final String? descriptionEn;
+
+  final String? address;
 
   @JsonKey(name: 'price_after')
   final String? priceAfter;
@@ -27,6 +33,9 @@ class VendorDetailsModel {
   final String? priceBefore;
 
   final String? discount;
+
+  @JsonKey(name: 'discount_percentage')
+  final String? discountPercentage;
 
   @JsonKey(name: 'guest_count')
   final int? guestCount;
@@ -41,41 +50,45 @@ class VendorDetailsModel {
   final String? long;
 
   @JsonKey(name: 'contact_numbers')
-  final List<dynamic>? contactNumbers;
+  final List<String>? contactNumbers;
 
   final CategoryLiteModel? category;
   final CityModel? city;
   final UserModel? user;
 
   final List<GalleryModel>? gallery;
-  final List<dynamic>? packages;
-  final List<ServiceModel>? services;
   final List<ReviewModel>? reviews;
 
   @JsonKey(name: 'avg_rating')
   final double? avgRating;
 
-  final List<dynamic>? logs;
-
   @JsonKey(name: 'is_favorite')
   final bool? isFavorite;
 
-  @JsonKey(name: 'not_working_days')
-  final List<String>? notWorkingDays;
+  @JsonKey(
+    name: 'not_working_days',
+    fromJson: _daysFromJson,
+    toJson: _daysToJson,
+  )
+  final List<DateTime>? notWorkingDays;
 
   @JsonKey(name: 'created_at')
   final String? createdAt;
 
   VendorDetailsModel({
     this.id,
+    this.name,
     this.nameAr,
     this.nameEn,
     this.image,
+    this.description,
     this.descriptionAr,
     this.descriptionEn,
+    this.address,
     this.priceAfter,
     this.priceBefore,
     this.discount,
+    this.discountPercentage,
     this.guestCount,
     this.status,
     this.statusText,
@@ -87,11 +100,8 @@ class VendorDetailsModel {
     this.city,
     this.user,
     this.gallery,
-    this.packages,
-    this.services,
     this.reviews,
     this.avgRating,
-    this.logs,
     this.isFavorite,
     this.notWorkingDays,
     this.createdAt,
@@ -101,6 +111,12 @@ class VendorDetailsModel {
       _$VendorDetailsModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$VendorDetailsModelToJson(this);
+
+  static List<DateTime>? _daysFromJson(List? list) =>
+      list?.map((e) => DateTime.tryParse(e.toString())).whereType<DateTime>().toList();
+
+  static List<String>? _daysToJson(List<DateTime>? list) =>
+      list?.map((e) => e.toIso8601String()).toList();
 }
 @JsonSerializable()
 class CategoryLiteModel {
@@ -224,7 +240,7 @@ class ServiceModel {
 }
 
 @JsonSerializable()
-class ReviewModel {
+class ReviewModel   {
   final int? id;
 
   @JsonKey(name: 'user_id')
@@ -232,6 +248,8 @@ class ReviewModel {
 
   @JsonKey(name: 'user_name')
   final String? userName;
+  @JsonKey(name: 'user_image')
+  final String? userImage;
 
   @JsonKey(name: 'product_id')
   final int? productId;
@@ -239,7 +257,7 @@ class ReviewModel {
   @JsonKey(name: 'product_name')
   final String? productName;
 
-  final String? rating;
+  final double? rating;
   final String? comment;
 
   @JsonKey(name: 'created_at')
@@ -249,6 +267,7 @@ class ReviewModel {
     this.id,
     this.userId,
     this.userName,
+    this.userImage,
     this.productId,
     this.productName,
     this.rating,

@@ -8,6 +8,8 @@ import 'package:nawy/core/services/network/network_service.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/features/auth/data/models/login_response_body.dart';
 import 'package:nawy/features/home/data/models/home_response.dart';
+import 'package:nawy/features/profile/data/models/fav/fav_package_model.dart';
+import 'package:nawy/features/profile/data/models/fav/fav_vendor_model.dart';
 import 'package:nawy/features/vendor_details/data/models/vendor_details_model.dart';
 import 'package:nawy/features/venues/data/models/product_model.dart';
 
@@ -19,7 +21,7 @@ class FavRepository implements IFavRepository {
 
   FavRepository({required this.networkService});
   @override
-  Future<Result<List<ProductModel>>> getWishlistVendor()async {
+  Future<Result<List<FavVendorModel>>> getWishlistVendor()async {
     var response = await networkService.getAsync(
         url: AppStrings.urls.wishlistTypeUrl,
         queryParameters: {
@@ -28,16 +30,20 @@ class FavRepository implements IFavRepository {
     );
     if (response.isError) return Result.error(response.asError!.error);
 
-    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']}");
-    List<ProductModel> venues = List<ProductModel>.from(
-        response.asValue?.value.data['data']['products'].map((x) => ProductModel.fromJson(x)));
+    final data = response.asValue?.value.data['data'];
 
-    return Result.value(venues
+    final List list = data['wishlist'] ?? [];
 
-    );
+    List<FavVendorModel> venues = list
+        .map((item) => item['product'])
+        .where((product) => product != null)
+        .map<FavVendorModel>((product) => FavVendorModel.fromJson(product))
+        .toList();
+
+    return Result.value(venues);
   }
   @override
-  Future<Result<List<ProductModel>>> getWishlistPackage()async {
+  Future<Result<List<FavPackageModel>>> getWishlistPackage()async {
     var response = await networkService.getAsync(
         url: AppStrings.urls.wishlistTypeUrl,
         queryParameters: {
@@ -48,47 +54,16 @@ class FavRepository implements IFavRepository {
     if (response.isError) return Result.error(response.asError!.error);
 
     log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']}");
-    List<ProductModel> venues = List<ProductModel>.from(
-        response.asValue?.value.data['data']['products'].map((x) => ProductModel.fromJson(x)));
+    final data = response.asValue?.value.data['data'];
 
-    return Result.value(venues
+    final List list = data['wishlist'] ?? [];
 
-    );
-  }
-  @override
-  Future<Result<VendorDetailsModel>> wishlistVendor({required int id})async {
-    var response = await networkService.postAsync(
-        url: AppStrings.urls.wishlistToggleUrl,
-        body: {
-          "id":id,
-          "type":1,
-        }
-    );
-    if (response.isError) return Result.error(response.asError!.error);
+    List<FavPackageModel> packages = list
+        .map((item) => item['package'])
+        .where((package) => package != null)
+        .map<FavPackageModel>((package) => FavPackageModel.fromJson(package))
+        .toList();
 
-    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']}");
-
-    return Result.value(
-      VendorDetailsModel.fromJson(response.asValue?.value.data['data']),
-
-    );
-  }
-  @override
-  Future<Result<VendorDetailsModel>> wishlistPackage({required int id})async {
-    var response = await networkService.postAsync(
-        url: AppStrings.urls.wishlistToggleUrl,
-        body: {
-          "id":id,
-          "type":2,
-        }
-    );
-    if (response.isError) return Result.error(response.asError!.error);
-
-    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']}");
-
-    return Result.value(
-      VendorDetailsModel.fromJson(response.asValue?.value.data['data']),
-
-    );
+    return Result.value(packages);
   }
 }

@@ -147,35 +147,43 @@ class HomeScreen extends StatelessWidget {
                               itemCount:
                               state.homeData?.topRatedVendors?.length ?? 0,
                               itemBuilder: (BuildContext c, int index) {
-                                return VendorsCard(
-                                  width: SizeManager.widthFromScreen(
-                                    1.4,
-                                    context,
+                                return OnTap(
+                                  onTap: (){
+                                    VendorDetailsRoute(vendorDetailsId:state
+                                        .homeData
+                                        ?.topRatedVendors?[index]
+                                            .id??0 ).push(context);
+                                  },
+                                  child: VendorsCard(
+                                    width: SizeManager.widthFromScreen(
+                                      1.4,
+                                      context,
+                                    ),
+                                    imageUrl:
+                                    state
+                                        .homeData
+                                        ?.topRatedVendors?[index]
+                                        .image ??
+                                        AppStrings.kTestNetworkImage,
+                                    vendorName:
+                                    state
+                                        .homeData
+                                        ?.topRatedVendors?[index]
+                                        .name ??
+                                        "",
+                                    location:
+                                    state
+                                        .homeData
+                                        ?.topRatedVendors?[index]
+                                        .address ??
+                                        'الرياض',
+                                    rate:
+                                    state
+                                        .homeData
+                                        ?.topRatedVendors?[index]
+                                        .avgRating ??
+                                        0,
                                   ),
-                                  imageUrl:
-                                  state
-                                      .homeData
-                                      ?.topRatedVendors?[index]
-                                      .image ??
-                                      AppStrings.kTestNetworkImage,
-                                  vendorName:
-                                  state
-                                      .homeData
-                                      ?.topRatedVendors?[index]
-                                      .name ??
-                                      "",
-                                  location:
-                                  state
-                                      .homeData
-                                      ?.topRatedVendors?[index]
-                                      .address ??
-                                      'الرياض',
-                                  rate:
-                                  state
-                                      .homeData
-                                      ?.topRatedVendors?[index]
-                                      .avgRating ??
-                                      0,
                                 );
                               },
                               separatorBuilder: (BuildContext c, int i) =>
@@ -249,35 +257,43 @@ class HomeScreen extends StatelessWidget {
                               itemCount:
                               state.homeData?.weddingVenues?.length ?? 0,
                               itemBuilder: (BuildContext c, int index) {
-                                return VendorsCard(
-                                  width: SizeManager.widthFromScreen(
-                                    1.4,
-                                    context,
+                                return OnTap(
+                                  onTap: (){
+                                    VendorDetailsRoute(vendorDetailsId:state
+                                        .homeData
+                                        ?.topRatedVendors?[index]
+                                        .id??0 ).push(context);
+                                  },
+                                  child: VendorsCard(
+                                    width: SizeManager.widthFromScreen(
+                                      1.4,
+                                      context,
+                                    ),
+                                    imageUrl:
+                                    state
+                                        .homeData
+                                        ?.weddingVenues?[index]
+                                        .image ??
+                                        AppStrings.kTestNetworkImage,
+                                    vendorName:
+                                    state
+                                        .homeData
+                                        ?.weddingVenues?[index]
+                                        .name ??
+                                        "",
+                                    location:
+                                    state
+                                        .homeData
+                                        ?.weddingVenues?[index]
+                                        .address ??
+                                        'الرياض',
+                                    rate:
+                                    state
+                                        .homeData
+                                        ?.weddingVenues?[index]
+                                        .avgRating ??
+                                        0,
                                   ),
-                                  imageUrl:
-                                  state
-                                      .homeData
-                                      ?.weddingVenues?[index]
-                                      .image ??
-                                      AppStrings.kTestNetworkImage,
-                                  vendorName:
-                                  state
-                                      .homeData
-                                      ?.weddingVenues?[index]
-                                      .name ??
-                                      "",
-                                  location:
-                                  state
-                                      .homeData
-                                      ?.weddingVenues?[index]
-                                      .address ??
-                                      'الرياض',
-                                  rate:
-                                  state
-                                      .homeData
-                                      ?.weddingVenues?[index]
-                                      .avgRating ??
-                                      0,
                                 );
                               },
                               separatorBuilder: (BuildContext c, int i) =>

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -54,9 +55,11 @@ class VendorDetailsScreen extends StatelessWidget {
                       16.horizontalSpace,
                       BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
                         builder: (context, state) {
-                          return OnTap(
+                          return state.currState is Loading?ShimmerWidget.circular(height: 35,width: 35,): OnTap(
                             onTap: () {
-                              context.read<VendorDetailsCubit>().wishlistVendor(vendorDetailsId);
+                              context.read<VendorDetailsCubit>().wishlistVendor(vendorDetailsId).then(((value){
+                                context.read<VendorDetailsCubit>().vendorDetails(vendorDetailsId);
+                              }));
                             },
                             child: _circleButton(
                               (state.vendorDetails?.isFavorite??false)?Assets.svg.favouriteCircle.svg(height: 28.h):Assets.svg.favouritePackage.svg(height: 28.h),

@@ -38,7 +38,9 @@ class VenuesScreen extends StatelessWidget {
                 padding: 24.padTop+5.padBottom,
                 itemBuilder: (_,index)=>PackageCard(
                   onTap: (){
-                    VendorDetailsRoute(vendorDetailsId: category.id).push(context);
+                    VendorDetailsRoute(vendorDetailsId: category.id).push(context).then((value){
+                      context.read<VenuesCubit>().venues(category.id);
+                    });
 
                   },
                   title: state.venuesList[index].nameAr??"",

@@ -92,6 +92,7 @@ class HomeCategoryModel {
 }
 @JsonSerializable()
 class HomeVendorModel {
+  final int? id;
   final String? name;
   final String? image;
   final String? address;
@@ -103,6 +104,7 @@ class HomeVendorModel {
   final bool? isFavorite;
 
   HomeVendorModel({
+    this.id,
     this.name,
     this.image,
     this.address,

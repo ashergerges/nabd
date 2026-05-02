@@ -7,9 +7,14 @@ import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
+import 'package:nawy/core/utils/constants/pull_refresh.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/profile/cubits/fav/fav_cubit.dart';
+import 'package:nawy/features/profile/data/models/fav/fav_package_model.dart';
+import 'package:nawy/features/profile/data/models/fav/fav_vendor_model.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/package_card.dart';
+import 'package:nawy/features/vendor_details/ui/widgets/vendor_card.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 @RoutePage()
 class FavScreen extends StatelessWidget {
@@ -20,7 +25,8 @@ class FavScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         print('🔵 Creating FavCubit');
-        return FavCubit()..getWishlistVendor();
+        return FavCubit()
+          ..getWishlistVendor();
       },
       child: Scaffold(
         appBar: CustomAppBar(title: "المفضلة"),
@@ -50,7 +56,8 @@ class _FAVBodyState extends State<FAVBody>
   }
 
   void _handleTabChange() {
-    print('🟡 Tab change detected - indexIsChanging: ${_tabController.indexIsChanging}, current index: ${_tabController.index}');
+    print('🟡 Tab change detected - indexIsChanging: ${_tabController
+        .indexIsChanging}, current index: ${_tabController.index}');
     if (!_tabController.indexIsChanging) {
       _onTabChanged(_tabController.index);
     }
@@ -76,94 +83,144 @@ class _FAVBodyState extends State<FAVBody>
 
   @override
   Widget build(BuildContext context) {
-    print('🔴 Building FAVBody');
-    return Column(
-      children: [
-        TabBar(
-          controller: _tabController,
-          labelStyle: AppTextTheme.bodyMedium(context).copyWith(
-              color: AppColors.primary, fontWeight: FontWeight.w700),
-          unselectedLabelStyle: AppTextTheme.bodyMedium(context),
-          indicatorColor: AppColors.primary,
-          indicatorWeight: 3,
-          dividerColor: AppColors.primary100,
-          labelPadding: 0.padHorizontal,
-          tabs: [
-            Tab(text: "مقدمو الخدمات"),
-            Tab(text: "الباقات"),
+    return BlocBuilder<FavCubit, FavState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            TabBar(
+              controller: _tabController,
+              labelStyle: AppTextTheme.bodyMedium(context).copyWith(
+                  color: AppColors.primary, fontWeight: FontWeight.w700),
+              unselectedLabelStyle: AppTextTheme.bodyMedium(context),
+              indicatorColor: AppColors.primary,
+              indicatorWeight: 3,
+              dividerColor: AppColors.primary100,
+              labelPadding: 0.padHorizontal,
+              tabs: [
+                Tab(text: "مقدمو الخدمات"),
+                Tab(text: "الباقات"),
+              ],
+            ),
+            Expanded(
+              child:state.currState is Loading?LoadingFav(): TabBarView(
+                controller: _tabController,
+                children: [
+                  VendorsTap(favVendors:state.favVendors,),
+                  PackagesTap(favPackages: state.favPackages,),
+                ],
+              ),
+            ),
           ],
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              VendorsTap(),
-              PackagesTap(),
-            ],
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 }
 
+class LoadingFav extends StatelessWidget {
+  const LoadingFav({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      physics: BouncingScrollPhysics(),
+      itemCount: 5,
+      padding: 16.padTop + 16.padHorizontal,
+
+      itemBuilder: (BuildContext c, int i) {
+        return PackageCardShimmer();
+      },
+      separatorBuilder: (BuildContext c, int i) => 12.verticalSpace,
+    );
+  }
+}
 class VendorsTap extends StatelessWidget {
-  const VendorsTap({super.key});
-
+  const VendorsTap({super.key, required this.favVendors,});
+  final List<FavVendorModel> favVendors;
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      physics: BouncingScrollPhysics(),
-      itemCount: 5,
-      padding: 16.padTop + 16.padHorizontal,
-
-      itemBuilder: (BuildContext c, int i) {
-        return PackageCard(
-          onTap: () {
-            VendorPackageDetailsRoute().push(context);
-          },
-          title: 'قاعة كريستال',
-          capacity: 500,
-          location: 'الرياض',
-          rating: 4.9,
-          price: 12000,
-          imageUrl:
-          AppStrings.kTestNetworkImage,
-          discountPercent: 30,
-          isFavorite: true,
-        );
+    return BlocBuilder<FavCubit, FavState>(
+  builder: (context, state) {
+    return SmartRefresher(
+      controller:state.refreshVendorController ,
+      onRefresh: () {
+        context.read<FavCubit>().getWishlistVendor(isRefresh: true);
+        state.refreshVendorController.refreshCompleted();
       },
-      separatorBuilder: (BuildContext c, int i) => 12.verticalSpace,
+      header: PullRefresh.pullRefresh,
+      child: ListView.separated(
+        physics: BouncingScrollPhysics(),
+        itemCount: favVendors.length,
+        padding: 16.padTop + 16.padHorizontal,
+
+        itemBuilder: (BuildContext c, int index) {
+          return VendorCard(
+            onTap: () {
+              VendorDetailsRoute(vendorDetailsId: favVendors[index].id??0).push(context).then((value){
+                context.read<FavCubit>().getWishlistVendor(isRefresh: true);
+
+              });
+            },
+            title: favVendors[index].name??"",
+            dec:favVendors[index].description??"" ,
+            price: double.parse(favVendors[index].priceAfter??"0"),
+            imageUrl:favVendors[index].image??
+            AppStrings.kTestNetworkImage,
+            discountPercent: double.parse(favVendors[index].discount??"0"),
+            isFavorite: true,
+          );
+        },
+        separatorBuilder: (BuildContext c, int i) => 12.verticalSpace,
+      ),
     );
+  },
+);
   }
 }
+
 class PackagesTap extends StatelessWidget {
-  const PackagesTap({super.key});
+  const PackagesTap({super.key, required this.favPackages});
+  final List<FavPackageModel> favPackages;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      physics: BouncingScrollPhysics(),
-      itemCount: 5,
-      padding: 16.padTop + 16.padHorizontal,
-
-      itemBuilder: (BuildContext c, int i) {
-        return PackageCard(
-          onTap: () {
-            VendorPackageDetailsRoute().push(context);
-          },
-          title: 'قاعة كريستال',
-          capacity: 500,
-          location: 'الرياض',
-          rating: 4.9,
-          price: 12000,
-          imageUrl:
-          AppStrings.kTestNetworkImage,
-          discountPercent: 30,
-          isFavorite: true,
-        );
+    return BlocBuilder<FavCubit, FavState>(
+  builder: (context, state) {
+    return SmartRefresher(
+      controller:state.refreshPackageController ,
+      onRefresh: () {
+        context.read<FavCubit>().getWishlistPackage(isRefresh: true);
+        state.refreshPackageController.refreshCompleted();
       },
-      separatorBuilder: (BuildContext c, int i) => 12.verticalSpace,
+      header: PullRefresh.pullRefresh,
+      child: ListView.separated(
+        physics: BouncingScrollPhysics(),
+        itemCount: favPackages.length,
+        padding: 16.padTop + 16.padHorizontal,
+      
+        itemBuilder: (BuildContext c, int index) {
+          return PackageCard(
+            onTap: () {
+              VendorPackageDetailsRoute(vendorPackageId: favPackages[index].id??0).push(context).then((value){
+                context.read<FavCubit>().getWishlistPackage(isRefresh: true);
+
+              });
+            },
+            title: favPackages[index].title??"",
+            capacity: favPackages[index].guestCount??0,
+            location: favPackages[index].address??"",
+            rating: favPackages[index].avgRate??0,
+            price:double.parse( favPackages[index].priceAfter??"0"),
+            imageUrl: favPackages[index].vendorImage??
+            AppStrings.kTestNetworkImage,
+            discountPercent:double.parse(  favPackages[index].discount??"0"),
+            isFavorite: true,
+          );
+        },
+        separatorBuilder: (BuildContext c, int i) => 12.verticalSpace,
+      ),
     );
+  },
+);
   }
 }

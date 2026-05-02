@@ -521,18 +521,59 @@ class VendorDetailsRouteArgs {
 
 /// generated route for
 /// [VendorPackageDetailsScreen]
-class VendorPackageDetailsRoute extends PageRouteInfo<void> {
-  const VendorPackageDetailsRoute({List<PageRouteInfo>? children})
-    : super(VendorPackageDetailsRoute.name, initialChildren: children);
+class VendorPackageDetailsRoute
+    extends PageRouteInfo<VendorPackageDetailsRouteArgs> {
+  VendorPackageDetailsRoute({
+    Key? key,
+    required int vendorPackageId,
+    List<PageRouteInfo>? children,
+  }) : super(
+         VendorPackageDetailsRoute.name,
+         args: VendorPackageDetailsRouteArgs(
+           key: key,
+           vendorPackageId: vendorPackageId,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'VendorPackageDetailsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const VendorPackageDetailsScreen();
+      final args = data.argsAs<VendorPackageDetailsRouteArgs>();
+      return VendorPackageDetailsScreen(
+        key: args.key,
+        vendorPackageId: args.vendorPackageId,
+      );
     },
   );
+}
+
+class VendorPackageDetailsRouteArgs {
+  const VendorPackageDetailsRouteArgs({
+    this.key,
+    required this.vendorPackageId,
+  });
+
+  final Key? key;
+
+  final int vendorPackageId;
+
+  @override
+  String toString() {
+    return 'VendorPackageDetailsRouteArgs{key: $key, vendorPackageId: $vendorPackageId}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VendorPackageDetailsRouteArgs) return false;
+    return key == other.key && vendorPackageId == other.vendorPackageId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ vendorPackageId.hashCode;
 }
 
 /// generated route for
