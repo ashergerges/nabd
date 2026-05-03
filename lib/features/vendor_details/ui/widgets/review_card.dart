@@ -57,7 +57,7 @@ class ReviewCard extends StatelessWidget {
                       ],
                     ),
                     child: CircleImage(
-                      imageUrl: AppStrings.kTestNetworkImage,
+                      imageUrl: imageUrl??AppStrings.kTestNetworkImage,
                       size: 56.h,
                     ),
                   ),

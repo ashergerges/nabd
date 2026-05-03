@@ -5,6 +5,7 @@ part 'product_model.g.dart';
 @JsonSerializable()
 class ProductModel {
   final int? id;
+  final String? title;
 
   @JsonKey(name: 'name_ar')
   final String? nameAr;
@@ -51,6 +52,7 @@ class ProductModel {
 
   ProductModel({
     this.id,
+    this.title,
     this.nameAr,
     this.nameEn,
     this.image,

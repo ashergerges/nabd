@@ -36,16 +36,17 @@ class ReviewsTap extends StatelessWidget {
           TotalRateCard(),
           24.verticalSpace,
         ListView.separated(
+          shrinkWrap: true,
           physics: BouncingScrollPhysics(),
           itemCount: state.vendorDetails?.reviews?.length??0,
           padding: 16.padTop + 16.padHorizontal,
           itemBuilder: (BuildContext c, int index) {
             return  ReviewCard(
-              name: state.vendorDetails?.reviews?[index].userName??'سارة',
-              date: state.vendorDetails?.reviews?[index].createdAt??'20 مارس 2024',
+              name: state.vendorDetails?.reviews?[index].userName??'',
+              date: state.vendorDetails?.reviews?[index].createdAt??'',
               rating: state.vendorDetails?.reviews?[index].rating??0,
               comment: state.vendorDetails?.reviews?[index].comment??'',
-              imageUrl:  state.vendorDetails?.reviews?[index].userImage??AppStrings.kTestNetworkImage, // or null for placeholder
+              imageUrl:  state.vendorDetails?.reviews?[index].userImage
             );
           },
           separatorBuilder: (BuildContext c, int i) => 12.verticalSpace,

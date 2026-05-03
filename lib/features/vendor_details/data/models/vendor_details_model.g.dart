@@ -53,6 +53,12 @@ VendorDetailsModel _$VendorDetailsModelFromJson(Map<String, dynamic> json) =>
         json['not_working_days'] as List?,
       ),
       createdAt: json['created_at'] as String?,
+      services: (json['services'] as List<dynamic>?)
+          ?.map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      packages: (json['packages'] as List<dynamic>?)
+          ?.map((e) => PackageDetailsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$VendorDetailsModelToJson(
@@ -83,6 +89,8 @@ Map<String, dynamic> _$VendorDetailsModelToJson(
   'user': instance.user,
   'gallery': instance.gallery,
   'reviews': instance.reviews,
+  'packages': instance.packages,
+  'services': instance.services,
   'avg_rating': instance.avgRating,
   'is_favorite': instance.isFavorite,
   'not_working_days': VendorDetailsModel._daysToJson(instance.notWorkingDays),
@@ -139,13 +147,8 @@ ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) => ServiceModel(
   id: (json['id'] as num?)?.toInt(),
   nameAr: json['name_ar'] as String?,
   nameEn: json['name_en'] as String?,
-  image: json['image'] as String?,
-  descriptionAr: json['description_ar'] as String?,
-  descriptionEn: json['description_en'] as String?,
+  name: json['name'] as String?,
   price: json['price'] as String?,
-  status: (json['status'] as num?)?.toInt(),
-  statusText: json['status_text'] as String?,
-  createdAt: json['created_at'] as String?,
 );
 
 Map<String, dynamic> _$ServiceModelToJson(ServiceModel instance) =>
@@ -153,13 +156,8 @@ Map<String, dynamic> _$ServiceModelToJson(ServiceModel instance) =>
       'id': instance.id,
       'name_ar': instance.nameAr,
       'name_en': instance.nameEn,
-      'image': instance.image,
-      'description_ar': instance.descriptionAr,
-      'description_en': instance.descriptionEn,
+      'name': instance.name,
       'price': instance.price,
-      'status': instance.status,
-      'status_text': instance.statusText,
-      'created_at': instance.createdAt,
     };
 
 ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) => ReviewModel(

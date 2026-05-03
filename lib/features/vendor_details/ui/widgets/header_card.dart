@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/services/launcher/url_launcher.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
@@ -85,18 +87,23 @@ class HeaderCard extends StatelessWidget {
                     ],
                   ),
                   8.verticalSpace,
-                  Row(
-                    children: [
-                      Assets.svg.location.svg(height: 16.h),
-                      4.horizontalSpace,
-                      Text(
-                        state.vendorDetails?.address??"",
-                        style: AppTextTheme.bodyXSmall(context).copyWith(
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.textColor,
+                  OnTap(
+                    onTap: (){
+                      UrlLauncher.openGoogleMapWithDic(double.parse(state.vendorDetails?.lat??"0"), double.parse(state.vendorDetails?.long??"0"));
+                    },
+                    child: Row(
+                      children: [
+                        Assets.svg.location.svg(height: 16.h),
+                        4.horizontalSpace,
+                        Text(
+                          state.vendorDetails?.address??"",
+                          style: AppTextTheme.bodyXSmall(context).copyWith(
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.textColor,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   8.verticalSpace,
                   Text(

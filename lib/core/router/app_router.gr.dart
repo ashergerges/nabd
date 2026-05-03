@@ -13,10 +13,10 @@ part of 'app_router.dart';
 /// generated route for
 /// [BookScreen]
 class BookRoute extends PageRouteInfo<BookRouteArgs> {
-  BookRoute({Key? key, List<PageRouteInfo>? children})
+  BookRoute({Key? key, required int packageId, List<PageRouteInfo>? children})
     : super(
         BookRoute.name,
-        args: BookRouteArgs(key: key),
+        args: BookRouteArgs(key: key, packageId: packageId),
         initialChildren: children,
       );
 
@@ -25,33 +25,33 @@ class BookRoute extends PageRouteInfo<BookRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<BookRouteArgs>(
-        orElse: () => const BookRouteArgs(),
-      );
-      return BookScreen(key: args.key);
+      final args = data.argsAs<BookRouteArgs>();
+      return BookScreen(key: args.key, packageId: args.packageId);
     },
   );
 }
 
 class BookRouteArgs {
-  const BookRouteArgs({this.key});
+  const BookRouteArgs({this.key, required this.packageId});
 
   final Key? key;
 
+  final int packageId;
+
   @override
   String toString() {
-    return 'BookRouteArgs{key: $key}';
+    return 'BookRouteArgs{key: $key, packageId: $packageId}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! BookRouteArgs) return false;
-    return key == other.key;
+    return key == other.key && packageId == other.packageId;
   }
 
   @override
-  int get hashCode => key.hashCode;
+  int get hashCode => key.hashCode ^ packageId.hashCode;
 }
 
 /// generated route for

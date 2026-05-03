@@ -66,7 +66,7 @@ class VendorPackageDetailsBottomNavigationBar extends StatelessWidget {
                 ),
               ),
               Expanded(child: AppButton(text: LocaleKeys.bookNow.tr(),onTap: (){
-                BookRoute().push(context);
+                BookRoute(packageId:state.packageDetails?.id??0 ).push(context);
               },))
             ],
           ),

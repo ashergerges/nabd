@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as dir;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/services/launcher/url_launcher.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/translations.dart';
@@ -55,21 +57,26 @@ class VendorPackageDetailsScreen extends StatelessWidget {
                 children: [
                   Text(state.packageDetails?.title??"",style: AppTextTheme.headingSmall(context).copyWith(fontWeight: FontWeight.w600),),
                   8.verticalSpace,
-                  Row(
-                    children: [
-                      Assets.svg.location.svg(height: 24.h),
-                      4.horizontalSpace,
-                      Text(
-                        state.packageDetails?.address??"",
-                        style: AppTextTheme.bodySmall(context).copyWith(
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.textColor,
+                  OnTap(
+                    onTap: (){
+                      // UrlLauncher.openGoogleMapWithDic(double.parse(state.packageDetails?.lat??"0"), double.parse(state.packageDetails?.long??"0"));
+                    },
+                    child: Row(
+                      children: [
+                        Assets.svg.location.svg(height: 24.h),
+                        4.horizontalSpace,
+                        Text(
+                          state.packageDetails?.address??"",
+                          style: AppTextTheme.bodySmall(context).copyWith(
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.textColor,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   24.verticalSpace,
-                  LastBookingPeople(users: [],),
+                  LastBookingPeople(users: state.packageDetails?.bookedClients?.map((e)=>e.image??"").toList()??[],),
                   24.verticalSpace,
                   Wrap(
                     spacing: 8,
@@ -211,7 +218,7 @@ class PackageDetailsShimmer extends StatelessWidget {
 }
 
 class LastBookingPeople extends StatelessWidget {
-  LastBookingPeople({super.key, required this.users});
+  const LastBookingPeople({super.key, required this.users});
   final List<String>users;
 
   @override
@@ -256,7 +263,7 @@ class LastBookingPeople extends StatelessWidget {
 
         4.horizontalSpace,
 
-        Text(
+       if(remaining!=0) Text(
           "+$remaining ${LocaleKeys.book.tr()}",
           style: AppTextTheme.bodyXSmall(context)
               .copyWith(color: AppColors.primary),

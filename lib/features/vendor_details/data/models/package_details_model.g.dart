@@ -27,6 +27,9 @@ PackageDetailsModel _$PackageDetailsModelFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
       guestCount: (json['guest_count'] as num?)?.toInt(),
       avgRate: (json['avg_rate'] as num?)?.toDouble(),
+      bookedClients: (json['booked_clients'] as List<dynamic>?)
+          ?.map((e) => BookedClientModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$PackageDetailsModelToJson(
@@ -45,11 +48,26 @@ Map<String, dynamic> _$PackageDetailsModelToJson(
   'vendor_image': instance.vendorImage,
   'is_favorite': instance.isFavorite,
   'galleries': instance.galleries,
+  'booked_clients': instance.bookedClients,
   'bookings_count': instance.bookingsCount,
   'address': instance.address,
   'guest_count': instance.guestCount,
   'avg_rate': instance.avgRate,
 };
+
+BookedClientModel _$BookedClientModelFromJson(Map<String, dynamic> json) =>
+    BookedClientModel(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      image: json['image'] as String?,
+    );
+
+Map<String, dynamic> _$BookedClientModelToJson(BookedClientModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'image': instance.image,
+    };
 
 GalleryModel _$GalleryModelFromJson(Map<String, dynamic> json) => GalleryModel(
   id: (json['id'] as num?)?.toInt(),

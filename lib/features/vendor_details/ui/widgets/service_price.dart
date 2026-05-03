@@ -7,9 +7,10 @@ import 'package:nawy/gen/assets.gen.dart';
 
 class ServicePrice extends StatelessWidget {
   const ServicePrice({
-    super.key,
+    super.key, required this.price, required this.title,
   });
-
+final String price;
+final String title;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,11 +22,11 @@ class ServicePrice extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("500",style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.white,fontWeight: FontWeight.w700),),
+          Text(price,style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.white,fontWeight: FontWeight.w700),),
           2.verticalSpace,
           Assets.svg.riyal.svg(height: 24.h),
           2.verticalSpace,
-          Text("ساعة إضافية",style: AppTextTheme.bodyXSmall(context).copyWith(color: AppColors.white),),
+          Text(title,style: AppTextTheme.bodyXSmall(context).copyWith(color: AppColors.white),),
 
         ],
       ),

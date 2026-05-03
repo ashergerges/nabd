@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:nawy/features/vendor_details/data/models/package_details_model.dart';
 
 part 'vendor_details_model.g.dart';
 
@@ -59,6 +60,9 @@ class VendorDetailsModel {
   final List<GalleryModel>? gallery;
   final List<ReviewModel>? reviews;
 
+  final List<PackageDetailsModel>? packages;
+  final List<ServiceModel>? services;
+
   @JsonKey(name: 'avg_rating')
   final double? avgRating;
 
@@ -105,6 +109,8 @@ class VendorDetailsModel {
     this.isFavorite,
     this.notWorkingDays,
     this.createdAt,
+    this.services,
+    this.packages,
   });
 
   factory VendorDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -199,38 +205,18 @@ class ServiceModel {
 
   @JsonKey(name: 'name_ar')
   final String? nameAr;
-
   @JsonKey(name: 'name_en')
   final String? nameEn;
-
-  final String? image;
-
-  @JsonKey(name: 'description_ar')
-  final String? descriptionAr;
-
-  @JsonKey(name: 'description_en')
-  final String? descriptionEn;
-
+  @JsonKey(name: 'name')
+  final String? name;
   final String? price;
-  final int? status;
-
-  @JsonKey(name: 'status_text')
-  final String? statusText;
-
-  @JsonKey(name: 'created_at')
-  final String? createdAt;
 
   ServiceModel({
     this.id,
     this.nameAr,
     this.nameEn,
-    this.image,
-    this.descriptionAr,
-    this.descriptionEn,
+    this.name,
     this.price,
-    this.status,
-    this.statusText,
-    this.createdAt,
   });
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) =>

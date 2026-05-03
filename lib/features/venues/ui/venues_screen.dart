@@ -43,7 +43,7 @@ class VenuesScreen extends StatelessWidget {
                     });
 
                   },
-                  title: state.venuesList[index].nameAr??"",
+                  title: state.venuesList[index].title??"",
                   capacity: state.venuesList[index].guestCount??0,
                   location: state.venuesList[index].slug??"",
                   rating: state.venuesList[index].avgRating??0,

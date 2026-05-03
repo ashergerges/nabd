@@ -14,7 +14,8 @@ import 'package:nawy/features/book/ui/widgets/custom_stepper.dart';
 
 @RoutePage()
 class BookScreen extends StatelessWidget {
-   BookScreen({super.key});
+  final int packageId;
+   BookScreen({super.key, required this.packageId});
   final List<String> buttonTitle=['المتابعة','المتابعة إلى الدفع','تأكيد والدفع', ];
   final List<Widget> currentStep=[SelectedDateStep(),SummaryStep(),PaymentStep() ];
   @override

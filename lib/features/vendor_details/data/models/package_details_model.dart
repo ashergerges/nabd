@@ -33,7 +33,10 @@ class PackageDetailsModel {
   @JsonKey(name: 'is_favorite')
   final bool? isFavorite;
 
-  final List<GalleryModel>? galleries; // ✅ NEW
+  final List<GalleryModel>? galleries;
+  @JsonKey(name: 'booked_clients')
+
+  final List<BookedClientModel>? bookedClients;
 
   @JsonKey(name: 'bookings_count')
   final int? bookingsCount;
@@ -64,6 +67,7 @@ class PackageDetailsModel {
     this.address,
     this.guestCount,
     this.avgRate,
+    this.bookedClients,
   });
   PackageDetailsModel copyWith({
     int? id,
@@ -109,7 +113,23 @@ class PackageDetailsModel {
 
   Map<String, dynamic> toJson() => _$PackageDetailsModelToJson(this);
 }
+@JsonSerializable()
+class BookedClientModel {
+  final int? id;
+  final String? name;
+  final String? image;
 
+  BookedClientModel({
+    this.id,
+    this.name,
+    this.image,
+  });
+
+  factory BookedClientModel.fromJson(Map<String, dynamic> json) =>
+      _$BookedClientModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BookedClientModelToJson(this);
+}
 @JsonSerializable()
 class GalleryModel {
   final int? id;
