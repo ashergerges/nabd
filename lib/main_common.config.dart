@@ -29,6 +29,9 @@ import 'core/utils/helper/error_handler.dart' as _i785;
 import 'features/auth/data/repositories/interfaces/i_login_repository.dart'
     as _i377;
 import 'features/auth/data/repositories/remote/login_repository.dart' as _i286;
+import 'features/book/data/repositories/interfaces/i_book_repository.dart'
+    as _i448;
+import 'features/book/data/repositories/remote/book_repository.dart' as _i290;
 import 'features/categories/data/repositories/interfaces/i_categories_repository.dart'
     as _i443;
 import 'features/categories/data/repositories/remote/categories_repository.dart'
@@ -43,6 +46,10 @@ import 'features/common/data/repositories/remote/main_repository.dart' as _i210;
 import 'features/home/data/repositories/interfaces/i_home_repository.dart'
     as _i185;
 import 'features/home/data/repositories/remote/home_repository.dart' as _i975;
+import 'features/my_booking/data/repositories/interfaces/i_my_booking_repository.dart'
+    as _i370;
+import 'features/my_booking/data/repositories/remote/my_booking_repository.dart'
+    as _i851;
 import 'features/notifications/data/repositories/interfaces/i_notifications_repository.dart'
     as _i97;
 import 'features/notifications/data/repositories/remote/notifications_repository.dart'
@@ -125,11 +132,17 @@ _i174.GetIt $initGetIt(
     () =>
         _i279.CategoriesRepository(networkService: gh<_i969.NetworkService>()),
   );
+  gh.factory<_i448.IBookRepository>(
+    () => _i290.BookRepository(networkService: gh<_i969.NetworkService>()),
+  );
   gh.singleton<_i402.NotificationService>(
     () => _i402.NotificationService(
       notificationsRepository: gh<_i97.INotificationsRepository>(),
       localePreference: gh<_i865.ILocalPreference>(),
     ),
+  );
+  gh.factory<_i370.IMyBookingRepository>(
+    () => _i851.MyBookingRepository(networkService: gh<_i969.NetworkService>()),
   );
   gh.factory<_i185.IHomeRepository>(
     () => _i975.HomeRepository(networkService: gh<_i969.NetworkService>()),

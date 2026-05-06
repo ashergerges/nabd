@@ -13,12 +13,15 @@ part of 'app_router.dart';
 /// generated route for
 /// [BookScreen]
 class BookRoute extends PageRouteInfo<BookRouteArgs> {
-  BookRoute({Key? key, required int packageId, List<PageRouteInfo>? children})
-    : super(
-        BookRoute.name,
-        args: BookRouteArgs(key: key, packageId: packageId),
-        initialChildren: children,
-      );
+  BookRoute({
+    Key? key,
+    required BookScreenModel data,
+    List<PageRouteInfo>? children,
+  }) : super(
+         BookRoute.name,
+         args: BookRouteArgs(key: key, data: data),
+         initialChildren: children,
+       );
 
   static const String name = 'BookRoute';
 
@@ -26,48 +29,88 @@ class BookRoute extends PageRouteInfo<BookRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<BookRouteArgs>();
-      return BookScreen(key: args.key, packageId: args.packageId);
+      return BookScreen(key: args.key, data: args.data);
     },
   );
 }
 
 class BookRouteArgs {
-  const BookRouteArgs({this.key, required this.packageId});
+  const BookRouteArgs({this.key, required this.data});
 
   final Key? key;
 
-  final int packageId;
+  final BookScreenModel data;
 
   @override
   String toString() {
-    return 'BookRouteArgs{key: $key, packageId: $packageId}';
+    return 'BookRouteArgs{key: $key, data: $data}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! BookRouteArgs) return false;
-    return key == other.key && packageId == other.packageId;
+    return key == other.key && data == other.data;
   }
 
   @override
-  int get hashCode => key.hashCode ^ packageId.hashCode;
+  int get hashCode => key.hashCode ^ data.hashCode;
 }
 
 /// generated route for
 /// [BookingConfirmationScreen]
-class BookingConfirmationRoute extends PageRouteInfo<void> {
-  const BookingConfirmationRoute({List<PageRouteInfo>? children})
-    : super(BookingConfirmationRoute.name, initialChildren: children);
+class BookingConfirmationRoute
+    extends PageRouteInfo<BookingConfirmationRouteArgs> {
+  BookingConfirmationRoute({
+    Key? key,
+    BookConfirmationModel? bookConfirmation,
+    List<PageRouteInfo>? children,
+  }) : super(
+         BookingConfirmationRoute.name,
+         args: BookingConfirmationRouteArgs(
+           key: key,
+           bookConfirmation: bookConfirmation,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'BookingConfirmationRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const BookingConfirmationScreen();
+      final args = data.argsAs<BookingConfirmationRouteArgs>(
+        orElse: () => const BookingConfirmationRouteArgs(),
+      );
+      return BookingConfirmationScreen(
+        key: args.key,
+        bookConfirmation: args.bookConfirmation,
+      );
     },
   );
+}
+
+class BookingConfirmationRouteArgs {
+  const BookingConfirmationRouteArgs({this.key, this.bookConfirmation});
+
+  final Key? key;
+
+  final BookConfirmationModel? bookConfirmation;
+
+  @override
+  String toString() {
+    return 'BookingConfirmationRouteArgs{key: $key, bookConfirmation: $bookConfirmation}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! BookingConfirmationRouteArgs) return false;
+    return key == other.key && bookConfirmation == other.bookConfirmation;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ bookConfirmation.hashCode;
 }
 
 /// generated route for
@@ -672,16 +715,48 @@ class VerificationRouteArgs {
 
 /// generated route for
 /// [ViewBookingDetailsScreen]
-class ViewBookingDetailsRoute extends PageRouteInfo<void> {
-  const ViewBookingDetailsRoute({List<PageRouteInfo>? children})
-    : super(ViewBookingDetailsRoute.name, initialChildren: children);
+class ViewBookingDetailsRoute
+    extends PageRouteInfo<ViewBookingDetailsRouteArgs> {
+  ViewBookingDetailsRoute({
+    Key? key,
+    required int bookingId,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ViewBookingDetailsRoute.name,
+         args: ViewBookingDetailsRouteArgs(key: key, bookingId: bookingId),
+         initialChildren: children,
+       );
 
   static const String name = 'ViewBookingDetailsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ViewBookingDetailsScreen();
+      final args = data.argsAs<ViewBookingDetailsRouteArgs>();
+      return ViewBookingDetailsScreen(key: args.key, bookingId: args.bookingId);
     },
   );
+}
+
+class ViewBookingDetailsRouteArgs {
+  const ViewBookingDetailsRouteArgs({this.key, required this.bookingId});
+
+  final Key? key;
+
+  final int bookingId;
+
+  @override
+  String toString() {
+    return 'ViewBookingDetailsRouteArgs{key: $key, bookingId: $bookingId}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ViewBookingDetailsRouteArgs) return false;
+    return key == other.key && bookingId == other.bookingId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ bookingId.hashCode;
 }

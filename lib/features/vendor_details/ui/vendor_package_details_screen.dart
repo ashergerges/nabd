@@ -59,7 +59,7 @@ class VendorPackageDetailsScreen extends StatelessWidget {
                   8.verticalSpace,
                   OnTap(
                     onTap: (){
-                      // UrlLauncher.openGoogleMapWithDic(double.parse(state.packageDetails?.lat??"0"), double.parse(state.packageDetails?.long??"0"));
+                      UrlLauncher.openGoogleMapWithDic(double.parse(state.packageDetails?.lat??"0"), double.parse(state.packageDetails?.long??"0"));
                     },
                     child: Row(
                       children: [

@@ -22,5 +22,13 @@ class Endpoints {
   String get wishlistTypeUrl => r'api/app/user/wishlist';
   String get packageDetailsUrl => r'api/app/package/details';
 
+  String get timeSlotsUrl => r'api/app/booking/available-slots';
+  String get paymentMethodUrl => r'api/app/payment_types/all';
+  String get makeBookUrl => r'api/app/booking/make';
+
+  //my booking
+  String get myBookingUrl => r'api/app/booking/my-bookings';
+  String get bookingDetailsUrl => r'api/app/booking/details';
+
 
 }

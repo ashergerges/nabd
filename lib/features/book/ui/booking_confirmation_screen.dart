@@ -8,11 +8,12 @@ import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/book/data/model/book_confirmation_model.dart';
 import 'package:nawy/gen/assets.gen.dart';
 @RoutePage()
 class BookingConfirmationScreen extends StatelessWidget {
-  const BookingConfirmationScreen({super.key});
-
+  const BookingConfirmationScreen({super.key,  this.bookConfirmation});
+  final BookConfirmationModel? bookConfirmation;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,7 @@ class BookingConfirmationScreen extends StatelessWidget {
             ),
             40.verticalSpace,
             Text(
-              "رقم الحجز: #JN-12348",
+              "رقم الحجز: #${bookConfirmation?.code}",
               style: AppTextTheme.bodyLargeSemiBold(context),
             ),
           ],
@@ -55,7 +56,7 @@ class BookingConfirmationScreen extends StatelessWidget {
           children: [
             AppButton(
                 onTap: (){
-                  context.navigateTo(ViewBookingDetailsRoute());
+                  context.navigateTo(ViewBookingDetailsRoute(bookingId: bookConfirmation?.id??0));
                 },
                 text:"عرض تفاصيل الحجز"),
             12.verticalSpace,

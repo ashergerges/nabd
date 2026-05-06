@@ -185,6 +185,42 @@ class AppTimeFormat {
     }
     return "";
   }
+
+  static String nowFormatted({DateTime? date}) {
+
+    return DateFormat("yyyy-MM-dd", const Translations().localeEN).format(date??DateTime.now());
+  }
+  static DateTime parseDateTime(String date) {
+    return DateFormat("yyyy-MM-dd", "en").parse(date);
+  }
+  static String formatDateToArabic(String? dateString) {
+    if (dateString == null) return "التاريخ: غير محدد";
+
+    try {
+      final date = DateTime.parse(dateString); // Parse "2026-05-27"
+      final formatter = DateFormat('EEEE، d MMMM yyyy', 'ar'); // Arabic format
+      return "التاريخ: ${formatter.format(date)}";
+    } catch (e) {
+      return "التاريخ: غير صالح";
+    }
+  }
+
+  static String formatTime(String? time) {
+    if (time == null) return "الوقت: غير محدد";
+
+    // Convert "03:00 PM" to Arabic format
+    try {
+      final parsedTime = DateFormat('hh:mm a').parse(time);
+      final hour = parsedTime.hour;
+      final minute = parsedTime.minute.toString().padLeft(2, '0');
+      final period = hour >= 12 ? 'مساءً' : 'صباحاً';
+      final displayHour = hour > 12 ? hour - 12 : (hour == 0 ? 12 : hour);
+
+      return "الوقت: ${displayHour.toString().padLeft(2, '0')}:$minute $period";
+    } catch (e) {
+      return "الوقت: $time";
+    }
+  }
 }
 
 extension DateTimeLocalTime on DateTime {

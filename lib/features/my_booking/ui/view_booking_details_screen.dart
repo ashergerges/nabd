@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/app_button.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
@@ -9,18 +10,24 @@ import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/my_booking/cubit/my_booking_cubit.dart';
+import 'package:nawy/features/my_booking/ui/widgets/booking_details_shimmer.dart';
 
 import '../../../core/router/app_router.dart';
 import '../../../gen/assets.gen.dart';
 @RoutePage()
 class ViewBookingDetailsScreen extends StatelessWidget {
-  const ViewBookingDetailsScreen({super.key});
-
+  const ViewBookingDetailsScreen({super.key, required this.bookingId});
+  final int bookingId;
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+  create: (context) => MyBookingCubit()..bookDetails(bookId: bookingId),
+  child: BlocBuilder<MyBookingCubit, MyBookingState>(
+  builder: (context, state) {
     return Scaffold(
       appBar: CustomAppBar(title: "تفاصيل الحجز",),
-      body: SingleChildScrollView(
+      body: state.currState is Loading?BookingDetailsShimmer():SingleChildScrollView(
         padding: 16.padHorizontal,
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -175,5 +182,8 @@ class ViewBookingDetailsScreen extends StatelessWidget {
             },
             text:"العودة إلى الصفحة الرئيسية"),
       ),
-    );  }
+    );
+  },
+),
+);  }
 }

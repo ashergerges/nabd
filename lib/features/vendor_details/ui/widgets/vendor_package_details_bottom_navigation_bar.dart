@@ -7,7 +7,9 @@ import 'package:nawy/core/utils/common_widgets/app_button.dart';
 import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
+import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/book/data/model/book_screen_model.dart';
 import 'package:nawy/features/vendor_details/cubit/vendor_details_cubit.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
 
@@ -66,7 +68,8 @@ class VendorPackageDetailsBottomNavigationBar extends StatelessWidget {
                 ),
               ),
               Expanded(child: AppButton(text: LocaleKeys.bookNow.tr(),onTap: (){
-                BookRoute(packageId:state.packageDetails?.id??0 ).push(context);
+                BookRoute(data: BookScreenModel(packageId: state.packageDetails?.id??0,productId:state.packageDetails?.product?.id??0,
+                    packageName: state.packageDetails?.title??"", productName: state.packageDetails?.productName??"", avgCount: state.packageDetails?.guestCount??0, image: state.packageDetails?.image??AppStrings.kTestNetworkImage, price: double.parse(state.packageDetails?.priceAfter??"0"))).push(context);
               },))
             ],
           ),

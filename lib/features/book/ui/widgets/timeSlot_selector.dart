@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -79,6 +81,26 @@ class _TimeSlotSelectorState extends State<TimeSlotSelector> {
           ),
         );
       }).toList(),
+    );
+  }
+}
+class TimeSlotSelectorShimmer extends StatelessWidget {
+  const TimeSlotSelectorShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 12,
+      runSpacing: 12,
+      children: List.generate(8, (index) {
+        return ShimmerWidget.rectangular(
+          width: 100.w, // average width for time text
+          height: 45.h,
+          shapeBorder: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        );
+      }),
     );
   }
 }

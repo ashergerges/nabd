@@ -3,12 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
+import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
-import 'package:nawy/features/book/data/model/selectable_item_model.dart';
+import 'package:nawy/features/book/data/model/payment_method_model.dart';
 class SelectableListWidget extends StatefulWidget {
-  final List<SelectableItemModel> items;
+  final List<PaymentMethodModel> items;
   final int? initialSelected;
-  final Function(SelectableItemModel selectedItem) onSelected;
+  final Function(PaymentMethodModel selectedItem) onSelected;
 
   const SelectableListWidget({
     super.key,
@@ -64,7 +65,7 @@ class _SelectableListWidgetState extends State<SelectableListWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  item.name,
+                  item.name??"",
                   style: AppTextTheme.bodyLargeMediumWeight(context).copyWith(
                     color: isSelected
                         ? AppColors.white
@@ -72,7 +73,7 @@ class _SelectableListWidgetState extends State<SelectableListWidget> {
                   ),
                 ),
                 CustomNetworkImageCached(
-                  imageUrl:  item.image,
+                  imageUrl:  item.image??AppStrings.kTestNetworkImage,
                   height: 25.h,
                   width: 60.h,
                 ),

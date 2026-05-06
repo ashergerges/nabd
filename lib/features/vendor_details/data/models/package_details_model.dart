@@ -40,7 +40,10 @@ class PackageDetailsModel {
 
   @JsonKey(name: 'bookings_count')
   final int? bookingsCount;
+  final ProductModel? product;
 
+  final String? lat;
+  final String? long;
   final String? address;
 
   @JsonKey(name: 'guest_count')
@@ -68,6 +71,9 @@ class PackageDetailsModel {
     this.guestCount,
     this.avgRate,
     this.bookedClients,
+    this.lat,
+    this.long,
+    this.product,
   });
   PackageDetailsModel copyWith({
     int? id,
@@ -85,7 +91,10 @@ class PackageDetailsModel {
     List<GalleryModel>? galleries,
     int? bookingsCount,
     String? address,
+    String? long,
+    String? lat,
     int? guestCount,
+    ProductModel? product,
     double? avgRate,
   }) {
     return PackageDetailsModel(
@@ -104,8 +113,11 @@ class PackageDetailsModel {
       galleries: galleries ?? this.galleries,
       bookingsCount: bookingsCount ?? this.bookingsCount,
       address: address ?? this.address,
+      lat: lat ?? this.lat,
+      long: long ?? this.long,
       guestCount: guestCount ?? this.guestCount,
       avgRate: avgRate ?? this.avgRate,
+      product: product ?? this.product,
     );
   }
   factory PackageDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -144,4 +156,17 @@ class GalleryModel {
       _$GalleryModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$GalleryModelToJson(this);
+}
+@JsonSerializable()
+class ProductModel {
+  final int? id;
+
+  ProductModel({
+    this.id,
+  });
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductModelToJson(this);
 }

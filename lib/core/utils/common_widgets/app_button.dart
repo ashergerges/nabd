@@ -78,23 +78,26 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius ?? 30.r),
         ),
         child: isLoading
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (keepIcon) ...[
-                    if (iconIsPre && icon != null) ...[icon!, 10.horizontalSpace],
-                  ],
-                  Center(
-                    child: LoadingAnimationWidget.staggeredDotsWave(
-                      color: loadingColor ?? AppColors.white,
-                      size: 23.w,
+            ? SizedBox(
+          height: 30.h,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (keepIcon) ...[
+                      if (iconIsPre && icon != null) ...[icon!, 10.horizontalSpace],
+                    ],
+                    Center(
+                      child: LoadingAnimationWidget.staggeredDotsWave(
+                        color: loadingColor ?? AppColors.white,
+                        size: 23.w,
+                      ),
                     ),
-                  ),
-                  if (keepIcon) ...[
-                    if (!iconIsPre && icon != null) ...[10.horizontalSpace, icon!],
+                    if (keepIcon) ...[
+                      if (!iconIsPre && icon != null) ...[10.horizontalSpace, icon!],
+                    ],
                   ],
-                ],
-              )
+                ),
+            )
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'book_cubit.dart';
+part of 'my_booking_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,159 +16,109 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$BookState {
-  int get currentStep => throw _privateConstructorUsedError;
-  List<String> get availableSlots => throw _privateConstructorUsedError;
-  List<PaymentMethodModel> get paymentMethods =>
-      throw _privateConstructorUsedError;
-  BookingRequestModel? get bookRequest => throw _privateConstructorUsedError;
-  BookStateStatus get currState => throw _privateConstructorUsedError;
+mixin _$MyBookingState {
+  BookingDetailsModel? get bookDetails => throw _privateConstructorUsedError;
+  MyBookingStateStatus get currState => throw _privateConstructorUsedError;
 
-  /// Create a copy of BookState
+  /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BookStateCopyWith<BookState> get copyWith =>
+  $MyBookingStateCopyWith<MyBookingState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BookStateCopyWith<$Res> {
-  factory $BookStateCopyWith(BookState value, $Res Function(BookState) then) =
-      _$BookStateCopyWithImpl<$Res, BookState>;
+abstract class $MyBookingStateCopyWith<$Res> {
+  factory $MyBookingStateCopyWith(
+    MyBookingState value,
+    $Res Function(MyBookingState) then,
+  ) = _$MyBookingStateCopyWithImpl<$Res, MyBookingState>;
   @useResult
-  $Res call({
-    int currentStep,
-    List<String> availableSlots,
-    List<PaymentMethodModel> paymentMethods,
-    BookingRequestModel? bookRequest,
-    BookStateStatus currState,
-  });
+  $Res call({BookingDetailsModel? bookDetails, MyBookingStateStatus currState});
 
-  $BookStateStatusCopyWith<$Res> get currState;
+  $MyBookingStateStatusCopyWith<$Res> get currState;
 }
 
 /// @nodoc
-class _$BookStateCopyWithImpl<$Res, $Val extends BookState>
-    implements $BookStateCopyWith<$Res> {
-  _$BookStateCopyWithImpl(this._value, this._then);
+class _$MyBookingStateCopyWithImpl<$Res, $Val extends MyBookingState>
+    implements $MyBookingStateCopyWith<$Res> {
+  _$MyBookingStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BookState
+  /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? currentStep = null,
-    Object? availableSlots = null,
-    Object? paymentMethods = null,
-    Object? bookRequest = freezed,
-    Object? currState = null,
-  }) {
+  $Res call({Object? bookDetails = freezed, Object? currState = null}) {
     return _then(
       _value.copyWith(
-            currentStep: null == currentStep
-                ? _value.currentStep
-                : currentStep // ignore: cast_nullable_to_non_nullable
-                      as int,
-            availableSlots: null == availableSlots
-                ? _value.availableSlots
-                : availableSlots // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-            paymentMethods: null == paymentMethods
-                ? _value.paymentMethods
-                : paymentMethods // ignore: cast_nullable_to_non_nullable
-                      as List<PaymentMethodModel>,
-            bookRequest: freezed == bookRequest
-                ? _value.bookRequest
-                : bookRequest // ignore: cast_nullable_to_non_nullable
-                      as BookingRequestModel?,
+            bookDetails: freezed == bookDetails
+                ? _value.bookDetails
+                : bookDetails // ignore: cast_nullable_to_non_nullable
+                      as BookingDetailsModel?,
             currState: null == currState
                 ? _value.currState
                 : currState // ignore: cast_nullable_to_non_nullable
-                      as BookStateStatus,
+                      as MyBookingStateStatus,
           )
           as $Val,
     );
   }
 
-  /// Create a copy of BookState
+  /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $BookStateStatusCopyWith<$Res> get currState {
-    return $BookStateStatusCopyWith<$Res>(_value.currState, (value) {
+  $MyBookingStateStatusCopyWith<$Res> get currState {
+    return $MyBookingStateStatusCopyWith<$Res>(_value.currState, (value) {
       return _then(_value.copyWith(currState: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$BookStateImplCopyWith<$Res>
-    implements $BookStateCopyWith<$Res> {
-  factory _$$BookStateImplCopyWith(
-    _$BookStateImpl value,
-    $Res Function(_$BookStateImpl) then,
-  ) = __$$BookStateImplCopyWithImpl<$Res>;
+abstract class _$$MyBookingStateImplCopyWith<$Res>
+    implements $MyBookingStateCopyWith<$Res> {
+  factory _$$MyBookingStateImplCopyWith(
+    _$MyBookingStateImpl value,
+    $Res Function(_$MyBookingStateImpl) then,
+  ) = __$$MyBookingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    int currentStep,
-    List<String> availableSlots,
-    List<PaymentMethodModel> paymentMethods,
-    BookingRequestModel? bookRequest,
-    BookStateStatus currState,
-  });
+  $Res call({BookingDetailsModel? bookDetails, MyBookingStateStatus currState});
 
   @override
-  $BookStateStatusCopyWith<$Res> get currState;
+  $MyBookingStateStatusCopyWith<$Res> get currState;
 }
 
 /// @nodoc
-class __$$BookStateImplCopyWithImpl<$Res>
-    extends _$BookStateCopyWithImpl<$Res, _$BookStateImpl>
-    implements _$$BookStateImplCopyWith<$Res> {
-  __$$BookStateImplCopyWithImpl(
-    _$BookStateImpl _value,
-    $Res Function(_$BookStateImpl) _then,
+class __$$MyBookingStateImplCopyWithImpl<$Res>
+    extends _$MyBookingStateCopyWithImpl<$Res, _$MyBookingStateImpl>
+    implements _$$MyBookingStateImplCopyWith<$Res> {
+  __$$MyBookingStateImplCopyWithImpl(
+    _$MyBookingStateImpl _value,
+    $Res Function(_$MyBookingStateImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of BookState
+  /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? currentStep = null,
-    Object? availableSlots = null,
-    Object? paymentMethods = null,
-    Object? bookRequest = freezed,
-    Object? currState = null,
-  }) {
+  $Res call({Object? bookDetails = freezed, Object? currState = null}) {
     return _then(
-      _$BookStateImpl(
-        currentStep: null == currentStep
-            ? _value.currentStep
-            : currentStep // ignore: cast_nullable_to_non_nullable
-                  as int,
-        availableSlots: null == availableSlots
-            ? _value._availableSlots
-            : availableSlots // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
-        paymentMethods: null == paymentMethods
-            ? _value._paymentMethods
-            : paymentMethods // ignore: cast_nullable_to_non_nullable
-                  as List<PaymentMethodModel>,
-        bookRequest: freezed == bookRequest
-            ? _value.bookRequest
-            : bookRequest // ignore: cast_nullable_to_non_nullable
-                  as BookingRequestModel?,
+      _$MyBookingStateImpl(
+        bookDetails: freezed == bookDetails
+            ? _value.bookDetails
+            : bookDetails // ignore: cast_nullable_to_non_nullable
+                  as BookingDetailsModel?,
         currState: null == currState
             ? _value.currState
             : currState // ignore: cast_nullable_to_non_nullable
-                  as BookStateStatus,
+                  as MyBookingStateStatus,
       ),
     );
   }
@@ -176,118 +126,70 @@ class __$$BookStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BookStateImpl implements _BookState {
-  const _$BookStateImpl({
-    this.currentStep = 0,
-    final List<String> availableSlots = const [],
-    final List<PaymentMethodModel> paymentMethods = const [],
-    this.bookRequest,
-    this.currState = const BookStateStatus.initial(),
-  }) : _availableSlots = availableSlots,
-       _paymentMethods = paymentMethods;
+class _$MyBookingStateImpl implements _MyBookingState {
+  const _$MyBookingStateImpl({
+    this.bookDetails,
+    this.currState = const MyBookingStateStatus.initial(),
+  });
 
   @override
-  @JsonKey()
-  final int currentStep;
-  final List<String> _availableSlots;
+  final BookingDetailsModel? bookDetails;
   @override
   @JsonKey()
-  List<String> get availableSlots {
-    if (_availableSlots is EqualUnmodifiableListView) return _availableSlots;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_availableSlots);
-  }
-
-  final List<PaymentMethodModel> _paymentMethods;
-  @override
-  @JsonKey()
-  List<PaymentMethodModel> get paymentMethods {
-    if (_paymentMethods is EqualUnmodifiableListView) return _paymentMethods;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_paymentMethods);
-  }
-
-  @override
-  final BookingRequestModel? bookRequest;
-  @override
-  @JsonKey()
-  final BookStateStatus currState;
+  final MyBookingStateStatus currState;
 
   @override
   String toString() {
-    return 'BookState(currentStep: $currentStep, availableSlots: $availableSlots, paymentMethods: $paymentMethods, bookRequest: $bookRequest, currState: $currState)';
+    return 'MyBookingState(bookDetails: $bookDetails, currState: $currState)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BookStateImpl &&
-            (identical(other.currentStep, currentStep) ||
-                other.currentStep == currentStep) &&
-            const DeepCollectionEquality().equals(
-              other._availableSlots,
-              _availableSlots,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._paymentMethods,
-              _paymentMethods,
-            ) &&
-            (identical(other.bookRequest, bookRequest) ||
-                other.bookRequest == bookRequest) &&
+            other is _$MyBookingStateImpl &&
+            (identical(other.bookDetails, bookDetails) ||
+                other.bookDetails == bookDetails) &&
             (identical(other.currState, currState) ||
                 other.currState == currState));
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    currentStep,
-    const DeepCollectionEquality().hash(_availableSlots),
-    const DeepCollectionEquality().hash(_paymentMethods),
-    bookRequest,
-    currState,
-  );
+  int get hashCode => Object.hash(runtimeType, bookDetails, currState);
 
-  /// Create a copy of BookState
+  /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BookStateImplCopyWith<_$BookStateImpl> get copyWith =>
-      __$$BookStateImplCopyWithImpl<_$BookStateImpl>(this, _$identity);
+  _$$MyBookingStateImplCopyWith<_$MyBookingStateImpl> get copyWith =>
+      __$$MyBookingStateImplCopyWithImpl<_$MyBookingStateImpl>(
+        this,
+        _$identity,
+      );
 }
 
-abstract class _BookState implements BookState {
-  const factory _BookState({
-    final int currentStep,
-    final List<String> availableSlots,
-    final List<PaymentMethodModel> paymentMethods,
-    final BookingRequestModel? bookRequest,
-    final BookStateStatus currState,
-  }) = _$BookStateImpl;
+abstract class _MyBookingState implements MyBookingState {
+  const factory _MyBookingState({
+    final BookingDetailsModel? bookDetails,
+    final MyBookingStateStatus currState,
+  }) = _$MyBookingStateImpl;
 
   @override
-  int get currentStep;
+  BookingDetailsModel? get bookDetails;
   @override
-  List<String> get availableSlots;
-  @override
-  List<PaymentMethodModel> get paymentMethods;
-  @override
-  BookingRequestModel? get bookRequest;
-  @override
-  BookStateStatus get currState;
+  MyBookingStateStatus get currState;
 
-  /// Create a copy of BookState
+  /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BookStateImplCopyWith<_$BookStateImpl> get copyWith =>
+  _$$MyBookingStateImplCopyWith<_$MyBookingStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$BookStateStatus {
+mixin _$MyBookingStateStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -335,24 +237,27 @@ mixin _$BookStateStatus {
 }
 
 /// @nodoc
-abstract class $BookStateStatusCopyWith<$Res> {
-  factory $BookStateStatusCopyWith(
-    BookStateStatus value,
-    $Res Function(BookStateStatus) then,
-  ) = _$BookStateStatusCopyWithImpl<$Res, BookStateStatus>;
+abstract class $MyBookingStateStatusCopyWith<$Res> {
+  factory $MyBookingStateStatusCopyWith(
+    MyBookingStateStatus value,
+    $Res Function(MyBookingStateStatus) then,
+  ) = _$MyBookingStateStatusCopyWithImpl<$Res, MyBookingStateStatus>;
 }
 
 /// @nodoc
-class _$BookStateStatusCopyWithImpl<$Res, $Val extends BookStateStatus>
-    implements $BookStateStatusCopyWith<$Res> {
-  _$BookStateStatusCopyWithImpl(this._value, this._then);
+class _$MyBookingStateStatusCopyWithImpl<
+  $Res,
+  $Val extends MyBookingStateStatus
+>
+    implements $MyBookingStateStatusCopyWith<$Res> {
+  _$MyBookingStateStatusCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BookStateStatus
+  /// Create a copy of MyBookingStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -366,14 +271,14 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$BookStateStatusCopyWithImpl<$Res, _$InitialImpl>
+    extends _$MyBookingStateStatusCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
     _$InitialImpl _value,
     $Res Function(_$InitialImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of BookStateStatus
+  /// Create a copy of MyBookingStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -384,7 +289,7 @@ class _$InitialImpl implements Initial {
 
   @override
   String toString() {
-    return 'BookStateStatus.initial()';
+    return 'MyBookingStateStatus.initial()';
   }
 
   @override
@@ -471,7 +376,7 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements BookStateStatus {
+abstract class Initial implements MyBookingStateStatus {
   const factory Initial() = _$InitialImpl;
 }
 
@@ -485,14 +390,14 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$BookStateStatusCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$MyBookingStateStatusCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
     _$LoadingImpl _value,
     $Res Function(_$LoadingImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of BookStateStatus
+  /// Create a copy of MyBookingStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -503,7 +408,7 @@ class _$LoadingImpl implements Loading {
 
   @override
   String toString() {
-    return 'BookStateStatus.loading()';
+    return 'MyBookingStateStatus.loading()';
   }
 
   @override
@@ -590,7 +495,7 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements BookStateStatus {
+abstract class Loading implements MyBookingStateStatus {
   const factory Loading() = _$LoadingImpl;
 }
 
@@ -604,14 +509,14 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$BookStateStatusCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$MyBookingStateStatusCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
     _$ErrorImpl _value,
     $Res Function(_$ErrorImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of BookStateStatus
+  /// Create a copy of MyBookingStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -622,7 +527,7 @@ class _$ErrorImpl implements Error {
 
   @override
   String toString() {
-    return 'BookStateStatus.error()';
+    return 'MyBookingStateStatus.error()';
   }
 
   @override
@@ -709,7 +614,7 @@ class _$ErrorImpl implements Error {
   }
 }
 
-abstract class Error implements BookStateStatus {
+abstract class Error implements MyBookingStateStatus {
   const factory Error() = _$ErrorImpl;
 }
 
@@ -723,14 +628,14 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$BookStateStatusCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$MyBookingStateStatusCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
     _$SuccessImpl _value,
     $Res Function(_$SuccessImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of BookStateStatus
+  /// Create a copy of MyBookingStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -741,7 +646,7 @@ class _$SuccessImpl implements Success {
 
   @override
   String toString() {
-    return 'BookStateStatus.success()';
+    return 'MyBookingStateStatus.success()';
   }
 
   @override
@@ -828,6 +733,6 @@ class _$SuccessImpl implements Success {
   }
 }
 
-abstract class Success implements BookStateStatus {
+abstract class Success implements MyBookingStateStatus {
   const factory Success() = _$SuccessImpl;
 }

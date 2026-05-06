@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/utils/app_time_format.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
-import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/book/cubit/book_cubit.dart';
+import 'package:nawy/features/book/data/model/book_screen_model.dart';
 
 class SummaryStep extends StatelessWidget {
-  const SummaryStep({super.key});
+  const SummaryStep({super.key, required this.data});
+
+  final BookScreenModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -25,56 +30,60 @@ class SummaryStep extends StatelessWidget {
               border: Border.all(color: AppColors.primary100),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+            child: BlocBuilder<BookCubit, BookState>(
+              builder: (context, state) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "باقة الزفاف الملكي",
-                            style: AppTextTheme.bodyMediumSemiBold(context),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                data.packageName,
+                                style: AppTextTheme.bodyMediumSemiBold(context),
+                              ),
+                              4.verticalSpace,
+                              Text(
+                                data.productName,
+                                style: AppTextTheme.bodySmall(context),
+                              ),
+                            ],
                           ),
-                          4.verticalSpace,
-                          Text(
-                            "قاعة كريستال",
-                            style: AppTextTheme.bodySmall(context),
-                          ),
-                        ],
-                      ),
+                        ),
+                        CustomNetworkImageCached(
+                          height: 80.h,
+                          width: 80.h,
+                          imageUrl: data.image,
+                          radius: 20,
+                        ),
+                      ],
                     ),
-                    CustomNetworkImageCached(
-                      height: 80.h,
-                      width: 80.h,
-                      imageUrl: AppStrings.kTestNetworkImage,
-                      radius: 20,
+                    12.verticalSpace,
+                    Text(
+                      "يستوعب حتى ${data.avgCount} ضيف",
+                      style: AppTextTheme.bodySmall(
+                        context,
+                      ).copyWith(color: AppColors.neutral400),
+                    ),
+                    12.verticalSpace,
+                    Divider(color: AppColors.primary100),
+                    12.verticalSpace,
+                    Text(
+                      AppTimeFormat.formatDateToArabic(state.bookRequest?.date),
+                      style: AppTextTheme.bodySmallMediumWeight(context),
+                    ),
+                    8.verticalSpace,
+                    Text(
+                      AppTimeFormat.formatTime(state.bookRequest?.time),
+                      style: AppTextTheme.bodySmallMediumWeight(context),
                     ),
                   ],
-                ),
-                12.verticalSpace,
-                Text(
-                  "يستوعب حتى 300 ضيف",
-                  style: AppTextTheme.bodySmall(
-                    context,
-                  ).copyWith(color: AppColors.neutral400),
-                ),
-                12.verticalSpace,
-                Divider(color: AppColors.primary100),
-                12.verticalSpace,
-                Text(
-                  "التاريخ: الخميس، 20 فبراير 2026",
-                  style: AppTextTheme.bodySmallMediumWeight(context),
-                ),
-                8.verticalSpace,
-                Text(
-                  "الوقت: 09:00 صباحاً2026",
-                  style: AppTextTheme.bodySmallMediumWeight(context),
-                ),
-              ],
+                );
+              },
             ),
           ),
           24.verticalSpace,
@@ -96,7 +105,7 @@ class SummaryStep extends StatelessWidget {
                   children: [
                     Text("سعر الباقة", style: AppTextTheme.bodySmall(context)),
                     Text(
-                      "1,500 رس",
+                      "${data.price} رس",
                       style: AppTextTheme.bodySmallMediumWeight(context),
                     ),
                   ],
@@ -110,7 +119,7 @@ class SummaryStep extends StatelessWidget {
                       style: AppTextTheme.bodySmall(context),
                     ),
                     Text(
-                      "200 رس",
+                      "${(data.price * 0.15)} رس",
                       style: AppTextTheme.bodySmallMediumWeight(context),
                     ),
                   ],
@@ -129,7 +138,7 @@ class SummaryStep extends StatelessWidget {
                       ).copyWith(color: AppColors.primary),
                     ),
                     Text(
-                      "1700 رس",
+                      "${data.price + (data.price * 0.15)} رس",
                       style: AppTextTheme.bodySmallMediumWeight(
                         context,
                       ).copyWith(color: AppColors.primary),

@@ -3,19 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/translations.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+
 class DatePickerWidget extends StatefulWidget {
-  const DatePickerWidget({super.key});
+  final DateTime? initialDate;
+  final ValueChanged<DateTime?>? onDateChanged;
+
+  const DatePickerWidget({
+    super.key,
+    this.initialDate,
+    this.onDateChanged,
+  });
 
   @override
   State<DatePickerWidget> createState() => _DatePickerWidgetState();
 }
 
 class _DatePickerWidgetState extends State<DatePickerWidget> {
-  List<DateTime?> _selectedDates = [];
+  late List<DateTime?> _selectedDates;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedDates = widget.initialDate != null ? [widget.initialDate] : [];
+  }
 
   @override
   Widget build(BuildContext context) {
-    final isEnglish = context.isEnglish; // Change based on your locale
+    final isEnglish = context.isEnglish;
 
     return Container(
       decoration: BoxDecoration(
@@ -57,7 +71,6 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
             color: Colors.white,
             fontWeight: FontWeight.w600,
           ),
-
           selectableDayPredicate: (day) {
             final today = DateTime.now();
             final todayDate = DateTime(today.year, today.month, today.day);
@@ -69,6 +82,11 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           setState(() {
             _selectedDates = dates;
           });
+
+          // Call the callback with the first selected date (or null if empty)
+          if (widget.onDateChanged != null) {
+            widget.onDateChanged!(dates.isNotEmpty ? dates.first : null);
+          }
         },
       ),
     );

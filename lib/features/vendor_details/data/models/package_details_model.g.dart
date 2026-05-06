@@ -30,6 +30,11 @@ PackageDetailsModel _$PackageDetailsModelFromJson(Map<String, dynamic> json) =>
       bookedClients: (json['booked_clients'] as List<dynamic>?)
           ?.map((e) => BookedClientModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      lat: json['lat'] as String?,
+      long: json['long'] as String?,
+      product: json['product'] == null
+          ? null
+          : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PackageDetailsModelToJson(
@@ -50,6 +55,9 @@ Map<String, dynamic> _$PackageDetailsModelToJson(
   'galleries': instance.galleries,
   'booked_clients': instance.bookedClients,
   'bookings_count': instance.bookingsCount,
+  'product': instance.product,
+  'lat': instance.lat,
+  'long': instance.long,
   'address': instance.address,
   'guest_count': instance.guestCount,
   'avg_rate': instance.avgRate,
@@ -76,3 +84,9 @@ GalleryModel _$GalleryModelFromJson(Map<String, dynamic> json) => GalleryModel(
 
 Map<String, dynamic> _$GalleryModelToJson(GalleryModel instance) =>
     <String, dynamic>{'id': instance.id, 'image': instance.image};
+
+ProductModel _$ProductModelFromJson(Map<String, dynamic> json) =>
+    ProductModel(id: (json['id'] as num?)?.toInt());
+
+Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
+    <String, dynamic>{'id': instance.id};
