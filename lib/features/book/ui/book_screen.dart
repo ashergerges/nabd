@@ -53,7 +53,7 @@ class BookScreen extends StatelessWidget {
       bottomNavigationBar: Container(
         padding: 16.padAll,
         child: AppButton(
-          // isDisable: ,
+           isDisable: (state.currentStep==0&&state.bookRequest?.time==null)||(state.currentStep==2&&state.paymentMethods.isEmpty),
 
             isLoading: state.currState is Loading,
             onTap: (){

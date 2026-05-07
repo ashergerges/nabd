@@ -19,6 +19,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MyBookingState {
   BookingDetailsModel? get bookDetails => throw _privateConstructorUsedError;
   MyBookingStateStatus get currState => throw _privateConstructorUsedError;
+  List<BookingDetailsModel> get booksUpcoming =>
+      throw _privateConstructorUsedError;
+  List<BookingDetailsModel> get booksCancelled =>
+      throw _privateConstructorUsedError;
+  List<BookingDetailsModel> get booksCompleted =>
+      throw _privateConstructorUsedError;
+  int get booksCompletedPage => throw _privateConstructorUsedError;
+  int get booksCancelledPage => throw _privateConstructorUsedError;
+  int get booksUpcomingPage => throw _privateConstructorUsedError;
+  RefreshController get refreshControllerUpcoming =>
+      throw _privateConstructorUsedError;
+  RefreshController get refreshControllerCancelled =>
+      throw _privateConstructorUsedError;
+  RefreshController get refreshControllerCompleted =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +49,19 @@ abstract class $MyBookingStateCopyWith<$Res> {
     $Res Function(MyBookingState) then,
   ) = _$MyBookingStateCopyWithImpl<$Res, MyBookingState>;
   @useResult
-  $Res call({BookingDetailsModel? bookDetails, MyBookingStateStatus currState});
+  $Res call({
+    BookingDetailsModel? bookDetails,
+    MyBookingStateStatus currState,
+    List<BookingDetailsModel> booksUpcoming,
+    List<BookingDetailsModel> booksCancelled,
+    List<BookingDetailsModel> booksCompleted,
+    int booksCompletedPage,
+    int booksCancelledPage,
+    int booksUpcomingPage,
+    RefreshController refreshControllerUpcoming,
+    RefreshController refreshControllerCancelled,
+    RefreshController refreshControllerCompleted,
+  });
 
   $MyBookingStateStatusCopyWith<$Res> get currState;
 }
@@ -53,7 +80,19 @@ class _$MyBookingStateCopyWithImpl<$Res, $Val extends MyBookingState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? bookDetails = freezed, Object? currState = null}) {
+  $Res call({
+    Object? bookDetails = freezed,
+    Object? currState = null,
+    Object? booksUpcoming = null,
+    Object? booksCancelled = null,
+    Object? booksCompleted = null,
+    Object? booksCompletedPage = null,
+    Object? booksCancelledPage = null,
+    Object? booksUpcomingPage = null,
+    Object? refreshControllerUpcoming = null,
+    Object? refreshControllerCancelled = null,
+    Object? refreshControllerCompleted = null,
+  }) {
     return _then(
       _value.copyWith(
             bookDetails: freezed == bookDetails
@@ -64,6 +103,42 @@ class _$MyBookingStateCopyWithImpl<$Res, $Val extends MyBookingState>
                 ? _value.currState
                 : currState // ignore: cast_nullable_to_non_nullable
                       as MyBookingStateStatus,
+            booksUpcoming: null == booksUpcoming
+                ? _value.booksUpcoming
+                : booksUpcoming // ignore: cast_nullable_to_non_nullable
+                      as List<BookingDetailsModel>,
+            booksCancelled: null == booksCancelled
+                ? _value.booksCancelled
+                : booksCancelled // ignore: cast_nullable_to_non_nullable
+                      as List<BookingDetailsModel>,
+            booksCompleted: null == booksCompleted
+                ? _value.booksCompleted
+                : booksCompleted // ignore: cast_nullable_to_non_nullable
+                      as List<BookingDetailsModel>,
+            booksCompletedPage: null == booksCompletedPage
+                ? _value.booksCompletedPage
+                : booksCompletedPage // ignore: cast_nullable_to_non_nullable
+                      as int,
+            booksCancelledPage: null == booksCancelledPage
+                ? _value.booksCancelledPage
+                : booksCancelledPage // ignore: cast_nullable_to_non_nullable
+                      as int,
+            booksUpcomingPage: null == booksUpcomingPage
+                ? _value.booksUpcomingPage
+                : booksUpcomingPage // ignore: cast_nullable_to_non_nullable
+                      as int,
+            refreshControllerUpcoming: null == refreshControllerUpcoming
+                ? _value.refreshControllerUpcoming
+                : refreshControllerUpcoming // ignore: cast_nullable_to_non_nullable
+                      as RefreshController,
+            refreshControllerCancelled: null == refreshControllerCancelled
+                ? _value.refreshControllerCancelled
+                : refreshControllerCancelled // ignore: cast_nullable_to_non_nullable
+                      as RefreshController,
+            refreshControllerCompleted: null == refreshControllerCompleted
+                ? _value.refreshControllerCompleted
+                : refreshControllerCompleted // ignore: cast_nullable_to_non_nullable
+                      as RefreshController,
           )
           as $Val,
     );
@@ -89,7 +164,19 @@ abstract class _$$MyBookingStateImplCopyWith<$Res>
   ) = __$$MyBookingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BookingDetailsModel? bookDetails, MyBookingStateStatus currState});
+  $Res call({
+    BookingDetailsModel? bookDetails,
+    MyBookingStateStatus currState,
+    List<BookingDetailsModel> booksUpcoming,
+    List<BookingDetailsModel> booksCancelled,
+    List<BookingDetailsModel> booksCompleted,
+    int booksCompletedPage,
+    int booksCancelledPage,
+    int booksUpcomingPage,
+    RefreshController refreshControllerUpcoming,
+    RefreshController refreshControllerCancelled,
+    RefreshController refreshControllerCompleted,
+  });
 
   @override
   $MyBookingStateStatusCopyWith<$Res> get currState;
@@ -108,7 +195,19 @@ class __$$MyBookingStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? bookDetails = freezed, Object? currState = null}) {
+  $Res call({
+    Object? bookDetails = freezed,
+    Object? currState = null,
+    Object? booksUpcoming = null,
+    Object? booksCancelled = null,
+    Object? booksCompleted = null,
+    Object? booksCompletedPage = null,
+    Object? booksCancelledPage = null,
+    Object? booksUpcomingPage = null,
+    Object? refreshControllerUpcoming = null,
+    Object? refreshControllerCancelled = null,
+    Object? refreshControllerCompleted = null,
+  }) {
     return _then(
       _$MyBookingStateImpl(
         bookDetails: freezed == bookDetails
@@ -119,6 +218,42 @@ class __$$MyBookingStateImplCopyWithImpl<$Res>
             ? _value.currState
             : currState // ignore: cast_nullable_to_non_nullable
                   as MyBookingStateStatus,
+        booksUpcoming: null == booksUpcoming
+            ? _value._booksUpcoming
+            : booksUpcoming // ignore: cast_nullable_to_non_nullable
+                  as List<BookingDetailsModel>,
+        booksCancelled: null == booksCancelled
+            ? _value._booksCancelled
+            : booksCancelled // ignore: cast_nullable_to_non_nullable
+                  as List<BookingDetailsModel>,
+        booksCompleted: null == booksCompleted
+            ? _value._booksCompleted
+            : booksCompleted // ignore: cast_nullable_to_non_nullable
+                  as List<BookingDetailsModel>,
+        booksCompletedPage: null == booksCompletedPage
+            ? _value.booksCompletedPage
+            : booksCompletedPage // ignore: cast_nullable_to_non_nullable
+                  as int,
+        booksCancelledPage: null == booksCancelledPage
+            ? _value.booksCancelledPage
+            : booksCancelledPage // ignore: cast_nullable_to_non_nullable
+                  as int,
+        booksUpcomingPage: null == booksUpcomingPage
+            ? _value.booksUpcomingPage
+            : booksUpcomingPage // ignore: cast_nullable_to_non_nullable
+                  as int,
+        refreshControllerUpcoming: null == refreshControllerUpcoming
+            ? _value.refreshControllerUpcoming
+            : refreshControllerUpcoming // ignore: cast_nullable_to_non_nullable
+                  as RefreshController,
+        refreshControllerCancelled: null == refreshControllerCancelled
+            ? _value.refreshControllerCancelled
+            : refreshControllerCancelled // ignore: cast_nullable_to_non_nullable
+                  as RefreshController,
+        refreshControllerCompleted: null == refreshControllerCompleted
+            ? _value.refreshControllerCompleted
+            : refreshControllerCompleted // ignore: cast_nullable_to_non_nullable
+                  as RefreshController,
       ),
     );
   }
@@ -130,17 +265,70 @@ class _$MyBookingStateImpl implements _MyBookingState {
   const _$MyBookingStateImpl({
     this.bookDetails,
     this.currState = const MyBookingStateStatus.initial(),
-  });
+    final List<BookingDetailsModel> booksUpcoming = const [],
+    final List<BookingDetailsModel> booksCancelled = const [],
+    final List<BookingDetailsModel> booksCompleted = const [],
+    this.booksCompletedPage = 1,
+    this.booksCancelledPage = 1,
+    this.booksUpcomingPage = 1,
+    required this.refreshControllerUpcoming,
+    required this.refreshControllerCancelled,
+    required this.refreshControllerCompleted,
+  }) : _booksUpcoming = booksUpcoming,
+       _booksCancelled = booksCancelled,
+       _booksCompleted = booksCompleted;
 
   @override
   final BookingDetailsModel? bookDetails;
   @override
   @JsonKey()
   final MyBookingStateStatus currState;
+  final List<BookingDetailsModel> _booksUpcoming;
+  @override
+  @JsonKey()
+  List<BookingDetailsModel> get booksUpcoming {
+    if (_booksUpcoming is EqualUnmodifiableListView) return _booksUpcoming;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_booksUpcoming);
+  }
+
+  final List<BookingDetailsModel> _booksCancelled;
+  @override
+  @JsonKey()
+  List<BookingDetailsModel> get booksCancelled {
+    if (_booksCancelled is EqualUnmodifiableListView) return _booksCancelled;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_booksCancelled);
+  }
+
+  final List<BookingDetailsModel> _booksCompleted;
+  @override
+  @JsonKey()
+  List<BookingDetailsModel> get booksCompleted {
+    if (_booksCompleted is EqualUnmodifiableListView) return _booksCompleted;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_booksCompleted);
+  }
+
+  @override
+  @JsonKey()
+  final int booksCompletedPage;
+  @override
+  @JsonKey()
+  final int booksCancelledPage;
+  @override
+  @JsonKey()
+  final int booksUpcomingPage;
+  @override
+  final RefreshController refreshControllerUpcoming;
+  @override
+  final RefreshController refreshControllerCancelled;
+  @override
+  final RefreshController refreshControllerCompleted;
 
   @override
   String toString() {
-    return 'MyBookingState(bookDetails: $bookDetails, currState: $currState)';
+    return 'MyBookingState(bookDetails: $bookDetails, currState: $currState, booksUpcoming: $booksUpcoming, booksCancelled: $booksCancelled, booksCompleted: $booksCompleted, booksCompletedPage: $booksCompletedPage, booksCancelledPage: $booksCancelledPage, booksUpcomingPage: $booksUpcomingPage, refreshControllerUpcoming: $refreshControllerUpcoming, refreshControllerCancelled: $refreshControllerCancelled, refreshControllerCompleted: $refreshControllerCompleted)';
   }
 
   @override
@@ -151,11 +339,59 @@ class _$MyBookingStateImpl implements _MyBookingState {
             (identical(other.bookDetails, bookDetails) ||
                 other.bookDetails == bookDetails) &&
             (identical(other.currState, currState) ||
-                other.currState == currState));
+                other.currState == currState) &&
+            const DeepCollectionEquality().equals(
+              other._booksUpcoming,
+              _booksUpcoming,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._booksCancelled,
+              _booksCancelled,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._booksCompleted,
+              _booksCompleted,
+            ) &&
+            (identical(other.booksCompletedPage, booksCompletedPage) ||
+                other.booksCompletedPage == booksCompletedPage) &&
+            (identical(other.booksCancelledPage, booksCancelledPage) ||
+                other.booksCancelledPage == booksCancelledPage) &&
+            (identical(other.booksUpcomingPage, booksUpcomingPage) ||
+                other.booksUpcomingPage == booksUpcomingPage) &&
+            (identical(
+                  other.refreshControllerUpcoming,
+                  refreshControllerUpcoming,
+                ) ||
+                other.refreshControllerUpcoming == refreshControllerUpcoming) &&
+            (identical(
+                  other.refreshControllerCancelled,
+                  refreshControllerCancelled,
+                ) ||
+                other.refreshControllerCancelled ==
+                    refreshControllerCancelled) &&
+            (identical(
+                  other.refreshControllerCompleted,
+                  refreshControllerCompleted,
+                ) ||
+                other.refreshControllerCompleted ==
+                    refreshControllerCompleted));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bookDetails, currState);
+  int get hashCode => Object.hash(
+    runtimeType,
+    bookDetails,
+    currState,
+    const DeepCollectionEquality().hash(_booksUpcoming),
+    const DeepCollectionEquality().hash(_booksCancelled),
+    const DeepCollectionEquality().hash(_booksCompleted),
+    booksCompletedPage,
+    booksCancelledPage,
+    booksUpcomingPage,
+    refreshControllerUpcoming,
+    refreshControllerCancelled,
+    refreshControllerCompleted,
+  );
 
   /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
@@ -173,12 +409,39 @@ abstract class _MyBookingState implements MyBookingState {
   const factory _MyBookingState({
     final BookingDetailsModel? bookDetails,
     final MyBookingStateStatus currState,
+    final List<BookingDetailsModel> booksUpcoming,
+    final List<BookingDetailsModel> booksCancelled,
+    final List<BookingDetailsModel> booksCompleted,
+    final int booksCompletedPage,
+    final int booksCancelledPage,
+    final int booksUpcomingPage,
+    required final RefreshController refreshControllerUpcoming,
+    required final RefreshController refreshControllerCancelled,
+    required final RefreshController refreshControllerCompleted,
   }) = _$MyBookingStateImpl;
 
   @override
   BookingDetailsModel? get bookDetails;
   @override
   MyBookingStateStatus get currState;
+  @override
+  List<BookingDetailsModel> get booksUpcoming;
+  @override
+  List<BookingDetailsModel> get booksCancelled;
+  @override
+  List<BookingDetailsModel> get booksCompleted;
+  @override
+  int get booksCompletedPage;
+  @override
+  int get booksCancelledPage;
+  @override
+  int get booksUpcomingPage;
+  @override
+  RefreshController get refreshControllerUpcoming;
+  @override
+  RefreshController get refreshControllerCancelled;
+  @override
+  RefreshController get refreshControllerCompleted;
 
   /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.

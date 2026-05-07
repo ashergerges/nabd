@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/features/my_booking/cubit/my_booking_cubit.dart';
 import 'package:nawy/features/my_booking/ui/widgets/cancelled_tap.dart';
 import 'package:nawy/features/my_booking/ui/widgets/completed_tap.dart';
+import 'package:nawy/features/my_booking/ui/widgets/loading_my_booking.dart';
 import 'package:nawy/features/my_booking/ui/widgets/upcoming_tap.dart';
 import '../../../gen/assets.gen.dart';
 
@@ -15,7 +18,7 @@ class MyBookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Column(
+      body: Column(
         children: [
           CustomTopBar(child: Padding(
             padding: 10.padBottom,
@@ -27,19 +30,21 @@ class MyBookingScreen extends StatelessWidget {
               ],
             ),
           ),),
-          Expanded(child: MyBookingBody()),
+          Expanded(child: BlocProvider(
+              create: (context) => MyBookingCubit()..booksUpcoming(),
+              child: MyBookingBody())),
         ],
       ),
     );
   }
 }
+
 class MyBookingBody extends StatefulWidget {
   const MyBookingBody({super.key});
 
   @override
   State<MyBookingBody> createState() => _MyBookingBodyState();
 }
-
 class _MyBookingBodyState extends State<MyBookingBody>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
@@ -48,6 +53,38 @@ class _MyBookingBodyState extends State<MyBookingBody>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+
+    // Listen to tab changes
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        _onTabChanged(_tabController.index);
+      }
+    });
+  }
+
+  void _onTabChanged(int index) {
+    final cubit = context.read<MyBookingCubit>();
+
+    switch (index) {
+      case 0:
+      // Upcoming tab
+        if (cubit.state.booksUpcoming.isEmpty) {
+          cubit.booksUpcoming();
+        }
+        break;
+      case 1:
+      // Completed tab
+        if (cubit.state.booksCompleted.isEmpty) {
+          cubit.booksCompleted();
+        }
+        break;
+      case 2:
+      // Cancelled tab
+        if (cubit.state.booksCancelled.isEmpty) {
+          cubit.booksCancelled();
+        }
+        break;
+    }
   }
 
   @override
@@ -58,32 +95,38 @@ class _MyBookingBodyState extends State<MyBookingBody>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TabBar(
-          controller: _tabController,
-          labelStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.primary,fontWeight: FontWeight.w700),
-          unselectedLabelStyle: AppTextTheme.bodyMedium(context),
-          indicatorColor:  AppColors.primary,
-          indicatorWeight: 3,
-          dividerColor: AppColors.primary100,
-          labelPadding: 0.padHorizontal,
-          tabs:  [
-            Tab(text:"قريباً",),
-            Tab(text:"مكتمل",),
-            Tab(text: "تم الإلغاء",),
-
-
+    return BlocBuilder<MyBookingCubit, MyBookingState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            TabBar(
+              controller: _tabController,
+              labelStyle: AppTextTheme.bodyMedium(context).copyWith(
+                  color: AppColors.primary, fontWeight: FontWeight.w700),
+              unselectedLabelStyle: AppTextTheme.bodyMedium(context),
+              indicatorColor: AppColors.primary,
+              indicatorWeight: 3,
+              dividerColor: AppColors.primary100,
+              labelPadding: 0.padHorizontal,
+              tabs: [
+                Tab(text: "قريباً"),
+                Tab(text: "مكتمل"),
+                Tab(text: "تم الإلغاء"),
+              ],
+            ),
+            Expanded(
+              child: state.currState is Loading?LoadingMyBooking():TabBarView(
+                controller: _tabController,
+                children: [
+                  UpcomingTap(booksUpcoming: state.booksUpcoming),
+                  CompletedTap(booksCompleted: state.booksCompleted),
+                  CancelledTap(booksCancelled: state.booksCancelled),
+                ],
+              ),
+            ),
           ],
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: [ UpcomingTap(),CompletedTap(), CancelledTap(),],
-          ),
-        ),
-      ],
-
+        );
+      },
     );
   }
 }

@@ -3,9 +3,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/services/launcher/url_launcher.dart';
 import 'package:nawy/core/utils/common_widgets/app_button.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
@@ -61,9 +63,9 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   16.verticalSpace,
-                  Text("تم الدفع بتاريخ: ١٢ فبراير ٢٠٢٦ - الساعة ٩:٤٢ صباحً",style: AppTextTheme.bodySmallMediumWeight(context),),
+                  Text("تم الدفع بتاريخ:${state.bookDetails?.paidOn}",style: AppTextTheme.bodySmallMediumWeight(context),),
                   8.verticalSpace,
-                  Text("رقم الحجز: #JN-12348",style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral400),),
+                  Text("رقم الحجز: #${state.bookDetails?.code}",style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral400),),
                   8.verticalSpace,
 
                 ],
@@ -72,7 +74,7 @@ class ViewBookingDetailsScreen extends StatelessWidget {
             24.verticalSpace,
             Row(
               children: [
-                Expanded(child: CustomNetworkImageCached(radius: 12,imageUrl: AppStrings.kTestNetworkImage,height: 120.h,)),
+                Expanded(child: CustomNetworkImageCached(radius: 12,imageUrl: state.bookDetails?.package?.image??AppStrings.kTestNetworkImage,height: 120.h,)),
                 16.horizontalSpace,
                 Expanded(
                   flex: 2,
@@ -80,17 +82,17 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "باقة الزفاف الملكي",
+                        state.bookDetails?.package?.name??"",
                         style: AppTextTheme.bodyMediumSemiBold(context),
                       ),
                       8.verticalSpace,
                       Text(
-                        "قاعة كريستال",
+                        state.bookDetails?.product?.name??"",
                         style: AppTextTheme.bodySmall(context),
                       ),
                       6.verticalSpace,
                       Text(
-                        "يستوعب حتى 300 ضيف",
+                        "يستوعب حتى ${state.bookDetails?.product?.guestCount} ضيف",
                         style: AppTextTheme.bodySmall(
                           context,
                         ).copyWith(color: AppColors.neutral400),
@@ -113,38 +115,48 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                 Assets.svg.dateTime.svg(height: 24.h),
                 2.horizontalSpace,
                 Text(
-                  "الخميس، 20 فبراير 2026 - الساعة 9:00 صباحاً",
+                  "${state.bookDetails?.date} - ${state.bookDetails?.time}",
                   style: AppTextTheme.bodySmall(context)
                 ),
               ],
             ),
             8.verticalSpace,
-            Row(
-              children: [
-                Assets.svg.location.svg(height: 24.h),
-                2.horizontalSpace,
-                Text(
-                  "الرياض، الملقا",
-                  style: AppTextTheme.bodySmall(context).copyWith(
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColors.textColor,
+            OnTap(
+              onTap: (){
+                UrlLauncher.openGoogleMapWithDic(double.parse(state.bookDetails?.product?.lat??"0"), double.parse(state.bookDetails?.product?.long??"0"));
+              },
+              child: Row(
+                children: [
+                  Assets.svg.location.svg(height: 24.h),
+                  2.horizontalSpace,
+                  Text(
+                    state.bookDetails?.product?.address??"",
+                    style: AppTextTheme.bodySmall(context).copyWith(
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColors.textColor,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             8.verticalSpace,
-            Row(
-              children: [
-                Assets.svg.phone.svg(height: 24.h),
-                2.horizontalSpace,
-                Text(
-                  "اتصل بالمكان",
-                  style: AppTextTheme.bodySmall(context).copyWith(
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColors.textColor,
+            OnTap(
+              onTap: (){
+                UrlLauncher.makePhoneCall(state.bookDetails?.product?.phone??"");
+              },
+              child: Row(
+                children: [
+                  Assets.svg.phone.svg(height: 24.h),
+                  2.horizontalSpace,
+                  Text(
+                    "اتصل بالمكان",
+                    style: AppTextTheme.bodySmall(context).copyWith(
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColors.textColor,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             12.verticalSpace,
             Divider(
@@ -154,13 +166,15 @@ class ViewBookingDetailsScreen extends StatelessWidget {
             24.verticalSpace,
             Text("الخدمات المشمولة",style: AppTextTheme.bodyLargeSemiBold(context),),
             12.verticalSpace,
-            Text("✓ خدمات الطعام",style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral400),),
-            6.verticalSpace,
-            Text("✓ دي جي",style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral400),),
-            6.verticalSpace,
-            Text("✓ ديكور",style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral400),),
-            6.verticalSpace,
-            Text("✓ التصوير الفوتوغرافي",style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral400),),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: state.bookDetails?.package?.services?.length??0,
+              itemBuilder: (BuildContext c, int index) {
+                return Text("✓ ${state.bookDetails?.package?.services?[index].name}",style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral400),);
+              },
+              separatorBuilder: (BuildContext c, int i) => 6.verticalSpace,
+            ),
             12.verticalSpace,
             Divider(
               color: AppColors.neutral50,

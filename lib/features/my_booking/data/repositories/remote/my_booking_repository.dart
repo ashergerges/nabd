@@ -34,4 +34,39 @@ class MyBookingRepository implements IMyBookingRepository {
       BookingDetailsModel.fromJson(response.asValue?.value.data['data']['booking']),
     );
   }
+  @override
+  Future<Result<String>> sendRate({ required int bookId,required int score, String? comment,} ) async {
+    var response = await networkService.postAsync(
+      url: AppStrings.urls.reviewAddUrl,
+      body: {
+        "booking_id":bookId,
+        "rating":score,
+        "comment":comment,
+      }
+    );
+    if (response.isError) return Result.error(response.asError!.error);
+
+    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['message']}");
+    return Result.value(response.asValue?.value.data['message']??"",
+    );
+  }
+
+  @override
+  Future<Result<List<BookingDetailsModel>>> myBook({required int status,required int page}) async {
+    var response = await networkService.getAsync(
+      url: AppStrings.urls.myBookingUrl,
+      queryParameters: {
+        "status":status,
+        "page":page,
+        "paginate":1,
+      }
+    );
+    if (response.isError) return Result.error(response.asError!.error);
+
+    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['data']}");
+    List<BookingDetailsModel> myBooks = List<BookingDetailsModel>.from(
+        response.asValue?.value.data['data']['bookings'].map((x) => BookingDetailsModel.fromJson(x)));
+
+    return Result.value(myBooks    );
+  }
 }

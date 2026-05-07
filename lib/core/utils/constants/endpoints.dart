@@ -29,6 +29,7 @@ class Endpoints {
   //my booking
   String get myBookingUrl => r'api/app/booking/my-bookings';
   String get bookingDetailsUrl => r'api/app/booking/details';
+  String get reviewAddUrl => r'api/app/review/add';
 
 
 }

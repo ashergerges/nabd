@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/app_button.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
+import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -15,7 +16,7 @@ class MyBookingCard extends StatelessWidget {
   final String packageName;
   final String date;
   final String imageUrl;
-  final int price;
+  final num price;
   final bool showRateButton;
   final VoidCallback? onTap;
   final VoidCallback? onTapRate;
@@ -133,6 +134,99 @@ class MyBookingCard extends StatelessWidget {
                 border: Border.all(color: AppColors.primary100),
               ),
             ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+class MyBookingCardShimmer extends StatelessWidget {
+  const MyBookingCardShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.backgroundColor,
+        border: Border.all(color: AppColors.primary100),
+        borderRadius: BorderRadius.circular(16.r),
+      ),
+      padding: 12.padVertical + 16.padHorizontal,
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // 🔥 Image
+            Expanded(
+              child: ShimmerWidget.rectangular(
+                width: double.infinity,
+                height: 120.h,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+              ),
+            ),
+
+            16.horizontalSpace,
+
+            // 🔥 Content
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Title
+                  ShimmerWidget.rectangular(
+                    width: 140.w,
+                    height: 14.h,
+                  ),
+
+                  4.verticalSpace,
+
+                  // Subtitle
+                  ShimmerWidget.rectangular(
+                    width: 100.w,
+                    height: 12.h,
+                  ),
+
+                  12.verticalSpace,
+
+                  const Divider(
+                    color: AppColors.primary100,
+                    thickness: 0.8,
+                  ),
+
+                  8.verticalSpace,
+
+                  // Date Row
+                  Row(
+                    children: [
+                      ShimmerWidget.circular(
+                        width: 16.w,
+                        height: 16.w,
+                      ),
+
+                      4.horizontalSpace,
+
+                      Expanded(
+                        child: ShimmerWidget.rectangular(
+                          width: double.infinity,
+                          height: 12.h,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  12.verticalSpace,
+
+                  // Price
+                  ShimmerWidget.rectangular(
+                    width: 90.w,
+                    height: 16.h,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

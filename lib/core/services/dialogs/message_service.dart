@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nawy/core/router/app_router.dart';
+import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/custom_toast/top_snack_bar.dart';
 import 'package:nawy/main_common.dart';
 
@@ -84,4 +85,43 @@ class MessageService {
     }
     return color;
   }
+  static void  showNewCustomDialog(BuildContext context, { required Widget child}) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.black.withValues(alpha: 0.5),
+      transitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (_, _, _) {
+        return Material(
+          color: Colors.transparent,
+          child: Center(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(12.r)),
+              child:child,
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (_, anim, _, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+        } else {
+          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
+    );
+  }
+
 }
