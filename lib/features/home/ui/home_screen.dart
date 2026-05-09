@@ -39,12 +39,7 @@ class HomeScreen extends StatelessWidget {
                   Assets.svg.logoName.svg(height: 30.h),
                   Row(
                     children: [
-                      OnTap(
-                        onTap: () {
-                          CreateInvitationRoute().push(context);
-                        },
-                        child: Assets.svg.notification.svg(height: 24.h),
-                      ),
+                      Assets.svg.notification.svg(height: 24.h),
                       24.horizontalSpace,
                       Builder(
                         builder: (context) {

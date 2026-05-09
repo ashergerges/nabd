@@ -34,6 +34,9 @@ mixin _$MyBookingState {
       throw _privateConstructorUsedError;
   RefreshController get refreshControllerCompleted =>
       throw _privateConstructorUsedError;
+  bool get isShowSearch => throw _privateConstructorUsedError;
+  int get currentStatus => throw _privateConstructorUsedError;
+  String? get searchTerm => throw _privateConstructorUsedError;
 
   /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.
@@ -61,6 +64,9 @@ abstract class $MyBookingStateCopyWith<$Res> {
     RefreshController refreshControllerUpcoming,
     RefreshController refreshControllerCancelled,
     RefreshController refreshControllerCompleted,
+    bool isShowSearch,
+    int currentStatus,
+    String? searchTerm,
   });
 
   $MyBookingStateStatusCopyWith<$Res> get currState;
@@ -92,6 +98,9 @@ class _$MyBookingStateCopyWithImpl<$Res, $Val extends MyBookingState>
     Object? refreshControllerUpcoming = null,
     Object? refreshControllerCancelled = null,
     Object? refreshControllerCompleted = null,
+    Object? isShowSearch = null,
+    Object? currentStatus = null,
+    Object? searchTerm = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -139,6 +148,18 @@ class _$MyBookingStateCopyWithImpl<$Res, $Val extends MyBookingState>
                 ? _value.refreshControllerCompleted
                 : refreshControllerCompleted // ignore: cast_nullable_to_non_nullable
                       as RefreshController,
+            isShowSearch: null == isShowSearch
+                ? _value.isShowSearch
+                : isShowSearch // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            currentStatus: null == currentStatus
+                ? _value.currentStatus
+                : currentStatus // ignore: cast_nullable_to_non_nullable
+                      as int,
+            searchTerm: freezed == searchTerm
+                ? _value.searchTerm
+                : searchTerm // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -176,6 +197,9 @@ abstract class _$$MyBookingStateImplCopyWith<$Res>
     RefreshController refreshControllerUpcoming,
     RefreshController refreshControllerCancelled,
     RefreshController refreshControllerCompleted,
+    bool isShowSearch,
+    int currentStatus,
+    String? searchTerm,
   });
 
   @override
@@ -207,6 +231,9 @@ class __$$MyBookingStateImplCopyWithImpl<$Res>
     Object? refreshControllerUpcoming = null,
     Object? refreshControllerCancelled = null,
     Object? refreshControllerCompleted = null,
+    Object? isShowSearch = null,
+    Object? currentStatus = null,
+    Object? searchTerm = freezed,
   }) {
     return _then(
       _$MyBookingStateImpl(
@@ -254,6 +281,18 @@ class __$$MyBookingStateImplCopyWithImpl<$Res>
             ? _value.refreshControllerCompleted
             : refreshControllerCompleted // ignore: cast_nullable_to_non_nullable
                   as RefreshController,
+        isShowSearch: null == isShowSearch
+            ? _value.isShowSearch
+            : isShowSearch // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        currentStatus: null == currentStatus
+            ? _value.currentStatus
+            : currentStatus // ignore: cast_nullable_to_non_nullable
+                  as int,
+        searchTerm: freezed == searchTerm
+            ? _value.searchTerm
+            : searchTerm // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }
@@ -274,6 +313,9 @@ class _$MyBookingStateImpl implements _MyBookingState {
     required this.refreshControllerUpcoming,
     required this.refreshControllerCancelled,
     required this.refreshControllerCompleted,
+    this.isShowSearch = false,
+    this.currentStatus = 2,
+    this.searchTerm,
   }) : _booksUpcoming = booksUpcoming,
        _booksCancelled = booksCancelled,
        _booksCompleted = booksCompleted;
@@ -325,10 +367,18 @@ class _$MyBookingStateImpl implements _MyBookingState {
   final RefreshController refreshControllerCancelled;
   @override
   final RefreshController refreshControllerCompleted;
+  @override
+  @JsonKey()
+  final bool isShowSearch;
+  @override
+  @JsonKey()
+  final int currentStatus;
+  @override
+  final String? searchTerm;
 
   @override
   String toString() {
-    return 'MyBookingState(bookDetails: $bookDetails, currState: $currState, booksUpcoming: $booksUpcoming, booksCancelled: $booksCancelled, booksCompleted: $booksCompleted, booksCompletedPage: $booksCompletedPage, booksCancelledPage: $booksCancelledPage, booksUpcomingPage: $booksUpcomingPage, refreshControllerUpcoming: $refreshControllerUpcoming, refreshControllerCancelled: $refreshControllerCancelled, refreshControllerCompleted: $refreshControllerCompleted)';
+    return 'MyBookingState(bookDetails: $bookDetails, currState: $currState, booksUpcoming: $booksUpcoming, booksCancelled: $booksCancelled, booksCompleted: $booksCompleted, booksCompletedPage: $booksCompletedPage, booksCancelledPage: $booksCancelledPage, booksUpcomingPage: $booksUpcomingPage, refreshControllerUpcoming: $refreshControllerUpcoming, refreshControllerCancelled: $refreshControllerCancelled, refreshControllerCompleted: $refreshControllerCompleted, isShowSearch: $isShowSearch, currentStatus: $currentStatus, searchTerm: $searchTerm)';
   }
 
   @override
@@ -374,7 +424,13 @@ class _$MyBookingStateImpl implements _MyBookingState {
                   refreshControllerCompleted,
                 ) ||
                 other.refreshControllerCompleted ==
-                    refreshControllerCompleted));
+                    refreshControllerCompleted) &&
+            (identical(other.isShowSearch, isShowSearch) ||
+                other.isShowSearch == isShowSearch) &&
+            (identical(other.currentStatus, currentStatus) ||
+                other.currentStatus == currentStatus) &&
+            (identical(other.searchTerm, searchTerm) ||
+                other.searchTerm == searchTerm));
   }
 
   @override
@@ -391,6 +447,9 @@ class _$MyBookingStateImpl implements _MyBookingState {
     refreshControllerUpcoming,
     refreshControllerCancelled,
     refreshControllerCompleted,
+    isShowSearch,
+    currentStatus,
+    searchTerm,
   );
 
   /// Create a copy of MyBookingState
@@ -418,6 +477,9 @@ abstract class _MyBookingState implements MyBookingState {
     required final RefreshController refreshControllerUpcoming,
     required final RefreshController refreshControllerCancelled,
     required final RefreshController refreshControllerCompleted,
+    final bool isShowSearch,
+    final int currentStatus,
+    final String? searchTerm,
   }) = _$MyBookingStateImpl;
 
   @override
@@ -442,6 +504,12 @@ abstract class _MyBookingState implements MyBookingState {
   RefreshController get refreshControllerCancelled;
   @override
   RefreshController get refreshControllerCompleted;
+  @override
+  bool get isShowSearch;
+  @override
+  int get currentStatus;
+  @override
+  String? get searchTerm;
 
   /// Create a copy of MyBookingState
   /// with the given fields replaced by the non-null parameter values.

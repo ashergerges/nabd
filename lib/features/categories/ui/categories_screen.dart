@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/router/app_router.dart';
+import 'package:nawy/core/utils/common_widgets/app_text_field.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
@@ -20,49 +21,85 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          CustomTopBar(
-            child: Padding(
-              padding: 10.padBottom,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Assets.svg.logoName.svg(height: 30.h),
-                  Assets.svg.search.svg(height: 24.h),
-                ],
+    return  BlocProvider(
+      create: (context) => CategoriesCubit()..categories(),
+      child: Scaffold(
+        body: Column(
+          children: [
+            CustomTopBar(
+              child: Padding(
+                padding: 10.padBottom,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Assets.svg.logoName.svg(height: 30.h),
+                    Builder(
+                        builder: (context) {
+                          return OnTap(
+                              onTap: (){
+                                context.read<CategoriesCubit>().setShowedSearch(true);
+                              },
+                              child: Assets.svg.search.svg(height: 24.h));
+                        }
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
 
-          Expanded(
-            child: BlocProvider(
-              create: (context) => CategoriesCubit()..categories(),
+            Expanded(
               child: BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {
                   if (state.currState is Loading) {
                     return ServiceCategoryGridShimmer();
                   }
-                  return ServiceCategoryGridEnhanced(
-                    categories: state.categoriesList
-                        .map(
-                          (e) => ServiceCategory(
-                            title: e.nameAr ?? "",
-                            imagePath: e.image ?? "",
-                            id: e.id ?? 0,
-                          ),
-                        )
-                        .toList(),
-                    onCategoryTap: (category) {
-                      VenuesRoute(category: category).push(context);
-                    },
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if(state.isShowSearch)...[
+                        24.verticalSpace,
+                        Padding(
+                          padding:16.padHorizontal,
+                          child: AppTextField(label: "ابحث",
+                            onChange: (value){
+                              context.read<CategoriesCubit>().setSearchTerm(value);
+                            },
+                            suffixItem: OnTap(
+                                onTap: (){
+                                  context.read<CategoriesCubit>().setShowedSearch(false);
+                                  context.read<CategoriesCubit>().setSearchTerm(null);
+                                },
+                                child: Padding(
+                                  padding: 12.padTop,
+                                  child: Text("الغاء",style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),),
+                                )),
+                            imagePre: Assets.svg.search.path,radius: 12,),
+                        ),
+                      ],
+                      
+                      Expanded(
+                        child: ServiceCategoryGridEnhanced(
+                          categories: state.categoriesList
+                              .map(
+                                (e) => ServiceCategory(
+                                  title: e.nameAr ?? "",
+                                  imagePath: e.image ?? "",
+                                  id: e.id ?? 0,
+                                ),
+                              )
+                              .toList(),
+                          onCategoryTap: (category) {
+                            VenuesRoute(category: category).push(context);
+                          },
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

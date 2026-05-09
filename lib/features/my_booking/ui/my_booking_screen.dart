@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/utils/common_widgets/app_text_field.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -18,22 +20,31 @@ class MyBookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          CustomTopBar(child: Padding(
-            padding: 10.padBottom,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Assets.svg.logoName.svg(height: 30.h),
-                Assets.svg.search.svg(height: 24.h)
-              ],
-            ),
-          ),),
-          Expanded(child: BlocProvider(
-              create: (context) => MyBookingCubit()..booksUpcoming(),
-              child: MyBookingBody())),
-        ],
+      body: BlocProvider(
+        create: (context) => MyBookingCubit()..booksUpcoming(),
+        child: Column(
+          children: [
+            CustomTopBar(child: Padding(
+              padding: 10.padBottom,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Assets.svg.logoName.svg(height: 30.h),
+                  Builder(
+                      builder: (context) {
+                        return OnTap(
+                            onTap: (){
+                              context.read<MyBookingCubit>().setShowedSearch(true);
+                            },
+                            child: Assets.svg.search.svg(height: 24.h));
+                      }
+                  ),
+                ],
+              ),
+            ),),
+            Expanded(child: MyBookingBody()),
+          ],
+        ),
       ),
     );
   }
@@ -99,6 +110,27 @@ class _MyBookingBodyState extends State<MyBookingBody>
       builder: (context, state) {
         return Column(
           children: [
+            if(state.isShowSearch)...[
+              24.verticalSpace,
+              Padding(
+                padding:16.padHorizontal,
+                child: AppTextField(label: "ابحث",
+                  onChange: (value){
+                    context.read<MyBookingCubit>().setSearchTerm(value);
+                  },
+                  suffixItem: OnTap(
+                      onTap: (){
+                        context.read<MyBookingCubit>().setShowedSearch(false);
+                        context.read<MyBookingCubit>().setSearchTerm(null);
+                      },
+                      child: Padding(
+                        padding: 12.padTop,
+                        child: Text("الغاء",style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),),
+                      )),
+                  imagePre: Assets.svg.search.path,radius: 12,),
+              ),
+            ],
+            8.verticalSpace,
             TabBar(
               controller: _tabController,
               labelStyle: AppTextTheme.bodyMedium(context).copyWith(

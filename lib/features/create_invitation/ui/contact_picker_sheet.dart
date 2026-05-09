@@ -11,22 +11,31 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../../gen/assets.gen.dart';
 
-
-
 Future<List<SelectedGuest>?> showContactPickerSheet(
-    BuildContext context,
-    ) {
+    BuildContext context, {
+      List<SelectedGuest>? initialSelected,
+      void Function(List<SelectedGuest> selected)? onConfirm,
+    }) {
   return showModalBottomSheet<List<SelectedGuest>>(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (_) => const _ContactPickerSheet(),
+    builder: (_) => _ContactPickerSheet(
+      initialSelected: initialSelected,
+      onConfirm: onConfirm,
+    ),
   );
 }
 
 
 class _ContactPickerSheet extends StatefulWidget {
-  const _ContactPickerSheet();
+  final List<SelectedGuest>? initialSelected;
+  final void Function(List<SelectedGuest> selected)? onConfirm;
+
+  const _ContactPickerSheet({
+    this.initialSelected,
+    this.onConfirm,
+  });
 
   @override
   State<_ContactPickerSheet> createState() => _ContactPickerSheetState();
@@ -78,12 +87,38 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
         _allContacts = withPhone;
         _filtered = withPhone;
         _loading = false;
+
+        // Pre-select contacts based on initialSelected
+        if (widget.initialSelected != null && widget.initialSelected!.isNotEmpty) {
+          _preselectContacts();
+        }
       });
     } catch (e) {
       setState(() {
         _error = 'Failed to load contacts: $e';
         _loading = false;
       });
+    }
+  }
+
+  // ── pre-select contacts ────────────────────
+  void _preselectContacts() {
+    for (final guest in widget.initialSelected!) {
+      // Try to match by phone number (more reliable)
+      final contact = _allContacts.firstWhere(
+            (c) => c.phones.any((p) =>
+        p.number.replaceAll(RegExp(r'[^\d+]'), '') ==
+            guest.phone.replaceAll(RegExp(r'[^\d+]'), '')
+        ),
+        orElse: () => _allContacts.firstWhere(
+              (c) => c.displayName == guest.name,
+          orElse: () => Contact(), // Empty contact if not found
+        ),
+      );
+
+      if (contact.id.isNotEmpty) {
+        _selectedIds.add(contact.id);
+      }
     }
   }
 
@@ -123,15 +158,26 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
     });
   }
 
-  // ── build result and pop ───────────────────
-  void _onSend() {
-    final selected = _allContacts
+  // ── get selected guests ────────────────────
+  List<SelectedGuest> _getSelectedGuests() {
+    return _allContacts
         .where((c) => _selectedIds.contains(c.id))
         .map((c) => SelectedGuest(
       name: c.displayName,
       phone: c.phones.first.number,
     ))
         .toList();
+  }
+
+  // ── build result and pop ───────────────────
+  void _onSend() {
+    final selected = _getSelectedGuests();
+
+    // Call the onConfirm callback before popping
+    if (widget.onConfirm != null) {
+      widget.onConfirm!(selected);
+    }
+
     Navigator.of(context).pop(selected);
   }
 
@@ -169,13 +215,13 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
 
               // ── search bar ──────────────────
               Padding(
-                padding:12.padVertical+16.padHorizontal,
+                padding: 12.padVertical + 16.padHorizontal,
                 child: TextField(
                   controller: _search,
                   decoration: InputDecoration(
                     hintText: 'بحث جهات الاتصال',
                     prefixIcon: Padding(
-                      padding:12.padAll,
+                      padding: 12.padAll,
                       child: Assets.svg.search.svg(),
                     ),
                     suffixIcon: _search.text.isNotEmpty
@@ -199,38 +245,40 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
               ),
               Padding(
                 padding: 20.padHorizontal,
-                child: Row(
-                  children: [
-                     Text(
-                      'اختر الضيوف',
-                      style: AppTextTheme.headingSmall(context).copyWith(fontWeight: FontWeight.w600)
-                    ),
-                    24.verticalSpace,
-                    const Spacer(),
-                    OnTap(
-                      onTap: _loading ? null : _toggleAll,
-                      child: Container(
-                        width: 28,
-                        height: 28,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Row(
+                    children: [
+                      Text("Choose all",
+                          style: AppTextTheme.headingSmall(context)
+                              .copyWith(fontWeight: FontWeight.w600)),
+                      24.verticalSpace,
+                      const Spacer(),
+                      OnTap(
+                        onTap: _loading ? null : _toggleAll,
+                        child: Container(
+                          width: 28,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: allSelected
+                                  ? AppColors.primary
+                                  : Colors.grey.shade400,
+                              width: 2,
+                            ),
                             color: allSelected
                                 ? AppColors.primary
-                                : Colors.grey.shade400,
-                            width: 2,
+                                : Colors.transparent,
                           ),
-                          color: allSelected
-                              ?  AppColors.primary
-                              : Colors.transparent,
+                          child: allSelected
+                              ? const Icon(Icons.check,
+                              size: 16, color: Colors.white)
+                              : null,
                         ),
-                        child: allSelected
-                            ? const Icon(Icons.check,
-                            size: 16, color: Colors.white)
-                            : null,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
 
@@ -258,8 +306,7 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                     final contact = _filtered[i];
                     final selected =
                     _selectedIds.contains(contact.id);
-                    final phone =
-                        contact.phones.first.number;
+                    final phone = contact.phones.first.number;
                     final initials = contact.displayName
                         .trim()
                         .split(' ')
@@ -268,50 +315,56 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                         .join()
                         .toUpperCase();
 
-                    return ListTile(
-                      contentPadding:20.padHorizontal+2.padVertical,
-                      leading: CircleAvatar(
-                        radius: 22,
-                        backgroundColor:
-                       AppColors.blue,
-                        child: Text(
-                            initials,
-                            style: AppTextTheme.bodyMediumSemiBold(context).copyWith(color: AppColors.white)
+                    return Directionality(
+                      textDirection: TextDirection.ltr,
+
+                      child: ListTile(
+
+                        contentPadding:
+                        20.padHorizontal + 2.padVertical,
+                        leading: CircleAvatar(
+                          radius: 22,
+                          backgroundColor: AppColors.blue,
+                          child: Text(initials,
+                              textDirection: TextDirection.ltr,
+                              style: AppTextTheme.bodyMediumSemiBold(
+                                  context)
+                                  .copyWith(
+                                  color: AppColors.white)),
                         ),
-                      ),
-                      title: Text(
-                          contact.displayName,
-                          style: AppTextTheme.bodyMediumSemiBold(context)
-                      ),
-                      subtitle: Text(
-                          phone,
-                          style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral200,fontWeight: FontWeight.w300)
-                      ),
-                      trailing: OnTap(
-                        onTap: () => _toggle(contact),
-                        child: Container(
-                          width: 26,
-                          height: 26,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
+                        title: Text(contact.displayName,
+                            style: AppTextTheme.bodyMediumSemiBold(
+                                context)),
+                        subtitle: Text(phone,
+                            style: AppTextTheme.bodySmall(context)
+                                .copyWith(
+                                color: AppColors.neutral200,
+                                fontWeight: FontWeight.w300)),
+                        trailing: OnTap(
+                          onTap: () => _toggle(contact),
+                          child: Container(
+                            width: 26,
+                            height: 26,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: selected
+                                    ? AppColors.primary
+                                    : Colors.grey.shade400,
+                                width: 2,
+                              ),
                               color: selected
                                   ? AppColors.primary
-                                  : Colors.grey.shade400,
-                              width: 2,
+                                  : Colors.transparent,
                             ),
-                            color: selected
-                                ? AppColors.primary
-                                : Colors.transparent,
+                            child: selected
+                                ? const Icon(Icons.circle,
+                                size: 14, color: Colors.white)
+                                : null,
                           ),
-                          child: selected
-                              ? const Icon(Icons.circle,
-                              size: 14,
-                              color: Colors.white)
-                              : null,
                         ),
+                        onTap: () => _toggle(contact),
                       ),
-                      onTap: () => _toggle(contact),
                     );
                   },
                 ),
@@ -326,7 +379,7 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                   height: 52,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      gradient:  LinearGradient(
+                      gradient: LinearGradient(
                         colors: [AppColors.primary, AppColors.pink],
                       ),
                       borderRadius: BorderRadius.circular(26),
@@ -341,12 +394,11 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                           borderRadius: BorderRadius.circular(26),
                         ),
                       ),
-                      child: Text(
-                        _selectedIds.isEmpty
-                            ? 'Send'
-                            : 'Send (${_selectedIds.length})',
-                        style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.white)
-                      ),
+                      child: Text(_selectedIds.isEmpty
+                          ? 'Send'
+                          : 'Send (${_selectedIds.length})',
+                          style: AppTextTheme.bodyMedium(context)
+                              .copyWith(color: AppColors.white)),
                     ),
                   ),
                 ),
@@ -355,70 +407,6 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
           ),
         );
       },
-    );
-  }
-}
-
-
-class ExampleScreen extends StatelessWidget {
-  const ExampleScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Contact Picker Demo')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            // ── open the sheet ──────────────────────────────
-            final guests = await showContactPickerSheet(context);
-
-            if (guests == null || guests.isEmpty) return;
-
-            // ── callback: list of name|phone strings ────────
-            final List<String> nameList = guests.map((g) => g.name).toList();
-            final List<String> phoneList = guests.map((g) => g.phone).toList();
-            final List<String> combined =
-            guests.map((g) => g.toString()).toList(); // "Name|+20 01..."
-
-            // ignore: avoid_print
-            print('Names  : $nameList');
-            // ignore: avoid_print
-            print('Phones : $phoneList');
-            // ignore: avoid_print
-            print('Combined: $combined');
-
-            // show result
-            if (context.mounted) {
-              showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                  title: Text('${guests.length} guest(s) selected'),
-                  content: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: guests
-                          .map((g) => Padding(
-                        padding:
-                        const EdgeInsets.symmetric(vertical: 4),
-                        child: Text('${g.name}\n${g.phone}',
-                            style: const TextStyle(fontSize: 13)),
-                      ))
-                          .toList(),
-                    ),
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('OK'))
-                  ],
-                ),
-              );
-            }
-          },
-          child: const Text('Open Contact Picker'),
-        ),
-      ),
     );
   }
 }

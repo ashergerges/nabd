@@ -14,7 +14,9 @@ class MyBookingState with _$MyBookingState {
     required RefreshController refreshControllerUpcoming,
     required RefreshController refreshControllerCancelled,
     required RefreshController refreshControllerCompleted,
-
+    @Default(false) bool isShowSearch,
+    @Default(2) int currentStatus,
+    String? searchTerm,
 }) = _MyBookingState;
 }
 @freezed

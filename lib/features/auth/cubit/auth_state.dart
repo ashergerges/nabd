@@ -7,7 +7,7 @@ class AuthState with _$AuthState {
     @Default('')  String oTPCode,
     @Default(false)  bool refresh,
     @Default(false)  bool resendCode,
-    required GlobalKey<FormState> formKey,
+      required GlobalKey<FormState> formKey,
     @Default(AuthStateStatus.initial()) AuthStateStatus currState,
 }) = _AuthState;
 }

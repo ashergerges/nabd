@@ -19,6 +19,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CategoriesState {
   CategoriesStateStatus get currState => throw _privateConstructorUsedError;
   List<CategoryModel> get categoriesList => throw _privateConstructorUsedError;
+  bool get isShowSearch => throw _privateConstructorUsedError;
+  String? get searchTerm => throw _privateConstructorUsedError;
 
   /// Create a copy of CategoriesState
   /// with the given fields replaced by the non-null parameter values.
@@ -37,6 +39,8 @@ abstract class $CategoriesStateCopyWith<$Res> {
   $Res call({
     CategoriesStateStatus currState,
     List<CategoryModel> categoriesList,
+    bool isShowSearch,
+    String? searchTerm,
   });
 
   $CategoriesStateStatusCopyWith<$Res> get currState;
@@ -56,7 +60,12 @@ class _$CategoriesStateCopyWithImpl<$Res, $Val extends CategoriesState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? currState = null, Object? categoriesList = null}) {
+  $Res call({
+    Object? currState = null,
+    Object? categoriesList = null,
+    Object? isShowSearch = null,
+    Object? searchTerm = freezed,
+  }) {
     return _then(
       _value.copyWith(
             currState: null == currState
@@ -67,6 +76,14 @@ class _$CategoriesStateCopyWithImpl<$Res, $Val extends CategoriesState>
                 ? _value.categoriesList
                 : categoriesList // ignore: cast_nullable_to_non_nullable
                       as List<CategoryModel>,
+            isShowSearch: null == isShowSearch
+                ? _value.isShowSearch
+                : isShowSearch // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            searchTerm: freezed == searchTerm
+                ? _value.searchTerm
+                : searchTerm // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -95,6 +112,8 @@ abstract class _$$CategoriesStateImplCopyWith<$Res>
   $Res call({
     CategoriesStateStatus currState,
     List<CategoryModel> categoriesList,
+    bool isShowSearch,
+    String? searchTerm,
   });
 
   @override
@@ -114,7 +133,12 @@ class __$$CategoriesStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? currState = null, Object? categoriesList = null}) {
+  $Res call({
+    Object? currState = null,
+    Object? categoriesList = null,
+    Object? isShowSearch = null,
+    Object? searchTerm = freezed,
+  }) {
     return _then(
       _$CategoriesStateImpl(
         currState: null == currState
@@ -125,6 +149,14 @@ class __$$CategoriesStateImplCopyWithImpl<$Res>
             ? _value._categoriesList
             : categoriesList // ignore: cast_nullable_to_non_nullable
                   as List<CategoryModel>,
+        isShowSearch: null == isShowSearch
+            ? _value.isShowSearch
+            : isShowSearch // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        searchTerm: freezed == searchTerm
+            ? _value.searchTerm
+            : searchTerm // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }
@@ -136,6 +168,8 @@ class _$CategoriesStateImpl implements _CategoriesState {
   const _$CategoriesStateImpl({
     this.currState = const CategoriesStateStatus.initial(),
     final List<CategoryModel> categoriesList = const [],
+    this.isShowSearch = false,
+    this.searchTerm,
   }) : _categoriesList = categoriesList;
 
   @override
@@ -151,8 +185,14 @@ class _$CategoriesStateImpl implements _CategoriesState {
   }
 
   @override
+  @JsonKey()
+  final bool isShowSearch;
+  @override
+  final String? searchTerm;
+
+  @override
   String toString() {
-    return 'CategoriesState(currState: $currState, categoriesList: $categoriesList)';
+    return 'CategoriesState(currState: $currState, categoriesList: $categoriesList, isShowSearch: $isShowSearch, searchTerm: $searchTerm)';
   }
 
   @override
@@ -165,7 +205,11 @@ class _$CategoriesStateImpl implements _CategoriesState {
             const DeepCollectionEquality().equals(
               other._categoriesList,
               _categoriesList,
-            ));
+            ) &&
+            (identical(other.isShowSearch, isShowSearch) ||
+                other.isShowSearch == isShowSearch) &&
+            (identical(other.searchTerm, searchTerm) ||
+                other.searchTerm == searchTerm));
   }
 
   @override
@@ -173,6 +217,8 @@ class _$CategoriesStateImpl implements _CategoriesState {
     runtimeType,
     currState,
     const DeepCollectionEquality().hash(_categoriesList),
+    isShowSearch,
+    searchTerm,
   );
 
   /// Create a copy of CategoriesState
@@ -191,12 +237,18 @@ abstract class _CategoriesState implements CategoriesState {
   const factory _CategoriesState({
     final CategoriesStateStatus currState,
     final List<CategoryModel> categoriesList,
+    final bool isShowSearch,
+    final String? searchTerm,
   }) = _$CategoriesStateImpl;
 
   @override
   CategoriesStateStatus get currState;
   @override
   List<CategoryModel> get categoriesList;
+  @override
+  bool get isShowSearch;
+  @override
+  String? get searchTerm;
 
   /// Create a copy of CategoriesState
   /// with the given fields replaced by the non-null parameter values.

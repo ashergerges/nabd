@@ -15,6 +15,24 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         super(const CategoriesState());
   final ICategoriesRepository _repository;
 
+  void setShowedSearch(bool showSearch){
+    emit(state.copyWith(isShowSearch: showSearch,));
+  }
+  Future<void> setSearchTerm(String? searchTerm) async {
+    emit(state.copyWith(searchTerm:searchTerm));
+    var categories = await _repository.categories(search:searchTerm);
+    if (categories.isError) {
+      MessageService.showToast(
+        msg: categories.asError?.error.toString() ?? "",
+        state: ToastStates.error,
+      );
+      emit(state.copyWith(currState: Error()));
+
+      return;
+    }
+    emit(state.copyWith( currState: Success(),categoriesList:categories.asValue?.value??[],));
+  }
+
   Future<void> categories() async {
     emit(state.copyWith(currState: Loading()));
 

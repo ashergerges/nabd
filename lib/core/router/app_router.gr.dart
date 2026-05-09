@@ -115,18 +115,55 @@ class BookingConfirmationRouteArgs {
 
 /// generated route for
 /// [CreateInvitationScreen]
-class CreateInvitationRoute extends PageRouteInfo<void> {
-  const CreateInvitationRoute({List<PageRouteInfo>? children})
-    : super(CreateInvitationRoute.name, initialChildren: children);
+class CreateInvitationRoute extends PageRouteInfo<CreateInvitationRouteArgs> {
+  CreateInvitationRoute({
+    Key? key,
+    required BookingDetailsModel bookingDetails,
+    List<PageRouteInfo>? children,
+  }) : super(
+         CreateInvitationRoute.name,
+         args: CreateInvitationRouteArgs(
+           key: key,
+           bookingDetails: bookingDetails,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'CreateInvitationRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const CreateInvitationScreen();
+      final args = data.argsAs<CreateInvitationRouteArgs>();
+      return CreateInvitationScreen(
+        key: args.key,
+        bookingDetails: args.bookingDetails,
+      );
     },
   );
+}
+
+class CreateInvitationRouteArgs {
+  const CreateInvitationRouteArgs({this.key, required this.bookingDetails});
+
+  final Key? key;
+
+  final BookingDetailsModel bookingDetails;
+
+  @override
+  String toString() {
+    return 'CreateInvitationRouteArgs{key: $key, bookingDetails: $bookingDetails}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CreateInvitationRouteArgs) return false;
+    return key == other.key && bookingDetails == other.bookingDetails;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ bookingDetails.hashCode;
 }
 
 /// generated route for

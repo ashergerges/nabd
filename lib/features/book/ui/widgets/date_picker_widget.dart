@@ -6,11 +6,13 @@ import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 
 class DatePickerWidget extends StatefulWidget {
   final DateTime? initialDate;
+  final bool viewOnly;
   final ValueChanged<DateTime?>? onDateChanged;
 
   const DatePickerWidget({
     super.key,
     this.initialDate,
+    this.viewOnly=false,
     this.onDateChanged,
   });
 
@@ -72,6 +74,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
             fontWeight: FontWeight.w600,
           ),
           selectableDayPredicate: (day) {
+            if(widget.viewOnly)return false;
             final today = DateTime.now();
             final todayDate = DateTime(today.year, today.month, today.day);
             return !day.isBefore(todayDate);

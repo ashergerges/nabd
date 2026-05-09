@@ -8,6 +8,7 @@ import 'package:nawy/features/book/data/model/book_confirmation_model.dart';
 import 'package:nawy/features/book/data/model/book_screen_model.dart';
 import 'package:nawy/features/book/ui/book_screen.dart';
 import 'package:nawy/features/book/ui/booking_confirmation_screen.dart';
+import 'package:nawy/features/my_booking/data/models/booking_details_model.dart';
 import 'package:nawy/features/my_booking/ui/view_booking_details_screen.dart';
 import 'package:nawy/features/categories/data/models/service_category_model.dart';
 import 'package:nawy/features/create_invitation/ui/create_invitation_screen.dart';

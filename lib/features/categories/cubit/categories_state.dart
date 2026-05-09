@@ -5,6 +5,8 @@ class CategoriesState with _$CategoriesState {
   const factory CategoriesState({
     @Default(CategoriesStateStatus.initial()) CategoriesStateStatus currState,
     @Default([]) List<CategoryModel> categoriesList,
+    @Default(false) bool isShowSearch,
+     String? searchTerm,
 
 }) = _CategoriesState;
 }

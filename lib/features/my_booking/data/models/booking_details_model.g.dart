@@ -23,6 +23,8 @@ BookingDetailsModel _$BookingDetailsModelFromJson(Map<String, dynamic> json) =>
       status: (json['status'] as num?)?.toInt(),
       statusText: json['status_text'] as String?,
       coupon: json['coupon'],
+      discount: json['discount'] as String?,
+      priceAfterDiscount: json['price_after_discount'] as String?,
       cancelReason: json['cancel_reason'] as String?,
       createdAt: json['created_at'] as String?,
       isReviewed: json['is_reviewed'] as bool?,

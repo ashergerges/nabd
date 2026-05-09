@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nawy/core/services/dialogs/message_service.dart';
@@ -116,16 +118,20 @@ class MyBookingCubit extends Cubit<MyBookingState> {
         currState: Success(),
         booksUpcoming: bookings,
         booksUpcomingPage: 1,
+          currentStatus: 2
       ),
       3 => state.copyWith(
         currState: Success(),
         booksCompleted: bookings,
         booksCompletedPage: 1,
+          currentStatus: 3
       ),
       4 => state.copyWith(
         currState: Success(),
         booksCancelled: bookings,
         booksCancelledPage: 1,
+          currentStatus: 4
+
       ),
       _ => state,
     };
@@ -262,6 +268,58 @@ class MyBookingCubit extends Cubit<MyBookingState> {
     await moreBookings(status: 4);
   }
 
+  void setShowedSearch(bool showSearch){
+    emit(state.copyWith(isShowSearch: showSearch,));
+  }
+  Timer? _searchDebounce;
+  Future<void> setSearchTerm(String? searchTerm) async {
+    emit(state.copyWith(searchTerm: searchTerm));
+
+    // Cancel previous timer
+    _searchDebounce?.cancel();
+
+    if (searchTerm == null || searchTerm.isEmpty) {
+      // Clear search immediately
+      await getBookings(isPull: false, status: state.currentStatus);
+      return;
+    }
+
+    // Debounce search by 500ms
+    _searchDebounce = Timer(const Duration(milliseconds: 500), () {
+      searchBookings(searchTerm: searchTerm, status: state.currentStatus);
+    });
+  }
+
+
+
+  Future<void> searchBookings({
+    required String searchTerm,
+    required int status,
+  }) async {
+    emit(state.copyWith(currState: Loading()));
+
+    var response = await _repository.myBook(
+      status: status,
+      search: searchTerm,
+      page: 1,
+    );
+
+    if (response.isError) {
+      MessageService.showToast(
+        msg: response.asError?.error.toString() ?? '',
+        state: ToastStates.error,
+      );
+      emit(state.copyWith(currState: Error()));
+      return;
+    }
+
+    emitBookingUpdate(status, response.asValue?.value ?? []);
+  }
+  @override
+  Future<void> close() {
+    _searchDebounce?.cancel();
+    return super.close();
+  }
 
 
 }

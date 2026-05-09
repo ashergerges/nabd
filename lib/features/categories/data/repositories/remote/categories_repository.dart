@@ -17,9 +17,12 @@ class CategoriesRepository implements ICategoriesRepository {
   CategoriesRepository({required this.networkService});
 
   @override
-  Future<Result<List<CategoryModel>>> categories() async {
+  Future<Result<List<CategoryModel>>> categories({ String? search}) async {
     var response = await networkService.getAsync(
       url: AppStrings.urls.categoriesUrl,
+      queryParameters: {
+        if(search!=null)"search":search
+      }
     );
     if (response.isError) return Result.error(response.asError!.error);
 

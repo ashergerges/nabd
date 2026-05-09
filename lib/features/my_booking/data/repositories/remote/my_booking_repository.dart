@@ -52,13 +52,14 @@ class MyBookingRepository implements IMyBookingRepository {
   }
 
   @override
-  Future<Result<List<BookingDetailsModel>>> myBook({required int status,required int page}) async {
+  Future<Result<List<BookingDetailsModel>>> myBook({required int status,required int page,String? search}) async {
     var response = await networkService.getAsync(
       url: AppStrings.urls.myBookingUrl,
       queryParameters: {
         "status":status,
         "page":page,
         "paginate":1,
+       if(search!=null) "search":search,
       }
     );
     if (response.isError) return Result.error(response.asError!.error);

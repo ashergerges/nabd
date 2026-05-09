@@ -43,6 +43,10 @@ import 'features/common/data/local/repositories/token_repository.dart' as _i723;
 import 'features/common/data/repositories/interfaces/i_main_repository.dart'
     as _i967;
 import 'features/common/data/repositories/remote/main_repository.dart' as _i210;
+import 'features/create_invitation/data/repositories/interfaces/i_create_invitation_repository.dart'
+    as _i733;
+import 'features/create_invitation/data/repositories/remote/create_invitation_repository.dart'
+    as _i885;
 import 'features/home/data/repositories/interfaces/i_home_repository.dart'
     as _i185;
 import 'features/home/data/repositories/remote/home_repository.dart' as _i975;
@@ -111,6 +115,11 @@ _i174.GetIt $initGetIt(
   );
   gh.factory<_i967.IMainRepository>(
     () => _i210.MainRepository(networkService: gh<_i969.NetworkService>()),
+  );
+  gh.factory<_i733.ICreateInvitationRepository>(
+    () => _i885.CreateInvitationRepository(
+      networkService: gh<_i969.NetworkService>(),
+    ),
   );
   gh.factory<_i561.ISplashRepository>(
     () => _i120.SplashRepository(networkService: gh<_i969.NetworkService>()),
