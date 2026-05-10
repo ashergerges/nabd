@@ -6,6 +6,7 @@ import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/app_text_field.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/empty_widget.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
@@ -78,7 +79,10 @@ class CategoriesScreen extends StatelessWidget {
                       ],
                       
                       Expanded(
-                        child: ServiceCategoryGridEnhanced(
+                        child: state.categoriesList.isEmpty?EmptyWidget(
+                          text: "لا توجد فئات",
+                          image:Assets.svg.error.svg() ,
+                        ):ServiceCategoryGridEnhanced(
                           categories: state.categoriesList
                               .map(
                                 (e) => ServiceCategory(

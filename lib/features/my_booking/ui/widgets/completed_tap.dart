@@ -13,6 +13,9 @@ import 'package:nawy/features/my_booking/ui/widgets/review_widget.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../../../core/utils/common_widgets/empty_widget.dart' show EmptyWidget;
+import '../../../../gen/assets.gen.dart';
+
 class CompletedTap extends StatelessWidget {
   const CompletedTap({super.key, required this.booksCompleted});
   final List<BookingDetailsModel> booksCompleted;
@@ -32,7 +35,10 @@ class CompletedTap extends StatelessWidget {
         isPull: true,
       ),
       onLoading: () => context.read<MyBookingCubit>().booksCompletedMore(),
-      child: ListView.separated(
+      child: booksCompleted.isEmpty?EmptyWidget(
+        text: "لا توجد حجوزات مكتمله",
+        image:Assets.svg.error.svg() ,
+      ):ListView.separated(
         physics:BouncingScrollPhysics(),
         itemCount: booksCompleted.length,
         padding: 16.padTop+16.padHorizontal,

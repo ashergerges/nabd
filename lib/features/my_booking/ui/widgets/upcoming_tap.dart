@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/router/app_router.dart';
+import 'package:nawy/core/utils/common_widgets/empty_widget.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/constants/pull_refresh.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -9,6 +10,8 @@ import 'package:nawy/features/my_booking/cubit/my_booking_cubit.dart';
 import 'package:nawy/features/my_booking/data/models/booking_details_model.dart';
 import 'package:nawy/features/my_booking/ui/widgets/my_booking_card.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import '../../../../gen/assets.gen.dart';
 
 class UpcomingTap extends StatelessWidget {
   const UpcomingTap({super.key, required this.booksUpcoming});
@@ -28,7 +31,10 @@ class UpcomingTap extends StatelessWidget {
         isPull: true,
       ),
       onLoading: () => context.read<MyBookingCubit>().booksUpcomingMore(),
-      child: ListView.separated(
+      child:booksUpcoming.isEmpty?EmptyWidget(
+        text: "لا توجد حجوزات قريبا",
+        image:Assets.svg.error.svg() ,
+      ): ListView.separated(
         physics:BouncingScrollPhysics(),
         itemCount: booksUpcoming.length,
         padding: 16.padTop+16.padHorizontal,

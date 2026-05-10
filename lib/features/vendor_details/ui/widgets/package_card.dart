@@ -124,19 +124,25 @@ class PackageCard extends StatelessWidget {
                   3.verticalSpace,
                   Row(
                     children: [
-                      Row(
-                        children: [
-                          Assets.svg.location.svg(height: 16.h),
-                          4.horizontalSpace,
-
-                          Text(
-                            location,
-                            style: AppTextTheme.bodyXSmall(context).copyWith(
-                              decoration: TextDecoration.underline,
-                              decorationColor: AppColors.textColor,
+                      Flexible(
+                        child: Row(
+                          children: [
+                            Assets.svg.location.svg(height: 16.h),
+                            4.horizontalSpace,
+                        
+                            Flexible(
+                              child: Text(
+                                location,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextTheme.bodyXSmall(context).copyWith(
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.textColor,
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       Container(
                         margin:10.padHorizontal,

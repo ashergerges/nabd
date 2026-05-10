@@ -10,6 +10,9 @@ import 'package:nawy/features/my_booking/data/models/booking_details_model.dart'
 import 'package:nawy/features/my_booking/ui/widgets/my_booking_card.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../../../core/utils/common_widgets/empty_widget.dart';
+import '../../../../gen/assets.gen.dart';
+
 class CancelledTap extends StatelessWidget {
   const CancelledTap({super.key, required this.booksCancelled});
   final List<BookingDetailsModel> booksCancelled;
@@ -29,7 +32,10 @@ class CancelledTap extends StatelessWidget {
             isPull: true,
           ),
           onLoading: () => context.read<MyBookingCubit>().booksCancelledMore(),
-      child: ListView.separated(
+      child: booksCancelled.isEmpty?EmptyWidget(
+        text: "لا توجد حجوزات تم الغائها",
+        image:Assets.svg.error.svg() ,
+      ):ListView.separated(
         physics:BouncingScrollPhysics(),
         itemCount: booksCancelled.length,
         padding: 16.padTop+16.padHorizontal,

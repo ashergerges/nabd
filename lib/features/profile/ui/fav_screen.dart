@@ -16,6 +16,9 @@ import 'package:nawy/features/vendor_details/ui/widgets/package_card.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/vendor_card.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../../core/utils/common_widgets/empty_widget.dart';
+import '../../../gen/assets.gen.dart';
+
 @RoutePage()
 class FavScreen extends StatelessWidget {
   const FavScreen({super.key});
@@ -148,7 +151,11 @@ class VendorsTap extends StatelessWidget {
         state.refreshVendorController.refreshCompleted();
       },
       header: PullRefresh.pullRefresh,
-      child: ListView.separated(
+
+      child:favVendors.isEmpty?EmptyWidget(
+        text: "لا توجد مفضلات في مقدمو الخدمه",
+        image:Assets.svg.error.svg() ,
+      ): ListView.separated(
         physics: BouncingScrollPhysics(),
         itemCount: favVendors.length,
         padding: 16.padTop + 16.padHorizontal,
@@ -193,7 +200,10 @@ class PackagesTap extends StatelessWidget {
         state.refreshPackageController.refreshCompleted();
       },
       header: PullRefresh.pullRefresh,
-      child: ListView.separated(
+      child:favPackages.isEmpty?EmptyWidget(
+        text: "لا توجد مفضلات في الباقات",
+        image:Assets.svg.error.svg() ,
+      ): ListView.separated(
         physics: BouncingScrollPhysics(),
         itemCount: favPackages.length,
         padding: 16.padTop + 16.padHorizontal,
