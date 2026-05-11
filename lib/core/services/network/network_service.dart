@@ -81,7 +81,6 @@ class NetworkService {
 
   Future<Result<Response>> postMultiPartFormDataAsync({
     required String url,
-    required ValueNotifier<double> uploadProgressNotifier,
     required Map<String, dynamic> formMap,
     Map<String, dynamic>? queryParameters,
   }) async {
@@ -89,7 +88,6 @@ class NetworkService {
       log('NetworkService.postMultiPartFormDataAsync: POST (multipart) $url');
       var response = await _networkClient.postMultiPartFormDataAsync(
         url: url,
-        uploadProgressNotifier: uploadProgressNotifier,
         formMap: formMap,
         queryParameters: queryParameters,
       );
@@ -273,7 +271,6 @@ class _NetworkClient {
 
   Future<Response> postMultiPartFormDataAsync({
     required String url,
-    required ValueNotifier<double> uploadProgressNotifier,
     required Map<String, dynamic> formMap,
     Map<String, dynamic>? queryParameters,
   }) async {
@@ -286,8 +283,6 @@ class _NetworkClient {
       queryParameters: queryParameters,
       options: Options(contentType: 'multipart/form-data'),
       onSendProgress: (int send, int total) {
-        final progress = (send / total) * 100;
-        uploadProgressNotifier.value = progress;
       },
       cancelToken: cancelToken,
     );

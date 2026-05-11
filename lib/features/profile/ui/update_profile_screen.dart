@@ -1,99 +1,113 @@
+import 'dart:developer';
+
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/interfaces/i_local_preference.dart';
+import 'package:nawy/core/utils/common_widgets/app_button.dart';
+import 'package:nawy/core/utils/common_widgets/app_text_field.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
+import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/core/utils/helper/validator.dart';
+import 'package:nawy/features/profile/cubits/update_profile/update_profile_cubit.dart';
+import 'package:nawy/features/profile/ui/widgets/profile_image_picker.dart';
+import 'package:nawy/main_common.dart';
+
 @RoutePage()
-class UpdateProfileScreen extends StatelessWidget {
+class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key});
 
   @override
+  State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
+}
+
+class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: "تعديل الملف الشخصي",),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return BlocProvider(
+      create: (context) => UpdateProfileCubit(),
+      child: BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
+        builder: (context, state) {
+          final cubit = context.read<UpdateProfileCubit>();
 
-          Text( "الاسم"),
-          TextFormField(
-            onChanged: (value){},
-            onTapOutside: (v) {
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            decoration: InputDecoration(
-              hintText: "سارة هاني",
-              hintStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral300),
-
-              border: InputBorder.none,
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade300),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue),
-              ),
-              errorBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.red),
-              ),
-              focusedErrorBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.red),
-              ),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your name';
-              }
-              return null;
-            },
-          ),
-
-          SizedBox(height: 24),
-
-          Text("رقم الجوال"),
-          TextFormField(
-            keyboardType: TextInputType.phone,
-            decoration: InputDecoration(
-              prefixIcon: IntrinsicWidth(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
+          return Scaffold(
+            appBar: CustomAppBar(title: "تعديل الملف الشخصي"),
+            body: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                padding: 24.padHorizontal,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(width: 12),
-                    Text(
-                      "+996",
-                      style: AppTextTheme.bodyLarge(context).copyWith(color: AppColors.primary),
+                    35.verticalSpace,
+                    Center(
+                      child: CircleProfileImagePicker(
+                        size: 150.h,
+                        initialImageUrl: getIt<ILocalPreference>().appUser.value
+                            ?.image,
+                        onImageUploaded: (imagePath) {
+                          //onUpload
+                          log("imagePath::$imagePath");
+                          context.read<UpdateProfileCubit>().updateProfileImage(
+                              path: imagePath);
+                        },
+                      ),
                     ),
-                    SizedBox(width: 8),
-                    Container(width: 1, height: 20, color: Colors.grey.shade300),
-                    SizedBox(width: 8),
+                    20.verticalSpace,
+                    Text("الاسم"),
+                    CustomTextField(
+                      initialValue: getIt<ILocalPreference>().appUser.value?.name,
+                      validator: Validator.validateName,
+                      onChanged: cubit.setName,
+                      hint: "ادخل الاسم",
+                    ),
+                    SizedBox(height: 24),
+
+                    Text("رقم الجوال"),
+                    CustomTextField(
+                      initialValue: getIt<ILocalPreference>().appUser.value?.phone,
+                      validator: Validator.validateSaudiMobile,
+                      maxLength: 10,
+                      onChanged: cubit.setPhone,
+                      textInputFormatter: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(10),
+                      ],
+                      isPhone: true,
+                      hint: "رقم التليفون",
+                    ),
+                    SizedBox(height: 24),
+
+                    Text("العنوان"),
+                    CustomTextField(
+                      initialValue: getIt<ILocalPreference>().appUser.value?.address,
+                      validator: Validator.validate,
+                      onChanged: cubit.setAddress,
+                      hint: "ادخل العنوان",
+                    ),
                   ],
                 ),
               ),
-              hintText: "رقم الجوال",
-              hintStyle: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral300),
-              border: InputBorder.none,
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade300),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue),
-              ),
-              errorBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.red),
-              ),
-              focusedErrorBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.red),
+            ),
+            bottomNavigationBar: Container(
+              padding: 16.padAll,
+              child: AppButton(
+                  isDisable: !cubit.hasChanges(),
+                  isLoading: state.currState is Loading,
+                  onTap: () {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      cubit.updateProfileDate();
+                    }
+                  },
+                  text: "حفظ"
               ),
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your phone number';
-              }
-              if (value.length < 9) {
-                return 'Phone number is too short';
-              }
-              return null;
-            },
-          ),        ],
+          );
+        },
       ),
     );
   }

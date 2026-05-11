@@ -60,7 +60,11 @@ import 'features/notifications/data/repositories/remote/notifications_repository
     as _i192;
 import 'features/profile/data/repositories/interfaces/i_fav_repository.dart'
     as _i814;
+import 'features/profile/data/repositories/interfaces/i_update_profile_repository.dart'
+    as _i46;
 import 'features/profile/data/repositories/remote/fav_repository.dart' as _i280;
+import 'features/profile/data/repositories/remote/update_profile_repository.dart'
+    as _i269;
 import 'features/splash/cubits/splash_cubit/splash_cubit.dart' as _i331;
 import 'features/splash/data/repositories/interfaces/i_splash_repository.dart'
     as _i561;
@@ -152,6 +156,11 @@ _i174.GetIt $initGetIt(
   );
   gh.factory<_i370.IMyBookingRepository>(
     () => _i851.MyBookingRepository(networkService: gh<_i969.NetworkService>()),
+  );
+  gh.factory<_i46.IUpdateProfileRepository>(
+    () => _i269.UpdateProfileRepository(
+      networkService: gh<_i969.NetworkService>(),
+    ),
   );
   gh.factory<_i185.IHomeRepository>(
     () => _i975.HomeRepository(networkService: gh<_i969.NetworkService>()),

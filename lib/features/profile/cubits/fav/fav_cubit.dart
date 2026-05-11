@@ -32,7 +32,8 @@ class FavCubit extends Cubit<FavState> {
       return;
     }
     emit(state.copyWith( currState: Success(),favVendors:wishlistVendor.asValue?.value??[] ));
-  }  Future<void> getWishlistPackage({bool isRefresh=false }) async {
+  }
+  Future<void> getWishlistPackage({bool isRefresh=false }) async {
     if(state.favPackages.isEmpty||isRefresh)emit(state.copyWith(currState:Loading(),));
     var wishlistPackage = await _repository.getWishlistPackage();
     if (wishlistPackage.isError) {

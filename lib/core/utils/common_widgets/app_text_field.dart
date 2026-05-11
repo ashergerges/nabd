@@ -427,6 +427,7 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final bool isPhone;
   final int? maxLength;
+  final String? initialValue;
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -438,6 +439,7 @@ class CustomTextField extends StatelessWidget {
     this.isPhone = false,
     this.keyboardType,
     this.onChanged,
+    this.initialValue,
     this.validator,
     this.maxLength,
     this.textInputFormatter,
@@ -446,6 +448,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue:initialValue ,
       keyboardType: isPhone ? TextInputType.phone : keyboardType,
       onChanged: onChanged,
       onTapOutside: (_) {

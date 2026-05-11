@@ -7,7 +7,7 @@ class LoginResponseBody {
   @JsonKey(name: "token")
   String? token;
   @JsonKey(name: "user")
-  AppUser? user;
+    AppUser? user;
 
   LoginResponseBody({
     this.token,

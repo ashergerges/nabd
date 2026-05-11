@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nawy/core/interfaces/i_local_preference.dart';
 import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
@@ -11,6 +13,7 @@ import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 
 import '../../../core/utils/constants/app_colors.dart';
 import '../../../gen/assets.gen.dart';
+import '../../../main_common.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -29,7 +32,11 @@ class ProfileScreen extends StatelessWidget {
                   Assets.svg.logoName.svg(height: 30.h),
                   OnTap(
                     onTap: (){
-                      UpdateProfileRoute().push(context);
+                      UpdateProfileRoute().push(context).then((value){
+                        context.router.replaceAll([
+                          HomeBottomTabsRoute(index: 3),
+                        ], updateExistingRoutes: false);
+                      });
                     },
                     child: Container(
                       padding: 5.padAll,
@@ -168,13 +175,13 @@ class ProfileInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleImage(imageUrl: AppStrings.kTestNetworkImage, size: 100.h),
+        CircleImage(imageUrl: getIt<ILocalPreference>().appUser.value?.image??AppStrings.kTestNetworkImage, size: 100.h),
         12.horizontalSpace,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "سارة هاني",
+              getIt<ILocalPreference>().appUser.value?.name??"",
               style: AppTextTheme.headingSmall(
                 context,
               ).copyWith(fontWeight: FontWeight.w700),
@@ -185,7 +192,7 @@ class ProfileInfoCard extends StatelessWidget {
                 Assets.svg.location.svg(height: 20.h),
                 2.horizontalSpace,
                 Text(
-                  "الرياض، الملقا",
+                  getIt<ILocalPreference>().appUser.value?.address??"",
                   style: AppTextTheme.bodyXSmall(context).copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: AppColors.textColor,
@@ -199,7 +206,7 @@ class ProfileInfoCard extends StatelessWidget {
                 Assets.svg.phone.svg(height: 20.h),
                 2.horizontalSpace,
                 Text(
-                  "+966 12 456 1247",
+                  getIt<ILocalPreference>().appUser.value?.phone??"",
                   style: AppTextTheme.bodyXSmall(context),
                 ),
               ],
