@@ -5,6 +5,8 @@ class VenuesState with _$VenuesState {
   const factory VenuesState({
     @Default(VenuesStateStatus.initial()) VenuesStateStatus currState,
     @Default([]) List<ProductModel> venuesList,
+    FilterModel? filterData,
+    FilterModel? filterDataTemp,
 
 }) = _VenuesState;
 }

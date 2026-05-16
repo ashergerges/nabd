@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
@@ -6,6 +7,7 @@ import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/home/data/models/city_model.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 import '../../../../gen/assets.gen.dart';
 
 class LocationSelector extends StatefulWidget {
@@ -63,7 +65,7 @@ class _LocationSelectorState extends State<LocationSelector> {
             Assets.svg.uilArrow.svg(height: 24.h),
             6.horizontalSpace,
             Text(
-              widget.initialLocation?.name??"الكل",
+              widget.initialLocation?.name??LocaleKeys.all.tr(),
               style: AppTextTheme.bodyMedium(context),
             ),
             6.horizontalSpace,

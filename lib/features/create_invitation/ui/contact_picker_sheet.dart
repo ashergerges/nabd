@@ -1,5 +1,7 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'as dir;
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
@@ -7,6 +9,7 @@ import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/create_invitation/data/models/selected_guest.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -95,7 +98,7 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
       });
     } catch (e) {
       setState(() {
-        _error = 'Failed to load contacts: $e';
+        _error ='${ LocaleKeys.failedToLoadContacts.tr()} $e';
         _loading = false;
       });
     }
@@ -219,7 +222,7 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                 child: TextField(
                   controller: _search,
                   decoration: InputDecoration(
-                    hintText: 'بحث جهات الاتصال',
+                    hintText: LocaleKeys.searchContacts.tr(),
                     prefixIcon: Padding(
                       padding: 12.padAll,
                       child: Assets.svg.search.svg(),
@@ -246,10 +249,10 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
               Padding(
                 padding: 20.padHorizontal,
                 child: Directionality(
-                  textDirection: TextDirection.ltr,
+                  textDirection: dir.TextDirection.ltr,
                   child: Row(
                     children: [
-                      Text("Choose all",
+                      Text(LocaleKeys.chooseAll.tr(),
                           style: AppTextTheme.headingSmall(context)
                               .copyWith(fontWeight: FontWeight.w600)),
                       24.verticalSpace,
@@ -298,7 +301,7 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                   ),
                 )
                     : _filtered.isEmpty
-                    ? const Center(child: Text('No contacts found'))
+                    ?  Center(child: Text(LocaleKeys.noContactsFound.tr()))
                     : ListView.builder(
                   controller: scrollController,
                   itemCount: _filtered.length,
@@ -316,7 +319,7 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                         .toUpperCase();
 
                     return Directionality(
-                      textDirection: TextDirection.ltr,
+                      textDirection: dir.TextDirection.ltr,
 
                       child: ListTile(
 
@@ -326,7 +329,7 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                           radius: 22,
                           backgroundColor: AppColors.blue,
                           child: Text(initials,
-                              textDirection: TextDirection.ltr,
+                              textDirection: dir.TextDirection.ltr,
                               style: AppTextTheme.bodyMediumSemiBold(
                                   context)
                                   .copyWith(
@@ -395,8 +398,8 @@ class _ContactPickerSheetState extends State<_ContactPickerSheet> {
                         ),
                       ),
                       child: Text(_selectedIds.isEmpty
-                          ? 'Send'
-                          : 'Send (${_selectedIds.length})',
+                          ? LocaleKeys.send.tr()
+                          :LocaleKeys.sendSelected.tr(args: ['${_selectedIds.length}']),
                           style: AppTextTheme.bodyMedium(context)
                               .copyWith(color: AppColors.white)),
                     ),

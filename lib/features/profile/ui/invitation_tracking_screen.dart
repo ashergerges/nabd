@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as dir;
 import 'package:flutter_contacts/flutter_contacts.dart';
@@ -12,6 +13,7 @@ import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/create_invitation/ui/contact_selected_sheet.dart';
 import 'package:nawy/features/profile/data/models/invite_summary_data.dart';
 import 'package:nawy/gen/assets.gen.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 @RoutePage()
 class InvitationTrackingScreen extends StatelessWidget {
@@ -20,7 +22,7 @@ class InvitationTrackingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "تتبّع الدعوات"),
+      appBar: CustomAppBar(title:LocaleKeys.trackInvitations.tr()),
       body: SingleChildScrollView(
         child: InviteSummaryWidget(
           data: const InviteSummaryData(
@@ -63,7 +65,7 @@ class InviteSummaryWidget extends StatelessWidget {
                   Expanded(
                     child: _StatCard(
                       iconAsset: Assets.svg.rounded.path,
-                      label: 'تم قبول الدعوة',
+                      label: LocaleKeys.invitationAccepted.tr(),
                       value: data.acceptedCount,
                       gradientColors:  [
                         AppColors.white,
@@ -82,7 +84,7 @@ class InviteSummaryWidget extends StatelessWidget {
                           child: _StatCard(
                             size: 40.h,
                             iconAsset: Assets.svg.comingSoon.path,
-                            label: 'قيد الانتظار',
+                            label: LocaleKeys.pending.tr(),
                             value: data.waitingCount,
                             // LTR: left=white, right=grey  ← visually in RTL layout
                             gradientColors: const [
@@ -100,7 +102,7 @@ class InviteSummaryWidget extends StatelessWidget {
                           child: _StatCard(
                             size: 35.h,
                             iconAsset: Assets.svg.unavailable.path,
-                            label: 'تم الرفض',
+                            label: LocaleKeys.rejected.tr(),
                             value: data.rejectedCount,
                             gradientColors: const [
                               Color(0x1AFFFFFF), // white 10%
@@ -241,12 +243,12 @@ class _TopProgressCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'تمت دعوة ${data.totalInvited} ضيف',
+                  LocaleKeys.totalGuestsInvited.tr(args: ['${data.totalInvited}']),
                   style: AppTextTheme.bodyLargeSemiBold(context),
                 ),
                 6.verticalSpace,
                 Text(
-                  'قائمة الضيوف في تزايد! من\nالضيف التالي؟',
+                  LocaleKeys.guestListGrowingWhoIsNext.tr(),
                   style: AppTextTheme.bodySmall(
                     context,
                   ).copyWith(fontWeight: FontWeight.w300),
@@ -261,7 +263,7 @@ class _TopProgressCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Text(
-                    'دعوة المزيد',
+                    LocaleKeys.inviteMore.tr(),
                     style: AppTextTheme.bodyMediumSemiBold(
                       context,
                     ).copyWith(color: AppColors.white),

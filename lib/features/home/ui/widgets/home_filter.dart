@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
@@ -7,6 +8,7 @@ import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/home/data/models/city_model.dart';
 import 'package:nawy/features/home/data/models/filter_chip_model.dart';
 import 'package:nawy/features/home/ui/widgets/location_selector.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 class FilterChipBar extends StatelessWidget {
   final List<FilterChipModel> items;
@@ -34,7 +36,7 @@ class FilterChipBar extends StatelessWidget {
             locations:locations ,
             selectedLocation:selectedLocation ,
           ),
-          _buildChip(item: FilterChipModel(id: 0, name: 'عرض الكل'),context:context,isSelected: initial?.id==null?false:(0==(initial?.id))),
+          _buildChip(item: FilterChipModel(id: 0, name: LocaleKeys.viewAll.tr()),context:context,isSelected: initial?.id==null?false:(0==(initial?.id))),
           ...items.map((item) => _buildChip(context:context ,item: item, isSelected: initial?.id==null?false:(item.id==(initial?.id)))),
         ],
       ),

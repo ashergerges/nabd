@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,7 @@ import 'package:nawy/features/my_booking/ui/widgets/cancelled_tap.dart';
 import 'package:nawy/features/my_booking/ui/widgets/completed_tap.dart';
 import 'package:nawy/features/my_booking/ui/widgets/loading_my_booking.dart';
 import 'package:nawy/features/my_booking/ui/widgets/upcoming_tap.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 import '../../../gen/assets.gen.dart';
 
 class MyBookingScreen extends StatelessWidget {
@@ -114,7 +116,7 @@ class _MyBookingBodyState extends State<MyBookingBody>
               24.verticalSpace,
               Padding(
                 padding:16.padHorizontal,
-                child: AppTextField(label: "ابحث",
+                child: AppTextField(label:LocaleKeys.search.tr(),
                   onChange: (value){
                     context.read<MyBookingCubit>().setSearchTerm(value);
                   },
@@ -125,7 +127,7 @@ class _MyBookingBodyState extends State<MyBookingBody>
                       },
                       child: Padding(
                         padding: 12.padTop,
-                        child: Text("الغاء",style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),),
+                        child: Text(LocaleKeys.cancel.tr(),style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),),
                       )),
                   imagePre: Assets.svg.search.path,radius: 12,),
               ),
@@ -141,9 +143,9 @@ class _MyBookingBodyState extends State<MyBookingBody>
               dividerColor: AppColors.primary100,
               labelPadding: 0.padHorizontal,
               tabs: [
-                Tab(text: "قريباً"),
-                Tab(text: "مكتمل"),
-                Tab(text: "تم الإلغاء"),
+                Tab(text: LocaleKeys.upcoming.tr()),
+                Tab(text: LocaleKeys.completed.tr()),
+                Tab(text: LocaleKeys.cancelled.tr()),
               ],
             ),
             Expanded(

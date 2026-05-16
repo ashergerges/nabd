@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,12 +7,15 @@ import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/app_text_field.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/list_view/animation_listview_1.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/categories/data/models/service_category_model.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/package_card.dart';
 import 'package:nawy/features/venues/cubit/venues_cubit.dart';
+import 'package:nawy/features/venues/ui/widgets/search_filter_sheet.dart';
 import 'package:nawy/gen/assets.gen.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 @RoutePage()
 class VenuesScreen extends StatelessWidget {
   const VenuesScreen({super.key, required this.category});
@@ -31,8 +35,16 @@ class VenuesScreen extends StatelessWidget {
     }
     return Column(
           children: [
-            AppTextField(label: "ابحث",
+            AppTextField(label: LocaleKeys.search.tr(),
              imagePre: Assets.svg.search.path,radius: 12,),
+            Row(children: [
+              OnTap(
+                  onTap: (){
+                    showFilterBottomSheet(context,categoryId: category.id);
+                  },
+                  child: Icon(Icons.filter,)),
+            ],),
+            10.verticalSpace,
             Expanded(child: ListViewAnimation1(
                 itemCount: state.venuesList.length,
                 padding: 24.padTop+5.padBottom,
@@ -70,7 +82,7 @@ class VenuesBodyShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AppTextField(label: "ابحث",
+        AppTextField(label: LocaleKeys.search.tr(),
           imagePre: Assets.svg.search.path,radius: 12,),
         Expanded(child: ListViewAnimation1(
             itemCount: 5,

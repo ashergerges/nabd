@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import 'package:nawy/features/book/cubit/book_cubit.dart';
 import 'package:nawy/features/book/ui/widgets/date_picker_widget.dart';
 import 'package:nawy/features/book/ui/widgets/timeSlot_selector.dart'
     show TimeSlotSelector, TimeSlotSelectorShimmer;
+import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../core/utils/common_widgets/empty_widget.dart';
 import '../../../gen/assets.gen.dart';
@@ -25,7 +27,7 @@ class SelectedDateStep extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("اختر التاريخ",
+              Text(LocaleKeys.selectDate.tr(),
                   style: AppTextTheme.bodyLargeSemiBold(context)),
               12.verticalSpace,
               DatePickerWidget(
@@ -36,7 +38,7 @@ class SelectedDateStep extends StatelessWidget {
               ),
               24.verticalSpace,
               Text(
-                "الفترات الزمنية المتاحة",
+                LocaleKeys.availableTimeSlots.tr(),
                 style: AppTextTheme.bodyLargeSemiBold(context),
               ),
               12.verticalSpace,
@@ -62,7 +64,7 @@ class TimeSlotSelectorWidget extends StatelessWidget {
           case Error():
             return Center(
               child: EmptyWidget(
-                text: "حدث خطأ في تحميل الأوقات المتاحة",
+                text:LocaleKeys.errorLoadingAvailableTimes.tr(),
                 image: Assets.svg.error.svg(),
               ),
             );
@@ -71,7 +73,7 @@ class TimeSlotSelectorWidget extends StatelessWidget {
             if (state.availableSlots.isEmpty) {
               return Center(
                 child: EmptyWidget(
-                  text: "لا توجد أوقات متاحة للحجز حالياً",
+                  text: LocaleKeys.noAvailableTimesForBooking.tr(),
                   image: Assets.svg.error.svg(),
                 ),
               );

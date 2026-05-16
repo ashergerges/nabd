@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ import 'package:nawy/features/home/ui/widgets/home_filter.dart';
 import 'package:nawy/features/home/ui/widgets/home_slider.dart';
 import 'package:nawy/features/home/ui/widgets/offer_card.dart';
 import 'package:nawy/features/home/ui/widgets/vendors_card.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../core/utils/constants/size_manager.dart';
 import '../../../gen/assets.gen.dart';
@@ -39,7 +41,11 @@ class HomeScreen extends StatelessWidget {
                   Assets.svg.logoName.svg(height: 30.h),
                   Row(
                     children: [
-                      Assets.svg.notification.svg(height: 24.h),
+                      OnTap(
+                        onTap:(){
+                         NotificationRoute().push(context);
+                        },
+                          child: Assets.svg.notification.svg(height: 24.h)),
                       24.horizontalSpace,
                       Builder(
                         builder: (context) {
@@ -76,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         if(state.showSearch)...[
                           24.verticalSpace,
-                          AppTextField(label: "ابحث",
+                          AppTextField(label: LocaleKeys.search.tr(),
                             onChange: (value){
                               context.read<HomeCubit>().setSearchTerm(value);
                             },
@@ -87,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                                 },
                                 child: Padding(
                                   padding: 12.padTop,
-                                  child: Text("الغاء",style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),),
+                                  child: Text(LocaleKeys.cancel.tr(),style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),),
                                 )),
                             imagePre: Assets.svg.search.path,radius: 12,),
                         ],
@@ -106,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                                   ?.map(
                                     (e) => FilterChipModel(
                                       id: e.id ?? 0,
-                                      name: e.name ?? 'قاعة الزفاف',
+                                      name: e.name ?? '',
                                     ),
                                   )
                                   .toList() ??
@@ -116,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                           },
                           locations:(state.homeData?.cities ?? []).isEmpty
                               ? []
-                              : [CityModel(id: 0, name: "الكل"),...(state.homeData?.cities ?? []), ],
+                              : [CityModel(id: 0, name: LocaleKeys.all.tr()),...(state.homeData?.cities ?? []), ],
                           onChangeLocation: (value) {
                             print('Selected id: $value');
                             context.read<HomeCubit>().selectedLocation(value);
@@ -130,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                             false)...[
                           24.verticalSpace,
                           Text(
-                            "الأعلى تقييمًا",
+                            LocaleKeys.topRated.tr(),
                             style: AppTextTheme.bodyLargeSemiBold(context),
                           ),
                           16.verticalSpace,
@@ -190,7 +196,7 @@ class HomeScreen extends StatelessWidget {
                         if (state.homeData?.offers?.isNotEmpty ?? false)...[
                           24.verticalSpace,
                           Text(
-                            "عروض خاصة",
+                            LocaleKeys.specialOffers.tr(),
                             style: AppTextTheme.bodyLargeSemiBold(context),
                           ),
                           16.verticalSpace,
@@ -223,7 +229,7 @@ class HomeScreen extends StatelessWidget {
                                   personName: state
                                       .homeData
                                       ?.offers?[index]
-                                      .vendorName??'هبة سليمة',
+                                      .vendorName??'',
                                   personImageUrl:  state
                                       .homeData
                                       ?.offers?[index]
@@ -240,7 +246,7 @@ class HomeScreen extends StatelessWidget {
                         if (state.homeData?.weddingVenues?.isNotEmpty ?? false)...[
                           24.verticalSpace,
                           Text(
-                            "قاعات  الزفاف",
+                            LocaleKeys.weddingHalls.tr(),
                             style: AppTextTheme.bodyLargeSemiBold(context),
                           ),
                           16.verticalSpace,
@@ -281,7 +287,7 @@ class HomeScreen extends StatelessWidget {
                                         .homeData
                                         ?.weddingVenues?[index]
                                         .address ??
-                                        'الرياض',
+                                        '',
                                     rate:
                                     state
                                         .homeData
@@ -328,7 +334,7 @@ class HomeShimmer extends StatelessWidget {
 
           24.verticalSpace,
           Text(
-            "الأعلى تقييمًا",
+            LocaleKeys.topRated.tr(),
             style: AppTextTheme.bodyLargeSemiBold(context),
           ),
           16.verticalSpace,
@@ -347,7 +353,7 @@ class HomeShimmer extends StatelessWidget {
             ),
           ),
           24.verticalSpace,
-          Text("عروض خاصة", style: AppTextTheme.bodyLargeSemiBold(context)),
+          Text(LocaleKeys.specialOffers.tr(), style: AppTextTheme.bodyLargeSemiBold(context)),
           16.verticalSpace,
           SizedBox(
             height: 220.h,

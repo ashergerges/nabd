@@ -32,8 +32,11 @@ class Endpoints {
   String get reviewAddUrl => r'api/app/review/add';
 
   //profile
-    String get updateProfileImageUrl => r'api/app/update-profile-image';
+  String get updateProfileImageUrl => r'api/app/update-profile-image';
   String get updateProfileUrl => r'api/app/update-profile';
+
+  //notification
+  String get notificationUrl => r'api/app/notifications/all';
 
 
 }

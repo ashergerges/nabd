@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nawy/core/services/dialogs/message_service.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/features/profile/cubits/update_profile/update_profile_cubit.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 class CircleProfileImagePicker extends StatefulWidget {
   final String? initialImageUrl;
@@ -46,7 +48,7 @@ class _CircleProfileImagePickerState extends State<CircleProfileImagePicker> {
       }
     } catch (e) {
       MessageService.showToast(
-        msg: 'Failed to pick image: $e',
+        msg: '${LocaleKeys.failedToPickImage.tr()} $e',
         state: ToastStates.error,
       );
     }

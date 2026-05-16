@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/vendor_details/cubit/vendor_details_cubit.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 class PhotosTab extends StatelessWidget {
   const PhotosTab({super.key});
@@ -21,8 +23,8 @@ class PhotosTab extends StatelessWidget {
         }
 
         if (gallery.isEmpty) {
-          return const Center(
-            child: Text("No photos available"),
+          return  Center(
+            child: Text(LocaleKeys.noPhotosAvailable.tr()),
           );
         }
 

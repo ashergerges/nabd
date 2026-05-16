@@ -56,7 +56,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("قيّمنا",style: AppTextTheme.bodyLarge(context),),
+                Text(LocaleKeys.rateUs.tr(),style: AppTextTheme.bodyLarge(context),),
                 12.verticalSpace,
                 AppButton(
                   text: LocaleKeys.confirm.tr(),
@@ -128,7 +128,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
               AppTextField(
                 maxLines: 3,
                 keyBord: TextInputType.name,
-                label:"أضف تعليقك هنا",
+                label:LocaleKeys.addYourCommentHere.tr(),
                 onChange: (value) {
                   _comment = value??'';
                 },
@@ -160,7 +160,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       textColor: AppColors.primary,
                       padding: 10.padVertical+16.padHorizontal,
                       onTap: widget.onCancel??(){},
-                      text:"Cancel",
+                      text:LocaleKeys.cancel.tr(),
                     ),
 
                   ),

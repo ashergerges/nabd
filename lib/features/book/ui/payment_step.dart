@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/book/cubit/book_cubit.dart';
 import 'package:nawy/features/book/ui/widgets/selectable_list_widget.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 class PaymentStep extends StatelessWidget {
   const PaymentStep({super.key, });
@@ -19,7 +21,7 @@ class PaymentStep extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("طريقة الدفع",
+              Text(LocaleKeys.paymentMethod.tr(),
                   style: AppTextTheme.bodyLargeSemiBold(context)),
               12.verticalSpace,
               SelectableListWidget(
@@ -41,8 +43,7 @@ class PaymentStep extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                   children: [
-                    Text(
-                      "المجموع",
+                    Text(LocaleKeys.total.tr(),
                       style: AppTextTheme.bodyLarge(
                         context,
                       ).copyWith(color: AppColors.primary),

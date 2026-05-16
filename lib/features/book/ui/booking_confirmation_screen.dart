@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/router/app_router.dart';
@@ -10,6 +11,7 @@ import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/book/data/model/book_confirmation_model.dart';
 import 'package:nawy/gen/assets.gen.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 @RoutePage()
 class BookingConfirmationScreen extends StatelessWidget {
   const BookingConfirmationScreen({super.key,  this.bookConfirmation});
@@ -17,7 +19,7 @@ class BookingConfirmationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "تأكيد الحجز"),
+      appBar: CustomAppBar(title: LocaleKeys.confirmBooking.tr()),
       body: SizedBox(
         width: double.infinity, // Add this to make Column take full width
         child: Column(
@@ -30,19 +32,18 @@ class BookingConfirmationScreen extends StatelessWidget {
             ),
             12.verticalSpace,
             Text(
-              "تم تأكيد الحجز",
+              LocaleKeys.bookingConfirmed.tr(),
               style: AppTextTheme.bodySmallMediumWeight(context),
             ),
             24.verticalSpace,
             Text(
-              "تم حجز مكان زفاف أحلامك بنجاح",
+              LocaleKeys.dreamVenueBookedSuccessfully.tr(),
               style: AppTextTheme.bodySmall(context).copyWith(
                 fontWeight: FontWeight.w300,
               ),
             ),
             40.verticalSpace,
-            Text(
-              "رقم الحجز: #${bookConfirmation?.code}",
+            Text(LocaleKeys.bookingNumber.tr(args: ['${bookConfirmation?.code}']),
               style: AppTextTheme.bodyLargeSemiBold(context),
             ),
           ],
@@ -58,7 +59,7 @@ class BookingConfirmationScreen extends StatelessWidget {
                 onTap: (){
                   context.navigateTo(ViewBookingDetailsRoute(bookingId: bookConfirmation?.id??0));
                 },
-                text:"عرض تفاصيل الحجز"),
+                text:LocaleKeys.viewBookingDetails.tr()),
             12.verticalSpace,
             AppButton(
               background: AppColors.white,
@@ -69,7 +70,7 @@ class BookingConfirmationScreen extends StatelessWidget {
                     HomeBottomTabsRoute()
                   ], updateExistingRoutes: false);
                 },
-                text:"العودة إلى الصفحة الرئيسية"),
+                text:LocaleKeys.backToHome.tr()),
           ],
         ),
       ),

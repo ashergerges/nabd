@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/book/cubit/book_cubit.dart';
 import 'package:nawy/features/book/data/model/book_screen_model.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 class SummaryStep extends StatelessWidget {
   const SummaryStep({super.key, required this.data});
@@ -22,7 +24,7 @@ class SummaryStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("ملخص الحجز", style: AppTextTheme.bodyLargeSemiBold(context)),
+          Text(LocaleKeys.bookingSummary.tr(), style: AppTextTheme.bodyLargeSemiBold(context)),
           12.verticalSpace,
           Container(
             padding: 16.padAll,
@@ -64,7 +66,7 @@ class SummaryStep extends StatelessWidget {
                     ),
                     12.verticalSpace,
                     Text(
-                      "يستوعب حتى ${data.avgCount} ضيف",
+                      LocaleKeys.accommodatesUpToGuests.tr(args: ['${data.avgCount}'])                 ,
                       style: AppTextTheme.bodySmall(
                         context,
                       ).copyWith(color: AppColors.neutral400),
@@ -87,7 +89,8 @@ class SummaryStep extends StatelessWidget {
             ),
           ),
           24.verticalSpace,
-          Text("تفاصيل السعر", style: AppTextTheme.bodyLargeSemiBold(context)),
+          Text(
+              LocaleKeys.priceDetails.tr(), style: AppTextTheme.bodyLargeSemiBold(context)),
           12.verticalSpace,
           Container(
             padding: 24.padAll,
@@ -103,9 +106,9 @@ class SummaryStep extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("سعر الباقة", style: AppTextTheme.bodySmall(context)),
+                    Text(LocaleKeys.packagePrice.tr(), style: AppTextTheme.bodySmall(context)),
                     Text(
-                      "${data.price} رس",
+                      "${data.price} ${LocaleKeys.riyal.tr()}",
                       style: AppTextTheme.bodySmallMediumWeight(context),
                     ),
                   ],
@@ -115,11 +118,11 @@ class SummaryStep extends StatelessWidget {
 
                   children: [
                     Text(
-                      "ضريبة القيمة المضافة (15%)",
+                      LocaleKeys.vatFifteenPercent.tr(),
                       style: AppTextTheme.bodySmall(context),
                     ),
                     Text(
-                      "${(data.price * 0.15)} رس",
+                      "${(data.price * 0.15)} ${LocaleKeys.riyal.tr()}",
                       style: AppTextTheme.bodySmallMediumWeight(context),
                     ),
                   ],
@@ -132,13 +135,13 @@ class SummaryStep extends StatelessWidget {
 
                   children: [
                     Text(
-                      "الاجمالي",
+                      LocaleKeys.grandTotal.tr(),
                       style: AppTextTheme.bodySmall(
                         context,
                       ).copyWith(color: AppColors.primary),
                     ),
                     Text(
-                      "${data.price + (data.price * 0.15)} رس",
+                      "${data.price + (data.price * 0.15)} ${LocaleKeys.riyal.tr()}",
                       style: AppTextTheme.bodySmallMediumWeight(
                         context,
                       ).copyWith(color: AppColors.primary),

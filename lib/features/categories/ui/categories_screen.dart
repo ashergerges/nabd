@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,7 @@ import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/categories/cubit/categories_cubit.dart';
 import 'package:nawy/features/categories/data/models/service_category_model.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../gen/assets.gen.dart';
 
@@ -61,7 +63,7 @@ class CategoriesScreen extends StatelessWidget {
                         24.verticalSpace,
                         Padding(
                           padding:16.padHorizontal,
-                          child: AppTextField(label: "ابحث",
+                          child: AppTextField(label: LocaleKeys.search.tr(),
                             onChange: (value){
                               context.read<CategoriesCubit>().setSearchTerm(value);
                             },
@@ -72,7 +74,7 @@ class CategoriesScreen extends StatelessWidget {
                                 },
                                 child: Padding(
                                   padding: 12.padTop,
-                                  child: Text("الغاء",style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),),
+                                  child: Text(LocaleKeys.cancel.tr(),style: AppTextTheme.bodyMedium(context).copyWith(color: AppColors.neutral400),),
                                 )),
                             imagePre: Assets.svg.search.path,radius: 12,),
                         ),
@@ -80,7 +82,7 @@ class CategoriesScreen extends StatelessWidget {
                       
                       Expanded(
                         child: state.categoriesList.isEmpty?EmptyWidget(
-                          text: "لا توجد فئات",
+                          text:LocaleKeys.noCategories.tr(),
                           image:Assets.svg.error.svg() ,
                         ):ServiceCategoryGridEnhanced(
                           categories: state.categoriesList

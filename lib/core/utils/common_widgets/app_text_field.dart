@@ -113,6 +113,7 @@ class _AppTextFieldState extends State<AppTextField> {
         onTapOutside: (v) {
           FocusManager.instance.primaryFocus?.unfocus();
         },
+
         textAlign: TextAlign.start,
         enabled: widget.enabled,
         initialValue: initialValue,
@@ -206,7 +207,7 @@ class _AppTextFieldState extends State<AppTextField> {
                       : 0.padVertical) +
                   (15.padHorizontal),
           suffixText: widget.suffixText,
-          suffix: widget.suffixItem,
+          // suffix: widget.suffixItem,
           suffixStyle: AppTextTheme.bodyMedium(
             context,
           ).copyWith(color: AppColors.neutral200, height: 0.05.w),

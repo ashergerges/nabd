@@ -54,6 +54,10 @@ import 'features/my_booking/data/repositories/interfaces/i_my_booking_repository
     as _i370;
 import 'features/my_booking/data/repositories/remote/my_booking_repository.dart'
     as _i851;
+import 'features/notification/data/repositories/interfaces/i_notification_repository.dart'
+    as _i493;
+import 'features/notification/data/repositories/remote/notification_repository.dart'
+    as _i782;
 import 'features/notifications/data/repositories/interfaces/i_notifications_repository.dart'
     as _i97;
 import 'features/notifications/data/repositories/remote/notifications_repository.dart'
@@ -140,6 +144,11 @@ _i174.GetIt $initGetIt(
   );
   gh.factory<_i302.IVenuesRepository>(
     () => _i665.VenuesRepository(networkService: gh<_i969.NetworkService>()),
+  );
+  gh.factory<_i493.INotificationRepository>(
+    () => _i782.NotificationRepository(
+      networkService: gh<_i969.NetworkService>(),
+    ),
   );
   gh.factory<_i443.ICategoriesRepository>(
     () =>

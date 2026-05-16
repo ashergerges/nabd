@@ -89,7 +89,7 @@ class VendorPackageDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   24.verticalSpace,
-                  Text("وصف",style: AppTextTheme.bodyLarge(context).copyWith(fontWeight: FontWeight.w600),),
+                  Text(LocaleKeys.description.tr(),style: AppTextTheme.bodyLarge(context).copyWith(fontWeight: FontWeight.w600),),
                   8.verticalSpace,
                  Text(state.packageDetails?.description??"",
                  style: AppTextTheme.bodyMedium(context),),

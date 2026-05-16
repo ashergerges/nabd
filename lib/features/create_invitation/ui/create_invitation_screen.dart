@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:auto_route/annotations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ import 'package:nawy/features/book/ui/widgets/date_picker_widget.dart';
 import 'package:nawy/features/create_invitation/cubit/create_invitation_cubit.dart';
 import 'package:nawy/features/create_invitation/ui/contact_picker_sheet.dart';
 import 'package:nawy/features/my_booking/data/models/booking_details_model.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../gen/assets.gen.dart';
 @RoutePage()
@@ -34,7 +36,7 @@ class CreateInvitationScreen extends StatelessWidget {
       child: BlocBuilder<CreateInvitationCubit, CreateInvitationState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: CustomAppBar(title: "انشاء الدعوات"),
+            appBar: CustomAppBar(title: LocaleKeys.createInvitations.tr()),
             body: Form(
               key: formKey,
               child: SingleChildScrollView(
@@ -43,12 +45,14 @@ class CreateInvitationScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "أدخل البيانات",
+                      LocaleKeys.enterData.tr(),
                       style: AppTextTheme.bodyLarge(context)
                           .copyWith(fontWeight: FontWeight.w300),
                     ),
                     24.verticalSpace,
-                    Text("اسم قاعة الزفاف", style: AppTextTheme.bodyLarge(context)),
+                    Text(
+                        LocaleKeys.weddingHallName.tr()
+                        , style: AppTextTheme.bodyLarge(context)),
                     12.verticalSpace,
                     Container(
                       width: double.infinity,
@@ -64,7 +68,9 @@ class CreateInvitationScreen extends StatelessWidget {
                       ),
                     ),
                     24.verticalSpace,
-                    Text("الموقع", style: AppTextTheme.bodyLarge(context)),
+                    Text(
+                        LocaleKeys.location.tr()
+                        , style: AppTextTheme.bodyLarge(context)),
                     12.verticalSpace,
                     Container(
                       width: double.infinity,
@@ -98,7 +104,8 @@ class CreateInvitationScreen extends StatelessWidget {
                       ),
                     ),
                     24.verticalSpace,
-                    Text("اسم العروسة", style: AppTextTheme.bodyLarge(context)),
+                    Text(
+                        LocaleKeys.brideName.tr(), style: AppTextTheme.bodyLarge(context)),
                     12.verticalSpace,
                     AppTextField(
                       label: "",
@@ -108,7 +115,8 @@ class CreateInvitationScreen extends StatelessWidget {
                       validator: Validator.validate,
                     ),
                     24.verticalSpace,
-                    Text("اسم العريس", style: AppTextTheme.bodyLarge(context)),
+                    Text(
+                        LocaleKeys.groomName.tr(), style: AppTextTheme.bodyLarge(context)),
                     12.verticalSpace,
                     AppTextField(
                       label: "",
@@ -118,7 +126,8 @@ class CreateInvitationScreen extends StatelessWidget {
                       validator: Validator.validate,
                     ),
                     24.verticalSpace,
-                    Text("التاريخ", style: AppTextTheme.bodyLarge(context)),
+                    Text(
+                        LocaleKeys.date.tr(), style: AppTextTheme.bodyLarge(context)),
                     12.verticalSpace,
                     DatePickerWidget(
                       viewOnly: true,
@@ -144,7 +153,7 @@ class CreateInvitationScreen extends StatelessWidget {
                     );
                   }
                 },
-                text: "ارسال",
+                text: LocaleKeys.submit.tr(),
               ),
             ),
           );

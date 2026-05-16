@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nawy/core/utils/common_widgets/app_button.dart';
@@ -19,14 +20,14 @@ class LocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "الموقع"),
+      appBar: CustomAppBar(title:  LocaleKeys.address.tr()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: 24.padHorizontal,
             child: AppTextField(
-              label: "الرياض، الملقا",
+              label: LocaleKeys.riyadhMalqa.tr(),
               imagePre: Assets.svg.search.path,
               radius: 12,
             ),
@@ -60,7 +61,7 @@ class LocationScreen extends StatelessWidget {
           Padding(
             padding: 24.padHorizontal,
             child: Text(
-              "الرياض، الملقا",
+              LocaleKeys.riyadhMalqa.tr(),
               style: AppTextTheme.bodyLargeSemiBold(context),
             ),
           ),
@@ -68,7 +69,7 @@ class LocationScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         padding: 16.padAll,
-        child: AppButton(text: "حفظ"),
+        child: AppButton(text:  LocaleKeys.save.tr()),
       ),
     );
   }

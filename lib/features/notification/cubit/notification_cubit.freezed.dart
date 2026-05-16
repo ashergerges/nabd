@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'venues_cubit.dart';
+part of 'notification_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,147 +16,135 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$VenuesState {
-  VenuesStateStatus get currState => throw _privateConstructorUsedError;
-  List<ProductModel> get venuesList => throw _privateConstructorUsedError;
-  FilterModel? get filterData => throw _privateConstructorUsedError;
-  FilterModel? get filterDataTemp => throw _privateConstructorUsedError;
+mixin _$NotificationState {
+  NotificationStateStatus get currState => throw _privateConstructorUsedError;
+  List<NotificationGroupModel> get notificationGroup =>
+      throw _privateConstructorUsedError;
+  RefreshController get refreshController => throw _privateConstructorUsedError;
 
-  /// Create a copy of VenuesState
+  /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $VenuesStateCopyWith<VenuesState> get copyWith =>
+  $NotificationStateCopyWith<NotificationState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VenuesStateCopyWith<$Res> {
-  factory $VenuesStateCopyWith(
-    VenuesState value,
-    $Res Function(VenuesState) then,
-  ) = _$VenuesStateCopyWithImpl<$Res, VenuesState>;
+abstract class $NotificationStateCopyWith<$Res> {
+  factory $NotificationStateCopyWith(
+    NotificationState value,
+    $Res Function(NotificationState) then,
+  ) = _$NotificationStateCopyWithImpl<$Res, NotificationState>;
   @useResult
   $Res call({
-    VenuesStateStatus currState,
-    List<ProductModel> venuesList,
-    FilterModel? filterData,
-    FilterModel? filterDataTemp,
+    NotificationStateStatus currState,
+    List<NotificationGroupModel> notificationGroup,
+    RefreshController refreshController,
   });
 
-  $VenuesStateStatusCopyWith<$Res> get currState;
+  $NotificationStateStatusCopyWith<$Res> get currState;
 }
 
 /// @nodoc
-class _$VenuesStateCopyWithImpl<$Res, $Val extends VenuesState>
-    implements $VenuesStateCopyWith<$Res> {
-  _$VenuesStateCopyWithImpl(this._value, this._then);
+class _$NotificationStateCopyWithImpl<$Res, $Val extends NotificationState>
+    implements $NotificationStateCopyWith<$Res> {
+  _$NotificationStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VenuesState
+  /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? currState = null,
-    Object? venuesList = null,
-    Object? filterData = freezed,
-    Object? filterDataTemp = freezed,
+    Object? notificationGroup = null,
+    Object? refreshController = null,
   }) {
     return _then(
       _value.copyWith(
             currState: null == currState
                 ? _value.currState
                 : currState // ignore: cast_nullable_to_non_nullable
-                      as VenuesStateStatus,
-            venuesList: null == venuesList
-                ? _value.venuesList
-                : venuesList // ignore: cast_nullable_to_non_nullable
-                      as List<ProductModel>,
-            filterData: freezed == filterData
-                ? _value.filterData
-                : filterData // ignore: cast_nullable_to_non_nullable
-                      as FilterModel?,
-            filterDataTemp: freezed == filterDataTemp
-                ? _value.filterDataTemp
-                : filterDataTemp // ignore: cast_nullable_to_non_nullable
-                      as FilterModel?,
+                      as NotificationStateStatus,
+            notificationGroup: null == notificationGroup
+                ? _value.notificationGroup
+                : notificationGroup // ignore: cast_nullable_to_non_nullable
+                      as List<NotificationGroupModel>,
+            refreshController: null == refreshController
+                ? _value.refreshController
+                : refreshController // ignore: cast_nullable_to_non_nullable
+                      as RefreshController,
           )
           as $Val,
     );
   }
 
-  /// Create a copy of VenuesState
+  /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $VenuesStateStatusCopyWith<$Res> get currState {
-    return $VenuesStateStatusCopyWith<$Res>(_value.currState, (value) {
+  $NotificationStateStatusCopyWith<$Res> get currState {
+    return $NotificationStateStatusCopyWith<$Res>(_value.currState, (value) {
       return _then(_value.copyWith(currState: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$VenuesStateImplCopyWith<$Res>
-    implements $VenuesStateCopyWith<$Res> {
-  factory _$$VenuesStateImplCopyWith(
-    _$VenuesStateImpl value,
-    $Res Function(_$VenuesStateImpl) then,
-  ) = __$$VenuesStateImplCopyWithImpl<$Res>;
+abstract class _$$NotificationStateImplCopyWith<$Res>
+    implements $NotificationStateCopyWith<$Res> {
+  factory _$$NotificationStateImplCopyWith(
+    _$NotificationStateImpl value,
+    $Res Function(_$NotificationStateImpl) then,
+  ) = __$$NotificationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({
-    VenuesStateStatus currState,
-    List<ProductModel> venuesList,
-    FilterModel? filterData,
-    FilterModel? filterDataTemp,
+    NotificationStateStatus currState,
+    List<NotificationGroupModel> notificationGroup,
+    RefreshController refreshController,
   });
 
   @override
-  $VenuesStateStatusCopyWith<$Res> get currState;
+  $NotificationStateStatusCopyWith<$Res> get currState;
 }
 
 /// @nodoc
-class __$$VenuesStateImplCopyWithImpl<$Res>
-    extends _$VenuesStateCopyWithImpl<$Res, _$VenuesStateImpl>
-    implements _$$VenuesStateImplCopyWith<$Res> {
-  __$$VenuesStateImplCopyWithImpl(
-    _$VenuesStateImpl _value,
-    $Res Function(_$VenuesStateImpl) _then,
+class __$$NotificationStateImplCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res, _$NotificationStateImpl>
+    implements _$$NotificationStateImplCopyWith<$Res> {
+  __$$NotificationStateImplCopyWithImpl(
+    _$NotificationStateImpl _value,
+    $Res Function(_$NotificationStateImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of VenuesState
+  /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? currState = null,
-    Object? venuesList = null,
-    Object? filterData = freezed,
-    Object? filterDataTemp = freezed,
+    Object? notificationGroup = null,
+    Object? refreshController = null,
   }) {
     return _then(
-      _$VenuesStateImpl(
+      _$NotificationStateImpl(
         currState: null == currState
             ? _value.currState
             : currState // ignore: cast_nullable_to_non_nullable
-                  as VenuesStateStatus,
-        venuesList: null == venuesList
-            ? _value._venuesList
-            : venuesList // ignore: cast_nullable_to_non_nullable
-                  as List<ProductModel>,
-        filterData: freezed == filterData
-            ? _value.filterData
-            : filterData // ignore: cast_nullable_to_non_nullable
-                  as FilterModel?,
-        filterDataTemp: freezed == filterDataTemp
-            ? _value.filterDataTemp
-            : filterDataTemp // ignore: cast_nullable_to_non_nullable
-                  as FilterModel?,
+                  as NotificationStateStatus,
+        notificationGroup: null == notificationGroup
+            ? _value._notificationGroup
+            : notificationGroup // ignore: cast_nullable_to_non_nullable
+                  as List<NotificationGroupModel>,
+        refreshController: null == refreshController
+            ? _value.refreshController
+            : refreshController // ignore: cast_nullable_to_non_nullable
+                  as RefreshController,
       ),
     );
   }
@@ -164,98 +152,93 @@ class __$$VenuesStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VenuesStateImpl implements _VenuesState {
-  const _$VenuesStateImpl({
-    this.currState = const VenuesStateStatus.initial(),
-    final List<ProductModel> venuesList = const [],
-    this.filterData,
-    this.filterDataTemp,
-  }) : _venuesList = venuesList;
+class _$NotificationStateImpl implements _NotificationState {
+  const _$NotificationStateImpl({
+    this.currState = const NotificationStateStatus.initial(),
+    final List<NotificationGroupModel> notificationGroup = const [],
+    required this.refreshController,
+  }) : _notificationGroup = notificationGroup;
 
   @override
   @JsonKey()
-  final VenuesStateStatus currState;
-  final List<ProductModel> _venuesList;
+  final NotificationStateStatus currState;
+  final List<NotificationGroupModel> _notificationGroup;
   @override
   @JsonKey()
-  List<ProductModel> get venuesList {
-    if (_venuesList is EqualUnmodifiableListView) return _venuesList;
+  List<NotificationGroupModel> get notificationGroup {
+    if (_notificationGroup is EqualUnmodifiableListView)
+      return _notificationGroup;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_venuesList);
+    return EqualUnmodifiableListView(_notificationGroup);
   }
 
   @override
-  final FilterModel? filterData;
-  @override
-  final FilterModel? filterDataTemp;
+  final RefreshController refreshController;
 
   @override
   String toString() {
-    return 'VenuesState(currState: $currState, venuesList: $venuesList, filterData: $filterData, filterDataTemp: $filterDataTemp)';
+    return 'NotificationState(currState: $currState, notificationGroup: $notificationGroup, refreshController: $refreshController)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VenuesStateImpl &&
+            other is _$NotificationStateImpl &&
             (identical(other.currState, currState) ||
                 other.currState == currState) &&
             const DeepCollectionEquality().equals(
-              other._venuesList,
-              _venuesList,
+              other._notificationGroup,
+              _notificationGroup,
             ) &&
-            (identical(other.filterData, filterData) ||
-                other.filterData == filterData) &&
-            (identical(other.filterDataTemp, filterDataTemp) ||
-                other.filterDataTemp == filterDataTemp));
+            (identical(other.refreshController, refreshController) ||
+                other.refreshController == refreshController));
   }
 
   @override
   int get hashCode => Object.hash(
     runtimeType,
     currState,
-    const DeepCollectionEquality().hash(_venuesList),
-    filterData,
-    filterDataTemp,
+    const DeepCollectionEquality().hash(_notificationGroup),
+    refreshController,
   );
 
-  /// Create a copy of VenuesState
+  /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$VenuesStateImplCopyWith<_$VenuesStateImpl> get copyWith =>
-      __$$VenuesStateImplCopyWithImpl<_$VenuesStateImpl>(this, _$identity);
+  _$$NotificationStateImplCopyWith<_$NotificationStateImpl> get copyWith =>
+      __$$NotificationStateImplCopyWithImpl<_$NotificationStateImpl>(
+        this,
+        _$identity,
+      );
 }
 
-abstract class _VenuesState implements VenuesState {
-  const factory _VenuesState({
-    final VenuesStateStatus currState,
-    final List<ProductModel> venuesList,
-    final FilterModel? filterData,
-    final FilterModel? filterDataTemp,
-  }) = _$VenuesStateImpl;
+abstract class _NotificationState implements NotificationState {
+  const factory _NotificationState({
+    final NotificationStateStatus currState,
+    final List<NotificationGroupModel> notificationGroup,
+    required final RefreshController refreshController,
+  }) = _$NotificationStateImpl;
 
   @override
-  VenuesStateStatus get currState;
+  NotificationStateStatus get currState;
   @override
-  List<ProductModel> get venuesList;
+  List<NotificationGroupModel> get notificationGroup;
   @override
-  FilterModel? get filterData;
-  @override
-  FilterModel? get filterDataTemp;
+  RefreshController get refreshController;
 
-  /// Create a copy of VenuesState
+  /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VenuesStateImplCopyWith<_$VenuesStateImpl> get copyWith =>
+  _$$NotificationStateImplCopyWith<_$NotificationStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$VenuesStateStatus {
+mixin _$NotificationStateStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -303,24 +286,27 @@ mixin _$VenuesStateStatus {
 }
 
 /// @nodoc
-abstract class $VenuesStateStatusCopyWith<$Res> {
-  factory $VenuesStateStatusCopyWith(
-    VenuesStateStatus value,
-    $Res Function(VenuesStateStatus) then,
-  ) = _$VenuesStateStatusCopyWithImpl<$Res, VenuesStateStatus>;
+abstract class $NotificationStateStatusCopyWith<$Res> {
+  factory $NotificationStateStatusCopyWith(
+    NotificationStateStatus value,
+    $Res Function(NotificationStateStatus) then,
+  ) = _$NotificationStateStatusCopyWithImpl<$Res, NotificationStateStatus>;
 }
 
 /// @nodoc
-class _$VenuesStateStatusCopyWithImpl<$Res, $Val extends VenuesStateStatus>
-    implements $VenuesStateStatusCopyWith<$Res> {
-  _$VenuesStateStatusCopyWithImpl(this._value, this._then);
+class _$NotificationStateStatusCopyWithImpl<
+  $Res,
+  $Val extends NotificationStateStatus
+>
+    implements $NotificationStateStatusCopyWith<$Res> {
+  _$NotificationStateStatusCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VenuesStateStatus
+  /// Create a copy of NotificationStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -334,14 +320,14 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$VenuesStateStatusCopyWithImpl<$Res, _$InitialImpl>
+    extends _$NotificationStateStatusCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
     _$InitialImpl _value,
     $Res Function(_$InitialImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of VenuesStateStatus
+  /// Create a copy of NotificationStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -352,7 +338,7 @@ class _$InitialImpl implements Initial {
 
   @override
   String toString() {
-    return 'VenuesStateStatus.initial()';
+    return 'NotificationStateStatus.initial()';
   }
 
   @override
@@ -439,7 +425,7 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements VenuesStateStatus {
+abstract class Initial implements NotificationStateStatus {
   const factory Initial() = _$InitialImpl;
 }
 
@@ -453,14 +439,14 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$VenuesStateStatusCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$NotificationStateStatusCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
     _$LoadingImpl _value,
     $Res Function(_$LoadingImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of VenuesStateStatus
+  /// Create a copy of NotificationStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -471,7 +457,7 @@ class _$LoadingImpl implements Loading {
 
   @override
   String toString() {
-    return 'VenuesStateStatus.loading()';
+    return 'NotificationStateStatus.loading()';
   }
 
   @override
@@ -558,7 +544,7 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements VenuesStateStatus {
+abstract class Loading implements NotificationStateStatus {
   const factory Loading() = _$LoadingImpl;
 }
 
@@ -572,14 +558,14 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$VenuesStateStatusCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$NotificationStateStatusCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
     _$ErrorImpl _value,
     $Res Function(_$ErrorImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of VenuesStateStatus
+  /// Create a copy of NotificationStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -590,7 +576,7 @@ class _$ErrorImpl implements Error {
 
   @override
   String toString() {
-    return 'VenuesStateStatus.error()';
+    return 'NotificationStateStatus.error()';
   }
 
   @override
@@ -677,7 +663,7 @@ class _$ErrorImpl implements Error {
   }
 }
 
-abstract class Error implements VenuesStateStatus {
+abstract class Error implements NotificationStateStatus {
   const factory Error() = _$ErrorImpl;
 }
 
@@ -691,14 +677,14 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$VenuesStateStatusCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$NotificationStateStatusCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
     _$SuccessImpl _value,
     $Res Function(_$SuccessImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of VenuesStateStatus
+  /// Create a copy of NotificationStateStatus
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -709,7 +695,7 @@ class _$SuccessImpl implements Success {
 
   @override
   String toString() {
-    return 'VenuesStateStatus.success()';
+    return 'NotificationStateStatus.success()';
   }
 
   @override
@@ -796,6 +782,6 @@ class _$SuccessImpl implements Success {
   }
 }
 
-abstract class Success implements VenuesStateStatus {
+abstract class Success implements NotificationStateStatus {
   const factory Success() = _$SuccessImpl;
 }

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,6 +11,7 @@ import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../core/utils/constants/app_colors.dart';
 import '../../../gen/assets.gen.dart';
@@ -59,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                   ProfileInfoCard(),
                   40.verticalSpace,
                   ProfileItem(
-                    title: "الموقع",
+                    title: LocaleKeys.location.tr(),
                     imageUrl: Assets.svg.location.path,
                     onTap: () {
                       LocationRoute().push(context);
@@ -67,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   ProfileDiv(),
                   ProfileItem(
-                    title: "المفضلة",
+                    title: LocaleKeys.favorites.tr(),
                     imageUrl: Assets.svg.favouriteSquare.path,
                     onTap: () {
                       FavRoute().push(context);
@@ -75,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   ProfileDiv(),
                   ProfileItem(
-                    title: "اللغة",
+                    title: LocaleKeys.language.tr(),
                     imageUrl: Assets.svg.language.path,
                     onTap: () {
                       LanguageRoute().push(context);
@@ -83,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   ProfileDiv(),
                   ProfileItem(
-                    title: "تتبّع الدعوات",
+                    title: LocaleKeys.trackInvitations.tr(),
                     imageUrl: Assets.svg.invitationTracker.path,
                     onTap: () {
                       InvitationTrackingRoute().push(context);
@@ -91,7 +93,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   ProfileDiv(),
                   ProfileItem(
-                    title: "الدعم",
+                    title:LocaleKeys.support.tr(),
                     imageUrl: Assets.svg.support.path,
                     onTap: () {
                       SupportRoute().push(context);
@@ -112,7 +114,8 @@ class ProfileScreen extends StatelessWidget {
                   SvgPicture.asset(Assets.svg.logout.path, height: 32.h),
                   12.horizontalSpace,
                   Expanded(
-                    child: Text("تسجيل الخروج", style: AppTextTheme.headingSmall(context).copyWith(color: AppColors.error)),
+                    child: Text(
+                        LocaleKeys.logout.tr(), style: AppTextTheme.headingSmall(context).copyWith(color: AppColors.error)),
                   ),
                 ],
               ),

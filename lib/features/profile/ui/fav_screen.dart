@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,7 @@ import 'package:nawy/features/profile/data/models/fav/fav_package_model.dart';
 import 'package:nawy/features/profile/data/models/fav/fav_vendor_model.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/package_card.dart';
 import 'package:nawy/features/vendor_details/ui/widgets/vendor_card.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../core/utils/common_widgets/empty_widget.dart';
@@ -27,12 +29,11 @@ class FavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        print('🔵 Creating FavCubit');
         return FavCubit()
           ..getWishlistVendor();
       },
       child: Scaffold(
-        appBar: CustomAppBar(title: "المفضلة"),
+        appBar: CustomAppBar(title: LocaleKeys.favorites.tr()),
         body: FAVBody(),
       ),
     );
@@ -100,8 +101,8 @@ class _FAVBodyState extends State<FAVBody>
               dividerColor: AppColors.primary100,
               labelPadding: 0.padHorizontal,
               tabs: [
-                Tab(text: "مقدمو الخدمات"),
-                Tab(text: "الباقات"),
+                Tab(text: LocaleKeys.serviceProviders.tr()),
+                Tab(text: LocaleKeys.packages.tr()),
               ],
             ),
             Expanded(
@@ -153,7 +154,7 @@ class VendorsTap extends StatelessWidget {
       header: PullRefresh.pullRefresh,
 
       child:favVendors.isEmpty?EmptyWidget(
-        text: "لا توجد مفضلات في مقدمو الخدمه",
+        text:LocaleKeys.noFavoritesInServiceProviders.tr(),
         image:Assets.svg.error.svg() ,
       ): ListView.separated(
         physics: BouncingScrollPhysics(),
@@ -201,7 +202,7 @@ class PackagesTap extends StatelessWidget {
       },
       header: PullRefresh.pullRefresh,
       child:favPackages.isEmpty?EmptyWidget(
-        text: "لا توجد مفضلات في الباقات",
+        text:LocaleKeys.noFavoritesInPackages.tr(),
         image:Assets.svg.error.svg() ,
       ): ListView.separated(
         physics: BouncingScrollPhysics(),

@@ -127,7 +127,7 @@ class MyBookingCard extends StatelessWidget {
               10.verticalSpace,
               AppButton(
                 onTap:onTapRate ,
-                text: "قيّم تجربتك",
+                text: LocaleKeys.rateYourExperience.tr(),
                 background: AppColors.white,
                 radius: 12.r,
                 textColor: AppColors.textColor,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,7 @@ class CompletedTap extends StatelessWidget {
       ),
       onLoading: () => context.read<MyBookingCubit>().booksCompletedMore(),
       child: booksCompleted.isEmpty?EmptyWidget(
-        text: "لا توجد حجوزات مكتمله",
+        text: LocaleKeys.noCompletedBookings.tr(),
         image:Assets.svg.error.svg() ,
       ):ListView.separated(
         physics:BouncingScrollPhysics(),
@@ -52,8 +53,8 @@ class CompletedTap extends StatelessWidget {
               MessageService.showNewCustomDialog(
                 context,
                 child: ReviewWidget(
-                  title: "قيّم تجربة الحجز الخاصة بك",
-                  subTitle:"ملاحظاتك تساعدنا على التطور",
+                  title: LocaleKeys.rateYourBookingExperience.tr(),
+                  subTitle:LocaleKeys.yourFeedbackHelpsUsImprove.tr(),
                   onSubmit: (score, comment) {
                     context.read<MyBookingCubit>().sendRate(
                       bookId: booksCompleted[index].id??0,

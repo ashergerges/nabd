@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:nawy/core/utils/constants/translations.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/core/utils/helper/validator.dart';
 import 'package:nawy/features/auth/cubit/auth_cubit.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../gen/assets.gen.dart';
 
@@ -68,9 +70,9 @@ class LoginBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("مرحباً!", style: AppTextTheme.headingSmall(context),),
+            Text(LocaleKeys.hello.tr(), style: AppTextTheme.headingSmall(context),),
             8.verticalSpace,
-            Text("أدخل رقمك للمتابعة",
+            Text(LocaleKeys.enterYourNumberToContinue.tr(),
               style: AppTextTheme.bodyMedium(context).copyWith(
                   fontWeight: FontWeight.w600),),
             70.verticalSpace,
@@ -89,7 +91,7 @@ class LoginBody extends StatelessWidget {
                       LengthLimitingTextInputFormatter(10),
                     ],
                     isPhone: true,
-                    hint: "رقم التليفون",
+                    hint: LocaleKeys.phoneNumber.tr(),
                   ),
                 );
               },
@@ -112,7 +114,7 @@ class LoginBody extends StatelessWidget {
                       });
                     }
                   },
-                  text: "المتابعة",
+                  text: LocaleKeys.continueKey.tr(),
                 );
               },
             ),

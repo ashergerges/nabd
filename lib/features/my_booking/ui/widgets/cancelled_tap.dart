@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/my_booking/cubit/my_booking_cubit.dart';
 import 'package:nawy/features/my_booking/data/models/booking_details_model.dart';
 import 'package:nawy/features/my_booking/ui/widgets/my_booking_card.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../core/utils/common_widgets/empty_widget.dart';
@@ -33,7 +35,7 @@ class CancelledTap extends StatelessWidget {
           ),
           onLoading: () => context.read<MyBookingCubit>().booksCancelledMore(),
       child: booksCancelled.isEmpty?EmptyWidget(
-        text: "لا توجد حجوزات تم الغائها",
+        text: LocaleKeys.noCancelledBookings.tr(),
         image:Assets.svg.error.svg() ,
       ):ListView.separated(
         physics:BouncingScrollPhysics(),

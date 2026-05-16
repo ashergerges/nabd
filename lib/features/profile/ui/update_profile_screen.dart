@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:auto_route/annotations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/core/utils/helper/validator.dart';
 import 'package:nawy/features/profile/cubits/update_profile/update_profile_cubit.dart';
 import 'package:nawy/features/profile/ui/widgets/profile_image_picker.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 import 'package:nawy/main_common.dart';
 
 @RoutePage()
@@ -35,7 +37,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
           final cubit = context.read<UpdateProfileCubit>();
 
           return Scaffold(
-            appBar: CustomAppBar(title: "تعديل الملف الشخصي"),
+            appBar: CustomAppBar(title: LocaleKeys.editProfile.tr()),
             body: Form(
               key: _formKey,
               child: SingleChildScrollView(
@@ -58,16 +60,16 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       ),
                     ),
                     20.verticalSpace,
-                    Text("الاسم"),
+                    Text(LocaleKeys.name.tr()),
                     CustomTextField(
                       initialValue: getIt<ILocalPreference>().appUser.value?.name,
                       validator: Validator.validateName,
                       onChanged: cubit.setName,
-                      hint: "ادخل الاسم",
+                      hint: LocaleKeys.enterName.tr(),
                     ),
                     SizedBox(height: 24),
 
-                    Text("رقم الجوال"),
+                    Text(LocaleKeys.mobileNumber.tr()),
                     CustomTextField(
                       initialValue: getIt<ILocalPreference>().appUser.value?.phone,
                       validator: Validator.validateSaudiMobile,
@@ -78,16 +80,16 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         LengthLimitingTextInputFormatter(10),
                       ],
                       isPhone: true,
-                      hint: "رقم التليفون",
+                      hint:LocaleKeys.phoneNumber.tr(),
                     ),
                     SizedBox(height: 24),
 
-                    Text("العنوان"),
+                    Text(LocaleKeys.address.tr()),
                     CustomTextField(
                       initialValue: getIt<ILocalPreference>().appUser.value?.address,
                       validator: Validator.validate,
                       onChanged: cubit.setAddress,
-                      hint: "ادخل العنوان",
+                      hint: LocaleKeys.enterAddress.tr(),
                     ),
                   ],
                 ),
@@ -103,7 +105,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       cubit.updateProfileDate();
                     }
                   },
-                  text: "حفظ"
+                  text: LocaleKeys.save.tr()
               ),
             ),
           );

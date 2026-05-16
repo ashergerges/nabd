@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,7 @@ import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/my_booking/cubit/my_booking_cubit.dart';
 import 'package:nawy/features/my_booking/data/models/booking_details_model.dart';
 import 'package:nawy/features/my_booking/ui/widgets/booking_details_shimmer.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../core/router/app_router.dart';
 import '../../../gen/assets.gen.dart';
@@ -32,7 +34,7 @@ class ViewBookingDetailsScreen extends StatelessWidget {
       child: BlocBuilder<MyBookingCubit, MyBookingState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: CustomAppBar(title: "تفاصيل الحجز"),
+            appBar: CustomAppBar(title: LocaleKeys.bookingDetails.tr()),
             body: state.currState is Loading
                 ? BookingDetailsShimmer()
                 : SingleChildScrollView(
@@ -66,7 +68,7 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                                     Assets.svg.checkmark.svg(height: 24.h),
                                     8.horizontalSpace,
                                     Text(
-                                      "تم تأكيد الحجز",
+                                      LocaleKeys.bookingConfirmed.tr(),
                                       style: AppTextTheme.bodySmall(
                                         context,
                                       ).copyWith(color: AppColors.secondary),
@@ -76,14 +78,14 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                               ),
                               16.verticalSpace,
                               Text(
-                                "تم الدفع بتاريخ:${state.bookDetails?.paidOn}",
+                                LocaleKeys.paidOnDate.tr(args: ['${state.bookDetails?.paidOn}']),
                                 style: AppTextTheme.bodySmallMediumWeight(
                                   context,
                                 ),
                               ),
                               8.verticalSpace,
                               Text(
-                                "رقم الحجز: #${state.bookDetails?.code}",
+                                LocaleKeys.bookingNumber.tr(args: ['${state.bookDetails?.code}']),
                                 style: AppTextTheme.bodySmall(
                                   context,
                                 ).copyWith(color: AppColors.neutral400),
@@ -123,7 +125,7 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                                   ),
                                   6.verticalSpace,
                                   Text(
-                                    "يستوعب حتى ${state.bookDetails?.product?.guestCount} ضيف",
+                                    LocaleKeys.accommodatesUpToGuests.tr(args: ['${state.bookDetails?.product?.guestCount}']),
                                     style: AppTextTheme.bodySmall(
                                       context,
                                     ).copyWith(color: AppColors.neutral400),
@@ -137,7 +139,7 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                         Divider(color: AppColors.primary100, height: 2),
                         12.verticalSpace,
                         Text(
-                          "تفاصيل الفعالية",
+                          LocaleKeys.eventDetails.tr(),
                           style: AppTextTheme.bodyLargeSemiBold(context),
                         ),
                         16.verticalSpace,
@@ -189,7 +191,7 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                               Assets.svg.phone.svg(height: 24.h),
                               2.horizontalSpace,
                               Text(
-                                "اتصل بالمكان",
+                                LocaleKeys.contactVenue.tr(),
                                 style: AppTextTheme.bodySmall(context).copyWith(
                                   decoration: TextDecoration.underline,
                                   decorationColor: AppColors.textColor,
@@ -202,7 +204,7 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                         Divider(color: AppColors.neutral50, height: 2),
                         24.verticalSpace,
                         Text(
-                          "الخدمات المشمولة",
+                          LocaleKeys.includedServices.tr(),
                           style: AppTextTheme.bodyLargeSemiBold(context),
                         ),
                         12.verticalSpace,
@@ -252,8 +254,8 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                       ], updateExistingRoutes: false);
                     },
                     text: state.bookDetails?.status == 2
-                        ? "دعوه المعازيم"
-                        : "العودة إلى الصفحة الرئيسية",
+                        ?  LocaleKeys.guestInvitation.tr()
+                        :  LocaleKeys.backToHome.tr(),
                   ),
                 );
               },

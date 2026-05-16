@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nawy/core/router/app_router.dart';
@@ -13,12 +14,13 @@ import 'package:nawy/features/book/ui/payment_step.dart';
 import 'package:nawy/features/book/ui/selected_date_step.dart';
 import 'package:nawy/features/book/ui/summary_step.dart';
 import 'package:nawy/features/book/ui/widgets/custom_stepper.dart';
+import 'package:nawy/gen/locale_keys.g.dart';
 
 @RoutePage()
 class BookScreen extends StatelessWidget {
   final BookScreenModel data;
    BookScreen({super.key, required this.data,});
-  final List<String> buttonTitle=['المتابعة','المتابعة إلى الدفع','تأكيد والدفع', ];
+  final List<String> buttonTitle=[LocaleKeys.continueKey.tr(),LocaleKeys.continueToPayment.tr(),LocaleKeys.confirmAndPay.tr(), ];
   @override
   Widget build(BuildContext context) {
     final List<Widget> currentStep = [
@@ -31,7 +33,7 @@ class BookScreen extends StatelessWidget {
   child: BlocBuilder<BookCubit, BookState>(
   builder: (context, state) {
     return Scaffold(
-      appBar: CustomAppBar(title: "اكمل الحجز",
+      appBar: CustomAppBar(title: LocaleKeys.completeBooking.tr(),
         onBackPressed: state.currentStep==0?null:(){
           context.read<BookCubit>().currentStep(state.currentStep-1);
 
@@ -44,7 +46,7 @@ class BookScreen extends StatelessWidget {
             padding: 37.padHorizontal,
             child: CustomStepper(
               currentStep: state.currentStep,
-              stepTitles: ['موعدك', 'الملخص', 'الدفع'],
+              stepTitles: [LocaleKeys.yourAppointment.tr(), LocaleKeys.summary.tr(), LocaleKeys.payment.tr()],
             ),
           ),
           Expanded(child: currentStep[state.currentStep]),
