@@ -20,17 +20,21 @@ class CreateInvitationCubit extends Cubit<CreateInvitationState> {
   void setNameBride(String? value){
     emit(state.copyWith(nameBride: value));
   }
-  Future<bool> createInvitation(List<SelectedGuest> listGuest) async {
-    // var homeData = await _repository.homeData(cityId: citySelected.id,categoryId: state.categorySelected?.id,search: state.searchTerm);
-    // if (homeData.isError) {
-    //   MessageService.showToast(
-    //     msg: homeData.asError?.error.toString() ?? "",
-    //     state: ToastStates.error,
-    //   );
-    //   emit(state.copyWith(currState: Error()));
-    //
-    //   return false;
-    // }
+  Future<bool> createInvitation({required List<SelectedGuest> listGuest,required int bookingId}) async {
+    var createInvitation = await _repository.createInvitation(bookingId:bookingId ,nameGroom:state.nameGroom??"" ,listGuest: listGuest,nameBride: state.nameBride??"");
+    if (createInvitation.isError) {
+      MessageService.showToast(
+        msg: createInvitation.asError?.error.toString() ?? "",
+        state: ToastStates.error,
+      );
+      emit(state.copyWith(currState: Error()));
+
+      return false;
+    }
+    MessageService.showToast(
+      msg: createInvitation.asValue?.value??"",
+      state: ToastStates.success,
+    );
     emit(state.copyWith( currState: Success(),));
     return true;
   }

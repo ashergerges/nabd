@@ -231,6 +231,13 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                   ),
             bottomNavigationBar: BlocBuilder<MyBookingCubit, MyBookingState>(
               builder: (context, state) {
+                final bookingDetails =
+                    state.bookDetails ?? BookingDetailsModel();
+
+                final bool isApproved = bookingDetails.status == 2;
+                final bool hasInvitation =
+                    bookingDetails.hasInvitation ?? false;
+
                 return Container(
                   padding: 16.padAll,
                   child: AppButton(
@@ -239,28 +246,39 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                     background: AppColors.white,
                     border: Border.all(color: AppColors.primary),
                     textColor: AppColors.primary,
-                    onTap: () {
-                      if (state.bookDetails?.status == 2) {
-                        CreateInvitationRoute(
-                          bookingDetails:
-                              state.bookDetails ?? BookingDetailsModel(),
-                        ).push(context).then((value){
-                          context.read<MyBookingCubit>().bookDetails(bookId: bookingId);
-                        });
+                    onTap: () async {
+                      if (isApproved) {
+                        if (hasInvitation) {
+                          await InvitationTrackingRoute(bookingId:bookingDetails.id ).push(context);
+                        } else {
+                          await CreateInvitationRoute(
+                            bookingDetails: bookingDetails,
+                          ).push(context);
+                        }
+
+                        if (context.mounted) {
+                          context
+                              .read<MyBookingCubit>()
+                              .bookDetails(bookId: bookingId);
+                        }
+
                         return;
                       }
-                      context.router.replaceAll([
-                        HomeBottomTabsRoute(),
-                      ], updateExistingRoutes: false);
+
+                      context.router.replaceAll(
+                        [HomeBottomTabsRoute()],
+                        updateExistingRoutes: false,
+                      );
                     },
-                    text: state.bookDetails?.status == 2
-                        ?  LocaleKeys.guestInvitation.tr()
-                        :  LocaleKeys.backToHome.tr(),
+                    text: isApproved
+                        ? hasInvitation
+                        ? LocaleKeys.inviteMore.tr()
+                        : LocaleKeys.guestInvitation.tr()
+                        : LocaleKeys.backToHome.tr(),
                   ),
                 );
               },
-            ),
-          );
+            ),          );
         },
       ),
     );

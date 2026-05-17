@@ -291,18 +291,52 @@ class ImageViewerRouteArgs {
 
 /// generated route for
 /// [InvitationTrackingScreen]
-class InvitationTrackingRoute extends PageRouteInfo<void> {
-  const InvitationTrackingRoute({List<PageRouteInfo>? children})
-    : super(InvitationTrackingRoute.name, initialChildren: children);
+class InvitationTrackingRoute
+    extends PageRouteInfo<InvitationTrackingRouteArgs> {
+  InvitationTrackingRoute({
+    Key? key,
+    int? bookingId,
+    List<PageRouteInfo>? children,
+  }) : super(
+         InvitationTrackingRoute.name,
+         args: InvitationTrackingRouteArgs(key: key, bookingId: bookingId),
+         initialChildren: children,
+       );
 
   static const String name = 'InvitationTrackingRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const InvitationTrackingScreen();
+      final args = data.argsAs<InvitationTrackingRouteArgs>(
+        orElse: () => const InvitationTrackingRouteArgs(),
+      );
+      return InvitationTrackingScreen(key: args.key, bookingId: args.bookingId);
     },
   );
+}
+
+class InvitationTrackingRouteArgs {
+  const InvitationTrackingRouteArgs({this.key, this.bookingId});
+
+  final Key? key;
+
+  final int? bookingId;
+
+  @override
+  String toString() {
+    return 'InvitationTrackingRouteArgs{key: $key, bookingId: $bookingId}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! InvitationTrackingRouteArgs) return false;
+    return key == other.key && bookingId == other.bookingId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ bookingId.hashCode;
 }
 
 /// generated route for

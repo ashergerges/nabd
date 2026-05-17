@@ -19,11 +19,14 @@ class CreateInvitationRepository implements ICreateInvitationRepository {
   CreateInvitationRepository({required this.networkService});
 
   @override
-  Future<Result<String>> createInvitation({ required String nameBride,required String nameGroom,required List<SelectedGuest> listGuest,}) async {
+  Future<Result<String>> createInvitation({ required int bookingId,required String nameBride,required String nameGroom,required List<SelectedGuest> listGuest,}) async {
     var response = await networkService.postAsync(
-      url: AppStrings.urls.homeUrl,
+      url: AppStrings.urls.createInvitationUrl,
       body: {
-
+        "booking_id":bookingId,
+        "groom_name":nameGroom,
+        "bride_name":nameBride,
+        "guests": listGuest.map((e) => e.toJson()).toList(),
       }
     );
     if (response.isError) return Result.error(response.asError!.error);

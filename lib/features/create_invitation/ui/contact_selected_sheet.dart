@@ -5,9 +5,10 @@ import 'package:nawy/core/utils/constants/app_colors.dart';
 import 'package:nawy/core/utils/constants/app_text_them.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/create_invitation/data/models/selected_guest.dart';
+import 'package:nawy/features/profile/data/models/invitation_tracking/invitation_model.dart';
 Future<List<SelectedGuest>?> showContactSelectedSheet(
     BuildContext context,
-    List<Contact> allContacts,
+    List<InvitationGuestModel> allContacts,
     ) {
   return showModalBottomSheet<List<SelectedGuest>>(
     context: context,
@@ -19,7 +20,7 @@ Future<List<SelectedGuest>?> showContactSelectedSheet(
 
 
 class ContactSelectedSheet extends StatelessWidget {
-  final   List<Contact> allContacts;
+  final   List<InvitationGuestModel> allContacts;
 
   const ContactSelectedSheet({super.key, required this.allContacts});
 
@@ -55,8 +56,8 @@ class ContactSelectedSheet extends StatelessWidget {
                   itemCount: allContacts.length,
                   itemBuilder: (_, i) {
                     final contact = allContacts[i];
-                    final phone = contact.phones.first.number;
-                    final initials = contact.displayName
+                    final phone = contact.phone;
+                    final initials = (contact.name??"")
                         .trim()
                         .split(' ')
                         .take(2)
@@ -76,11 +77,11 @@ class ContactSelectedSheet extends StatelessWidget {
                         ),
                       ),
                       title: Text(
-                        contact.displayName,
+                        contact.name??"",
                         style: AppTextTheme.bodyMediumSemiBold(context)
                       ),
                       subtitle: Text(
-                        phone,
+                        phone??"",
                         style: AppTextTheme.bodySmall(context).copyWith(color: AppColors.neutral200,fontWeight: FontWeight.w300)
                       ),
 

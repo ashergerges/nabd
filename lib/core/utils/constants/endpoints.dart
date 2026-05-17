@@ -38,5 +38,9 @@ class Endpoints {
   //notification
   String get notificationUrl => r'api/app/notifications/all';
 
+  // create invitation
+  String get createInvitationUrl => r'api/app/invitation/create';
+  String get getInvitationByBookingUrl => r'api/app/invitation/get';
+  String get addGuestsUrl => r'api/app/invitation/add_guests';
 
 }

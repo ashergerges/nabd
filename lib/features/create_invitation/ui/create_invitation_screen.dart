@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -148,6 +149,12 @@ class CreateInvitationScreen extends StatelessWidget {
                     showContactPickerSheet(
                       context,
                       onConfirm: (list) {
+                        context.read<CreateInvitationCubit>().createInvitation(
+                          listGuest: list,
+                          bookingId: bookingDetails.id??0
+                        ).then((value){
+                          context.back();
+                        });
                         log("Here this list is chosen::$list");
                       },
                     );
