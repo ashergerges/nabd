@@ -32,14 +32,13 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> getAppStartUpStatus() async {
 
 
-    log("_localPreference.skipIntro - ${_localPreference.skipIntro}");
 
     final hasConnection = await InternetConnectionChecker().hasConnection;
     if (!hasConnection) {
       return getIt<AppRouter>().replaceAll([const NoInternetSplashRoute()], updateExistingRoutes: false);
     }
     getIt<AppRouter>().replaceAll([
-      HomeBottomTabsRoute()
+      _localPreference.appUser.value  !=null?  HomeBottomTabsRoute():LoginRoute()
     ], updateExistingRoutes: false);
   }
 }

@@ -106,15 +106,6 @@ abstract class  LocaleKeys {
   static const search = 'search';
   static const cancel = 'cancel';
   static const noCategories = 'noCategories';
-  static const initialDownPayment = 'initialDownPayment';
-  static const firstOctober2025 = 'firstOctober2025';
-  static const egp31625 = 'egp31625';
-  static const paidImmediatelyToReserveShare = 'paidImmediatelyToReserveShare';
-  static const secondDownPayment = 'secondDownPayment';
-  static const firstDecember2025 = 'firstDecember2025';
-  static const monthlyPayment = 'monthlyPayment';
-  static const startsFirstJanuary2026 = 'startsFirstJanuary2026';
-  static const egp8450 = 'egp8450';
   static const failedToLoadContacts = 'failedToLoadContacts';
   static const searchContacts = 'searchContacts';
   static const noContactsFound = 'noContactsFound';
@@ -202,5 +193,8 @@ abstract class  LocaleKeys {
   static const priceRange = 'priceRange';
   static const from = 'from';
   static const to = 'to';
+  static const noProductsFoundForYourSearch = 'noProductsFoundForYourSearch';
+  static const logoutTitle = 'logoutTitle';
+  static const logoutBody = 'logoutBody';
 
 }

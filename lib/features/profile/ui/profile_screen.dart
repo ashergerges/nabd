@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nawy/core/interfaces/i_local_preference.dart';
 import 'package:nawy/core/router/app_router.dart';
+import 'package:nawy/core/services/dialogs/message_service.dart';
+import 'package:nawy/core/utils/common_widgets/app_button.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
@@ -107,8 +109,64 @@ class ProfileScreen extends StatelessWidget {
             padding: 24.padHorizontal+24.padBottom,
             child: OnTap(
               onTap: (){
-                LoginRoute().push(context);
-              },
+                MessageService.showNewCustomDialog(
+                  context,
+                  child: Padding(
+                    padding: 16.padAll,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        30.verticalSpace,
+                        Text(
+                          LocaleKeys.logoutTitle.tr(),
+                          style: AppTextTheme.bodyLarge(context).copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        8.verticalSpace,
+                        Text(
+                          LocaleKeys.logoutBody.tr(),
+                          style: AppTextTheme.bodyXSmall(context).copyWith(
+                            color: AppColors.neutral400,
+                          ),
+                        ),
+                        15.verticalSpace,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: AppButton(
+                                text: LocaleKeys.logout.tr(),
+                                background: AppColors.white,
+                                textColor: AppColors.error,
+                                onTap: () {
+                                  // FirebaseMessaging.instance.deleteToken();
+                                  getIt<ILocalPreference>()
+                                      .removeAuthPrefs()
+                                      .then((onValue) {
+                                    context.router.replaceAll([
+                                      LoginRoute(),
+                                    ], updateExistingRoutes: false);
+                                  });
+                                },
+                              ),
+                            ),
+                            10.horizontalSpace,
+                            Expanded(
+                              child: AppButton(
+                                text: LocaleKeys.cancel.tr(),
+                                onTap: () {
+                                  context.router.popForced();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        20.verticalSpace,
+                      ],
+                    ),
+                  ),
+                );
+                },
               child: Row(
                 children: [
                   SvgPicture.asset(Assets.svg.logout.path, height: 32.h),

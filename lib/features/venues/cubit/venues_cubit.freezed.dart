@@ -21,6 +21,7 @@ mixin _$VenuesState {
   List<ProductModel> get venuesList => throw _privateConstructorUsedError;
   FilterModel? get filterData => throw _privateConstructorUsedError;
   FilterModel? get filterDataTemp => throw _privateConstructorUsedError;
+  String? get searchTerm => throw _privateConstructorUsedError;
 
   /// Create a copy of VenuesState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,6 +42,7 @@ abstract class $VenuesStateCopyWith<$Res> {
     List<ProductModel> venuesList,
     FilterModel? filterData,
     FilterModel? filterDataTemp,
+    String? searchTerm,
   });
 
   $VenuesStateStatusCopyWith<$Res> get currState;
@@ -65,6 +67,7 @@ class _$VenuesStateCopyWithImpl<$Res, $Val extends VenuesState>
     Object? venuesList = null,
     Object? filterData = freezed,
     Object? filterDataTemp = freezed,
+    Object? searchTerm = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -84,6 +87,10 @@ class _$VenuesStateCopyWithImpl<$Res, $Val extends VenuesState>
                 ? _value.filterDataTemp
                 : filterDataTemp // ignore: cast_nullable_to_non_nullable
                       as FilterModel?,
+            searchTerm: freezed == searchTerm
+                ? _value.searchTerm
+                : searchTerm // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -114,6 +121,7 @@ abstract class _$$VenuesStateImplCopyWith<$Res>
     List<ProductModel> venuesList,
     FilterModel? filterData,
     FilterModel? filterDataTemp,
+    String? searchTerm,
   });
 
   @override
@@ -138,6 +146,7 @@ class __$$VenuesStateImplCopyWithImpl<$Res>
     Object? venuesList = null,
     Object? filterData = freezed,
     Object? filterDataTemp = freezed,
+    Object? searchTerm = freezed,
   }) {
     return _then(
       _$VenuesStateImpl(
@@ -157,6 +166,10 @@ class __$$VenuesStateImplCopyWithImpl<$Res>
             ? _value.filterDataTemp
             : filterDataTemp // ignore: cast_nullable_to_non_nullable
                   as FilterModel?,
+        searchTerm: freezed == searchTerm
+            ? _value.searchTerm
+            : searchTerm // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }
@@ -170,6 +183,7 @@ class _$VenuesStateImpl implements _VenuesState {
     final List<ProductModel> venuesList = const [],
     this.filterData,
     this.filterDataTemp,
+    this.searchTerm,
   }) : _venuesList = venuesList;
 
   @override
@@ -188,10 +202,12 @@ class _$VenuesStateImpl implements _VenuesState {
   final FilterModel? filterData;
   @override
   final FilterModel? filterDataTemp;
+  @override
+  final String? searchTerm;
 
   @override
   String toString() {
-    return 'VenuesState(currState: $currState, venuesList: $venuesList, filterData: $filterData, filterDataTemp: $filterDataTemp)';
+    return 'VenuesState(currState: $currState, venuesList: $venuesList, filterData: $filterData, filterDataTemp: $filterDataTemp, searchTerm: $searchTerm)';
   }
 
   @override
@@ -208,7 +224,9 @@ class _$VenuesStateImpl implements _VenuesState {
             (identical(other.filterData, filterData) ||
                 other.filterData == filterData) &&
             (identical(other.filterDataTemp, filterDataTemp) ||
-                other.filterDataTemp == filterDataTemp));
+                other.filterDataTemp == filterDataTemp) &&
+            (identical(other.searchTerm, searchTerm) ||
+                other.searchTerm == searchTerm));
   }
 
   @override
@@ -218,6 +236,7 @@ class _$VenuesStateImpl implements _VenuesState {
     const DeepCollectionEquality().hash(_venuesList),
     filterData,
     filterDataTemp,
+    searchTerm,
   );
 
   /// Create a copy of VenuesState
@@ -235,6 +254,7 @@ abstract class _VenuesState implements VenuesState {
     final List<ProductModel> venuesList,
     final FilterModel? filterData,
     final FilterModel? filterDataTemp,
+    final String? searchTerm,
   }) = _$VenuesStateImpl;
 
   @override
@@ -245,6 +265,8 @@ abstract class _VenuesState implements VenuesState {
   FilterModel? get filterData;
   @override
   FilterModel? get filterDataTemp;
+  @override
+  String? get searchTerm;
 
   /// Create a copy of VenuesState
   /// with the given fields replaced by the non-null parameter values.

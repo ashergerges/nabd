@@ -19,11 +19,15 @@ class VenuesRepository implements IVenuesRepository {
   VenuesRepository({required this.networkService});
 
   @override
-  Future<Result<List<ProductModel>>> venues({required int categoryId} ) async {
+  Future<Result<List<ProductModel>>> venues({required int categoryId,String? search,String? date,num? minPrice,num? maxPrice,} ) async {
     var response = await networkService.getAsync(
       url: AppStrings.urls.venuesUrl,
       queryParameters: {
-        "category_id":categoryId
+        "category_id":categoryId,
+        if(search!=null&&search.isNotEmpty)"search":search,
+        if(minPrice!=null)"min_price":minPrice,
+        if(maxPrice!=null)"max_price":maxPrice,
+        if(date!=null)"date":date,
       }
     );
     if (response.isError) return Result.error(response.asError!.error);

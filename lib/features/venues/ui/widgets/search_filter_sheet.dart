@@ -11,7 +11,7 @@ import 'package:nawy/features/venues/ui/widgets/body_filter.dart';
 
 void showFilterBottomSheet(
   BuildContext context,{
-      required int  categoryId
+      required int  categoryId,
 }) {
   showModalBottomSheet(
     context: context,

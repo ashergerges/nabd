@@ -7,6 +7,7 @@ class VenuesState with _$VenuesState {
     @Default([]) List<ProductModel> venuesList,
     FilterModel? filterData,
     FilterModel? filterDataTemp,
+    String? searchTerm,
 
 }) = _VenuesState;
 }

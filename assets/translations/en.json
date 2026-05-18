@@ -191,5 +191,8 @@
   "reset": "Reset",
   "priceRange": "Price Range",
   "from": "From",
-  "to": "To"
+  "to": "To",
+  "noProductsFoundForYourSearch": "No products found matching your search or filters",
+  "logoutTitle": "Are you sure you want to log out?",
+  "logoutBody": "You can always log back in to access your account."
 }
