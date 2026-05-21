@@ -29,7 +29,7 @@ class ReviewsTap extends StatelessWidget {
     if (reviews == null) {
       return const ReviewsTapShimmer();
     }
-    return Padding(
+    return SingleChildScrollView(
       padding: 16.padAll,
       child: Column(
         children: [

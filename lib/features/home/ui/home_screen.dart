@@ -208,32 +208,38 @@ class HomeScreen extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemCount: state.homeData?.offers?.length ?? 0,
                               itemBuilder: (BuildContext c, int index) {
-                                return OfferCard(
-                                  imageUrl:
-                                  state.homeData?.offers?[index].image ??
-                                      AppStrings.kTestNetworkImage,
-                                  packageName:
-                                  state.homeData?.offers?[index].name ?? "",
-                                  jobTitle:
-                                  state
-                                      .homeData
-                                      ?.offers?[index]
-                                      .productName ??
-                                      "",
-                                  discountPercentage:
-                                  state
-                                      .homeData
-                                      ?.offers?[index]
-                                      .discountPercentage ??
-                                      "",
-                                  personName: state
-                                      .homeData
-                                      ?.offers?[index]
-                                      .vendorName??'',
-                                  personImageUrl:  state
-                                      .homeData
-                                      ?.offers?[index]
-                                      .vendorImage??AppStrings.kTestNetworkImage,
+                                return OnTap(
+                                  onTap: (){
+                                    VendorPackageDetailsRoute(vendorPackageId:state.homeData?.offers?[index].id??0 ).push(context);
+                                  },
+                                  child: OfferCard(
+
+                                    imageUrl:
+                                    state.homeData?.offers?[index].image ??
+                                        AppStrings.kTestNetworkImage,
+                                    packageName:
+                                    state.homeData?.offers?[index].name ?? "",
+                                    jobTitle:
+                                    state
+                                        .homeData
+                                        ?.offers?[index]
+                                        .productName ??
+                                        "",
+                                    discountPercentage:
+                                    state
+                                        .homeData
+                                        ?.offers?[index]
+                                        .discountPercentage ??
+                                        "",
+                                    personName: state
+                                        .homeData
+                                        ?.offers?[index]
+                                        .vendorName??'',
+                                    personImageUrl:  state
+                                        .homeData
+                                        ?.offers?[index]
+                                        .vendorImage??AppStrings.kTestNetworkImage,
+                                  ),
                                 );
                               },
                               separatorBuilder: (BuildContext c, int i) =>
