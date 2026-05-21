@@ -472,7 +472,7 @@ class CustomTextField extends StatelessWidget {
                   children: [
                     const SizedBox(width: 12),
                     Text(
-                      "+996",
+                      "+966",
                       style: AppTextTheme.bodyLarge(
                         context,
                       ).copyWith(color: AppColors.primary),

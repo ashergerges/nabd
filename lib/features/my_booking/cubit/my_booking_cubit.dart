@@ -40,6 +40,22 @@ class MyBookingCubit extends Cubit<MyBookingState> {
     emit(state.copyWith( currState: Success(),bookDetails:bookDetails.asValue?.value));
     return;
   }
+  Future<void> cancelBook({ required int bookId,String? reason,}) async {
+    emit(state.copyWith(currState: Loading()));
+
+    var cancelBook = await _repository.cancelBook(bookId:bookId,reason:reason);
+    if (cancelBook.isError) {
+      MessageService.showToast(
+        msg: cancelBook.asError?.error.toString() ?? "",
+        state: ToastStates.error,
+      );
+      emit(state.copyWith(currState: Error()));
+
+      return;
+    }
+    bookDetails(bookId:bookId);
+    return;
+  }
   Future<void> sendRate({
     required int bookId,
     required int score,

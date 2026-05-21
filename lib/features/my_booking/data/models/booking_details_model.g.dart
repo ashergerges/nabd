@@ -29,6 +29,7 @@ BookingDetailsModel _$BookingDetailsModelFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String?,
       isReviewed: json['is_reviewed'] as bool?,
       hasInvitation: json['has_invitation'] as bool?,
+      canCancel: (json['can_cancel'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$BookingDetailsModelToJson(
@@ -51,6 +52,7 @@ Map<String, dynamic> _$BookingDetailsModelToJson(
   'created_at': instance.createdAt,
   'is_reviewed': instance.isReviewed,
   'has_invitation': instance.hasInvitation,
+  'can_cancel': instance.canCancel,
 };
 
 Product _$ProductFromJson(Map<String, dynamic> json) => Product(

@@ -196,5 +196,18 @@ abstract class  LocaleKeys {
   static const noProductsFoundForYourSearch = 'noProductsFoundForYourSearch';
   static const logoutTitle = 'logoutTitle';
   static const logoutBody = 'logoutBody';
+  static const mobileNumberIsRequired = 'mobileNumberIsRequired';
+  static const phoneMustStartWith05 = 'phoneMustStartWith05';
+  static const mobileNumberMustBe10Digits = 'mobileNumberMustBe10Digits';
+  static const cancelBooking = 'cancelBooking';
+  static const pleaseSelectReasonForCancellation = 'pleaseSelectReasonForCancellation';
+  static const changedMyMind = 'changedMyMind';
+  static const foundBetterOption = 'foundBetterOption';
+  static const priceTooHigh = 'priceTooHigh';
+  static const bookedByMistake = 'bookedByMistake';
+  static const personalEmergency = 'personalEmergency';
+  static const otherKey = 'otherKey';
+  static const pleaseSpecifyYourReason = 'pleaseSpecifyYourReason';
+  static const typeYourReasonHere = 'typeYourReasonHere';
 
 }

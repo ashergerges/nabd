@@ -30,6 +30,7 @@ class Endpoints {
   String get myBookingUrl => r'api/app/booking/my-bookings';
   String get bookingDetailsUrl => r'api/app/booking/details';
   String get reviewAddUrl => r'api/app/review/add';
+  String get cancelBookUrl => r'api/app/booking/cancel';
 
   //profile
   String get updateProfileImageUrl => r'api/app/update-profile-image';

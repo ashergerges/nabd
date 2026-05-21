@@ -16,6 +16,7 @@ import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/features/my_booking/cubit/my_booking_cubit.dart';
 import 'package:nawy/features/my_booking/data/models/booking_details_model.dart';
 import 'package:nawy/features/my_booking/ui/widgets/booking_details_shimmer.dart';
+import 'package:nawy/features/my_booking/ui/widgets/cancel_booking_bottom_sheet.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../core/router/app_router.dart';
@@ -240,41 +241,67 @@ class ViewBookingDetailsScreen extends StatelessWidget {
 
                 return Container(
                   padding: 16.padAll,
-                  child: AppButton(
-                    isLoading: state.currState is Loading,
-                    loadingColor: AppColors.primary,
-                    background: AppColors.white,
-                    border: Border.all(color: AppColors.primary),
-                    textColor: AppColors.primary,
-                    onTap: () async {
-                      if (isApproved) {
-                        if (hasInvitation) {
-                          await InvitationTrackingRoute(bookingId:bookingDetails.id ).push(context);
-                        } else {
-                          await CreateInvitationRoute(
-                            bookingDetails: bookingDetails,
-                          ).push(context);
-                        }
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AppButton(
+                        isLoading: state.currState is Loading,
+                        loadingColor: AppColors.primary,
+                        background: AppColors.white,
+                        border: Border.all(color: AppColors.primary),
+                        textColor: AppColors.primary,
+                        onTap: () async {
+                          if (isApproved) {
+                            if (hasInvitation) {
+                              await InvitationTrackingRoute(bookingId:bookingDetails.id ).push(context);
+                            } else {
+                              await CreateInvitationRoute(
+                                bookingDetails: bookingDetails,
+                              ).push(context);
+                            }
 
-                        if (context.mounted) {
-                          context
-                              .read<MyBookingCubit>()
-                              .bookDetails(bookId: bookingId);
-                        }
+                            if (context.mounted) {
+                              context
+                                  .read<MyBookingCubit>()
+                                  .bookDetails(bookId: bookingId);
+                            }
 
-                        return;
-                      }
+                            return;
+                          }
 
-                      context.router.replaceAll(
-                        [HomeBottomTabsRoute()],
-                        updateExistingRoutes: false,
-                      );
-                    },
-                    text: isApproved
-                        ? hasInvitation
-                        ? LocaleKeys.inviteMore.tr()
-                        : LocaleKeys.guestInvitation.tr()
-                        : LocaleKeys.backToHome.tr(),
+                          context.router.replaceAll(
+                            [HomeBottomTabsRoute()],
+                            updateExistingRoutes: false,
+                          );
+                        },
+                        text: isApproved
+                            ? hasInvitation
+                            ? LocaleKeys.inviteMore.tr()
+                            : LocaleKeys.guestInvitation.tr()
+                            : LocaleKeys.backToHome.tr(),
+                      ),
+                      if(state.bookDetails?.status==2&&state.bookDetails?.canCancel==1)...[
+                        8.verticalSpace,
+                        AppButton(
+                          isLoading: state.currState is Loading,
+                          loadingColor: AppColors.primary,
+                          onTap: () async {
+                            await CancelBookingBottomSheet.show(
+                              context,
+                              bookingId: bookingId,
+                              onCancel: (bookId, reason) {
+                                // Call the cubit with the reason
+                                context.read<MyBookingCubit>().cancelBook(
+                                  bookId: bookId,
+                                  reason: reason,
+                                );
+                              },
+                            );
+                          },
+                          text:  LocaleKeys.cancel.tr(),
+                        ),
+                      ]
+                    ],
                   ),
                 );
               },

@@ -72,7 +72,7 @@ class CompletedTap extends StatelessWidget {
             packageName:booksCompleted[index].package?.name??"",
             date: "${booksCompleted[index].date??""} - ${booksCompleted[index].time??""}",
             price: double.parse(booksCompleted[index].totalPrice??"0"),
-            showRateButton: (booksCompleted[index].isReviewed??false),
+            showRateButton:(!(booksCompleted[index].isReviewed??false)),
             imageUrl: AppStrings.kTestNetworkImage,
           );
         },      separatorBuilder:(BuildContext c, int i) => 12.verticalSpace,

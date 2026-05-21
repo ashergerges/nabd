@@ -194,5 +194,19 @@
   "to": "To",
   "noProductsFoundForYourSearch": "No products found matching your search or filters",
   "logoutTitle": "Are you sure you want to log out?",
-  "logoutBody": "You can always log back in to access your account."
+  "logoutBody": "You can always log back in to access your account.",
+  "mobileNumberIsRequired": "Mobile number is required",
+  "phoneMustStartWith05": "Phone number must start with 05",
+  "mobileNumberMustBe10Digits": "Mobile number must be 10 digits",
+
+  "cancelBooking": "Cancel Booking",
+  "pleaseSelectReasonForCancellation": "Please select a reason for cancellation",
+  "changedMyMind": "Changed my mind",
+  "foundBetterOption": "Found a better option",
+  "priceTooHigh": "Price is too high",
+  "bookedByMistake": "Booked by mistake",
+  "personalEmergency": "Personal emergency",
+  "otherKey": "Other",
+  "pleaseSpecifyYourReason": "Please specify your reason",
+  "typeYourReasonHere": "Type your reason here..."
 }

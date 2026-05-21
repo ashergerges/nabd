@@ -217,5 +217,19 @@
   "to": "الي",
   "noProductsFoundForYourSearch": "لا توجد منتجات مطابقة للبحث أو الفلاتر المحددة",
   "logoutTitle": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-  "logoutBody": "يمكنك دائمًا تسجيل الدخول مرة أخرى للوصول إلى حسابك."
+  "logoutBody": "يمكنك دائمًا تسجيل الدخول مرة أخرى للوصول إلى حسابك.",
+  "mobileNumberIsRequired": "رقم الجوال مطلوب",
+  "phoneMustStartWith05": "يجب أن يبدأ رقم الجوال بـ 05",
+  "mobileNumberMustBe10Digits": "يجب أن يتكون رقم الجوال من 10 أرقام",
+
+  "cancelBooking": "إلغاء الحجز",
+  "pleaseSelectReasonForCancellation": "يرجى اختيار سبب الإلغاء",
+  "changedMyMind": "غيّرت رأيي",
+  "foundBetterOption": "وجدت خيارًا أفضل",
+  "priceTooHigh": "السعر مرتفع جدًا",
+  "bookedByMistake": "تم الحجز بالخطأ",
+  "personalEmergency": "ظرف شخصي طارئ",
+  "otherKey": "أخرى",
+  "pleaseSpecifyYourReason": "يرجى توضيح سبب الإلغاء",
+  "typeYourReasonHere": "اكتب سبب الإلغاء هنا..."
 }
