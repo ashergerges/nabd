@@ -118,6 +118,29 @@ class LoginBody extends StatelessWidget {
                 );
               },
             ),
+            Spacer(),
+            OnTap(
+              onTap: (){
+                context.navigateTo(SignupRoute());
+              },
+              child: Center(
+                child: Text.rich(
+                  TextSpan(
+                    text: LocaleKeys.areYouAServiceProvider.tr(),
+                    children: [
+                      TextSpan(
+                        text: LocaleKeys.signUpHere.tr(),
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            50.verticalSpace,
 
           ],
         ),

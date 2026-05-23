@@ -17,6 +17,18 @@ class LoginRepository implements ILoginRepository {
   LoginRepository({required this.networkService});
 
   @override
+  Future<Result<bool>> signUpAsync({required String phone,required String name,required int categoryId,}) async {
+    var response = await networkService.postAsync(
+      url: AppStrings.urls.signUpUrl,
+      body: {"phone": phone,"name":name,"category_id":categoryId},
+    );
+    if (response.isError) return Result.error(response.asError!.error);
+
+    log("registerAsync.asValue?.value22!!${response.asValue?.value.data}");
+    return Result.value(true);
+  }
+
+  @override
   Future<Result<bool>> loginAsync({required String phone}) async {
     var response = await networkService.postAsync(
       url: AppStrings.urls.loginUrl,

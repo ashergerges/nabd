@@ -3,6 +3,7 @@ import 'package:nawy/core/services/ui/offline_internet_screen.dart';
 import 'package:nawy/core/services/ui/server_error_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:nawy/features/auth/ui/signup_screen.dart';
 import 'package:nawy/features/auth/ui/verification_screen.dart';
 import 'package:nawy/features/book/data/model/book_confirmation_model.dart';
 import 'package:nawy/features/book/data/model/book_screen_model.dart';
@@ -18,6 +19,7 @@ import 'package:nawy/features/profile/ui/invitation_tracking_screen.dart';
 import 'package:nawy/features/profile/ui/language_screen.dart';
 import 'package:nawy/features/profile/ui/location_screen.dart';
 import 'package:nawy/features/profile/ui/update_profile_screen.dart';
+import 'package:nawy/features/provider/provider_tabs/ui/provider_home_bottom_tabs_screen.dart';
 import 'package:nawy/features/splash/ui/no_internet_splash.dart';
 import 'package:nawy/features/Tabs/ui/home_bottom_tabs_screen.dart';
 import 'package:nawy/features/splash/ui/splash_screen.dart';
@@ -69,6 +71,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute( page: ViewBookingDetailsRoute.page),
     AutoRoute( page: CreateInvitationRoute.page),
     AutoRoute( page: NotificationRoute.page),
+    AutoRoute( page: SignupRoute.page),
+    AutoRoute( page: ProviderHomeBottomTabsRoute.page),
     AutoRoute(path: '*', page: NotFoundRoute.page), // this must be last route
 
   ];

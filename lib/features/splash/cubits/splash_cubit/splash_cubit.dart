@@ -38,7 +38,7 @@ class SplashCubit extends Cubit<SplashState> {
       return getIt<AppRouter>().replaceAll([const NoInternetSplashRoute()], updateExistingRoutes: false);
     }
     getIt<AppRouter>().replaceAll([
-      _localPreference.appUser.value  !=null?  HomeBottomTabsRoute():LoginRoute()
+      _localPreference.appUser.value  !=null? ((_localPreference.appUser.value?.isVendor??false)?ProviderHomeBottomTabsRoute(): HomeBottomTabsRoute()):LoginRoute()
     ], updateExistingRoutes: false);
   }
 }

@@ -209,5 +209,9 @@ abstract class  LocaleKeys {
   static const otherKey = 'otherKey';
   static const pleaseSpecifyYourReason = 'pleaseSpecifyYourReason';
   static const typeYourReasonHere = 'typeYourReasonHere';
+  static const joinOurProviderCommunity = 'joinOurProviderCommunity';
+  static const areYouAServiceProvider = 'areYouAServiceProvider';
+  static const signUpHere = 'signUpHere';
+  static const goToDashboard = 'goToDashboard';
 
 }

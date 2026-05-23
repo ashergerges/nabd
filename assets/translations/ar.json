@@ -231,5 +231,9 @@
   "personalEmergency": "ظرف شخصي طارئ",
   "otherKey": "أخرى",
   "pleaseSpecifyYourReason": "يرجى توضيح سبب الإلغاء",
-  "typeYourReasonHere": "اكتب سبب الإلغاء هنا..."
+  "typeYourReasonHere": "اكتب سبب الإلغاء هنا...",
+  "joinOurProviderCommunity": "انضم إلى مجتمع مقدمي الخدمات",
+  "areYouAServiceProvider": "هل أنت مقدم خدمة؟ ",
+  "signUpHere": "سجل من هنا",
+  "goToDashboard": "اذهب إلى لوحة التحكم"
 }

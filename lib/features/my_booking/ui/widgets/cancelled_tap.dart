@@ -12,8 +12,10 @@ import 'package:nawy/features/my_booking/ui/widgets/my_booking_card.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../../../core/interfaces/i_local_preference.dart';
 import '../../../../core/utils/common_widgets/empty_widget.dart';
 import '../../../../gen/assets.gen.dart';
+import '../../../../main_common.dart';
 
 class CancelledTap extends StatelessWidget {
   const CancelledTap({super.key, required this.booksCancelled});
@@ -45,7 +47,9 @@ class CancelledTap extends StatelessWidget {
         itemBuilder: (BuildContext c, int index) {
           return  MyBookingCard(
             onTap: (){
-              ViewBookingDetailsRoute(bookingId:booksCancelled[index].id??0 ).push(context);
+              if(!(getIt<ILocalPreference>().appUser.value?.isVendor??false)) {
+                ViewBookingDetailsRoute(bookingId:booksCancelled[index].id??0 ).push(context);
+              }
             },
             title: booksCancelled[index].product?.name??"",
             packageName:booksCancelled[index].package?.name??"",

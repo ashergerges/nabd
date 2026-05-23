@@ -185,20 +185,12 @@ class FavRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [HomeBottomTabsScreen]
 class HomeBottomTabsRoute extends PageRouteInfo<HomeBottomTabsRouteArgs> {
-  HomeBottomTabsRoute({
-    Key? key,
-    int index = 0,
-    String? sportId,
-    List<PageRouteInfo>? children,
-  }) : super(
-         HomeBottomTabsRoute.name,
-         args: HomeBottomTabsRouteArgs(
-           key: key,
-           index: index,
-           sportId: sportId,
-         ),
-         initialChildren: children,
-       );
+  HomeBottomTabsRoute({Key? key, int index = 0, List<PageRouteInfo>? children})
+    : super(
+        HomeBottomTabsRoute.name,
+        args: HomeBottomTabsRouteArgs(key: key, index: index),
+        initialChildren: children,
+      );
 
   static const String name = 'HomeBottomTabsRoute';
 
@@ -208,38 +200,32 @@ class HomeBottomTabsRoute extends PageRouteInfo<HomeBottomTabsRouteArgs> {
       final args = data.argsAs<HomeBottomTabsRouteArgs>(
         orElse: () => const HomeBottomTabsRouteArgs(),
       );
-      return HomeBottomTabsScreen(
-        key: args.key,
-        index: args.index,
-        sportId: args.sportId,
-      );
+      return HomeBottomTabsScreen(key: args.key, index: args.index);
     },
   );
 }
 
 class HomeBottomTabsRouteArgs {
-  const HomeBottomTabsRouteArgs({this.key, this.index = 0, this.sportId});
+  const HomeBottomTabsRouteArgs({this.key, this.index = 0});
 
   final Key? key;
 
   final int index;
 
-  final String? sportId;
-
   @override
   String toString() {
-    return 'HomeBottomTabsRouteArgs{key: $key, index: $index, sportId: $sportId}';
+    return 'HomeBottomTabsRouteArgs{key: $key, index: $index}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! HomeBottomTabsRouteArgs) return false;
-    return key == other.key && index == other.index && sportId == other.sportId;
+    return key == other.key && index == other.index;
   }
 
   @override
-  int get hashCode => key.hashCode ^ index.hashCode ^ sportId.hashCode;
+  int get hashCode => key.hashCode ^ index.hashCode;
 }
 
 /// generated route for
@@ -486,6 +472,56 @@ class OfflineInternetRouteArgs {
 }
 
 /// generated route for
+/// [ProviderHomeBottomTabsScreen]
+class ProviderHomeBottomTabsRoute
+    extends PageRouteInfo<ProviderHomeBottomTabsRouteArgs> {
+  ProviderHomeBottomTabsRoute({
+    Key? key,
+    int index = 0,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ProviderHomeBottomTabsRoute.name,
+         args: ProviderHomeBottomTabsRouteArgs(key: key, index: index),
+         initialChildren: children,
+       );
+
+  static const String name = 'ProviderHomeBottomTabsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProviderHomeBottomTabsRouteArgs>(
+        orElse: () => const ProviderHomeBottomTabsRouteArgs(),
+      );
+      return ProviderHomeBottomTabsScreen(key: args.key, index: args.index);
+    },
+  );
+}
+
+class ProviderHomeBottomTabsRouteArgs {
+  const ProviderHomeBottomTabsRouteArgs({this.key, this.index = 0});
+
+  final Key? key;
+
+  final int index;
+
+  @override
+  String toString() {
+    return 'ProviderHomeBottomTabsRouteArgs{key: $key, index: $index}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProviderHomeBottomTabsRouteArgs) return false;
+    return key == other.key && index == other.index;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ index.hashCode;
+}
+
+/// generated route for
 /// [ServerErrorScreen]
 class ServerErrorRoute extends PageRouteInfo<ServerErrorRouteArgs> {
   ServerErrorRoute({
@@ -530,6 +566,22 @@ class ServerErrorRouteArgs {
 
   @override
   int get hashCode => key.hashCode ^ currentRoute.hashCode;
+}
+
+/// generated route for
+/// [SignupScreen]
+class SignupRoute extends PageRouteInfo<void> {
+  const SignupRoute({List<PageRouteInfo>? children})
+    : super(SignupRoute.name, initialChildren: children);
+
+  static const String name = 'SignupRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SignupScreen();
+    },
+  );
 }
 
 /// generated route for

@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nawy/core/interfaces/i_local_preference.dart';
 import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/services/dialogs/message_service.dart';
+import 'package:nawy/core/services/launcher/url_launcher.dart';
 import 'package:nawy/core/utils/common_widgets/app_button.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
@@ -15,12 +16,13 @@ import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
 
-import '../../../core/utils/constants/app_colors.dart';
-import '../../../gen/assets.gen.dart';
-import '../../../main_common.dart';
+import '../../../../core/utils/constants/app_colors.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../main_common.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+
+class ProfileProviderScreen extends StatelessWidget {
+  const ProfileProviderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +65,10 @@ class ProfileScreen extends StatelessWidget {
                   ProfileInfoCard(),
                   40.verticalSpace,
                   ProfileItem(
-                    title: LocaleKeys.favorites.tr(),
-                    imageUrl: Assets.svg.favouriteSquare.path,
+                    title:LocaleKeys.goToDashboard.tr(),
+                    imageUrl: Assets.svg.comingSoon.path,
                     onTap: () {
-                      FavRoute().push(context);
+                      UrlLauncher.openWebInApp(getIt<ILocalPreference>().appUser.value?.dashboardUrl??"");
                     },
                   ),
                   ProfileDiv(),
@@ -75,14 +77,6 @@ class ProfileScreen extends StatelessWidget {
                     imageUrl: Assets.svg.language.path,
                     onTap: () {
                       LanguageRoute().push(context);
-                    },
-                  ),
-                  ProfileDiv(),
-                  ProfileItem(
-                    title: LocaleKeys.trackInvitations.tr(),
-                    imageUrl: Assets.svg.invitationTracker.path,
-                    onTap: () {
-                      InvitationTrackingRoute().push(context);
                     },
                   ),
                   ProfileDiv(),
@@ -158,7 +152,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 );
-                },
+              },
               child: Row(
                 children: [
                   SvgPicture.asset(Assets.svg.logout.path, height: 32.h),

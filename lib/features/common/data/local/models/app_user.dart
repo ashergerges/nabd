@@ -14,6 +14,10 @@ class AppUser {
   final int? status;
   final String? token;
   final String? refreshToken;
+  @JsonKey(name: "is_vendor")
+  final bool? isVendor;
+  @JsonKey(name: "dashboard_url")
+  final String? dashboardUrl;
 
 
   AppUser( {
@@ -22,6 +26,8 @@ class AppUser {
      this.name,  this.phone,  this.address,  this.image,  this.status,
      this.token,
      this.refreshToken,
+     this.isVendor,
+     this.dashboardUrl,
   });
 
   AppUser copyWith({
@@ -34,6 +40,8 @@ class AppUser {
     String? address,
     String? refreshToken,
     int? status,
+    bool? isVendor,
+    String? dashboardUrl,
   }) => AppUser(
     id: id ?? this.id,
     email: email ?? this.email,
@@ -44,6 +52,8 @@ class AppUser {
       status: status ?? this.status,
     token: token ?? this.token,
     refreshToken: refreshToken ?? this.refreshToken,
+    isVendor: isVendor ?? this.isVendor,
+    dashboardUrl: dashboardUrl ?? this.dashboardUrl,
   );
 
   factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);

@@ -7,6 +7,8 @@ import 'package:nawy/core/interfaces/i_local_preference.dart';
 import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/services/dialogs/message_service.dart';
 import 'package:nawy/features/auth/data/repositories/interfaces/i_login_repository.dart';
+import 'package:nawy/features/categories/data/models/category_model.dart';
+import 'package:nawy/features/categories/data/repositories/interfaces/i_categories_repository.dart';
 import 'package:nawy/main_common.dart';
 
 part 'auth_state.dart';
@@ -22,8 +24,14 @@ class AuthCubit extends Cubit<AuthState> {
   void setPhone(String? value) {
     emit(state.copyWith(phone: value));
   }
+  void setName(String? value) {
+    emit(state.copyWith(name: value));
+  }
   void setOTP(String? value) {
     emit(state.copyWith(oTPCode: value ?? ""));
+  }
+  void setCategorySelector(List<int>? value) {
+    emit(state.copyWith(categoryIds: value??[]));
   }
 
   void setResendCode(bool? value) {
@@ -33,6 +41,22 @@ class AuthCubit extends Cubit<AuthState> {
     emit(state.copyWith(currState: Loading()));
 
     var loginAsync = await loginRepository.loginAsync(phone: state.phone ?? "");
+    if (loginAsync.isError) {
+      MessageService.showToast(
+        msg: loginAsync.asError?.error.toString() ?? "",
+        state: ToastStates.error,
+      );
+      emit(state.copyWith(currState: Error()));
+
+      return false;
+    }
+    emit(state.copyWith( currState: Success()));
+    return true;
+  }
+  Future<bool> signUpAsync() async {
+    emit(state.copyWith(currState: Loading()));
+
+    var loginAsync = await loginRepository.signUpAsync(phone: state.phone ?? "",name: state.name ?? "",categoryId:state.categoryIds.first);
     if (loginAsync.isError) {
       MessageService.showToast(
         msg: loginAsync.asError?.error.toString() ?? "",
@@ -87,12 +111,26 @@ class AuthCubit extends Cubit<AuthState> {
 
 
     getIt<AppRouter>().replaceAll([
-      HomeBottomTabsRoute(),
+      (validateOtp.asValue?.value.user?.isVendor??false)?ProviderHomeBottomTabsRoute():HomeBottomTabsRoute(),
     ], updateExistingRoutes: false);
 
 
     return true;
   }
 
+  Future<void> categories() async {
+    emit(state.copyWith(currState: LoadingCategories()));
 
+    var categories = await getIt<ICategoriesRepository>().categories();
+    if (categories.isError) {
+      MessageService.showToast(
+        msg: categories.asError?.error.toString() ?? "",
+        state: ToastStates.error,
+      );
+      emit(state.copyWith(currState: Error()));
+
+      return;
+    }
+    emit(state.copyWith( currState: Success(),categoriesList:categories.asValue?.value??[],));
+  }
 }

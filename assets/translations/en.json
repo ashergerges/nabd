@@ -208,5 +208,9 @@
   "personalEmergency": "Personal emergency",
   "otherKey": "Other",
   "pleaseSpecifyYourReason": "Please specify your reason",
-  "typeYourReasonHere": "Type your reason here..."
+  "typeYourReasonHere": "Type your reason here...",
+  "joinOurProviderCommunity": "Join Our Provider Community",
+  "areYouAServiceProvider": "Are you a service provider? ",
+  "signUpHere": "Sign up here",
+  "goToDashboard": "Go to Dashboard"
 }

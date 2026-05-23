@@ -8,6 +8,7 @@ class Endpoints {
   String get getNotificationsUrl => r'api/getNotifications';
 
   String get loginUrl => r'api/app/auth/login';
+  String get signUpUrl => r'api/app/auth/signup';
   String get reSendOTPUrl => r'api/app/auth/resend-otp';
   String get validateOTPUrl => r'api/app/auth/verify-otp';
   //home

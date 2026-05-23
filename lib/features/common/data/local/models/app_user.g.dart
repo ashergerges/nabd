@@ -16,6 +16,8 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) => AppUser(
   status: (json['status'] as num?)?.toInt(),
   token: json['token'] as String?,
   refreshToken: json['refreshToken'] as String?,
+  isVendor: json['is_vendor'] as bool?,
+  dashboardUrl: json['dashboard_url'] as String?,
 );
 
 Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
@@ -28,4 +30,6 @@ Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
   'status': instance.status,
   'token': instance.token,
   'refreshToken': instance.refreshToken,
+  'is_vendor': instance.isVendor,
+  'dashboard_url': instance.dashboardUrl,
 };

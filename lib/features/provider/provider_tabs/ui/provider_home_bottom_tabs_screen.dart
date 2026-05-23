@@ -2,22 +2,23 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/features/Tabs/cubit/tab_bar_cubit.dart';
-import 'package:nawy/features/Tabs/ui/bottom_nav.dart';
+import 'package:nawy/features/provider/provider_tabs/ui/bottom_nav_provider.dart';
+
+import '../cubit/tab_bar_provider_cubit.dart';
+
 
 @RoutePage()
-class HomeBottomTabsScreen extends StatelessWidget {
+class ProviderHomeBottomTabsScreen extends StatelessWidget {
   final int index;
 
-  //used only from home screen to navigate to search with filter by sport
 
-  const HomeBottomTabsScreen({super.key, this.index = 0, });
+  const ProviderHomeBottomTabsScreen({super.key, this.index = 0,});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) =>
-          TabBarCubit()..selectScreen(index: index, ),
+          TabBarCubit()..selectScreen(index: index,),
       child: BlocBuilder<TabBarCubit, TabBarState>(
         builder: (context, state) {
           return PopScope(
@@ -30,7 +31,7 @@ class HomeBottomTabsScreen extends StatelessWidget {
             child: Scaffold(
               backgroundColor: AppColors.white,
               body: context.read<TabBarCubit>().navScreens[state.activeScreen],
-              bottomNavigationBar: NavigationBarItems(
+              bottomNavigationBar: NavigationBarProviderItems(
                 onTap: (index) {
                   context.read<TabBarCubit>().selectScreen(
                     index: index,

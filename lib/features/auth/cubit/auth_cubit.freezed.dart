@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthState {
   String? get phone => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  List<int> get categoryIds => throw _privateConstructorUsedError;
+  List<CategoryModel> get categoriesList => throw _privateConstructorUsedError;
   String get oTPCode => throw _privateConstructorUsedError;
   bool get refresh => throw _privateConstructorUsedError;
   bool get resendCode => throw _privateConstructorUsedError;
@@ -38,6 +41,9 @@ abstract class $AuthStateCopyWith<$Res> {
   @useResult
   $Res call({
     String? phone,
+    String? name,
+    List<int> categoryIds,
+    List<CategoryModel> categoriesList,
     String oTPCode,
     bool refresh,
     bool resendCode,
@@ -64,6 +70,9 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @override
   $Res call({
     Object? phone = freezed,
+    Object? name = freezed,
+    Object? categoryIds = null,
+    Object? categoriesList = null,
     Object? oTPCode = null,
     Object? refresh = null,
     Object? resendCode = null,
@@ -76,6 +85,18 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
                 ? _value.phone
                 : phone // ignore: cast_nullable_to_non_nullable
                       as String?,
+            name: freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            categoryIds: null == categoryIds
+                ? _value.categoryIds
+                : categoryIds // ignore: cast_nullable_to_non_nullable
+                      as List<int>,
+            categoriesList: null == categoriesList
+                ? _value.categoriesList
+                : categoriesList // ignore: cast_nullable_to_non_nullable
+                      as List<CategoryModel>,
             oTPCode: null == oTPCode
                 ? _value.oTPCode
                 : oTPCode // ignore: cast_nullable_to_non_nullable
@@ -123,6 +144,9 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   @useResult
   $Res call({
     String? phone,
+    String? name,
+    List<int> categoryIds,
+    List<CategoryModel> categoriesList,
     String oTPCode,
     bool refresh,
     bool resendCode,
@@ -149,6 +173,9 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phone = freezed,
+    Object? name = freezed,
+    Object? categoryIds = null,
+    Object? categoriesList = null,
     Object? oTPCode = null,
     Object? refresh = null,
     Object? resendCode = null,
@@ -161,6 +188,18 @@ class __$$AuthStateImplCopyWithImpl<$Res>
             ? _value.phone
             : phone // ignore: cast_nullable_to_non_nullable
                   as String?,
+        name: freezed == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        categoryIds: null == categoryIds
+            ? _value._categoryIds
+            : categoryIds // ignore: cast_nullable_to_non_nullable
+                  as List<int>,
+        categoriesList: null == categoriesList
+            ? _value._categoriesList
+            : categoriesList // ignore: cast_nullable_to_non_nullable
+                  as List<CategoryModel>,
         oTPCode: null == oTPCode
             ? _value.oTPCode
             : oTPCode // ignore: cast_nullable_to_non_nullable
@@ -191,15 +230,39 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 class _$AuthStateImpl implements _AuthState {
   const _$AuthStateImpl({
     this.phone,
+    this.name,
+    final List<int> categoryIds = const [],
+    final List<CategoryModel> categoriesList = const [],
     this.oTPCode = '',
     this.refresh = false,
     this.resendCode = false,
     required this.formKey,
     this.currState = const AuthStateStatus.initial(),
-  });
+  }) : _categoryIds = categoryIds,
+       _categoriesList = categoriesList;
 
   @override
   final String? phone;
+  @override
+  final String? name;
+  final List<int> _categoryIds;
+  @override
+  @JsonKey()
+  List<int> get categoryIds {
+    if (_categoryIds is EqualUnmodifiableListView) return _categoryIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categoryIds);
+  }
+
+  final List<CategoryModel> _categoriesList;
+  @override
+  @JsonKey()
+  List<CategoryModel> get categoriesList {
+    if (_categoriesList is EqualUnmodifiableListView) return _categoriesList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categoriesList);
+  }
+
   @override
   @JsonKey()
   final String oTPCode;
@@ -217,7 +280,7 @@ class _$AuthStateImpl implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(phone: $phone, oTPCode: $oTPCode, refresh: $refresh, resendCode: $resendCode, formKey: $formKey, currState: $currState)';
+    return 'AuthState(phone: $phone, name: $name, categoryIds: $categoryIds, categoriesList: $categoriesList, oTPCode: $oTPCode, refresh: $refresh, resendCode: $resendCode, formKey: $formKey, currState: $currState)';
   }
 
   @override
@@ -226,6 +289,15 @@ class _$AuthStateImpl implements _AuthState {
         (other.runtimeType == runtimeType &&
             other is _$AuthStateImpl &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(
+              other._categoryIds,
+              _categoryIds,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._categoriesList,
+              _categoriesList,
+            ) &&
             (identical(other.oTPCode, oTPCode) || other.oTPCode == oTPCode) &&
             (identical(other.refresh, refresh) || other.refresh == refresh) &&
             (identical(other.resendCode, resendCode) ||
@@ -239,6 +311,9 @@ class _$AuthStateImpl implements _AuthState {
   int get hashCode => Object.hash(
     runtimeType,
     phone,
+    name,
+    const DeepCollectionEquality().hash(_categoryIds),
+    const DeepCollectionEquality().hash(_categoriesList),
     oTPCode,
     refresh,
     resendCode,
@@ -258,6 +333,9 @@ class _$AuthStateImpl implements _AuthState {
 abstract class _AuthState implements AuthState {
   const factory _AuthState({
     final String? phone,
+    final String? name,
+    final List<int> categoryIds,
+    final List<CategoryModel> categoriesList,
     final String oTPCode,
     final bool refresh,
     final bool resendCode,
@@ -267,6 +345,12 @@ abstract class _AuthState implements AuthState {
 
   @override
   String? get phone;
+  @override
+  String? get name;
+  @override
+  List<int> get categoryIds;
+  @override
+  List<CategoryModel> get categoriesList;
   @override
   String get oTPCode;
   @override
@@ -292,6 +376,7 @@ mixin _$AuthStateStatus {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() loadingCategories,
     required TResult Function() error,
     required TResult Function() success,
   }) => throw _privateConstructorUsedError;
@@ -299,6 +384,7 @@ mixin _$AuthStateStatus {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? loadingCategories,
     TResult? Function()? error,
     TResult? Function()? success,
   }) => throw _privateConstructorUsedError;
@@ -306,6 +392,7 @@ mixin _$AuthStateStatus {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? loadingCategories,
     TResult Function()? error,
     TResult Function()? success,
     required TResult orElse(),
@@ -314,6 +401,7 @@ mixin _$AuthStateStatus {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingCategories value) loadingCategories,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
   }) => throw _privateConstructorUsedError;
@@ -321,6 +409,7 @@ mixin _$AuthStateStatus {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingCategories value)? loadingCategories,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
   }) => throw _privateConstructorUsedError;
@@ -328,6 +417,7 @@ mixin _$AuthStateStatus {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingCategories value)? loadingCategories,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
     required TResult orElse(),
@@ -401,6 +491,7 @@ class _$InitialImpl implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() loadingCategories,
     required TResult Function() error,
     required TResult Function() success,
   }) {
@@ -412,6 +503,7 @@ class _$InitialImpl implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? loadingCategories,
     TResult? Function()? error,
     TResult? Function()? success,
   }) {
@@ -423,6 +515,7 @@ class _$InitialImpl implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? loadingCategories,
     TResult Function()? error,
     TResult Function()? success,
     required TResult orElse(),
@@ -438,6 +531,7 @@ class _$InitialImpl implements Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingCategories value) loadingCategories,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
   }) {
@@ -449,6 +543,7 @@ class _$InitialImpl implements Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingCategories value)? loadingCategories,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
   }) {
@@ -460,6 +555,7 @@ class _$InitialImpl implements Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingCategories value)? loadingCategories,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
     required TResult orElse(),
@@ -520,6 +616,7 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() loadingCategories,
     required TResult Function() error,
     required TResult Function() success,
   }) {
@@ -531,6 +628,7 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? loadingCategories,
     TResult? Function()? error,
     TResult? Function()? success,
   }) {
@@ -542,6 +640,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? loadingCategories,
     TResult Function()? error,
     TResult Function()? success,
     required TResult orElse(),
@@ -557,6 +656,7 @@ class _$LoadingImpl implements Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingCategories value) loadingCategories,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
   }) {
@@ -568,6 +668,7 @@ class _$LoadingImpl implements Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingCategories value)? loadingCategories,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
   }) {
@@ -579,6 +680,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingCategories value)? loadingCategories,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
     required TResult orElse(),
@@ -592,6 +694,131 @@ class _$LoadingImpl implements Loading {
 
 abstract class Loading implements AuthStateStatus {
   const factory Loading() = _$LoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadingCategoriesImplCopyWith<$Res> {
+  factory _$$LoadingCategoriesImplCopyWith(
+    _$LoadingCategoriesImpl value,
+    $Res Function(_$LoadingCategoriesImpl) then,
+  ) = __$$LoadingCategoriesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadingCategoriesImplCopyWithImpl<$Res>
+    extends _$AuthStateStatusCopyWithImpl<$Res, _$LoadingCategoriesImpl>
+    implements _$$LoadingCategoriesImplCopyWith<$Res> {
+  __$$LoadingCategoriesImplCopyWithImpl(
+    _$LoadingCategoriesImpl _value,
+    $Res Function(_$LoadingCategoriesImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthStateStatus
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadingCategoriesImpl implements LoadingCategories {
+  const _$LoadingCategoriesImpl();
+
+  @override
+  String toString() {
+    return 'AuthStateStatus.loadingCategories()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadingCategoriesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loadingCategories,
+    required TResult Function() error,
+    required TResult Function() success,
+  }) {
+    return loadingCategories();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loadingCategories,
+    TResult? Function()? error,
+    TResult? Function()? success,
+  }) {
+    return loadingCategories?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadingCategories,
+    TResult Function()? error,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (loadingCategories != null) {
+      return loadingCategories();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(LoadingCategories value) loadingCategories,
+    required TResult Function(Error value) error,
+    required TResult Function(Success value) success,
+  }) {
+    return loadingCategories(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingCategories value)? loadingCategories,
+    TResult? Function(Error value)? error,
+    TResult? Function(Success value)? success,
+  }) {
+    return loadingCategories?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(LoadingCategories value)? loadingCategories,
+    TResult Function(Error value)? error,
+    TResult Function(Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (loadingCategories != null) {
+      return loadingCategories(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadingCategories implements AuthStateStatus {
+  const factory LoadingCategories() = _$LoadingCategoriesImpl;
 }
 
 /// @nodoc
@@ -639,6 +866,7 @@ class _$ErrorImpl implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() loadingCategories,
     required TResult Function() error,
     required TResult Function() success,
   }) {
@@ -650,6 +878,7 @@ class _$ErrorImpl implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? loadingCategories,
     TResult? Function()? error,
     TResult? Function()? success,
   }) {
@@ -661,6 +890,7 @@ class _$ErrorImpl implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? loadingCategories,
     TResult Function()? error,
     TResult Function()? success,
     required TResult orElse(),
@@ -676,6 +906,7 @@ class _$ErrorImpl implements Error {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingCategories value) loadingCategories,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
   }) {
@@ -687,6 +918,7 @@ class _$ErrorImpl implements Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingCategories value)? loadingCategories,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
   }) {
@@ -698,6 +930,7 @@ class _$ErrorImpl implements Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingCategories value)? loadingCategories,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
     required TResult orElse(),
@@ -758,6 +991,7 @@ class _$SuccessImpl implements Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() loadingCategories,
     required TResult Function() error,
     required TResult Function() success,
   }) {
@@ -769,6 +1003,7 @@ class _$SuccessImpl implements Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? loadingCategories,
     TResult? Function()? error,
     TResult? Function()? success,
   }) {
@@ -780,6 +1015,7 @@ class _$SuccessImpl implements Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? loadingCategories,
     TResult Function()? error,
     TResult Function()? success,
     required TResult orElse(),
@@ -795,6 +1031,7 @@ class _$SuccessImpl implements Success {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingCategories value) loadingCategories,
     required TResult Function(Error value) error,
     required TResult Function(Success value) success,
   }) {
@@ -806,6 +1043,7 @@ class _$SuccessImpl implements Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingCategories value)? loadingCategories,
     TResult? Function(Error value)? error,
     TResult? Function(Success value)? success,
   }) {
@@ -817,6 +1055,7 @@ class _$SuccessImpl implements Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingCategories value)? loadingCategories,
     TResult Function(Error value)? error,
     TResult Function(Success value)? success,
     required TResult orElse(),

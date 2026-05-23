@@ -12,6 +12,9 @@ class CategoryModel {
   @JsonKey(name: 'name_en')
   final String? nameEn;
 
+  @JsonKey(name: 'name')
+  final String? name;
+
   final String? image;
 
   final bool? status;
@@ -26,6 +29,7 @@ class CategoryModel {
     this.id,
     this.nameAr,
     this.nameEn,
+    this.name,
     this.image,
     this.status,
     this.statusText,

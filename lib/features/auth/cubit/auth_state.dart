@@ -4,6 +4,9 @@ part of 'auth_cubit.dart';
 class AuthState with _$AuthState {
   const factory AuthState({
     String? phone,
+    String? name,
+    @Default([]) List<int> categoryIds,
+    @Default([]) List<CategoryModel> categoriesList,
     @Default('')  String oTPCode,
     @Default(false)  bool refresh,
     @Default(false)  bool resendCode,
@@ -15,6 +18,7 @@ class AuthState with _$AuthState {
 class AuthStateStatus with _$AuthStateStatus {
   const factory AuthStateStatus.initial() = Initial;
   const factory AuthStateStatus.loading() = Loading;
+  const factory AuthStateStatus.loadingCategories() = LoadingCategories;
   const factory AuthStateStatus.error() = Error;
   const factory AuthStateStatus.success() = Success;
 }

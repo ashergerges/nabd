@@ -14,8 +14,10 @@ import 'package:nawy/features/my_booking/ui/widgets/review_widget.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../../../core/interfaces/i_local_preference.dart';
 import '../../../../core/utils/common_widgets/empty_widget.dart' show EmptyWidget;
 import '../../../../gen/assets.gen.dart';
+import '../../../../main_common.dart';
 
 class CompletedTap extends StatelessWidget {
   const CompletedTap({super.key, required this.booksCompleted});
@@ -47,7 +49,9 @@ class CompletedTap extends StatelessWidget {
         itemBuilder: (BuildContext c, int index) {
           return  MyBookingCard(
             onTap: (){
-              ViewBookingDetailsRoute(bookingId:booksCompleted[index].id??0 ).push(context);
+              if(!(getIt<ILocalPreference>().appUser.value?.isVendor??false)) {
+                ViewBookingDetailsRoute(bookingId:booksCompleted[index].id??0 ).push(context);
+              }
             },
             onTapRate: (){
               MessageService.showNewCustomDialog(
@@ -72,7 +76,6 @@ class CompletedTap extends StatelessWidget {
             packageName:booksCompleted[index].package?.name??"",
             date: "${booksCompleted[index].date??""} - ${booksCompleted[index].time??""}",
             price: double.parse(booksCompleted[index].totalPrice??"0"),
-            showRateButton:(!(booksCompleted[index].isReviewed??false)),
             imageUrl: AppStrings.kTestNetworkImage,
           );
         },      separatorBuilder:(BuildContext c, int i) => 12.verticalSpace,
