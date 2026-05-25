@@ -213,5 +213,11 @@ abstract class  LocaleKeys {
   static const areYouAServiceProvider = 'areYouAServiceProvider';
   static const signUpHere = 'signUpHere';
   static const goToDashboard = 'goToDashboard';
+  static const orFlowUs = 'orFlowUs';
+  static const contactViaWhatsapp = 'contactViaWhatsapp';
+  static const sendUsOverWhatsapp = 'sendUsOverWhatsapp';
+  static const chooseContactMethod = 'chooseContactMethod';
+  static const whatsapp = 'whatsapp';
+  static const phoneCall = 'phoneCall';
 
 }

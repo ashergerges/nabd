@@ -106,23 +106,26 @@ class SummaryStep extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(LocaleKeys.packagePrice.tr(), style: AppTextTheme.bodySmall(context)),
                     Text(
-                      "${data.price} ${LocaleKeys.riyal.tr()}",
+                      LocaleKeys.packagePrice.tr(),
+                      style: AppTextTheme.bodySmall(context),
+                    ),
+                    Text(
+                      "${((data.price) / 1.15).toStringAsFixed(2)} ${LocaleKeys.riyal.tr()}",
                       style: AppTextTheme.bodySmallMediumWeight(context),
                     ),
                   ],
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                   children: [
                     Text(
                       LocaleKeys.vatFifteenPercent.tr(),
                       style: AppTextTheme.bodySmall(context),
                     ),
                     Text(
-                      "${(data.price * 0.15)} ${LocaleKeys.riyal.tr()}",
+                      "${(((data.price) - ((data.price ?? 0) / 1.15))).toStringAsFixed(2)} ${LocaleKeys.riyal.tr()}",
                       style: AppTextTheme.bodySmallMediumWeight(context),
                     ),
                   ],
@@ -141,7 +144,7 @@ class SummaryStep extends StatelessWidget {
                       ).copyWith(color: AppColors.primary),
                     ),
                     Text(
-                      "${data.price + (data.price * 0.15)} ${LocaleKeys.riyal.tr()}",
+                      "${data.price } ${LocaleKeys.riyal.tr()}",
                       style: AppTextTheme.bodySmallMediumWeight(
                         context,
                       ).copyWith(color: AppColors.primary),

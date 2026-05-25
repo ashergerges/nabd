@@ -38,7 +38,7 @@ class MyBookingRepository implements IMyBookingRepository {
   Future<Result<String>> cancelBook({required int bookId,String? reason,}) async {
     var response = await networkService.postAsync(
       url: AppStrings.urls.cancelBookUrl,
-      queryParameters: {
+      body: {
         "id":bookId,
         "reason":reason??""
       }

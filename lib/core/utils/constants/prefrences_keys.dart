@@ -2,6 +2,7 @@ class PreferencesKeys {
   const PreferencesKeys();
 
   String get appUserKey => 'appUser';
+  String get supportKey => 'support';
 
   String get appFooterKey => 'appFooter';
 

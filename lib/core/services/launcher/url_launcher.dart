@@ -72,8 +72,8 @@ class UrlLauncher {
     }
   }
 
-  static Future<void> shareToWhatsApp(String phoneNumber) async {
-    final url = 'https://wa.me/$phoneNumber';
+  static Future<void> shareToWhatsApp(String phoneNumber,{String? message}) async {
+    final url = 'https://wa.me/$phoneNumber?text=${Uri.encodeFull(message??"")}';
 
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);

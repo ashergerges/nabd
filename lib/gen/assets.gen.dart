@@ -95,9 +95,17 @@ class $AssetsImagesGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/Instagram logo.svg
+  SvgGenImage get instagramLogo =>
+      const SvgGenImage('assets/svg/Instagram logo.svg');
+
   /// File path: assets/svg/Invitation_tracker.svg
   SvgGenImage get invitationTracker =>
       const SvgGenImage('assets/svg/Invitation_tracker.svg');
+
+  /// File path: assets/svg/Snapchat logo.svg
+  SvgGenImage get snapchatLogo =>
+      const SvgGenImage('assets/svg/Snapchat logo.svg');
 
   /// File path: assets/svg/arrow_left.svg
   SvgGenImage get arrowLeft => const SvgGenImage('assets/svg/arrow_left.svg');
@@ -241,6 +249,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/support.svg
   SvgGenImage get support => const SvgGenImage('assets/svg/support.svg');
 
+  /// File path: assets/svg/tiktok.com logo.svg
+  SvgGenImage get tiktokComLogo =>
+      const SvgGenImage('assets/svg/tiktok.com logo.svg');
+
   /// File path: assets/svg/trash.svg
   SvgGenImage get trash => const SvgGenImage('assets/svg/trash.svg');
 
@@ -255,12 +267,20 @@ class $AssetsSvgGen {
   SvgGenImage get warningSnackbar =>
       const SvgGenImage('assets/svg/warning_snackbar.svg');
 
+  /// File path: assets/svg/whats_icon.svg
+  SvgGenImage get whatsIcon => const SvgGenImage('assets/svg/whats_icon.svg');
+
   /// File path: assets/svg/wrongIcon.svg
   SvgGenImage get wrongIcon => const SvgGenImage('assets/svg/wrongIcon.svg');
 
+  /// File path: assets/svg/x-twitter.svg
+  SvgGenImage get xTwitter => const SvgGenImage('assets/svg/x-twitter.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
+    instagramLogo,
     invitationTracker,
+    snapchatLogo,
     arrowLeft,
     categ,
     categAcive,
@@ -305,11 +325,14 @@ class $AssetsSvgGen {
     successCheck,
     successSnackbar,
     support,
+    tiktokComLogo,
     trash,
     uilArrow,
     unavailable,
     warningSnackbar,
+    whatsIcon,
     wrongIcon,
+    xTwitter,
   ];
 }
 

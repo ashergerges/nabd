@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:nawy/core/interfaces/i_local_preference.dart';
 import 'package:nawy/core/router/app_router.dart';
+import 'package:nawy/core/services/dialogs/message_service.dart';
 import 'package:nawy/features/splash/data/repositories/interfaces/i_splash_repository.dart';
 import 'package:nawy/main_common.dart';
 
@@ -24,9 +25,22 @@ class SplashCubit extends Cubit<SplashState> {
   final ISplashRepository _splashRepository;
 
   Future<void> init() async {
-      await getAppStartUpStatus();
+   await  Future.wait([
+      getAppStartUpStatus(),
+      support(),
+     ]);
   }
 
+  Future<void> support() async {
+    var support = await _splashRepository.support();
+    if (support.isError) {
+      MessageService.showToast(
+        msg: support.asError?.error.toString() ?? "",
+        state: ToastStates.error,
+      );
+    }
+    _localPreference.saveSupport(support.asValue?.value);
+  }
 
 
   Future<void> getAppStartUpStatus() async {

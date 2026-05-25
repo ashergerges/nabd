@@ -57,7 +57,7 @@ class BookCubit extends Cubit<BookState> {
 
       return;
     }
-    emit(state.copyWith( paymentMethods: paymentMethods.asValue?.value??[],bookRequest: state.bookRequest?.copyWith(packageId:packageId,totalPrice: (price + (price * 0.15)).toString(),paymentMethod: ( paymentMethods.asValue?.value??[]).isEmpty?null:( paymentMethods.asValue?.value??[]).first.id)));
+    emit(state.copyWith( paymentMethods: paymentMethods.asValue?.value??[],bookRequest: state.bookRequest?.copyWith(packageId:packageId,totalPrice: (price ).toString(),paymentMethod: ( paymentMethods.asValue?.value??[]).isEmpty?null:( paymentMethods.asValue?.value??[]).first.id)));
     return;
   }
 

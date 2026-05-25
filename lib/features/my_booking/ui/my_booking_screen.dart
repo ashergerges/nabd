@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/interfaces/i_local_preference.dart';
+import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/app_text_field.dart';
 import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
 import 'package:nawy/core/utils/common_widgets/on_tap.dart';
@@ -14,6 +16,7 @@ import 'package:nawy/features/my_booking/ui/widgets/completed_tap.dart';
 import 'package:nawy/features/my_booking/ui/widgets/loading_my_booking.dart';
 import 'package:nawy/features/my_booking/ui/widgets/upcoming_tap.dart';
 import 'package:nawy/gen/locale_keys.g.dart';
+import 'package:nawy/main_common.dart';
 import '../../../gen/assets.gen.dart';
 
 class MyBookingScreen extends StatelessWidget {
@@ -32,15 +35,29 @@ class MyBookingScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Assets.svg.logoName.svg(height: 30.h),
-                  Builder(
-                      builder: (context) {
-                        return OnTap(
-                            onTap: (){
-                              context.read<MyBookingCubit>().setShowedSearch(true);
+                  Row(
+                    children: [
+                      if(getIt<ILocalPreference>().appUser.value?.isVendor??false)...[
+                        OnTap(
+                            onTap:(){
+                              NotificationRoute().push(context);
                             },
-                            child: Assets.svg.search.svg(height: 24.h));
-                      }
+                            child: Assets.svg.notification.svg(height: 24.h)),
+                        24.horizontalSpace,
+                      ],
+                      Builder(
+                          builder: (context) {
+                            return OnTap(
+                                onTap: (){
+                                  context.read<MyBookingCubit>().setShowedSearch(true);
+                                },
+                                child: Assets.svg.search.svg(height: 24.h));
+                          }
+                      ),
+                    ],
                   ),
+
+
                 ],
               ),
             ),),

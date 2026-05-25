@@ -123,18 +123,6 @@ Map<String, dynamic> _$CityModelToJson(CityModel instance) => <String, dynamic>{
   'name_en': instance.nameEn,
 };
 
-UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-  id: (json['id'] as num?)?.toInt(),
-  name: json['name'] as String?,
-  email: json['email'] as String?,
-);
-
-Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
-  'id': instance.id,
-  'name': instance.name,
-  'email': instance.email,
-};
-
 GalleryModel _$GalleryModelFromJson(Map<String, dynamic> json) => GalleryModel(
   id: (json['id'] as num?)?.toInt(),
   image: json['image'] as String?,
@@ -184,3 +172,19 @@ Map<String, dynamic> _$ReviewModelToJson(ReviewModel instance) =>
       'comment': instance.comment,
       'created_at': instance.createdAt,
     };
+
+UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
+  id: (json['id'] as num?)?.toInt(),
+  name: json['name'] as String?,
+  email: json['email'] as String?,
+  whatsappPhone: json['whatsapp_phone'] as String?,
+  callPhone: json['call_phone'] as String?,
+);
+
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'email': instance.email,
+  'whatsapp_phone': instance.whatsappPhone,
+  'call_phone': instance.callPhone,
+};

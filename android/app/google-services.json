@@ -1,183 +1,26 @@
 {
   "project_info": {
-    "project_number": "958066578448",
-    "project_id": "nawy",
-    "storage_bucket": "nawy.firebasestorage.app"
+    "project_number": "534789835399",
+    "project_id": "nawy-6ba5b",
+    "storage_bucket": "nawy-6ba5b.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:958066578448:android:d74d2e55b02d995c9d2695",
+        "mobilesdk_app_id": "1:534789835399:android:445e54075dc5ec2a244622",
         "android_client_info": {
-          "package_name": "com.example.nawy"
+          "package_name": "com.app.nawy"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "958066578448-vgvtfp9dqo328mkvko2e36kgfo17vo13.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.nawy",
-            "certificate_hash": "921c5d0898fe64719ed87bed346dafb93e35ba82"
-          }
-        },
-        {
-          "client_id": "958066578448-1677ru8msmb3ouunpu9hl54r459893b5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBYNx3Jo-O_y_GC8HDUC_B7R6lzAgn4iE0"
+          "current_key": "AIzaSyAc4AH-YOgLp0hHTF7ybnAU7g043UvlIGQ"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "958066578448-1677ru8msmb3ouunpu9hl54r459893b5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "958066578448-9thqr8qkgmb9942hq7jv840p6n1bpr0h.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.nawy.uat"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:958066578448:android:cef36e28d0267d4c9d2695",
-        "android_client_info": {
-          "package_name": "com.example.nawy.dev"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "958066578448-88v4mt8rf30m8nk537uemouhemnfkdoe.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.nawy.dev",
-            "certificate_hash": "921c5d0898fe64719ed87bed346dafb93e35ba82"
-          }
-        },
-        {
-          "client_id": "958066578448-1677ru8msmb3ouunpu9hl54r459893b5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBYNx3Jo-O_y_GC8HDUC_B7R6lzAgn4iE0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "958066578448-1677ru8msmb3ouunpu9hl54r459893b5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "958066578448-9thqr8qkgmb9942hq7jv840p6n1bpr0h.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.nawy.uat"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:958066578448:android:37f04cc350fdd5de9d2695",
-        "android_client_info": {
-          "package_name": "com.example.nawy.qc"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "958066578448-dnlaebu1ovip52gq193r746l1c86pcmb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.nawy.qc",
-            "certificate_hash": "921c5d0898fe64719ed87bed346dafb93e35ba82"
-          }
-        },
-        {
-          "client_id": "958066578448-1677ru8msmb3ouunpu9hl54r459893b5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBYNx3Jo-O_y_GC8HDUC_B7R6lzAgn4iE0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "958066578448-1677ru8msmb3ouunpu9hl54r459893b5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "958066578448-9thqr8qkgmb9942hq7jv840p6n1bpr0h.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.nawy.uat"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:958066578448:android:f8a68780e10be49a9d2695",
-        "android_client_info": {
-          "package_name": "com.example.nawy.uat"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "958066578448-u2d2kaijitjqeb7ijomqoqat9m21sc93.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.nawy.uat",
-            "certificate_hash": "921c5d0898fe64719ed87bed346dafb93e35ba82"
-          }
-        },
-        {
-          "client_id": "958066578448-1677ru8msmb3ouunpu9hl54r459893b5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBYNx3Jo-O_y_GC8HDUC_B7R6lzAgn4iE0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "958066578448-1677ru8msmb3ouunpu9hl54r459893b5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "958066578448-9thqr8qkgmb9942hq7jv840p6n1bpr0h.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.nawy.uat"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

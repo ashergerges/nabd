@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:nawy/core/interfaces/i_local_preference.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:injectable/injectable.dart';
+import 'package:nawy/features/splash/data/models/settings_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/app_footer.dart';
 import '../models/app_user.dart';
@@ -26,6 +27,13 @@ class LocalPreferenceImpl extends ILocalPreference {
             )
           : null,
     );
+    support = ValueNotifier<SettingsModel?>(
+      (sharedPreferences?.getString(AppStrings.prefKeys.supportKey) != null)
+          ? SettingsModel.fromJson(
+              json.decode(sharedPreferences!.getString(AppStrings.prefKeys.supportKey)!),
+            )
+          : null,
+    );
     log("!@!@!@!TESTT");
   }
 
@@ -41,6 +49,19 @@ class LocalPreferenceImpl extends ILocalPreference {
     log("appUser:: ${sharedPreferences?.getString(AppStrings.prefKeys.appUserKey)}");
 
     appUser.value = newAppUser;
+  }
+  @override
+  void saveSupport(SettingsModel? supportData) {
+    supportData == null
+        ? sharedPreferences?.remove(AppStrings.prefKeys.supportKey)
+        : sharedPreferences?.setString(
+            AppStrings.prefKeys.supportKey,
+            json.encode(supportData.toJson()),
+          );
+
+    log("appUser:: ${sharedPreferences?.getString(AppStrings.prefKeys.supportKey)}");
+
+    support.value = supportData;
   }
 
   @override

@@ -79,6 +79,7 @@ class VendorDetailsModel {
   @JsonKey(name: 'created_at')
   final String? createdAt;
 
+
   VendorDetailsModel({
     this.id,
     this.name,
@@ -166,23 +167,7 @@ class CityModel {
 
   Map<String, dynamic> toJson() => _$CityModelToJson(this);
 }
-@JsonSerializable()
-class UserModel {
-  final int? id;
-  final String? name;
-  final String? email;
 
-  UserModel({
-    this.id,
-    this.name,
-    this.email,
-  });
-
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UserModelToJson(this);
-}
 @JsonSerializable()
 class GalleryModel {
   final int? id;
@@ -266,3 +251,30 @@ class ReviewModel   {
 
   Map<String, dynamic> toJson() => _$ReviewModelToJson(this);
 }
+@JsonSerializable()
+class UserModel {
+  final int? id;
+  final String? name;
+  final String? email;
+
+  @JsonKey(name: 'whatsapp_phone')
+  final String? whatsappPhone;
+
+  @JsonKey(name: 'call_phone')
+  final String? callPhone;
+
+  UserModel({
+    this.id,
+    this.name,
+    this.email,
+    this.whatsappPhone,
+    this.callPhone,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
+
+
+  }

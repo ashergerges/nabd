@@ -99,20 +99,22 @@ HomeOfferModel _$HomeOfferModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       image: json['image'] as String?,
       discount: json['discount'] as String?,
+      title: json['title'] as String?,
       discountPercentage: json['discount_percentage'] as String?,
       productName: json['product_name'] as String?,
       vendorName: json['vendor_name'] as String?,
-      vendorImage: json['vendor_image'] as String?,
+      productImage: json['product_image'] as String?,
     );
 
 Map<String, dynamic> _$HomeOfferModelToJson(HomeOfferModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'title': instance.title,
       'image': instance.image,
       'discount': instance.discount,
       'discount_percentage': instance.discountPercentage,
       'product_name': instance.productName,
       'vendor_name': instance.vendorName,
-      'vendor_image': instance.vendorImage,
+      'product_image': instance.productImage,
     };

@@ -45,4 +45,7 @@ class Endpoints {
   String get getInvitationByBookingUrl => r'api/app/invitation/get';
   String get addGuestsUrl => r'api/app/invitation/add_guests';
 
+  // support
+  String get supportUrl => r'api/app/support-data';
+
 }

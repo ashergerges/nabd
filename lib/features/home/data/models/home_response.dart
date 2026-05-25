@@ -121,6 +121,7 @@ class HomeVendorModel {
 class HomeOfferModel {
   final int? id;
   final String? name;
+  final String? title;
   final String? image;
   final String? discount;
 
@@ -131,18 +132,19 @@ class HomeOfferModel {
   final String? productName;
   @JsonKey(name: 'vendor_name')
   final String? vendorName;
-  @JsonKey(name: 'vendor_image')
-  final String? vendorImage;
+  @JsonKey(name: 'product_image')
+  final String? productImage;
 
   HomeOfferModel({
     this.id,
     this.name,
     this.image,
     this.discount,
+    this.title,
     this.discountPercentage,
     this.productName,
     this.vendorName,
-    this.vendorImage,
+    this.productImage,
   });
 
   factory HomeOfferModel.fromJson(Map<String, dynamic> json) =>

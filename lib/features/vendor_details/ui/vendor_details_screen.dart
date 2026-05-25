@@ -55,16 +55,29 @@ class VendorDetailsScreen extends StatelessWidget {
                       16.horizontalSpace,
                       BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
                         builder: (context, state) {
-                          return state.currState is Loading?ShimmerWidget.circular(height: 35,width: 35,): OnTap(
-                            onTap: () {
-                              context.read<VendorDetailsCubit>().wishlistVendor(vendorDetailsId).then(((value){
-                                context.read<VendorDetailsCubit>().vendorDetails(vendorDetailsId);
-                              }));
-                            },
-                            child: _circleButton(
-                              (state.vendorDetails?.isFavorite??false)?Assets.svg.favouriteCircle.svg(height: 28.h):Assets.svg.favouritePackage.svg(height: 28.h),
-                            ),
-                          );
+                          return state.currState is Loading
+                              ? ShimmerWidget.circular(height: 35, width: 35)
+                              : OnTap(
+                                  onTap: () {
+                                    context
+                                        .read<VendorDetailsCubit>()
+                                        .wishlistVendor(vendorDetailsId)
+                                        .then(((value) {
+                                          context
+                                              .read<VendorDetailsCubit>()
+                                              .vendorDetails(vendorDetailsId);
+                                        }));
+                                  },
+                                  child: _circleButton(
+                                    (state.vendorDetails?.isFavorite ?? false)
+                                        ? Assets.svg.favouriteCircle.svg(
+                                            height: 28.h,
+                                          )
+                                        : Assets.svg.favouritePackage.svg(
+                                            height: 28.h,
+                                          ),
+                                  ),
+                                );
                         },
                       ),
                     ],
@@ -75,18 +88,28 @@ class VendorDetailsScreen extends StatelessWidget {
             Expanded(child: VendorDetailsBody()),
           ],
         ),
-        bottomNavigationBar: VendorBottomNavigationBar(),
+        bottomNavigationBar:
+            BlocBuilder<VendorDetailsCubit, VendorDetailsState>(
+              builder: (context, state) {
+                return VendorBottomNavigationBar(
+                  isLoading: state.currState is Loading,
+                  whatsappPhone: state.vendorDetails?.user?.whatsappPhone ?? "",
+                  callPhone: state.vendorDetails?.user?.callPhone ?? "",
+                );
+              },
+            ),
       ),
     );
   }
+
   Widget _circleButton(Widget child) {
     return Container(
-        padding: 5.padAll,
-        decoration: const BoxDecoration(
-          color: AppColors.white,
-          shape: BoxShape.circle,
-        ),
-        child: child
+      padding: 5.padAll,
+      decoration: const BoxDecoration(
+        color: AppColors.white,
+        shape: BoxShape.circle,
+      ),
+      child: child,
     );
   }
 }
@@ -127,7 +150,9 @@ class _VendorDetailsBodyState extends State<VendorDetailsBody>
               TabBar(
                 controller: _tabController,
                 labelStyle: AppTextTheme.bodyMedium(context).copyWith(
-                    color: AppColors.primary, fontWeight: FontWeight.w700),
+                  color: AppColors.primary,
+                  fontWeight: FontWeight.w700,
+                ),
                 unselectedLabelStyle: AppTextTheme.bodyMedium(context),
                 indicatorColor: AppColors.primary,
                 indicatorWeight: 3,
@@ -135,11 +160,9 @@ class _VendorDetailsBodyState extends State<VendorDetailsBody>
                 labelPadding: 0.padHorizontal,
 
                 tabs: [
-                  Tab(text: LocaleKeys.photos.tr(),),
-                  Tab(text: LocaleKeys.servicesAndPackages.tr(),),
-                  Tab(text: LocaleKeys.reviews.tr(),),
-
-
+                  Tab(text: LocaleKeys.photos.tr()),
+                  Tab(text: LocaleKeys.servicesAndPackages.tr()),
+                  Tab(text: LocaleKeys.reviews.tr()),
                 ],
               ),
             ),
@@ -150,7 +173,7 @@ class _VendorDetailsBodyState extends State<VendorDetailsBody>
       // Tab Views
       body: TabBarView(
         controller: _tabController,
-        children: [ PhotosTab(), ServicesTab(), ReviewsTap(),],
+        children: [PhotosTab(), ServicesTab(), ReviewsTap()],
       ),
     );
   }
@@ -168,9 +191,11 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => tabBar.preferredSize.height;
 
   @override
-  Widget build(BuildContext context,
-      double shrinkOffset,
-      bool overlapsContent,) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(color: Colors.white, child: tabBar);
   }
 
@@ -179,6 +204,3 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
     return false;
   }
 }
-
-
-

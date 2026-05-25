@@ -40,7 +40,7 @@ class ProfileProviderScreen extends StatelessWidget {
                     onTap: (){
                       UpdateProfileRoute().push(context).then((value){
                         context.router.replaceAll([
-                          HomeBottomTabsRoute(index: 3),
+                          ProviderHomeBottomTabsRoute(index: 1),
                         ], updateExistingRoutes: false);
                       });
                     },

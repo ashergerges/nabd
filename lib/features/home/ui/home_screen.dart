@@ -234,11 +234,11 @@ class HomeScreen extends StatelessWidget {
                                     personName: state
                                         .homeData
                                         ?.offers?[index]
-                                        .vendorName??'',
+                                        .title??'',
                                     personImageUrl:  state
                                         .homeData
                                         ?.offers?[index]
-                                        .vendorImage??AppStrings.kTestNetworkImage,
+                                        .productImage??AppStrings.kTestNetworkImage,
                                   ),
                                 );
                               },

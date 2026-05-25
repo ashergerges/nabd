@@ -62,7 +62,7 @@ class LoginRepository implements ILoginRepository {
       body: {
         "phone": phone,
         "otp": otp,
-        "device_token": "await FirebaseMessaging.instance.getToken()",
+        "device_token": await FirebaseMessaging.instance.getToken(),
 
       },
     );

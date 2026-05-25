@@ -463,27 +463,25 @@ class CustomTextField extends StatelessWidget {
         hintStyle: AppTextTheme.bodyMedium(
           context,
         ).copyWith(color: AppColors.neutral300),
-
-        // 👇 Phone prefix
-        prefixIcon: isPhone
+        suffixIcon: isPhone
             ? IntrinsicWidth(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(width: 12),
-                    Text(
-                      "+966",
-                      style: AppTextTheme.bodyLarge(
-                        context,
-                      ).copyWith(color: AppColors.primary),
-                    ),
-                    const SizedBox(width: 8),
                     Container(
                       width: 1,
                       height: 20,
                       color: Colors.grey.shade300,
                     ),
                     const SizedBox(width: 8),
+
+                    Text(
+                      "+966",
+                      style: AppTextTheme.bodyLarge(
+                        context,
+                      ).copyWith(color: AppColors.primary),
+                    ),
+
                   ],
                 ),
               )

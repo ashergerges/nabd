@@ -20,9 +20,9 @@ class TokenService {
   TokenService({required this.tokenRepository, required this.tokenLocalRepository});
 
   Future<Result<String?>> getAccessToken() async {
-    if (_token != null && _token!.isNotEmpty) {
-      return Result.value(_token);
-    }
+    // if (_token != null && _token!.isNotEmpty) {
+    //   return Result.value(_token);
+    // }
     var token = await tokenLocalRepository.getToken();
     _token = token.asValue!.value;
     return Result.value(_token);
