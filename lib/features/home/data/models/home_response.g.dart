@@ -68,10 +68,17 @@ HomeCategoryModel _$HomeCategoryModelFromJson(Map<String, dynamic> json) =>
     HomeCategoryModel(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
+      products: (json['products'] as List<dynamic>?)
+          ?.map((e) => HomeVendorModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$HomeCategoryModelToJson(HomeCategoryModel instance) =>
-    <String, dynamic>{'id': instance.id, 'name': instance.name};
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'products': instance.products,
+    };
 
 HomeVendorModel _$HomeVendorModelFromJson(Map<String, dynamic> json) =>
     HomeVendorModel(

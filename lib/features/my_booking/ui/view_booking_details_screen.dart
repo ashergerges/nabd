@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -17,6 +19,7 @@ import 'package:nawy/features/my_booking/cubit/my_booking_cubit.dart';
 import 'package:nawy/features/my_booking/data/models/booking_details_model.dart';
 import 'package:nawy/features/my_booking/ui/widgets/booking_details_shimmer.dart';
 import 'package:nawy/features/my_booking/ui/widgets/cancel_booking_bottom_sheet.dart';
+import 'package:nawy/features/my_booking/ui/widgets/edit_booking_bottom_sheet.dart' show EditBookingBottomSheet;
 import 'package:nawy/gen/locale_keys.g.dart';
 
 import '../../../core/router/app_router.dart';
@@ -280,27 +283,61 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                             : LocaleKeys.guestInvitation.tr()
                             : LocaleKeys.backToHome.tr(),
                       ),
-                      if(state.bookDetails?.status==2&&state.bookDetails?.canCancel==1)...[
-                        8.verticalSpace,
-                        AppButton(
-                          isLoading: state.currState is Loading,
-                          loadingColor: AppColors.primary,
-                          onTap: () async {
-                            await CancelBookingBottomSheet.show(
-                              context,
-                              bookingId: bookingId,
-                              onCancel: (bookId, reason) {
-                                // Call the cubit with the reason
-                                context.read<MyBookingCubit>().cancelBook(
-                                  bookId: bookId,
-                                  reason: reason,
-                                );
-                              },
-                            );
-                          },
-                          text:  LocaleKeys.cancel.tr(),
-                        ),
-                      ]
+                      8.verticalSpace,
+                      Row(
+                        children: [
+                          if(state.bookDetails?.status==2&&state.bookDetails?.canCancel==1)...[
+                            Expanded(
+                              child: AppButton(
+                                isLoading: state.currState is Loading,
+                                loadingColor: AppColors.primary,
+                                onTap: () async {
+                                  await CancelBookingBottomSheet.show(
+                                    context,
+                                    bookingId: bookingId,
+                                    onCancel: (bookId, reason) {
+                                      // Call the cubit with the reason
+                                      context.read<MyBookingCubit>().cancelBook(
+                                        bookId: bookId,
+                                        reason: reason,
+                                      );
+                                    },
+                                  );
+                                },
+                                text:  LocaleKeys.cancel.tr(),
+                              ),
+                            ),
+                          ],
+                          if(state.bookDetails?.status==2&&state.bookDetails?.canEditDate==1)...[
+                            4.horizontalSpace,
+                            Expanded(
+                              child: AppButton(
+                                isLoading: state.currState is Loading,
+                                loadingColor: AppColors.primary,
+                                background: AppColors.white,
+                                border: Border.all(color: AppColors.primary),
+                                textColor: AppColors.primary,
+                                onTap: () async {
+                                  await EditBookingBottomSheet.show(
+                                    context,
+                                    productId: state.bookDetails?.product?.id??0,
+                                    onEdit: (date, time) {
+                                      log("date::$date,,time::$time");
+                                      // Call the cubit with the reason
+                                      context.read<MyBookingCubit>().editDateBook(
+                                        bookId: bookingId,
+                                        date: date,
+                                        time: time,
+                                      );
+                                    },
+                                  );
+                                },
+                                text:  LocaleKeys.editDate.tr(),
+                              ),
+                            ),
+                          ]
+                        ],
+                      )
                     ],
                   ),
                 );

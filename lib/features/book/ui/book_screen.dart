@@ -52,24 +52,24 @@ class BookScreen extends StatelessWidget {
           Expanded(child: currentStep[state.currentStep]),
         ],
       ),
-      bottomNavigationBar: Container(
-        padding: 16.padAll,
-        child: AppButton(
-           isDisable: (state.currentStep==0&&state.bookRequest?.time==null)||(state.currentStep==2&&state.paymentMethods.isEmpty),
+        bottomNavigationBar: Container(
+          padding: 16.padAll,
+          child: AppButton(
+             isDisable: (state.currentStep==0&&state.bookRequest?.time==null)||(state.currentStep==2&&state.paymentMethods.isEmpty),
 
-            isLoading: state.currState is Loading,
-            onTap: (){
-              if(state.currentStep==2){
-                 context.read<BookCubit>().makeBook().then((value){
-                   context.navigateTo(BookingConfirmationRoute(bookConfirmation: value));
+              isLoading: state.currState is Loading,
+              onTap: (){
+                if(state.currentStep==2){
+                   context.read<BookCubit>().makeBook().then((value){
+                     context.navigateTo(BookingConfirmationRoute(bookConfirmation: value));
 
-                 });
-                 return;
-              }
-              context.read<BookCubit>().currentStep(state.currentStep+1);
-            },
-            text: buttonTitle[state.currentStep]),
-      ),
+                   });
+                   return;
+                }
+                context.read<BookCubit>().currentStep(state.currentStep+1);
+              },
+              text: buttonTitle[state.currentStep]),
+        ),
     );
   },
 ),

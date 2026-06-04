@@ -249,66 +249,56 @@ class HomeScreen extends StatelessWidget {
                         ],
 
 
-                        if (state.homeData?.weddingVenues?.isNotEmpty ?? false)...[
+                        if (state.homeData?.categories?.isNotEmpty ?? false) ...[
                           24.verticalSpace,
-                          Text(
-                            LocaleKeys.weddingHalls.tr(),
-                            style: AppTextTheme.bodyLargeSemiBold(context),
-                          ),
-                          16.verticalSpace,
-                          SizedBox(
-                            height: 140.h,
-                            child: ListView.separated(
-                              physics: BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount:
-                              state.homeData?.weddingVenues?.length ?? 0,
-                              itemBuilder: (BuildContext c, int index) {
-                                return OnTap(
-                                  onTap: (){
-                                    VendorDetailsRoute(vendorDetailsId:state
-                                        .homeData
-                                        ?.topRatedVendors?[index]
-                                        .id??0 ).push(context);
-                                  },
-                                  child: VendorsCard(
-                                    width: SizeManager.widthFromScreen(
-                                      1.4,
-                                      context,
-                                    ),
-                                    imageUrl:
-                                    state
-                                        .homeData
-                                        ?.weddingVenues?[index]
-                                        .image ??
-                                        AppStrings.kTestNetworkImage,
-                                    vendorName:
-                                    state
-                                        .homeData
-                                        ?.weddingVenues?[index]
-                                        .name ??
-                                        "",
-                                    location:
-                                    state
-                                        .homeData
-                                        ?.weddingVenues?[index]
-                                        .address ??
-                                        '',
-                                    rate:
-                                    state
-                                        .homeData
-                                        ?.weddingVenues?[index]
-                                        .avgRating ??
-                                        0,
+                          ListView.separated(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: state.homeData!.categories!.length,
+                            itemBuilder: (BuildContext context, int categoryIndex) {
+                              final category = state.homeData!.categories![categoryIndex];
+
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    category.name ?? "",
+                                    style: AppTextTheme.bodyLargeSemiBold(context),
                                   ),
-                                );
-                              },
-                              separatorBuilder: (BuildContext c, int i) =>
-                              12.horizontalSpace,
-                            ),
+                                  16.verticalSpace,
+                                  SizedBox(
+                                    height: 140.h,
+                                    child: ListView.separated(
+                                      physics: BouncingScrollPhysics(),
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: category.products?.length ?? 0,
+                                      itemBuilder: (BuildContext c, int productIndex) {
+                                        final product = category.products![productIndex];
+
+                                        return OnTap(
+                                          onTap: () {
+                                            VendorDetailsRoute(
+                                              vendorDetailsId: product.id ?? 0,
+                                            ).push(context);
+                                          },
+                                          child: VendorsCard(
+                                            width: SizeManager.widthFromScreen(1.4, context),
+                                            imageUrl: product.image ?? AppStrings.kTestNetworkImage,
+                                            vendorName: product.name ?? "",
+                                            location: product.address ?? '',
+                                            rate: product.avgRating ?? 0,
+                                          ),
+                                        );
+                                      },
+                                      separatorBuilder: (BuildContext c, int i) => 12.horizontalSpace,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                            separatorBuilder: (BuildContext context, int i) => 24.verticalSpace,
                           ),
                         ],
-
                         10.verticalSpace,
                       ],
                     ),

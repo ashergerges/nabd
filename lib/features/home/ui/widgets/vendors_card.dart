@@ -88,11 +88,11 @@ class VendorsCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Package Name (Arabic text from image)
                       Text(
                         vendorName,
-                        style: AppTextTheme.bodySmallSemiBold(context).copyWith(
+                        style: AppTextTheme.bodyMediumSemiBold(context).copyWith(
                           color: AppColors.white,
+                          fontWeight: FontWeight.w900
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -119,8 +119,10 @@ class VendorsCard extends StatelessWidget {
                               8.verticalSpace,
                               Text(
                                 location,
-                                style: AppTextTheme.bodyXSmall(context).copyWith(
+                                style: AppTextTheme.bodySmallSemiBold(context).copyWith(
                                   color: AppColors.white,
+                                    fontWeight: FontWeight.w900
+
                                 ),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -133,6 +135,8 @@ class VendorsCard extends StatelessWidget {
                                 rate.toString(),
                                 style: AppTextTheme.bodyXSmall(context).copyWith(
                                   color: AppColors.white,
+                                    fontWeight: FontWeight.w600
+
                                 ),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,

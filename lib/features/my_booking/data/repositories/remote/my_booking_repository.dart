@@ -50,6 +50,22 @@ class MyBookingRepository implements IMyBookingRepository {
     );
   }
   @override
+  Future<Result<String>> editDateBook({ required int bookId,String? date,String? time,}) async {
+    var response = await networkService.postAsync(
+      url: AppStrings.urls.editDateBookUrl,
+      body: {
+        "id":bookId,
+        "date":date,
+        "time":time,
+      }
+    );
+    if (response.isError) return Result.error(response.asError!.error);
+
+    log("registerAsync.asValue?.value22!!${response.asValue?.value.data['message']}");
+    return Result.value(response.asValue?.value.data['message'],
+    );
+  }
+  @override
   Future<Result<String>> sendRate({ required int bookId,required int score, String? comment,} ) async {
     var response = await networkService.postAsync(
       url: AppStrings.urls.reviewAddUrl,

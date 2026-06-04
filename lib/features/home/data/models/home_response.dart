@@ -79,10 +79,12 @@ class SliderModel {
 class HomeCategoryModel {
   final int? id;
   final String? name;
+  final List<HomeVendorModel>? products;
 
   HomeCategoryModel({
     this.id,
     this.name,
+    this.products,
   });
 
   factory HomeCategoryModel.fromJson(Map<String, dynamic> json) =>

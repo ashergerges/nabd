@@ -219,5 +219,6 @@ abstract class  LocaleKeys {
   static const chooseContactMethod = 'chooseContactMethod';
   static const whatsapp = 'whatsapp';
   static const phoneCall = 'phoneCall';
+  static const editDate = 'editDate';
 
 }

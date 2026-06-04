@@ -44,6 +44,8 @@ class BookingDetailsModel {
   final bool? hasInvitation;
   @JsonKey(name: 'can_cancel')
   final int? canCancel;
+  @JsonKey(name: 'can_edit_date')
+  final int? canEditDate;
 
   BookingDetailsModel({
     this.id,
@@ -64,6 +66,7 @@ class BookingDetailsModel {
     this.isReviewed,
     this.hasInvitation,
     this.canCancel,
+    this.canEditDate,
   });
   BookingDetailsModel copyWith({
     int? id,
@@ -84,6 +87,7 @@ class BookingDetailsModel {
     bool? isReviewed,
     bool? hasInvitation,
     int? canCancel,
+    int? canEditDate,
   }) {
     return BookingDetailsModel(
       id: id ?? this.id,
@@ -105,6 +109,7 @@ class BookingDetailsModel {
       isReviewed: isReviewed ?? this.isReviewed,
       hasInvitation: hasInvitation ?? this.hasInvitation,
       canCancel: canCancel ?? this.canCancel,
+      canEditDate: canEditDate ?? this.canEditDate,
     );
   }
   factory BookingDetailsModel.fromJson(Map<String, dynamic> json) =>

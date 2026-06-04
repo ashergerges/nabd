@@ -218,5 +218,6 @@
   "sendUsOverWhatsapp": "Send us a message on WhatsApp",
   "chooseContactMethod": "Choose Contact Method",
   "whatsapp": "WhatsApp",
-  "phoneCall": "Phone Call"
+  "phoneCall": "Phone Call",
+  "editDate": "Edit Date"
 }

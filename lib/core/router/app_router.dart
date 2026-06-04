@@ -73,6 +73,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute( page: NotificationRoute.page),
     AutoRoute( page: SignupRoute.page),
     AutoRoute( page: ProviderHomeBottomTabsRoute.page),
+    AutoRoute( page: ImageViewerRoute.page),
     AutoRoute(path: '*', page: NotFoundRoute.page), // this must be last route
 
   ];

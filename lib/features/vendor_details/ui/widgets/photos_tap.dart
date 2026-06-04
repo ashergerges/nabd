@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nawy/core/router/app_router.dart';
 import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nawy/core/utils/common_widgets/on_tap.dart';
 import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
 import 'package:nawy/core/utils/constants/constants.dart';
 import 'package:nawy/core/utils/extensions/padding_extensions.dart';
@@ -39,8 +42,11 @@ class PhotosTab extends StatelessWidget {
           ),
           itemCount: state.vendorDetails?.gallery?.length??0,
           itemBuilder: (context, index) {
-            return CustomNetworkImageCached(
-              imageUrl:state.vendorDetails?.gallery?[index].image?? AppStrings.kTestNetworkImage, radius: 12,);
+            return OnTap(
+              onTap: (){context.navigateTo(ImageViewerRoute(imageUrl:state.vendorDetails?.gallery?[index].image?? AppStrings.kTestNetworkImage ));},
+              child: CustomNetworkImageCached(
+                imageUrl:state.vendorDetails?.gallery?[index].image?? AppStrings.kTestNetworkImage, radius: 12,),
+            );
           },
         );
       },

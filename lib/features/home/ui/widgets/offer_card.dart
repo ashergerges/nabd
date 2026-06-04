@@ -15,14 +15,14 @@ class OfferCard extends StatelessWidget {
   final String discountPercentage;
 
   const OfferCard({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.packageName,
     required this.jobTitle,
     required this.personName,
     required this.personImageUrl,
     required this.discountPercentage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +104,8 @@ class OfferCard extends StatelessWidget {
                         packageName,
                         style: AppTextTheme.bodySmallSemiBold(context).copyWith(
                           color: AppColors.white,
+                            fontWeight: FontWeight.w900
+
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -123,6 +125,8 @@ class OfferCard extends StatelessWidget {
                         jobTitle,
                         style: AppTextTheme.bodyXSmall(context).copyWith(
                           color: AppColors.white,
+                            fontWeight: FontWeight.w900
+
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -142,6 +146,8 @@ class OfferCard extends StatelessWidget {
                               personName,
                               style: AppTextTheme.bodyXSmall(context).copyWith(
                                 color: AppColors.white,
+                                  fontWeight: FontWeight.w700
+
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
