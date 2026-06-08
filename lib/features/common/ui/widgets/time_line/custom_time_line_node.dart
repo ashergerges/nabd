@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nawy/features/common/ui/widgets/time_line/start_node_completed.dart';
-import 'package:nawy/features/common/ui/widgets/time_line/start_node_normal.dart';
+import 'package:nabd/features/common/ui/widgets/time_line/start_node_completed.dart';
+import 'package:nabd/features/common/ui/widgets/time_line/start_node_normal.dart';
 
 import 'center_node_completed.dart';
 import 'center_node_normal.dart';

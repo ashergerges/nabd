@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "534789835399",
-    "project_id": "nawy-6ba5b",
-    "storage_bucket": "nawy-6ba5b.firebasestorage.app"
+    "project_id": "nabd-6ba5b",
+    "storage_bucket": "nabd-6ba5b.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:534789835399:android:445e54075dc5ec2a244622",
         "android_client_info": {
-          "package_name": "com.app.nawy"
+          "package_name": "com.sanam.nabd"
         }
       },
       "oauth_client": [],

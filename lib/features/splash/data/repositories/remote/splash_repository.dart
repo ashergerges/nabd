@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:nawy/core/services/network/network_service.dart';
+import 'package:nabd/core/services/network/network_service.dart';
 import 'package:async/async.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nawy/features/splash/data/models/settings_model.dart';
+import 'package:nabd/features/splash/data/models/settings_model.dart';
 import '../../../../../core/utils/constants/constants.dart';
 import '../interfaces/i_splash_repository.dart';
 

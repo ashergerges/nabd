@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
-import 'package:nawy/core/interfaces/i_local_preference.dart';
-import 'package:nawy/core/utils/constants/constants.dart';
+import 'package:nabd/core/interfaces/i_local_preference.dart';
+import 'package:nabd/core/utils/constants/constants.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nawy/features/splash/data/models/settings_model.dart';
+import 'package:nabd/features/splash/data/models/settings_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/app_footer.dart';
 import '../models/app_user.dart';

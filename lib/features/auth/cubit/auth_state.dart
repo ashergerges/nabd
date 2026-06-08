@@ -6,7 +6,6 @@ class AuthState with _$AuthState {
     String? phone,
     String? name,
     @Default([]) List<int> categoryIds,
-    @Default([]) List<CategoryModel> categoriesList,
     @Default('')  String oTPCode,
     @Default(false)  bool refresh,
     @Default(false)  bool resendCode,

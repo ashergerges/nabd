@@ -3,13 +3,11 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nawy/core/interfaces/i_local_preference.dart';
-import 'package:nawy/core/router/app_router.dart';
-import 'package:nawy/core/services/dialogs/message_service.dart';
-import 'package:nawy/features/auth/data/repositories/interfaces/i_login_repository.dart';
-import 'package:nawy/features/categories/data/models/category_model.dart';
-import 'package:nawy/features/categories/data/repositories/interfaces/i_categories_repository.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/core/interfaces/i_local_preference.dart';
+import 'package:nabd/core/router/app_router.dart';
+import 'package:nabd/core/services/dialogs/message_service.dart';
+import 'package:nabd/features/auth/data/repositories/interfaces/i_login_repository.dart';
+import 'package:nabd/main_common.dart';
 
 part 'auth_state.dart';
 
@@ -111,26 +109,11 @@ class AuthCubit extends Cubit<AuthState> {
 
 
     getIt<AppRouter>().replaceAll([
-      (validateOtp.asValue?.value.user?.isVendor??false)?ProviderHomeBottomTabsRoute():HomeBottomTabsRoute(),
+    HomeBottomTabsRoute(),
     ], updateExistingRoutes: false);
 
 
     return true;
   }
 
-  Future<void> categories() async {
-    emit(state.copyWith(currState: LoadingCategories()));
-
-    var categories = await getIt<ICategoriesRepository>().categories();
-    if (categories.isError) {
-      MessageService.showToast(
-        msg: categories.asError?.error.toString() ?? "",
-        state: ToastStates.error,
-      );
-      emit(state.copyWith(currState: Error()));
-
-      return;
-    }
-    emit(state.copyWith( currState: Success(),categoriesList:categories.asValue?.value??[],));
-  }
 }

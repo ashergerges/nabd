@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:nawy/features/home/data/models/city_model.dart';
-import 'package:nawy/features/venues/data/models/product_model.dart';
+import 'package:nabd/features/home/data/models/city_model.dart';
 
 part 'home_response.g.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:nawy/core/utils/constants/theme.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/core/utils/constants/theme.dart';
+import 'package:nabd/main_common.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

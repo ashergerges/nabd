@@ -1,6 +1,6 @@
-import 'package:nawy/core/interfaces/i_local_preference.dart';
+import 'package:nabd/core/interfaces/i_local_preference.dart';
 import 'package:async/async.dart';
-import 'package:nawy/core/interfaces/i_token_local_repository.dart';
+import 'package:nabd/core/interfaces/i_token_local_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: ITokenLocalRepository)

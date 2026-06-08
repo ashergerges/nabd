@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/utils/common_widgets/custom_marquee_widget.dart';
-import 'package:nawy/core/utils/common_widgets/on_tap.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
-import 'package:nawy/core/utils/extensions/padding_extensions.dart';
-import 'package:nawy/gen/locale_keys.g.dart';
+import 'package:nabd/core/utils/common_widgets/custom_marquee_widget.dart';
+import 'package:nabd/core/utils/common_widgets/on_tap.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/gen/locale_keys.g.dart';
 
 import '../../../gen/assets.gen.dart';
 

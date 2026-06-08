@@ -3,11 +3,11 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:nawy/core/interfaces/i_local_preference.dart';
-import 'package:nawy/core/router/app_router.dart';
-import 'package:nawy/core/services/dialogs/message_service.dart';
-import 'package:nawy/features/splash/data/repositories/interfaces/i_splash_repository.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/core/interfaces/i_local_preference.dart';
+import 'package:nabd/core/router/app_router.dart';
+import 'package:nabd/core/services/dialogs/message_service.dart';
+import 'package:nabd/features/splash/data/repositories/interfaces/i_splash_repository.dart';
+import 'package:nabd/main_common.dart';
 
 
 part 'splash_cubit.freezed.dart';
@@ -52,7 +52,7 @@ class SplashCubit extends Cubit<SplashState> {
       return getIt<AppRouter>().replaceAll([const NoInternetSplashRoute()], updateExistingRoutes: false);
     }
     getIt<AppRouter>().replaceAll([
-      _localPreference.appUser.value  !=null? ((_localPreference.appUser.value?.isVendor??false)?ProviderHomeBottomTabsRoute(): HomeBottomTabsRoute()):LoginRoute()
+ HomeBottomTabsRoute()
     ], updateExistingRoutes: false);
   }
 }

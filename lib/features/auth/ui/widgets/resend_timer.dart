@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
 
 class ResendCodeTimer extends StatefulWidget {
   final int maxSeconds;

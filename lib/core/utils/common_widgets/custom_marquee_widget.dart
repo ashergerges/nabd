@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nawy/core/utils/constants/translations.dart';
+import 'package:nabd/core/utils/constants/translations.dart';
 import 'package:marquee_widget/marquee_widget.dart';
 
 class CustomMarquee extends StatelessWidget {

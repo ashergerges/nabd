@@ -20,7 +20,6 @@ mixin _$AuthState {
   String? get phone => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   List<int> get categoryIds => throw _privateConstructorUsedError;
-  List<CategoryModel> get categoriesList => throw _privateConstructorUsedError;
   String get oTPCode => throw _privateConstructorUsedError;
   bool get refresh => throw _privateConstructorUsedError;
   bool get resendCode => throw _privateConstructorUsedError;
@@ -43,7 +42,6 @@ abstract class $AuthStateCopyWith<$Res> {
     String? phone,
     String? name,
     List<int> categoryIds,
-    List<CategoryModel> categoriesList,
     String oTPCode,
     bool refresh,
     bool resendCode,
@@ -72,7 +70,6 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? phone = freezed,
     Object? name = freezed,
     Object? categoryIds = null,
-    Object? categoriesList = null,
     Object? oTPCode = null,
     Object? refresh = null,
     Object? resendCode = null,
@@ -93,10 +90,6 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
                 ? _value.categoryIds
                 : categoryIds // ignore: cast_nullable_to_non_nullable
                       as List<int>,
-            categoriesList: null == categoriesList
-                ? _value.categoriesList
-                : categoriesList // ignore: cast_nullable_to_non_nullable
-                      as List<CategoryModel>,
             oTPCode: null == oTPCode
                 ? _value.oTPCode
                 : oTPCode // ignore: cast_nullable_to_non_nullable
@@ -146,7 +139,6 @@ abstract class _$$AuthStateImplCopyWith<$Res>
     String? phone,
     String? name,
     List<int> categoryIds,
-    List<CategoryModel> categoriesList,
     String oTPCode,
     bool refresh,
     bool resendCode,
@@ -175,7 +167,6 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? name = freezed,
     Object? categoryIds = null,
-    Object? categoriesList = null,
     Object? oTPCode = null,
     Object? refresh = null,
     Object? resendCode = null,
@@ -196,10 +187,6 @@ class __$$AuthStateImplCopyWithImpl<$Res>
             ? _value._categoryIds
             : categoryIds // ignore: cast_nullable_to_non_nullable
                   as List<int>,
-        categoriesList: null == categoriesList
-            ? _value._categoriesList
-            : categoriesList // ignore: cast_nullable_to_non_nullable
-                  as List<CategoryModel>,
         oTPCode: null == oTPCode
             ? _value.oTPCode
             : oTPCode // ignore: cast_nullable_to_non_nullable
@@ -232,14 +219,12 @@ class _$AuthStateImpl implements _AuthState {
     this.phone,
     this.name,
     final List<int> categoryIds = const [],
-    final List<CategoryModel> categoriesList = const [],
     this.oTPCode = '',
     this.refresh = false,
     this.resendCode = false,
     required this.formKey,
     this.currState = const AuthStateStatus.initial(),
-  }) : _categoryIds = categoryIds,
-       _categoriesList = categoriesList;
+  }) : _categoryIds = categoryIds;
 
   @override
   final String? phone;
@@ -252,15 +237,6 @@ class _$AuthStateImpl implements _AuthState {
     if (_categoryIds is EqualUnmodifiableListView) return _categoryIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_categoryIds);
-  }
-
-  final List<CategoryModel> _categoriesList;
-  @override
-  @JsonKey()
-  List<CategoryModel> get categoriesList {
-    if (_categoriesList is EqualUnmodifiableListView) return _categoriesList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categoriesList);
   }
 
   @override
@@ -280,7 +256,7 @@ class _$AuthStateImpl implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(phone: $phone, name: $name, categoryIds: $categoryIds, categoriesList: $categoriesList, oTPCode: $oTPCode, refresh: $refresh, resendCode: $resendCode, formKey: $formKey, currState: $currState)';
+    return 'AuthState(phone: $phone, name: $name, categoryIds: $categoryIds, oTPCode: $oTPCode, refresh: $refresh, resendCode: $resendCode, formKey: $formKey, currState: $currState)';
   }
 
   @override
@@ -293,10 +269,6 @@ class _$AuthStateImpl implements _AuthState {
             const DeepCollectionEquality().equals(
               other._categoryIds,
               _categoryIds,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._categoriesList,
-              _categoriesList,
             ) &&
             (identical(other.oTPCode, oTPCode) || other.oTPCode == oTPCode) &&
             (identical(other.refresh, refresh) || other.refresh == refresh) &&
@@ -313,7 +285,6 @@ class _$AuthStateImpl implements _AuthState {
     phone,
     name,
     const DeepCollectionEquality().hash(_categoryIds),
-    const DeepCollectionEquality().hash(_categoriesList),
     oTPCode,
     refresh,
     resendCode,
@@ -335,7 +306,6 @@ abstract class _AuthState implements AuthState {
     final String? phone,
     final String? name,
     final List<int> categoryIds,
-    final List<CategoryModel> categoriesList,
     final String oTPCode,
     final bool refresh,
     final bool resendCode,
@@ -349,8 +319,6 @@ abstract class _AuthState implements AuthState {
   String? get name;
   @override
   List<int> get categoryIds;
-  @override
-  List<CategoryModel> get categoriesList;
   @override
   String get oTPCode;
   @override

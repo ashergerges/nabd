@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:nawy/core/utils/enums/link_type.dart';
+import 'package:nabd/core/utils/enums/link_type.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UrlLauncher {

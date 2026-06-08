@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/base_url.dart';
-import 'package:nawy/core/utils/constants/endpoints.dart';
-import 'package:nawy/core/utils/constants/prefrences_keys.dart';
-import 'package:nawy/core/utils/constants/translations.dart';
-import 'package:nawy/core/utils/constants/user_types.dart';
-import 'package:nawy/gen/locale_keys.g.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/base_url.dart';
+import 'package:nabd/core/utils/constants/endpoints.dart';
+import 'package:nabd/core/utils/constants/prefrences_keys.dart';
+import 'package:nabd/core/utils/constants/translations.dart';
+import 'package:nabd/core/utils/constants/user_types.dart';
+import 'package:nabd/gen/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {

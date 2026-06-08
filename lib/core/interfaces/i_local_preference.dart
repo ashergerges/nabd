@@ -1,6 +1,6 @@
-import 'package:nawy/features/common/data/local/models/app_user.dart';
+import 'package:nabd/features/common/data/local/models/app_user.dart';
 import 'package:flutter/material.dart';
-import 'package:nawy/features/splash/data/models/settings_model.dart';
+import 'package:nabd/features/splash/data/models/settings_model.dart';
 
 import '../../features/common/data/local/models/app_footer.dart';
 

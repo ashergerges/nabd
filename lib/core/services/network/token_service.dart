@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:async/async.dart';
-import 'package:nawy/core/interfaces/i_local_preference.dart';
-import 'package:nawy/core/interfaces/i_token_local_repository.dart';
-import 'package:nawy/core/interfaces/i_token_repository.dart';
-import 'package:nawy/core/services/models/refresh_token_model.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/core/interfaces/i_local_preference.dart';
+import 'package:nabd/core/interfaces/i_token_local_repository.dart';
+import 'package:nabd/core/interfaces/i_token_repository.dart';
+import 'package:nabd/core/services/models/refresh_token_model.dart';
+import 'package:nabd/main_common.dart';
 import 'package:injectable/injectable.dart';
 
 enum TokenResult { failed, success, refreshedToken }

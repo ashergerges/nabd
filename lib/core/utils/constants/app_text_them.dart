@@ -1,5 +1,5 @@
-import 'package:nawy/core/utils/constants/responsive.dart';
-import 'package:nawy/gen/fonts.gen.dart';
+import 'package:nabd/core/utils/constants/responsive.dart';
+import 'package:nabd/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 

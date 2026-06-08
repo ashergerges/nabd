@@ -1,7 +1,7 @@
-import 'package:nawy/core/utils/common_widgets/on_tap.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
-import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/core/utils/common_widgets/on_tap.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

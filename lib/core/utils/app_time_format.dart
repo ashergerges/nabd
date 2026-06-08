@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:nawy/core/utils/constants/translations.dart';
+import 'package:nabd/core/utils/constants/translations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/main_common.dart';
 import '../router/app_router.dart';
 
 class AppTimeFormat {

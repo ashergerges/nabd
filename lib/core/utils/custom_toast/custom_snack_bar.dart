@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/services/dialogs/message_service.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
-import 'package:nawy/core/utils/extensions/padding_extensions.dart';
-import 'package:nawy/gen/assets.gen.dart';
-import 'package:nawy/gen/locale_keys.g.dart';
+import 'package:nabd/core/services/dialogs/message_service.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/gen/assets.gen.dart';
+import 'package:nabd/gen/locale_keys.g.dart';
 
 /// Popup widget that you can use by default to show some information
 class CustomSnackBar extends StatefulWidget {

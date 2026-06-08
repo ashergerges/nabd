@@ -1,8 +1,8 @@
 import 'dart:developer';
-import 'package:nawy/core/cubit/bloc_observer.dart';
-import 'package:nawy/core/utils/constants/constants.dart';
-import 'package:nawy/features/common/cubit/main_cubit/main_cubit.dart';
-import 'package:nawy/features/splash/cubits/splash_cubit/splash_cubit.dart';
+import 'package:nabd/core/cubit/bloc_observer.dart';
+import 'package:nabd/core/utils/constants/constants.dart';
+import 'package:nabd/features/common/cubit/main_cubit/main_cubit.dart';
+import 'package:nabd/features/splash/cubits/splash_cubit/splash_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

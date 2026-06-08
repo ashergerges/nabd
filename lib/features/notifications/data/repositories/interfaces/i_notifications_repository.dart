@@ -1,9 +1,7 @@
 import 'package:async/async.dart';
-import '../../models/notification_model.dart';
 
 abstract class INotificationsRepository {
-  Future<Result<List<NotificationModel>>> getNotifications(
-      {required int pageNumber, required int pageSize});
+
 
   Future<Result<bool>> markNotificationRead({required String notificationId});
 

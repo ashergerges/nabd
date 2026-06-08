@@ -5,20 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/router/app_router.dart';
-import 'package:nawy/core/utils/common_widgets/app_button.dart';
-import 'package:nawy/core/utils/common_widgets/app_text_field.dart';
-import 'package:nawy/core/utils/common_widgets/custom_appbar.dart';
-import 'package:nawy/core/utils/common_widgets/on_tap.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
-import 'package:nawy/core/utils/constants/translations.dart';
-import 'package:nawy/core/utils/extensions/padding_extensions.dart';
-import 'package:nawy/core/utils/helper/validator.dart';
-import 'package:nawy/features/auth/cubit/auth_cubit.dart';
-import 'package:nawy/features/auth/ui/widgets/category_selector.dart';
-import 'package:nawy/features/categories/data/models/category_model.dart';
-import 'package:nawy/gen/locale_keys.g.dart';
+import 'package:nabd/core/router/app_router.dart';
+import 'package:nabd/core/utils/common_widgets/app_button.dart';
+import 'package:nabd/core/utils/common_widgets/app_text_field.dart';
+import 'package:nabd/core/utils/common_widgets/custom_appbar.dart';
+import 'package:nabd/core/utils/common_widgets/on_tap.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/constants/translations.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/core/utils/helper/validator.dart';
+import 'package:nabd/features/auth/cubit/auth_cubit.dart';
+import 'package:nabd/gen/locale_keys.g.dart';
 
 import '../../../gen/assets.gen.dart';
 
@@ -68,7 +66,7 @@ class SignUpBody extends StatelessWidget {
     return SingleChildScrollView(
       padding: 24.padHorizontal + 24.padTop,
       child: BlocProvider(
-        create: (context) => AuthCubit()..categories(),
+        create: (context) => AuthCubit(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -124,14 +122,7 @@ class SignUpBody extends StatelessWidget {
                         style: AppTextTheme.bodyLarge(context),
                       ),
                       16.verticalSpace,
-                      state.currState is LoadingCategories?CategorySelectorShimmer():CategorySelector(
-                        multiSelect: false,
-                        initialSelectedIds: state.categoryIds,
-                        categories: state.categoriesList,
-                        onSelectionChanged: (List<int> value) {
-                          context.read<AuthCubit>().setCategorySelector(value);
-                        },
-                      ),
+
                     ],
                   ),
                 );

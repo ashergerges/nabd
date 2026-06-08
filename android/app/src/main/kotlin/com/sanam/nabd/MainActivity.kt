@@ -1,4 +1,4 @@
-package com.app.nawy
+package com.sanam.nabd
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:nawy/core/interfaces/i_local_preference.dart';
+import 'package:nabd/core/interfaces/i_local_preference.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../main_common.dart';

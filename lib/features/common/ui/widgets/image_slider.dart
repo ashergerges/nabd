@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
-import 'package:nawy/core/utils/constants/translations.dart';
-import 'package:nawy/features/common/ui/widgets/circular_icon_button.dart';
-import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/common_widgets/shimmer_widget.dart';
+import 'package:nabd/core/utils/constants/translations.dart';
+import 'package:nabd/features/common/ui/widgets/circular_icon_button.dart';
+import 'package:nabd/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/utils/constants/responsive.dart';

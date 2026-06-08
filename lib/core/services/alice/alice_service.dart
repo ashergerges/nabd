@@ -1,9 +1,9 @@
-import 'package:nawy/core/router/app_router.dart';
+import 'package:nabd/core/router/app_router.dart';
 import 'package:alice/alice.dart';
 import 'package:alice/model/alice_configuration.dart';
 import 'package:alice_dio/alice_dio_adapter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/main_common.dart';
 
 
 @singleton

@@ -2,11 +2,11 @@ import 'package:auto_route/annotations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/utils/common_widgets/custom_network_image.dart';
-import 'package:nawy/core/utils/common_widgets/on_tap.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
-import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/core/utils/common_widgets/custom_network_image.dart';
+import 'package:nabd/core/utils/common_widgets/on_tap.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 import 'package:photo_view/photo_view.dart';
 
 @RoutePage()

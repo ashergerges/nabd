@@ -1,8 +1,8 @@
-import 'package:nawy/core/utils/common_widgets/app_button.dart';
+import 'package:nabd/core/utils/common_widgets/app_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';

@@ -14,7 +14,7 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 android {
-    namespace = "com.app.nawy"
+    namespace = "com.sanam.nabd"
     compileSdk = 36
     ndkVersion = "27.0.12077973"
 
@@ -32,7 +32,7 @@ android {
     }
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.app.nawy"
+        applicationId = "com.sanam.nabd"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -64,25 +64,25 @@ android {
     productFlavors {
         create("prod") {
             dimension = "app"
-            resValue("string", "app_name", "Nawy")
-            applicationId = "com.app.nawy"
+            resValue("string", "app_name", "Nabd")
+            applicationId = "com.sanam.nabd"
         }
 
         create("dev") {
             dimension = "app"
-            resValue("string", "app_name", "Dev Nawy")
+            resValue("string", "app_name", "Dev Nabd")
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
         }
         create("uat") {
             dimension = "app"
-            resValue("string", "app_name", "Uat Nawy")
+            resValue("string", "app_name", "Uat Nabd")
             applicationIdSuffix = ".uat"
             versionNameSuffix = "-uat"
         }
         create("qc") {
             dimension = "app"
-            resValue("string", "app_name", "Qc Nawy")
+            resValue("string", "app_name", "Qc Nabd")
             applicationIdSuffix = ".qc"
             versionNameSuffix = "-qc"
         }

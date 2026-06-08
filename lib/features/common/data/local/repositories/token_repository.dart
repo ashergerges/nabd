@@ -1,10 +1,10 @@
-import 'package:nawy/core/interfaces/i_local_preference.dart';
-import 'package:nawy/core/interfaces/i_token_repository.dart';
-import 'package:nawy/core/services/models/refresh_token_model.dart';
-import 'package:nawy/core/services/network/network_service.dart';
+import 'package:nabd/core/interfaces/i_local_preference.dart';
+import 'package:nabd/core/interfaces/i_token_repository.dart';
+import 'package:nabd/core/services/models/refresh_token_model.dart';
+import 'package:nabd/core/services/network/network_service.dart';
 import 'package:async/async.dart';
-import 'package:nawy/features/common/data/local/models/basic_response.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/features/common/data/local/models/basic_response.dart';
+import 'package:nabd/main_common.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/utils/constants/constants.dart';
 

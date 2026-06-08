@@ -1,6 +1,6 @@
-import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/size_manager.dart';
+import 'package:nabd/core/utils/common_widgets/shimmer_widget.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/size_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nawy/core/utils/constants/translations.dart';
+import 'package:nabd/core/utils/constants/translations.dart';
 
 class Topic {
   const Topic._();

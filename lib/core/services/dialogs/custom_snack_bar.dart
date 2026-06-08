@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
 
 /// Popup widget that you can use by default to show some information
 class CustomSnackBar extends StatefulWidget {

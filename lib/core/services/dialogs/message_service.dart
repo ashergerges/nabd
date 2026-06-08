@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nawy/core/router/app_router.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/custom_toast/top_snack_bar.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/core/router/app_router.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/custom_toast/top_snack_bar.dart';
+import 'package:nabd/main_common.dart';
 
 import '../../utils/custom_toast/custom_snack_bar.dart';
 

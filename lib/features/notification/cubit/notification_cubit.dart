@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nawy/core/services/dialogs/message_service.dart';
-import 'package:nawy/features/notification/data/models/notification_group_model.dart';
-import 'package:nawy/features/notification/data/repositories/interfaces/i_notification_repository.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/core/services/dialogs/message_service.dart';
+import 'package:nabd/features/notification/data/models/notification_group_model.dart';
+import 'package:nabd/features/notification/data/repositories/interfaces/i_notification_repository.dart';
+import 'package:nabd/main_common.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 part 'notification_state.dart';

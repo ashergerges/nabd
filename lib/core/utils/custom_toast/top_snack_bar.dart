@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:nawy/core/utils/custom_toast/safe_area_values.dart';
-import 'package:nawy/core/utils/custom_toast/tap_bounce_container.dart';
+import 'package:nabd/core/utils/custom_toast/safe_area_values.dart';
+import 'package:nabd/core/utils/custom_toast/tap_bounce_container.dart';
 
 typedef ControllerCallback = void Function(AnimationController);
 

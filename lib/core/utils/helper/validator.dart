@@ -1,4 +1,4 @@
-import 'package:nawy/gen/locale_keys.g.dart';
+import 'package:nabd/gen/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Validator {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/utils/common_widgets/shimmer_widget.dart';
-import 'package:nawy/core/utils/constants/app_text_them.dart';
-import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/core/utils/common_widgets/shimmer_widget.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 
 import '../../../../gen/assets.gen.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nawy/features/auth/cubit/auth_cubit.dart';
-import 'package:nawy/features/auth/ui/widgets/otp_widget.dart';
+import 'package:nabd/features/auth/cubit/auth_cubit.dart';
+import 'package:nabd/features/auth/ui/widgets/otp_widget.dart';
 
 class VerificationCodeInput extends StatelessWidget {
   const VerificationCodeInput({super.key});

@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:nawy/core/interfaces/i_connection_service.dart';
-import 'package:nawy/core/router/app_router.dart';
-import 'package:nawy/main_common.dart';
+import 'package:nabd/core/interfaces/i_connection_service.dart';
+import 'package:nabd/core/router/app_router.dart';
+import 'package:nabd/main_common.dart';
 import 'package:dio/dio.dart';
 
 class ConnectionInterceptor extends Interceptor {

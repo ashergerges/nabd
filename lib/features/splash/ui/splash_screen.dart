@@ -2,10 +2,10 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nawy/core/utils/constants/app_colors.dart';
-import 'package:nawy/core/utils/constants/topic.dart';
-import 'package:nawy/features/splash/cubits/splash_cubit/splash_cubit.dart';
-import 'package:nawy/gen/assets.gen.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/topic.dart';
+import 'package:nabd/features/splash/cubits/splash_cubit/splash_cubit.dart';
+import 'package:nabd/gen/assets.gen.dart';
 
 @RoutePage()
 class SplashScreen extends StatefulWidget {

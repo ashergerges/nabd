@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nawy/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 import 'package:timelines_plus/timelines_plus.dart';
 
 import '../../../../../core/utils/constants/app_colors.dart';

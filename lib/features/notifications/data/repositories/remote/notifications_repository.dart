@@ -2,7 +2,6 @@ import 'package:async/async.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/services/network/network_service.dart';
 import '../../../../../core/utils/constants/constants.dart';
-import '../../models/notification_model.dart';
 import '../interfaces/i_notifications_repository.dart';
 
 @Injectable(as: INotificationsRepository)
@@ -11,23 +10,6 @@ class NotificationsRepository implements INotificationsRepository {
 
   NotificationsRepository({required this.networkService});
 
-  @override
-  Future<Result<List<NotificationModel>>> getNotifications(
-      {required int pageNumber, required int pageSize}) async {
-    var res =
-        await networkService.getAsync(url: AppStrings.urls.getNotificationsUrl, queryParameters: {
-      'pageNumber': pageNumber,
-      'pageSize': pageSize,
-    });
-    if (res.isError) {
-      return Result.error(res);
-    }
-
-    List<NotificationModel> notifications = List<NotificationModel>.from(
-        res.asValue!.value.data['result'].map((x) => NotificationModel.fromJson(x)));
-
-    return Result.value(notifications);
-  }
 
   @override
   Future<Result<bool>> markNotificationRead({required String notificationId}) async {

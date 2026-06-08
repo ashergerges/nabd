@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:nawy/core/utils/common_widgets/list_view/animation_listview_2.dart';
+import 'package:nabd/core/utils/common_widgets/list_view/animation_listview_2.dart';
 
 class ListViewAnimation5 extends StatelessWidget {
   final ScrollPhysics? physics;
