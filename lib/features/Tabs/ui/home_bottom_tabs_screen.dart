@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nabd/core/utils/constants/app_colors.dart';
 import 'package:nabd/features/Tabs/cubit/tab_bar_cubit.dart';
 import 'package:nabd/features/Tabs/ui/bottom_nav.dart';
+import 'package:nabd/features/home/ui/home_screen.dart';
 
 @RoutePage()
 class HomeBottomTabsScreen extends StatelessWidget {
@@ -15,33 +16,34 @@ class HomeBottomTabsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) =>
-          TabBarCubit()..selectScreen(index: index, ),
-      child: BlocBuilder<TabBarCubit, TabBarState>(
-        builder: (context, state) {
-          return PopScope(
-            canPop: state.activeScreen == 0 ? true : false,
-            onPopInvokedWithResult: (didPop, result) async {
-              if (state.activeScreen != 0) {
-                context.read<TabBarCubit>().selectScreen(index: 0);
-              }
-            },
-            child: Scaffold(
-              backgroundColor: AppColors.white,
-              body: context.read<TabBarCubit>().navScreens[state.activeScreen],
-              bottomNavigationBar: NavigationBarItems(
-                onTap: (index) {
-                  context.read<TabBarCubit>().selectScreen(
-                    index: index,
-                  );
-                },
-                activeScreen: state.activeScreen,
-              ),
-            ),
-          );
-        },
-      ),
-    );
+    return HomeScreen();
+    // return BlocProvider(
+    //   create: (BuildContext context) =>
+    //       TabBarCubit()..selectScreen(index: index, ),
+    //   child: BlocBuilder<TabBarCubit, TabBarState>(
+    //     builder: (context, state) {
+    //       return PopScope(
+    //         canPop: state.activeScreen == 0 ? true : false,
+    //         onPopInvokedWithResult: (didPop, result) async {
+    //           if (state.activeScreen != 0) {
+    //             context.read<TabBarCubit>().selectScreen(index: 0);
+    //           }
+    //         },
+    //         child: Scaffold(
+    //           backgroundColor: AppColors.white,
+    //           body: context.read<TabBarCubit>().navScreens[state.activeScreen],
+    //           bottomNavigationBar: NavigationBarItems(
+    //             onTap: (index) {
+    //               context.read<TabBarCubit>().selectScreen(
+    //                 index: index,
+    //               );
+    //             },
+    //             activeScreen: state.activeScreen,
+    //           ),
+    //         ),
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }

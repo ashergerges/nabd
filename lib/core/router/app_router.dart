@@ -3,8 +3,6 @@ import 'package:nabd/core/services/ui/offline_internet_screen.dart';
 import 'package:nabd/core/services/ui/server_error_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nabd/features/auth/ui/signup_screen.dart';
-import 'package:nabd/features/auth/ui/verification_screen.dart';
 import 'package:nabd/features/notification/ui/notification_screen.dart';
 import 'package:nabd/features/splash/ui/no_internet_splash.dart';
 import 'package:nabd/features/Tabs/ui/home_bottom_tabs_screen.dart';
@@ -38,10 +36,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ServerErrorRoute.page),
     AutoRoute(page: NoInternetSplashRoute.page),
     AutoRoute(page: LoginRoute.page),
-
-    AutoRoute( page: VerificationRoute.page),
     AutoRoute( page: NotificationRoute.page),
-    AutoRoute( page: SignupRoute.page),
     AutoRoute( page: ImageViewerRoute.page),
     AutoRoute(path: '*', page: NotFoundRoute.page), // this must be last route
 
