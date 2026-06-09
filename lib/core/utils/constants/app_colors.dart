@@ -22,7 +22,7 @@ class AppColors {
   static const Color primary200 = Color(0xff8a95d5);
   static const Color primary300 = Color(0xff5464c1);
   static const Color primary400 = Color(0xff8597B9);
-  static const Color primary = Color(0xff113478);
+  static const primary = Color(0xFF1E5A8A);
   static const Color primary600 = Color(0xff001694);
   static const Color primary700 = Color(0xff001174);
   static const Color primary800 = Color(0xff000d5a);
@@ -71,7 +71,7 @@ class AppColors {
   static const Color warning200 = Color(0xffdbd48a);
   static const Color warning300 = Color(0xffcac054);
   static const Color warning400 = Color(0xffc0b433);
-  static const Color warning = Color(0xffb0a100);
+  static const warning = Color(0xFFEAB308);
   static const Color warning600 = Color(0xffa09300);
   static const Color warning700 = Color(0xff7d7200);
   static const Color warning800 = Color(0xff615900);
@@ -88,4 +88,47 @@ class AppColors {
   static const Color error700 = Color(0xff760000);
   static const Color error800 = Color(0xff5b0000);
   static const Color error900 = Color(0xff460000);
+
+  static const primaryDark = Color(0xFF0A2A3A);
+  static const primaryLight = Color(0xFF2E7AB0);
+  static const accent = Color(0xFF4A9AC0);
+  static const background = Color(0xFFF0F4F8);
+  static const surface = Colors.white;
+  static const textDark = Color(0xFF0A2A3A);
+  static const textMuted = Color(0xFF5A6E8A);
+  static const emerald = Color(0xFF0E7C5E);
+  static const success = Color(0xFF22C55E);
+  static const danger = Color(0xFFEF4444);
+  static const positiveLight = Color(0xFFDCFCE7);
+  static const warningLight = Color(0xFFFEF9C3);
+  static const negativeLight = Color(0xFFFEE2E2);
+  static const barChartLinear =  Color(0xFFE2E8F0);
+  static const bookTotal = Color(0xFF4A6A8A);
+  static const bgQuickQuestions = Color(0xFFF1F5F9);
+  static const bgQuickQuestionsBorder = Color(0xFFCBD5E1);
+  static const bgHeaderCompanyCard = Color(0xFFF8FAFC);
+  static const exitStrategy = Color(0xFFFFF9E6);
+  static const exitStrategyTap = Color(0xFFEEF2FA);
+  static const heroHeaderAction = Color(0xFFC0392B);
+  static const heroHeaderLinear = Color(0xFFE0E8FF);
+
+
+  static const barChart =[
+    Color(0xFF0A2A3A),
+    Color(0xFF1E5A8A),
+    Color(0xFF2E7AB0),
+    Color(0xFF4A9AC0),
+    Color(0xFF6AB0D0),
+    Color(0xFF8CC5DB),
+  ];
+  static const heroHeader =[
+    Color(0xFF0A1A2A),
+    Color(0xFF0F2A3A),
+    Color(0xFF1A3A4A),
+  ];
+
+
+
+
+
 }

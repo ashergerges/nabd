@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 
 import 'app_theme.dart';
 
@@ -21,11 +25,11 @@ class KpiCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      padding:16.padVertical+8.padHorizontal,
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: AppRadius.card,
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color:  AppColors.barChartLinear),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -38,17 +42,19 @@ class KpiCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, color: AppColors.primary, size: 26),
-          const SizedBox(height: 6),
+          6.verticalSpace,
           Text(
             label,
-            style: AppTextStyles.label.copyWith(fontSize: 10),
+            style: AppTextTheme.bodyXXSmall(context).copyWith(
+                  fontWeight: FontWeight.w700,
+    color: AppColors.textMuted,
+            ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 4),
+          4.verticalSpace,
           Text(
             value,
-            style: AppTextStyles.heading.copyWith(
-              fontSize: 16,
+            style:AppTextTheme.bodyMedium(context).copyWith(
               color: valueColor ?? AppColors.textDark,
             ),
             textAlign: TextAlign.center,
@@ -56,8 +62,7 @@ class KpiCard extends StatelessWidget {
           if (subtitle != null)
             Text(
               subtitle!,
-              style: const TextStyle(
-                fontSize: 11,
+              style: AppTextTheme.bodyXXSmall(context).copyWith(
                 color: AppColors.success,
                 fontWeight: FontWeight.w700,
               ),

@@ -1,6 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabd/core/router/app_router.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 import 'package:nabd/features/auth/ui/auth.dart';
 
 import 'app_theme.dart';
@@ -11,17 +15,13 @@ class HeroHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 60, 16, 0),
-      padding: const EdgeInsets.all(20),
+      margin: 60.padTop+16.padHorizontal,
+      padding: 20.padAll,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient:  LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [
-            Color(0xFF0A1A2A),
-            Color(0xFF0F2A3A),
-            Color(0xFF1A3A4A),
-          ],
+          colors:AppColors.heroHeader
         ),
         borderRadius: AppRadius.card,
         boxShadow: [
@@ -51,8 +51,7 @@ class HeroHeader extends StatelessWidget {
                 children: [
                   // User info chip
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding:12.padHorizontal+7.padVertical,
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.12),
                       borderRadius: AppRadius.chip,
@@ -61,15 +60,14 @@ class HeroHeader extends StatelessWidget {
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
+                      children:  [
                         Icon(Icons.account_circle_outlined,
                             color: Colors.white, size: 16),
-                        SizedBox(width: 6),
+                        6.horizontalSpace,
                         Text(
                           'مدير الاستثمار',
-                          style: TextStyle(
+                          style: AppTextTheme.bodyXSmall(context).copyWith(
                             color: Colors.white,
-                            fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -81,10 +79,10 @@ class HeroHeader extends StatelessWidget {
                     children: [
                       _ActionBtn(
                           icon: Icons.print_outlined, onTap: () {}),
-                      const SizedBox(width: 8),
+                      8.horizontalSpace,
                       _ActionBtn(
                           icon: Icons.file_download_outlined, onTap: () {}),
-                      const SizedBox(width: 8),
+                      8.horizontalSpace,
                       _ActionBtn(
                           icon: Icons.logout,
                           onTap: () {
@@ -93,44 +91,41 @@ class HeroHeader extends StatelessWidget {
                               LoginRoute()
                             ], updateExistingRoutes: false);
                           },
-                          color: const Color(0xFFC0392B)),
+                          color: AppColors.heroHeaderAction),
                     ],
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              16.verticalSpace,
               ShaderMask(
-                shaderCallback: (bounds) => const LinearGradient(
-                  colors: [Colors.white, Color(0xFFE0E8FF)],
+                shaderCallback: (bounds) =>  LinearGradient(
+                  colors: [Colors.white,AppColors.heroHeaderLinear],
                 ).createShader(bounds),
-                child: const Text(
+                child:  Text(
                   '📈 منصة نبض',
                   textDirection: TextDirection.rtl,
-                  style: TextStyle(
+                  style: AppTextTheme.headingMedium(context).copyWith(
                     color: Colors.white,
-                    fontSize: 22,
                     fontWeight: FontWeight.w800,
                     letterSpacing: -0.5,
                   ),
                 ),
               ),
-              const SizedBox(height: 4),
+              4.verticalSpace,
               Text(
                 'لوحة الأداء الاستثماري',
                 textDirection: TextDirection.rtl,
-                style: TextStyle(
+                style:AppTextTheme.bodyXSmall(context).copyWith(
                   color: Colors.white.withOpacity(0.7),
-                  fontSize: 13,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 4),
+              4.verticalSpace,
               Text(
                 '🤖 15 سؤالاً جاهزاً | 5 مخططات تحليلية | استراتيجيات التخارج',
                 textDirection: TextDirection.rtl,
-                style: TextStyle(
+                style:AppTextTheme.bodyXSmall(context).copyWith(
                   color: Colors.white.withOpacity(0.55),
-                  fontSize: 11,
                 ),
               ),
             ],
@@ -153,7 +148,7 @@ class _ActionBtn extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(7),
+        padding: 7.padAll,
         decoration: BoxDecoration(
           color: color ?? Colors.white.withOpacity(0.12),
           borderRadius: BorderRadius.circular(10),

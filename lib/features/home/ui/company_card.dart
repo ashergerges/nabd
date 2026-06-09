@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nabd/features/home/ui/company.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/features/home/data/models/company.dart';
 
 import 'app_theme.dart';
 
@@ -39,11 +43,11 @@ class CompanyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: 12.padBottom,
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: AppRadius.card,
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: AppColors.barChartLinear),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -56,9 +60,9 @@ class CompanyCard extends StatelessWidget {
         children: [
           // Header
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: 16.padHorizontal + 12.padVertical,
             decoration: const BoxDecoration(
-              color: Color(0xFFF8FAFC),
+              color: AppColors.bgHeaderCompanyCard,
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: Row(
@@ -68,22 +72,23 @@ class CompanyCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     company.name,
-                    style: AppTextStyles.heading.copyWith(fontSize: 14),
+                    style: AppTextTheme.bodySmall(context).copyWith(
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.textDark,
+                    ),
                     textDirection: TextDirection.rtl,
                   ),
                 ),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: 10.padHorizontal + 4.padVertical,
                   decoration: BoxDecoration(
                     color: AppColors.primary.withOpacity(0.1),
                     borderRadius: AppRadius.chip,
                   ),
                   child: Text(
                     company.sector,
-                    style: const TextStyle(
+                    style: AppTextTheme.bodyXSmall(context).copyWith(
                       color: AppColors.primary,
-                      fontSize: 11,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -93,22 +98,22 @@ class CompanyCard extends StatelessWidget {
           ),
           // Stats row
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: 16.padHorizontal + 10.padVertical,
             child: Row(
               textDirection: TextDirection.rtl,
               children: [
                 _StatChip(
                     label: 'دفترية', value: '${company.bookValue.toInt()}M\$'),
-                const SizedBox(width: 8),
+                8.horizontalSpace,
                 _StatChip(
                     label: 'عادلة', value: '${company.fairValue.toInt()}M\$'),
-                const SizedBox(width: 8),
+                8.horizontalSpace,
                 _StatChip(
                   label: 'خلق القيمة',
                   value: '+${company.valueCreated.toInt()}M\$',
                   valueColor: AppColors.emerald,
                 ),
-                const SizedBox(width: 8),
+                8.horizontalSpace,
                 _StatChip(
                   label: 'العائد',
                   value: '${company.roi.toStringAsFixed(0)}%',
@@ -119,7 +124,7 @@ class CompanyCard extends StatelessWidget {
           ),
           // Readiness bar
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: 16.padHorizontal,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -129,24 +134,26 @@ class CompanyCard extends StatelessWidget {
                   children: [
                     Text(
                       'جاهزية التخارج',
-                      style: AppTextStyles.label,
+                      style: AppTextTheme.bodyXSmall(context).copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.textMuted,
+                      ),
                     ),
                     Text(
-                      '${company.readiness}%',
-                      style: TextStyle(
-                        color: _readinessColor,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 13,
-                      ),
+                        '${company.readiness}%',
+                        style: AppTextTheme.bodySmall(context).copyWith(
+                          color: _readinessColor,
+                          fontWeight: FontWeight.w800,
+                        )
                     ),
                   ],
                 ),
-                const SizedBox(height: 6),
+                6.verticalSpace,
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: LinearProgressIndicator(
                     value: company.readiness / 100,
-                    backgroundColor: const Color(0xFFE2E8F0),
+                    backgroundColor: AppColors.barChartLinear,
                     valueColor: AlwaysStoppedAnimation(_readinessColor),
                     minHeight: 6,
                   ),
@@ -154,11 +161,11 @@ class CompanyCard extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 10),
+          10.verticalSpace,
           // Recommendation
           Container(
-            margin: const EdgeInsets.fromLTRB(16, 0, 16, 14),
-            padding: const EdgeInsets.all(10),
+            margin: 14.padBottom + 16.padHorizontal,
+            padding: 10.padAll,
             decoration: BoxDecoration(
               color: _recBackgroundColor,
               borderRadius: BorderRadius.circular(12),
@@ -176,34 +183,40 @@ class CompanyCard extends StatelessWidget {
                     children: [
                       Text(
                         company.recommendationText,
-                        style: AppTextStyles.body
-                            .copyWith(fontWeight: FontWeight.w700, fontSize: 12),
+                        style: AppTextTheme.bodySmall(context).copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textDark
+                        ),
                         textDirection: TextDirection.rtl,
                       ),
                       Text(
                         company.recommendationAction,
-                        style: AppTextStyles.label,
+                        style: AppTextTheme.bodyXSmall(context).copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textMuted,
+                        ),
                         textDirection: TextDirection.rtl,
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(width: 8),
+                8.horizontalSpace,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       company.exitStrategy,
-                      style: const TextStyle(
+                      style: AppTextTheme.bodyXXSmall(context).copyWith(
                         color: AppColors.primary,
-                        fontSize: 10,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     Text(
                       company.exitTiming,
-                      style:
-                          AppTextStyles.label.copyWith(color: AppColors.textMuted),
+                      style:AppTextTheme.bodyXXSmall(context).copyWith(
+                        color: AppColors.textMuted,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ],
                 ),
@@ -227,25 +240,23 @@ class _StatChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+        padding:6.padVertical+4.padHorizontal,
         decoration: BoxDecoration(
-          color: const Color(0xFFF1F5F9),
+          color:  AppColors.bgQuickQuestions,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
           children: [
             Text(
               value,
-              style: TextStyle(
-                fontSize: 12,
+              style:AppTextTheme.bodyXSmall(context).copyWith(
                 fontWeight: FontWeight.w800,
                 color: valueColor ?? AppColors.textDark,
               ),
             ),
             Text(
               label,
-              style: const TextStyle(
-                fontSize: 9,
+              style: AppTextTheme.bodyXXSmall(context).copyWith(
                 color: AppColors.textMuted,
                 fontWeight: FontWeight.w600,
               ),

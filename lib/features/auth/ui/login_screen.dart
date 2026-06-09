@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:nabd/core/router/app_router.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
 import 'package:nabd/features/auth/ui/auth.dart';
 import 'package:nabd/features/home/ui/app_theme.dart';
 import 'package:nabd/main_common.dart';
@@ -162,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen>
                           const SizedBox(height: 24),
 
                           // Divider
-                          const Divider(color: Color(0xFFE2E8F0)),
+                          const Divider(color: AppColors.barChartLinear),
                           const SizedBox(height: 16),
 
                           // Demo users
@@ -275,12 +276,12 @@ class _LoginScreenState extends State<LoginScreen>
         hintText: hint,
         hintTextDirection: TextDirection.rtl,
         filled: true,
-        fillColor: const Color(0xFFF8FAFC),
+        fillColor:  AppColors.bgHeaderCompanyCard,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE2E8F0), width: 2),
+          borderSide: const BorderSide(color: AppColors.barChartLinear, width: 2),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
@@ -301,7 +302,7 @@ class _LoginScreenState extends State<LoginScreen>
         hintText: 'أدخل كلمة المرور',
         hintTextDirection: TextDirection.rtl,
         filled: true,
-        fillColor: const Color(0xFFF8FAFC),
+        fillColor:  AppColors.bgHeaderCompanyCard,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         suffixIcon: IconButton(
@@ -314,7 +315,7 @@ class _LoginScreenState extends State<LoginScreen>
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE2E8F0), width: 2),
+          borderSide: const BorderSide(color: AppColors.barChartLinear, width: 2),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
@@ -445,9 +446,9 @@ class _LoginScreenState extends State<LoginScreen>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF1F5F9),
+                  color:  AppColors.bgQuickQuestions,
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: const Color(0xFFCBD5E1)),
+                  border: Border.all(color:  AppColors.bgQuickQuestionsBorder),
                 ),
                 child: Text(
                   d['label']!,

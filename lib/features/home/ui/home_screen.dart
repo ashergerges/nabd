@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 import 'package:nabd/features/home/ui/chatbot_fab.dart';
-import 'package:nabd/features/home/ui/company.dart';
+import 'package:nabd/features/home/data/models/company.dart';
 import 'package:nabd/features/home/ui/hero_header.dart';
 import 'package:nabd/features/home/ui/kpi_card.dart';
 import 'app_theme.dart';
@@ -50,10 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     const HeroHeader(),
-                    const SizedBox(height: 20),
+                    20.verticalSpace,
                     // KPI Cards Grid
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: 16.padHorizontal,
                       child: GridView.count(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -76,8 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             icon: Icons.bar_chart,
                             label: 'عادلة',
                             value: '${totalFair.toInt()}M\$',
-                            subtitle:
-                            '+${((totalFair / totalBook - 1) * 100).toStringAsFixed(0)}%',
+                            // subtitle: '+${((totalFair / totalBook - 1) * 100).toStringAsFixed(0)}%',
                           ),
                           KpiCard(
                             icon: Icons.trending_up,
@@ -110,16 +113,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    16.verticalSpace,
                     // Tab selector
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: 16.padHorizontal,
                       child: _TabSelector(
                         currentIndex: _currentIndex,
                         onChanged: (i) => setState(() => _currentIndex = i),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    16.verticalSpace
                   ],
                 ),
               ),
@@ -166,11 +169,11 @@ class _TabSelector extends StatelessWidget {
     ];
 
     return Container(
-      padding: const EdgeInsets.all(4),
+      padding: 4.padAll,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: AppRadius.card,
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color:  AppColors.barChartLinear),
       ),
       child: Row(
         children: List.generate(tabs.length, (i) {
@@ -180,7 +183,7 @@ class _TabSelector extends StatelessWidget {
               onTap: () => onChanged(i),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding:10.padVertical,
                 decoration: BoxDecoration(
                   color: isActive ? AppColors.primary : Colors.transparent,
                   borderRadius: BorderRadius.circular(16),
@@ -193,13 +196,12 @@ class _TabSelector extends StatelessWidget {
                       size: 16,
                       color: isActive ? Colors.white : AppColors.textMuted,
                     ),
-                    const SizedBox(width: 6),
+                    6.horizontalSpace,
                     Text(
                       tabs[i]['label'] as String,
-                      style: TextStyle(
+                      style: AppTextTheme.bodyXSmall(context).copyWith(
                         color: isActive ? Colors.white : AppColors.textMuted,
                         fontWeight: FontWeight.w700,
-                        fontSize: 12,
                       ),
                     ),
                   ],

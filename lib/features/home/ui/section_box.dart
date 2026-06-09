@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
 
 import 'app_theme.dart';
 
@@ -17,12 +21,12 @@ class SectionBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
+      margin: 16.padBottom,
+      padding: 16.padAll,
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: AppRadius.card,
-        border: Border.all(color: const Color(0xFFEEF2FA)),
+        border: Border.all(color: AppColors.exitStrategyTap),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.03),
@@ -45,16 +49,19 @@ class SectionBox extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
-              const SizedBox(width: 10),
+              10.horizontalSpace,
               Icon(icon, color: AppColors.primary, size: 18),
-              const SizedBox(width: 6),
+              6.horizontalSpace,
               Text(
                 title,
-                style: AppTextStyles.heading.copyWith(fontSize: 15),
+                style: AppTextTheme.bodySmall(context).copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.textDark,
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 14),
+          14.verticalSpace,
           child,
         ],
       ),

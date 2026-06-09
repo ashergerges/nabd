@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nabd/features/home/ui/company.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/features/home/data/models/company.dart';
 
 import 'app_theme.dart';
 
@@ -177,7 +181,7 @@ class _ChatbotFabState extends State<ChatbotFab>
               decoration: BoxDecoration(
                 color: AppColors.surface,
                 borderRadius: AppRadius.card,
-                border: Border.all(color: const Color(0xFFE2E8F0)),
+                border: Border.all(color:  AppColors.barChartLinear),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
@@ -190,8 +194,7 @@ class _ChatbotFabState extends State<ChatbotFab>
                 children: [
                   // Header
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 12),
+                    padding: 16.padHorizontal+12.padVertical,
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [Color(0xFF0A2A3A), AppColors.primary],
@@ -203,19 +206,18 @@ class _ChatbotFabState extends State<ChatbotFab>
                       textDirection: TextDirection.rtl,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Row(
+                         Row(
                           textDirection: TextDirection.rtl,
                           children: [
                             Icon(Icons.smart_toy_outlined,
                                 color: Colors.white, size: 18),
-                            SizedBox(width: 8),
+                           8.horizontalSpace,
                             Text(
                               'المستشار الاستثماري - 15 سؤالاً',
-                              style: TextStyle(
+                              style: AppTextTheme.bodySmall(context).copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 13,
-                              ),
+                              )
                             ),
                           ],
                         ),
@@ -229,10 +231,10 @@ class _ChatbotFabState extends State<ChatbotFab>
                   ),
                   // Quick questions
                   Container(
-                    padding: const EdgeInsets.all(10),
-                    color: const Color(0xFFF1F5F9),
+                    padding: 10.padAll,
+                    color:  AppColors.bgQuickQuestions,
                     child: SizedBox(
-                      height: 80,
+                      height: 80.h,
                       child: SingleChildScrollView(
                         child: Wrap(
                           spacing: 6,
@@ -242,21 +244,20 @@ class _ChatbotFabState extends State<ChatbotFab>
                                     onTap: () =>
                                         _sendQuestion(q['num']!, q['label']!),
                                     child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 4),
+                                      padding: 10.padHorizontal+4.padVertical,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: AppRadius.chip,
                                         border: Border.all(
-                                            color: const Color(0xFFCBD5E1)),
+                                            color:  AppColors.bgQuickQuestionsBorder),
                                       ),
                                       child: Text(
                                         q['label']!,
-                                        style: const TextStyle(
+                                        style: AppTextTheme.bodyXXSmall(context).copyWith(
                                           color: AppColors.primary,
                                           fontSize: 10,
                                           fontWeight: FontWeight.w700,
-                                        ),
+                                        )
                                       ),
                                     ),
                                   ))
@@ -279,8 +280,7 @@ class _ChatbotFabState extends State<ChatbotFab>
                               : Alignment.centerRight,
                           child: Container(
                             margin: const EdgeInsets.only(bottom: 8),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
+                            padding: 12.padHorizontal+8.padVertical,
                             constraints: BoxConstraints(
                               maxWidth: MediaQuery.of(context).size.width * 0.7,
                             ),
@@ -299,16 +299,15 @@ class _ChatbotFabState extends State<ChatbotFab>
                               border: msg.isUser
                                   ? null
                                   : Border.all(
-                                      color: const Color(0xFFE2E8F0)),
+                                      color:  AppColors.barChartLinear),
                             ),
                             child: Text(
                               msg.text,
                               textDirection: TextDirection.rtl,
-                              style: TextStyle(
+                              style: AppTextTheme.bodyXSmall(context).copyWith(
                                 color: msg.isUser
                                     ? Colors.white
                                     : AppColors.textDark,
-                                fontSize: 12,
                                 height: 1.5,
                               ),
                             ),
@@ -319,11 +318,11 @@ class _ChatbotFabState extends State<ChatbotFab>
                   ),
                   // Input
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: 8.padAll,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       border: Border(
-                          top: BorderSide(color: Color(0xFFE2E8F0))),
+                          top: BorderSide(color: AppColors.barChartLinear)),
                     ),
                     child: Row(
                       textDirection: TextDirection.rtl,
@@ -338,12 +337,12 @@ class _ChatbotFabState extends State<ChatbotFab>
                               border: OutlineInputBorder(
                                 borderRadius: AppRadius.button,
                                 borderSide: const BorderSide(
-                                    color: Color(0xFFCBD5E1)),
+                                    color: AppColors.bgQuickQuestionsBorder),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: AppRadius.button,
                                 borderSide: const BorderSide(
-                                    color: Color(0xFFCBD5E1)),
+                                    color: AppColors.bgQuickQuestionsBorder),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: AppRadius.button,
@@ -354,7 +353,7 @@ class _ChatbotFabState extends State<ChatbotFab>
                                   horizontal: 16, vertical: 8),
                               isDense: true,
                             ),
-                            style: const TextStyle(fontSize: 13),
+                            style: AppTextTheme.bodySmall(context),
                             onSubmitted: (_) => _sendText(),
                           ),
                         ),
@@ -362,7 +361,7 @@ class _ChatbotFabState extends State<ChatbotFab>
                         GestureDetector(
                           onTap: _sendText,
                           child: Container(
-                            padding: const EdgeInsets.all(10),
+                            padding: 10.padAll,
                             decoration: const BoxDecoration(
                               color: AppColors.primary,
                               shape: BoxShape.circle,

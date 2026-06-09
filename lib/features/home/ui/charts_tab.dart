@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nabd/features/home/ui/company.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/constants/app_text_them.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/features/home/data/models/company.dart';
 import 'package:nabd/features/home/ui/section_box.dart';
 import 'app_theme.dart';
 
@@ -13,7 +17,7 @@ class ChartsTab extends StatelessWidget {
     final totalFair = PortfolioData.totalFairValue;
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
+      padding: 100.padBottom + 16.padHorizontal,
       child: Column(
         children: [
           // 1. Sector Distribution
@@ -74,14 +78,7 @@ class _SectorBarChart extends StatelessWidget {
 
   const _SectorBarChart({required this.sectors, required this.totalFair});
 
-  static const _colors = [
-    Color(0xFF0A2A3A),
-    Color(0xFF1E5A8A),
-    Color(0xFF2E7AB0),
-    Color(0xFF4A9AC0),
-    Color(0xFF6AB0D0),
-    Color(0xFF8CC5DB),
-  ];
+  static const _colors = AppColors.barChart;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +88,7 @@ class _SectorBarChart extends StatelessWidget {
         final s = entries[i];
         final pct = (s.value['fairValue'] as double) / totalFair;
         return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
+          padding: 10.padBottom,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -99,23 +96,31 @@ class _SectorBarChart extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(s.key,
-                      textDirection: TextDirection.rtl,
-                      style: AppTextStyles.body.copyWith(fontSize: 13)),
+                  Text(
+                    s.key,
+                    textDirection: TextDirection.rtl,
+                    style: AppTextTheme.bodySmall(
+                      context,
+                    ).copyWith(color: AppColors.textDark),
+                  ),
                   Text(
                     '${(s.value['fairValue'] as double).toInt()}M\$ (${(pct * 100).toStringAsFixed(0)}%)',
-                    style: AppTextStyles.label,
+                    style: AppTextTheme.bodyXSmall(context).copyWith(
+                      color: AppColors.textMuted,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 4),
+              4.verticalSpace,
               ClipRRect(
                 borderRadius: BorderRadius.circular(6),
                 child: LinearProgressIndicator(
                   value: pct,
-                  backgroundColor: const Color(0xFFE2E8F0),
-                  valueColor:
-                      AlwaysStoppedAnimation(_colors[i % _colors.length]),
+                  backgroundColor: AppColors.barChartLinear,
+                  valueColor: AlwaysStoppedAnimation(
+                    _colors[i % _colors.length],
+                  ),
                   minHeight: 10,
                 ),
               ),
@@ -142,9 +147,13 @@ class _ValueComparisonChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final maxVal = expectedTotal;
     final bars = [
-      {'label': 'دفترية', 'value': bookTotal, 'color': const Color(0xFF4A6A8A)},
+      {'label': 'دفترية', 'value': bookTotal, 'color': AppColors.bookTotal},
       {'label': 'عادلة', 'value': fairTotal, 'color': AppColors.primary},
-      {'label': 'متوقعة', 'value': expectedTotal, 'color': AppColors.primaryDark},
+      {
+        'label': 'متوقعة',
+        'value': expectedTotal,
+        'color': AppColors.primaryDark,
+      },
     ];
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -155,25 +164,28 @@ class _ValueComparisonChart extends StatelessWidget {
           children: [
             Text(
               '${(b['value'] as double).toInt()}M',
-              style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 12,
-                  color: AppColors.textDark),
+              style: AppTextTheme.bodyXSmall(
+                context,
+              ).copyWith(color: AppColors.textDark),
             ),
-            const SizedBox(height: 4),
+            4.verticalSpace,
             Container(
               width: 56,
               height: 120 * pct,
               decoration: BoxDecoration(
                 color: b['color'] as Color,
                 borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(8)),
+                  top: Radius.circular(8),
+                ),
               ),
             ),
-            const SizedBox(height: 6),
+            6.verticalSpace,
             Text(
               b['label'] as String,
-              style: AppTextStyles.label.copyWith(fontSize: 12),
+              style: AppTextTheme.bodyXSmall(context).copyWith(
+                color: AppColors.textMuted,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ],
         );
@@ -202,41 +214,40 @@ class _HorizontalBarChart extends StatelessWidget {
       children: items.map((c) {
         final pct = maxVal > 0 ? getValue(c) / maxVal : 0.0;
         return Padding(
-          padding: const EdgeInsets.only(bottom: 8),
+          padding: 8.padBottom,
           child: Row(
             textDirection: TextDirection.rtl,
             children: [
               SizedBox(
                 width: 110,
                 child: Text(
-                  c.name.length > 14
-                      ? '${c.name.substring(0, 12)}..'
-                      : c.name,
+                  c.name.length > 14 ? '${c.name.substring(0, 12)}..' : c.name,
                   textDirection: TextDirection.rtl,
-                  style: AppTextStyles.label.copyWith(fontSize: 10),
+                  style: AppTextTheme.bodyXXSmall(context).copyWith(
+                    color: AppColors.textMuted,
+                    fontWeight: FontWeight.w700,
+                  ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const SizedBox(width: 8),
+              8.horizontalSpace,
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
                   child: LinearProgressIndicator(
                     value: pct,
-                    backgroundColor: const Color(0xFFE2E8F0),
+                    backgroundColor: AppColors.barChartLinear,
                     valueColor: AlwaysStoppedAnimation(color),
                     minHeight: 14,
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              8.horizontalSpace,
               Text(
                 '${getValue(c).toInt()}M',
-                style: TextStyle(
-                  color: color,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 11,
-                ),
+                style: AppTextTheme.bodyXSmall(
+                  context,
+                ).copyWith(fontWeight: FontWeight.w800, color: color),
               ),
             ],
           ),
@@ -277,13 +288,12 @@ class _ForecastChart extends StatelessWidget {
                 children: [
                   Text(
                     '${values[i].toInt()}',
-                    style: const TextStyle(
-                      fontSize: 9,
+                    style: AppTextTheme.bodyXXSmall(context).copyWith(
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  4.verticalSpace,
                   Container(
                     width: 40,
                     height: 100 * pct,
@@ -297,7 +307,8 @@ class _ForecastChart extends StatelessWidget {
                         ],
                       ),
                       borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(6)),
+                        top: Radius.circular(6),
+                      ),
                     ),
                   ),
                 ],
@@ -305,14 +316,24 @@ class _ForecastChart extends StatelessWidget {
             }),
           ),
         ),
-        const SizedBox(height: 8),
+        8.verticalSpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: years.map((y) => Text(y, style: AppTextStyles.label)).toList(),
+          children: years
+              .map(
+                (y) => Text(
+                  y,
+                  style: AppTextTheme.bodyXSmall(context).copyWith(
+                    color: AppColors.textMuted,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              )
+              .toList(),
         ),
-        const SizedBox(height: 8),
+        8.verticalSpace,
         Container(
-          padding: const EdgeInsets.all(10),
+          padding: 10.padAll,
           decoration: BoxDecoration(
             color: AppColors.primary.withOpacity(0.05),
             borderRadius: BorderRadius.circular(10),
@@ -321,9 +342,14 @@ class _ForecastChart extends StatelessWidget {
             textDirection: TextDirection.rtl,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('نمو سنوي متوقع: 18%',
-                  textDirection: TextDirection.rtl,
-                  style: AppTextStyles.label),
+              Text(
+                'نمو سنوي متوقع: 18%',
+                textDirection: TextDirection.rtl,
+                style: AppTextTheme.bodySmall(context).copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textMuted,
+                ),
+              ),
               Text(
                 '2030: ${values.last.toInt()}M\$',
                 style: const TextStyle(

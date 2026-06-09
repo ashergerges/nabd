@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nabd/features/home/ui/company.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabd/core/utils/constants/app_colors.dart';
+import 'package:nabd/core/utils/extensions/padding_extensions.dart';
+import 'package:nabd/features/home/data/models/company.dart';
 import 'package:nabd/features/home/ui/company_card.dart';
 
 import 'app_theme.dart';
@@ -31,7 +34,7 @@ class _CompaniesTabState extends State<CompaniesTab> {
       children: [
         // Filter chips
         Padding(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          padding:12.padBottom+16.padHorizontal,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             reverse: true,
@@ -43,19 +46,19 @@ class _CompaniesTabState extends State<CompaniesTab> {
                     value: 'all',
                     current: _filter,
                     onTap: (v) => setState(() => _filter = v)),
-                const SizedBox(width: 8),
+                8.horizontalSpace,
                 _FilterChip(
                     label: '🟢 إيجابية',
                     value: 'positive',
                     current: _filter,
                     onTap: (v) => setState(() => _filter = v)),
-                const SizedBox(width: 8),
+                8.horizontalSpace,
                 _FilterChip(
                     label: '🟡 متابعة',
                     value: 'warning',
                     current: _filter,
                     onTap: (v) => setState(() => _filter = v)),
-                const SizedBox(width: 8),
+                8.horizontalSpace,
                 _FilterChip(
                     label: '🔴 تدخل',
                     value: 'negative',
@@ -68,7 +71,7 @@ class _CompaniesTabState extends State<CompaniesTab> {
         // Company list
         Expanded(
           child: ListView.builder(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
+            padding: 100.padBottom+16.padHorizontal,
             itemCount: _filtered.length,
             itemBuilder: (_, i) => CompanyCard(company: _filtered[i]),
           ),
@@ -98,12 +101,12 @@ class _FilterChip extends StatelessWidget {
       onTap: () => onTap(value),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+        padding: 14.padHorizontal+7.padVertical,
         decoration: BoxDecoration(
           color: isActive ? AppColors.primary : Colors.transparent,
           borderRadius: AppRadius.chip,
           border: Border.all(
-            color: isActive ? AppColors.primary : const Color(0xFFCBD5E1),
+            color: isActive ? AppColors.primary :  AppColors.bgQuickQuestionsBorder,
           ),
         ),
         child: Text(
